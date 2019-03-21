@@ -1,0 +1,57 @@
+<h1 style="font-weight: bold;margin-left: 420px">CERTIFICATE</h1>
+<br>
+<form [formGroup]="form">
+  <div class="form-group">
+  <div class="container" class="jumbotron" style="background:lightyellow">
+
+      <label style="font-weight: bold">Organization:</label>
+      <input name="name" class="form-control margin" id="input-name"
+             placeholder="Organization..." [formControl]="name">
+
+    <div class="form-group">
+      <label style="font-weight: bold">State:</label>
+      <input name="state" class="form-control margin" id="input-state"
+             placeholder="State..." [formControl]="state">
+    </div>
+
+  </div>
+  <div class="container" class="jumbotron" style="background:lightyellow">
+
+      <label style="font-weight: bold">Email:</label>
+      <input name="email" class="form-control margin" id="input-email"
+             placeholder="Email..." [formControl]="email">
+
+
+      <label style="font-weight: bold">Password:</label>
+      <input name="password" class="form-control margin" id="input-password"
+             placeholder="Password..." [formControl]="password">
+
+
+  </div>
+
+  <div class="container" class="jumbotron" style="background:lightyellow">
+<div>
+      <label style="font-weight: bold">Start date:</label>
+      <i class="fa fa-clock-o" aria-hidden="true" style="width: 30px; height: 30px; margin-left: 65px; margin-right: 10px;"></i>
+      <input   name="startDate"  type="date" style="width: 300px;  display: inline-block" class="form-control margin"
+               id="startDate" [formControl]="startDate">
+
+</div>
+    <div>
+      <label style="font-weight: bold">End date:</label>
+      <i class="fa fa-clock-o" aria-hidden="true" style="width: 30px; height: 30px; margin-left: 65px; margin-right: 10px;"></i>
+      <input   name="endDate"  type="date" style="width: 300px;  display: inline-block" class="form-control margin"
+               id="endDate" [formControl]="endDate">
+    </div>
+
+
+  </div>
+
+  <div class="container" class="jumbotron" style="background:lightyellow">
+    <select  id="searchTo" name="searchTo"  class="form-control" style="margin-left:20px;width: 300px; margin-bottom: 15px; display: inline-block" [formControl]="subjectDate">
+      <option></option>
+    </select>
+  </div>
+  <button class="btn btn-dark" style="display: inline-block;height: 50px; width: 150px;margin-left: 450px;" (click)="confirm()">Confirm</button>
+  </div>
+</form>
