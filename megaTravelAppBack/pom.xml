@@ -96,9 +96,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         
-         
-
-
 		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -118,6 +115,17 @@
 		</dependency>
 		<!-- Swagger dependencies END -->
 
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcprov-jdk15</artifactId>
+    <version>1.46</version>
+</dependency>
+
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcmail-jdk15</artifactId>
+    <version>1.46</version>
+</dependency>
     
   </dependencies>
   
@@ -179,4 +187,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
+
 </project>
