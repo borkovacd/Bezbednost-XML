@@ -139,10 +139,19 @@ public class Data implements ApplicationRunner {
 	}
 	private void loadUser(){
 		User u1 = new User();
-		u1.setEmail("ilinkaKo@gmail.com");
-		u1.setPassword("ilinka");
+		u1.setEmail("MegaTravelLondon@gmail.com");
+		u1.setPassword("lon");
 		userRepository.save(u1);
 		
+		User u2 = new User();
+		u2.setEmail("MegaTravelHongKong@gmail.com");
+		u2.setPassword("hong");
+		userRepository.save(u2);
+		
+		User u3 = new User();
+		u3.setEmail("MegaTravelBoston@gmail.com");
+		u3.setPassword("bost");
+		userRepository.save(u3);
 		
 	}
 	
