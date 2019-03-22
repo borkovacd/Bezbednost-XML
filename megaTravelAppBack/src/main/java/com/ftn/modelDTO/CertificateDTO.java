@@ -8,12 +8,9 @@ public class CertificateDTO
 	private Date startDate;
 	private Date endDate;
 	private boolean isRevoked; // da li je povucen ili nije
-	private String reasonsForRevokation; // razlozi za povlacenje, ukoliko je povucen
-	
-	private String state ;
-	private String email ;
+	private String reasonsForRevokation; // 
 	private String password ;
-	
+	private String city;
 	
 	
 	public CertificateDTO() {
@@ -22,15 +19,13 @@ public class CertificateDTO
 	}
 
 	public CertificateDTO(String softwareID, Date startDate, Date endDate, boolean isRevoked,
-			String reasonsForRevokation, String state, String email, String password) {
+			String reasonsForRevokation, String city, String password) {
 		super();
 		this.softwareID = softwareID;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.isRevoked = isRevoked;
 		this.reasonsForRevokation = reasonsForRevokation;
-		this.state = state ;
-		this.email = email ;
 		this.password = password ;
 	}
 
@@ -74,21 +69,14 @@ public class CertificateDTO
 		this.reasonsForRevokation = reasonsForRevokation;
 	}
 
-	public String getState() {
-		return state;
+	public String getCity() {
+		return city;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getPassword() {
 		return password;

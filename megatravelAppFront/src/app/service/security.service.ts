@@ -2,6 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
+import {CertificateModel} from '../model/certificate.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -20,4 +21,9 @@ export class SecurityService {
   }
 
 
+  addCertificate(model: CertificateModel): Observable<any> {
+    const data = JSON.stringify(model);
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post( `${this.BASE_URL}/createCertificate`, data, {headers: headers});
+  }
 }

@@ -153,8 +153,8 @@ public class Data implements ApplicationRunner {
 		
 		SubjectSoftware ss3 = new SubjectSoftware();
 		
-		ss3.setState("Boston");
-		ss3.setCity("USA");
+		ss3.setState("USA");
+		ss3.setCity("Boston");
 		ss3.setEmail("MegaTravelBoston@gmail.com");
 		
 		subSoftRep.save(ss3);

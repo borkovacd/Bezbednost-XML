@@ -15,13 +15,10 @@ import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
 
 export class CreateCertificateComponent implements OnInit{
   public form: FormGroup;
-  public name: AbstractControl;
-  public state: AbstractControl;
-  public email: AbstractControl;
   public password: AbstractControl;
   public startDate: AbstractControl;
   public endDate: AbstractControl;
-  public subjectDate: AbstractControl;
+  public city: AbstractControl;
 
   subjects: SubjectSoftwareModel[];
 
@@ -30,16 +27,15 @@ export class CreateCertificateComponent implements OnInit{
               private fb: FormBuilder, private data: SecurityService) {
     this.form = this.fb.group({
 
-
-      'name': ['', Validators.compose([Validators.required])],
-      'state': ['', Validators.compose([Validators.required])],
-      'email': ['', Validators.compose([Validators.required])],
-      'password': ['', Validators.compose([Validators.required])],
       'startDate': ['', Validators.compose([Validators.required])],
       'endDate': ['', Validators.compose([Validators.required])],
-      'subjectDate': ['', Validators.compose([Validators.required])],
+      'city': ['', Validators.compose([Validators.required])],
 
-    })
+    });
+
+    this.startDate = this.form.controls['startDate'];
+    this.endDate = this.form.controls['endDate'];
+    this.city = this.form.controls['city'];
 
 
   }
@@ -50,14 +46,15 @@ export class CreateCertificateComponent implements OnInit{
 
   }
 
-  confirm(){
-    const model = new CertificateModel(this.name.value,
-      this.state.value,
-      this.email.value,
-      this.password.value,
+  confirm(): any {
+    const model = new CertificateModel(
       this.startDate.value,
       this.endDate.value,
-      this.subjectDate.value);
+      this.city.value);
+
+
+    this.data.addCertificate(model).subscribe(dataF =>
+      this.router.navigateByUrl('/certificates'));
 
   }
 }

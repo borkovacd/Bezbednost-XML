@@ -19,4 +19,10 @@ public class SubjectSoftwareService {
 		
 		return (ArrayList<SubjectSoftware>) subSoftRepository.findAll();
 	}
+	
+	public SubjectSoftware getSoftware(String city) {
+		
+		return subSoftRepository.findByCity(city);
+		
+	}
 }

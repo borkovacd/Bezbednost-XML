@@ -23,7 +23,10 @@ public class SecurityAdminControler {
 	
 	@RequestMapping(value="createCertificate",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public void createSertficate(@RequestBody CertificateDTO cdto) {
+		
+		System.out.println(cdto.getCity());
 		
 	}
 	
