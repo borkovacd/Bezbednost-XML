@@ -31,7 +31,9 @@ import org.springframework.stereotype.Component;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
 import com.ftn.model.SubjectSoftware;
+import com.ftn.model.User;
 import com.ftn.repository.SubjectSoftwareRepository;
+import com.ftn.repository.UserRepository;
 
 
 // pri pokretanju treba namestiti podatak o root-u odnosno issuer-u i o divizijama
@@ -45,6 +47,9 @@ public class Data implements ApplicationRunner {
 	
 	@Autowired
 	private SubjectSoftwareRepository subSoftRep;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	public Data() {
 		Security.addProvider(new BouncyCastleProvider());
@@ -129,9 +134,17 @@ public class Data implements ApplicationRunner {
 		
 		
 		loadSubjectSoftware();
+		loadUser();
 		
 	}
-	
+	private void loadUser(){
+		User u1 = new User();
+		u1.setEmail("ilinkaKo@gmail.com");
+		u1.setPassword("ilinka");
+		userRepository.save(u1);
+		
+		
+	}
 	
 	private void loadSubjectSoftware() {
 		

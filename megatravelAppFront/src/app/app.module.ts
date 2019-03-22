@@ -10,6 +10,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreateCertificateComponent} from './createCertificate/createCertificate.component';
 import {SecurityService} from './service/security.service';
 import {CeritifcatesComponent} from './certificates/ceritifcates.component';
+import {LoginComponent} from './login/login.component';
+import {WelcomepageComponent} from './welcomepage/welcomepage.component';
+import {UserService} from "./service/user.service";
 
 
 @NgModule({
@@ -17,7 +20,9 @@ import {CeritifcatesComponent} from './certificates/ceritifcates.component';
     AppComponent,
     HomeComponent,
     CreateCertificateComponent,
-    CeritifcatesComponent
+    CeritifcatesComponent,
+    LoginComponent,
+    WelcomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,7 @@ import {CeritifcatesComponent} from './certificates/ceritifcates.component';
   ],
   providers: [
     SecurityService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
