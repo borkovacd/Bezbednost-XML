@@ -2,7 +2,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {CertificateModel} from "../model/certificate.model";
+import {CertificateModel} from '../model/certificate.model';
+import {SecurityService} from '../service/security.service';
+import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
 
 @Component ({
 
@@ -21,9 +23,11 @@ export class CreateCertificateComponent implements OnInit{
   public endDate: AbstractControl;
   public subjectDate: AbstractControl;
 
+  subjects: SubjectSoftwareModel[];
+
 
   constructor(protected router: Router,
-              private fb: FormBuilder,){
+              private fb: FormBuilder, private data: SecurityService) {
     this.form = this.fb.group({
 
 
@@ -39,7 +43,10 @@ export class CreateCertificateComponent implements OnInit{
 
 
   }
-  ngOnInit(){
+  ngOnInit() {
+
+    this.data.getSubjectSoftware().subscribe(data => this.subjects = data);
+
 
   }
 

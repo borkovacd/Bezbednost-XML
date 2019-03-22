@@ -23,12 +23,15 @@ import java.util.Date;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
+import com.ftn.model.SubjectSoftware;
+import com.ftn.repository.SubjectSoftwareRepository;
 
 
 // pri pokretanju treba namestiti podatak o root-u odnosno issuer-u i o divizijama
@@ -39,6 +42,9 @@ import com.ftn.model.SubjectData;
 public class Data implements ApplicationRunner {
 	
 	private KeyStore keyStore;
+	
+	@Autowired
+	private SubjectSoftwareRepository subSoftRep;
 	
 	public Data() {
 		Security.addProvider(new BouncyCastleProvider());
@@ -121,8 +127,41 @@ public class Data implements ApplicationRunner {
 			}
 		}
 		
+		
+		loadSubjectSoftware();
+		
 	}
 	
+	
+	private void loadSubjectSoftware() {
+		
+		SubjectSoftware ss = new SubjectSoftware();
+		
+		ss.setState("England");
+		ss.setCity("London");
+		ss.setEmail("MegaTravelLondon@gmail.com");
+		
+		subSoftRep.save(ss);
+		
+		SubjectSoftware ss2 = new SubjectSoftware();
+		
+		ss2.setState("Kina");
+		ss2.setCity("Hong Kong");
+		ss2.setEmail("MegaTravelHongKong@gmail.com");
+		
+		subSoftRep.save(ss2);
+		
+		SubjectSoftware ss3 = new SubjectSoftware();
+		
+		ss3.setState("Boston");
+		ss3.setCity("USA");
+		ss3.setEmail("MegaTravelBoston@gmail.com");
+		
+		subSoftRep.save(ss3);
+				
+	}
+
+
 	// izdavac sertifikata
 	private IssuerData generateIssuerData(PrivateKey issuerKey) {
 		X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);

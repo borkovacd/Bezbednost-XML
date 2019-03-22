@@ -9,6 +9,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {CreateCertificateComponent} from './createCertificate/createCertificate.component';
+import {SubjectSoftwareModel} from './model/subjectSoftware.model';
+import {SecurityService} from './service/security.service';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {CreateCertificateComponent} from './createCertificate/createCertificate.
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    SecurityService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
