@@ -15,6 +15,9 @@ public class SubjectSoftware {
 	@Column(name="State")
 	private String state;
 	
+	@Column(name="SoftwareId")
+	private String softwareId;
+	
 	@Column(name="City")
 	private String city;
 
@@ -68,6 +71,14 @@ public class SubjectSoftware {
 
 	public void setHasCert(boolean hasCert) {
 		this.hasCert = hasCert;
+	}
+
+	public String getSoftwareId() {
+		return softwareId;
+	}
+
+	public void setSoftwareId(String softwareId) {
+		this.softwareId = softwareId;
 	}
 	
 	

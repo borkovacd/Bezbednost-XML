@@ -161,6 +161,7 @@ public class Data implements ApplicationRunner {
 		
 		ss.setState("England");
 		ss.setCity("London");
+		ss.setSoftwareId("S1");
 		ss.setEmail("MegaTravelLondon@gmail.com");
 		
 		subSoftRep.save(ss);
@@ -169,6 +170,7 @@ public class Data implements ApplicationRunner {
 		
 		ss2.setState("Kina");
 		ss2.setCity("Hong Kong");
+		ss2.setSoftwareId("S2");
 		ss2.setEmail("MegaTravelHongKong@gmail.com");
 		
 		subSoftRep.save(ss2);
@@ -177,6 +179,7 @@ public class Data implements ApplicationRunner {
 		
 		ss3.setState("USA");
 		ss3.setCity("Boston");
+		ss3.setSoftwareId("S3");
 		ss3.setEmail("MegaTravelBoston@gmail.com");
 		
 		subSoftRep.save(ss3);

@@ -5,8 +5,8 @@ import java.util.Date;
 public class CertificateDTO 
 {
 	private String softwareID;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private boolean isRevoked; // da li je povucen ili nije
 	private String reasonsForRevokation; // 
 	private String password ;
@@ -18,7 +18,7 @@ public class CertificateDTO
 		// TODO Auto-generated constructor stub
 	}
 
-	public CertificateDTO(String softwareID, Date startDate, Date endDate, boolean isRevoked,
+	public CertificateDTO(String softwareID, String startDate, String endDate, boolean isRevoked,
 			String reasonsForRevokation, String city, String password) {
 		super();
 		this.softwareID = softwareID;
@@ -37,19 +37,19 @@ public class CertificateDTO
 		this.softwareID = softwareID;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

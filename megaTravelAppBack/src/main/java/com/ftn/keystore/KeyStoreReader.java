@@ -84,7 +84,7 @@ public class KeyStoreReader {
 	
 	// ucitava sertifikate iz keystore datoteke
 	// FileName je zakucan na "./files/keystore.jks"
-    public Certificate readCertificate(String keyStorePass, String alias) {
+    public Certificate readCertificate(char[] keyStorePass, String alias) {
 		try {
 			
 			String keyStoreFile = "./files/keystore.jks";
@@ -92,7 +92,7 @@ public class KeyStoreReader {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(keyStoreFile));
-			ks.load(in, keyStorePass.toCharArray());
+			ks.load(in, keyStorePass);
 			
 			if(ks.isKeyEntry(alias)) {
 				Certificate cert = ks.getCertificate(alias);
@@ -120,7 +120,7 @@ public class KeyStoreReader {
     
     // iscitava privatni kljuc iz keystore datoteke
     // FileName je zakucan na "./files/keystore.jks"
-	public PrivateKey readPrivateKey(String keyStorePass, String alias, String pass) {
+	public PrivateKey readPrivateKey(char[] keyStorePass, String alias, char[] pass) {
 		try {
 			//kreiramo instancu KeyStore
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
@@ -128,10 +128,10 @@ public class KeyStoreReader {
 			
 			String keyStoreFile = "./files/keystore.jks";
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(keyStoreFile));
-			ks.load(in, keyStorePass.toCharArray());
+			ks.load(in, keyStorePass);
 			
 			if(ks.isKeyEntry(alias)) {
-				PrivateKey pk = (PrivateKey) ks.getKey(alias, pass.toCharArray());
+				PrivateKey pk = (PrivateKey) ks.getKey(alias, pass);
 				return pk;
 			}
 		} catch (KeyStoreException e) {
@@ -151,4 +151,42 @@ public class KeyStoreReader {
 		}
 		return null;
 	}
+	public KeyStore getKeyStore() {
+		try {
+			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+			String keyStoreFile = "./files/keystore.jks";
+			try {
+				BufferedInputStream in = new BufferedInputStream(new FileInputStream(keyStoreFile));
+				String str = "someString"; 
+				char[] password = str.toCharArray();
+				try {
+					keyStore.load(in, password);
+					return keyStore;
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (CertificateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		//	ks.load(in, keyStorePass.toCharArray());
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return keyStore;
+	}
+	
+	
 }

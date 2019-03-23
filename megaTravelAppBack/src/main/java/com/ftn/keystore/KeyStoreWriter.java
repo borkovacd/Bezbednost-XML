@@ -1,6 +1,8 @@
 package com.ftn.keystore;
 
 import java.io.FileInputStream;
+
+import java.security.cert.X509Certificate;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +13,8 @@ import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class KeyStoreWriter {
 	//KeyStore je Java klasa za citanje specijalizovanih datoteka koje se koriste za cuvanje kljuceva
@@ -34,25 +38,26 @@ public class KeyStoreWriter {
 	// Metoda kao parametar prima samo password, a fileName je zakucan na "./files/keystore.jks"
 	public void loadKeyStore(char[] password) 
 	{
-		
+		System.out.println("DDDDD");
 		String fileName = "./files/keystore.jks";
 		
-		try {
-			if(fileName != null) {
-				keyStore.load(new FileInputStream(fileName), password);
-			} else {
-				//Ako je cilj kreirati novi KeyStore poziva se i dalje load, pri cemu je prvi parametar null
-				keyStore.load(null, password);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (CertificateException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+				try {
+					keyStore.load(new FileInputStream(fileName), password);
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (CertificateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("pozz");
+			
 	}
 	
 	// cuvanje postojeceg keyStore, za zadati password
@@ -80,6 +85,9 @@ public class KeyStoreWriter {
 	{
 		try {
 			keyStore.setKeyEntry(alias, privateKey, password, new Certificate[] {certificate});
+			
+			
+			
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
 		}
