@@ -108,12 +108,13 @@ public class SecurityAdminControler {
 		//keyStoreWriter.write(alias, issuerData.getPrivateKey(), password, certificate);
 		
 		// upis u keyStore
-		keyStoreReader.getKeyStore().setKeyEntry(alias, keyStoreReader.readPrivateKey(password, alias, password), password, arr);
+		keyStoreReader.getKeyStore().setKeyEntry(alias, issuerData.getPrivateKey(), password, arr);
 		
+		keyStoreWriter.write2(alias, issuerData.getPrivateKey(), password, arr);
 		// cuvanje keyStore
 		keyStoreWriter.saveKeyStore(password);
 		
-	System.out.println(keyStoreReader.getKeyStore().getCertificateChain(alias).length);
+	System.out.println("KRAJ THE END: " + keyStoreReader.getKeyStore().getCertificateChain(alias).length);
 
 	}
 	

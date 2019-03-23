@@ -92,4 +92,14 @@ public class KeyStoreWriter {
 			e.printStackTrace();
 		}
 	}
+	
+	public void write2(String alias, PrivateKey privateKey, char[] password, Certificate[] chain) 
+	{
+		try {
+			keyStore.setKeyEntry(alias, privateKey, password, chain);
+		
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		}
+	}
 }
