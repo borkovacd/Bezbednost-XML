@@ -13,6 +13,7 @@ import {SecurityService} from '../service/security.service';
 
 export class CeritifcatesComponent implements OnInit {
 
+  certif: any;
 
   constructor(protected router: Router,
               private fb: FormBuilder, private data: SecurityService) {
@@ -20,6 +21,9 @@ export class CeritifcatesComponent implements OnInit {
 
   }
   ngOnInit() {
+
+    this.data.getCert().subscribe( data => this.certif = data);
+
 
 
 

@@ -18,4 +18,8 @@ export class HomeComponent implements  OnInit{
   createCertificate(){
     this.router.navigateByUrl('createCertificate');
   }
+
+  show() {
+    this.router.navigateByUrl('certificates')
+  }
 }

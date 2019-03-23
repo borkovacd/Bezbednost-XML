@@ -26,4 +26,8 @@ export class SecurityService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post( 'http://localhost:8080/api/security/createCertificate', data, {headers: headers});
   }
+
+  getCert(): Observable<any> {
+    return this.http.get<any>( `${this.BASE_URL}/getCertificates`, httpOptions);
+  }
 }

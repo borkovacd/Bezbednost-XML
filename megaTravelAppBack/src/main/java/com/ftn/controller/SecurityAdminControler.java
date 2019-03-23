@@ -29,6 +29,7 @@ import java.util.Random;
 
 import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
+import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.service.SubjectSoftwareService;
 import com.ftn.configuration.CertificateGenerator;
 import com.ftn.keystore.KeyStoreReader;
@@ -42,6 +43,9 @@ public class SecurityAdminControler {
 	@Autowired 
 	private SubjectSoftwareService ssService;
 	
+	@Autowired 
+	private SubjectSoftwareRepository repos;
+	
 	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter() ;
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
 	
@@ -54,6 +58,10 @@ public class SecurityAdminControler {
 		SubjectSoftware ss = ssService.getSoftware(cdto.getCity()); // entiteti u bazi, divizije
 		System.out.println(cdto.getCity());
 		System.out.println("ovo je taj: " + ss.getSoftwareId());
+		
+		ss.setHasCert(true);
+		
+		repos.save(ss);
 		
 		String str = "someString"; 
 		char[] password = str.toCharArray();
@@ -141,9 +149,29 @@ public class SecurityAdminControler {
 	}
 	
 	@RequestMapping(value="/getCertificates",	method = RequestMethod.GET)
-	public ArrayList<X509Certificate> getCeritificates() {
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ArrayList<String> getCeritificates() {
 		
-		return null;
+		 ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>();
+
+		 ArrayList<String> lanacSertifikata2 = new ArrayList<String>();
+		try {
+			lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("alias1")));
+			
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<lanacSertifikata.size(); i++) {
+			System.out.println(lanacSertifikata.get(i).toString());
+			
+			lanacSertifikata2.add(lanacSertifikata.get(i).toString());
+		}
+		
+		return lanacSertifikata2;
+		 
+	//	 return lanacSertifikata;
 	}
 	
 	// dodatne metode
