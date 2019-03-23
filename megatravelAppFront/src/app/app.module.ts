@@ -13,6 +13,7 @@ import {CeritifcatesComponent} from './certificates/ceritifcates.component';
 import {LoginComponent} from './login/login.component';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {UserService} from "./service/user.service";
+import {SoftwareComponent} from './software/software.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {UserService} from "./service/user.service";
     CeritifcatesComponent,
     LoginComponent,
     WelcomepageComponent,
+    SoftwareComponent
   ],
   imports: [
     BrowserModule,

@@ -30,4 +30,10 @@ export class SecurityService {
   getCert(): Observable<any> {
     return this.http.get<any>( `${this.BASE_URL}/getCertificates`, httpOptions);
   }
+
+  checkCommunication(string1: string, string2: string): Observable<any> {
+    return this.http.get('http://localhost:8080/api/security/communicate/' + string1 + '/' + string2, httpOptions);
+  }
+
+
 }

@@ -25,4 +25,10 @@ public class SubjectSoftwareService {
 		return subSoftRepository.findByCity(city);
 		
 	}
+	
+	public SubjectSoftware getSoftwareByEmail(String email) {
+		
+		return subSoftRepository.findByEmail(email);
+		
+	}
 }

@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <div class="form-group">
+
+    <div class="container" class="jumbotron" style="background:lightyellow">
+
+      <label style="display: block"><b>Softver kom se izdaje sertifikat</b></label>
+      <select  id="searchTo" name="searchTo"  class="form-control" style="margin-left:20px;width: 300px; margin-bottom: 15px; display: inline-block" [formControl]="city">
+        <option *ngFor = "let software of subjects">{{software.city}}</option>
+      </select>
+    </div>
+  </div>
+</form>
+
+  <button class="btn btn-dark" style="display: inline-block;height: 50px; width: 150px;margin-left: 450px;" (click)="communicate()">Communicate</button>
+
+
+
+

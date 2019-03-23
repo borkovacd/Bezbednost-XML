@@ -45,8 +45,11 @@ export class LoginComponent implements OnInit{
 
       localStorage.setItem('loggedUser', JSON.stringify(user));
       console.log(localStorage);
-      this.router.navigateByUrl('home');
-
+      if(this.email.value === 'megaTravel@gmail.com')
+        this.router.navigateByUrl('home');
+      else {
+        this.router.navigateByUrl('software');
+      }
 
     });
 

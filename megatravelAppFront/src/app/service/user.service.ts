@@ -21,5 +21,8 @@ export class UserService {
     return this.http.post(`${this.BASE_URL}/login`, body, {headers: headers});
   }
 
+  getLoggedUser() {
+    return JSON.parse(localStorage.getItem('loggedUser'));
+  }
 
 }

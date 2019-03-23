@@ -7,5 +7,7 @@ import com.ftn.model.SubjectSoftware;
 public interface SubjectSoftwareRepository extends JpaRepository<SubjectSoftware, Long> {
 
 	SubjectSoftware findByCity(String city);
+	
+	SubjectSoftware findByEmail(String email);
 
 }

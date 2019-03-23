@@ -153,6 +153,11 @@ public class Data implements ApplicationRunner {
 		u3.setPassword("bost");
 		userRepository.save(u3);
 		
+		User u4 = new User();
+		u4.setEmail("megaTravel@gmail.com");
+		u4.setPassword("bost");
+		userRepository.save(u4 );
+		
 	}
 	
 	private void loadSubjectSoftware() {

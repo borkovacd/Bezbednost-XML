@@ -5,6 +5,7 @@ import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -124,6 +125,21 @@ public class SecurityAdminControler {
 		
 	System.out.println("KRAJ THE END: " + keyStoreReader.getKeyStore().getCertificateChain(alias).length);
 
+	}
+	
+	@RequestMapping(value="/communicate/{string1}/{string2}",	method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
+		
+		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1); 
+		SubjectSoftware soft2 = ssService.getSoftware(string2);
+		
+		if(soft1.isHasCert() && soft2.isHasCert()) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	@RequestMapping(value="/getSubjectSoftware",	method = RequestMethod.GET)
@@ -261,6 +277,8 @@ public class SecurityAdminControler {
 	    // - podatke o vlasniku sertifikata koji izdaje nov sertifikat
 		return new IssuerData(issuerKey, builder.build());
 	}
+	
+	
 	
 	
 	
