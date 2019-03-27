@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.megatravel.com/mesto" xmlns:mes="http://www.megatravel.com/mesto">
+    <xs:element name="Mesto">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Drzava">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Grad">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Adresa">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Postanski_broj">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1000"/>
+                            <xs:maxInclusive value="99000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

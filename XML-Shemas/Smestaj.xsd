@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:mes="http://www.megatravel.com/mesto" xmlns:sme="http://www.megatravel.com/smestaj"
+    xmlns:sob="http://www.megatravel.com/soba">
+    <xs:import namespace="http://www.megatravel.com/soba" schemaLocation="Soba.xsd"/>
+    <xs:import namespace="http://www.megatravel.com/mesto" schemaLocation="Mesto.xsd"/>
+    <xs:element name="Smestaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Tip">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Hotel"/>
+                            <xs:enumeration value="Bed&amp;Breakfast"/>
+                            <xs:enumeration value="Apartman"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Dodatne_usluge">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Parking"/>
+                            <xs:enumeration value="WiFi"/>
+                            <xs:enumeration value="Dorucak"/>
+                            <xs:enumeration value="Polupansion"/>
+                            <xs:enumeration value="Pansion"/>
+                            <xs:enumeration value="AllInclusive"/>
+                            <xs:enumeration value="Kucni_ljubimci"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Opis">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="100"/>
+                            <xs:maxLength value="1000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="sob:Soba"/>
+                <xs:element ref="mes:Mesto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
