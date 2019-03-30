@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.megatravel.com/korisnici"
-    xmlns:kor="http://www.megatravel.com/korisnici">
+    targetNamespace="korisnici" xmlns:kor="korisnici">
     <xs:complexType name="Korisnik">
         <xs:sequence>
             <xs:element name="Ime">

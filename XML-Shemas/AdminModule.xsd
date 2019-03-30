@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="admin" xmlns:adm="admin" xmlns:ag="agent" xmlns:kor="korisnici" xmlns:us="user">
+    <xs:import namespace="agent" schemaLocation="AgentModule.xsd"/>
+    <xs:import namespace="user" schemaLocation="UserModule.xsd"/>
+    <xs:import namespace="korisnici" schemaLocation="Korisnici.xsd"/>
+    <xs:element name="Lista_korisnika">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="kor:Admin"/>
+                <xs:element maxOccurs="unbounded" ref="kor:Agent"/>
+                <xs:element maxOccurs="unbounded" ref="kor:Krajnji_korisnik"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
