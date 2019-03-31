@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="user" xmlns:kor="korisnici" xmlns:ag="agent" xmlns:us="user">
-    <xs:import namespace="agent" schemaLocation="agentModule.xsd"/>
+    <xs:import namespace="agent" schemaLocation="AgentModul.xsd"/>
     <xs:import namespace="korisnici" schemaLocation="Korisnici.xsd"/>
     <xs:element name="Rezervacija">
         <xs:complexType>

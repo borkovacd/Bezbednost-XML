@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="admin" xmlns:adm="admin" xmlns:ag="agent" xmlns:kor="korisnici" xmlns:us="user">
-    <xs:import namespace="agent" schemaLocation="AgentModule.xsd"/>
-    <xs:import namespace="user" schemaLocation="UserModule.xsd"/>
+    <xs:import namespace="agent" schemaLocation="AgentModul.xsd"/>
+    <xs:import namespace="user" schemaLocation="UserModul.xsd"/>
     <xs:import namespace="korisnici" schemaLocation="Korisnici.xsd"/>
     <xs:element name="Lista_korisnika">
         <xs:complexType>

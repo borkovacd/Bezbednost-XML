@@ -15,12 +15,18 @@
                 </xs:element>
                 <xs:element name="Naziv">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="100"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="Opis">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element maxOccurs="unbounded" ref="ag:Smestajna_jedinica"/>
@@ -53,7 +59,10 @@
                 </xs:element>
                 <xs:element name="Opis">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element ref="ag:Slika" maxOccurs="unbounded"/>
@@ -66,12 +75,18 @@
             <xs:sequence>
                 <xs:element name="Naziv">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="100"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="Opis">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="Cena">
@@ -108,12 +123,18 @@
             <xs:sequence>
                 <xs:element name="Naziv">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="100"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="Url">
                     <xs:simpleType>
-                        <xs:restriction base="xs:string"/>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
             </xs:sequence>
