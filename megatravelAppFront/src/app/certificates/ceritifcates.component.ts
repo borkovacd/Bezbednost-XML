@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {SecurityService} from '../service/security.service';
 import {UserService} from '../service/user.service';
 import {CertificateBackModel} from '../model/certificateBack.model';
+import {nextTick} from "q";
 
 @Component ({
 
@@ -18,9 +19,16 @@ export class CeritifcatesComponent implements OnInit {
   certif: CertificateBackModel[];
   selfCert: CertificateBackModel;
   user: any;
+  visibleMessage: boolean;
+  public form: FormGroup;
+  public message: AbstractControl;
 
   constructor(protected router: Router,
-              private fb: FormBuilder, private data: SecurityService, private  userService: UserService) {
+              private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
+    this.form = this.fb.group({
+      'message': ['', Validators.compose([Validators.required])],
+    });
+    this.message = this.form.controls['message'];
 
 
   }
@@ -31,10 +39,21 @@ export class CeritifcatesComponent implements OnInit {
    // alert(this.user.email);
 
     this.data.getCert(this.user.email).subscribe( data => this.certif = data);
+    this.visibleMessage=false;
 
+  }
+  revoke(serialNumber: any){
 
+    this.visibleMessage=true;
+  }
+  potvrdiPovlacenje(serialNumber: any){
 
+this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
+    if( data == true){
+     alert('Sertifikat uspesno povucen');
+      this.router.navigateByUrl('home');
+   }
 
-
+    })
   }
 }

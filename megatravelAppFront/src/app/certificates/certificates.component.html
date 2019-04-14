@@ -9,7 +9,18 @@
       <label>Izdato za: {{cert.subSoft.email}} </label><br>
       <label>Vazi od: {{cert.startDate | date : 'medium'}}</label><br>
       <label>Vazi do: {{cert.endDate | date : 'medium'}} </label><br>
-      <button class="btn btn-dark">Povuci</button>
+      <button class="btn btn-dark" (click)="revoke(cert.serialNumber)">Povuci</button>
+      <br>
+      <form [formGroup]="form">
+      <label *ngIf = "visibleMessage== true" style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>
+      <select [formControl]="message" id="message" name="message" *ngIf = "visibleMessage== true" class="form-control margin "  style="margin-bottom: 30px;width: 100%;">
+        <option>Ukraden PKI</option>
+        <option>Izgubljen PKI</option>
+        <option>Privremeno povlacenje PKI</option>
+
+      </select>
+      <button  *ngIf = "visibleMessage== true" class="btn btn-dark" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
+      </form>
     </div>
   </div>
 

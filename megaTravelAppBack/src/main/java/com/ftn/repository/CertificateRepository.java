@@ -7,5 +7,5 @@ import com.ftn.model.CertificateModel;
 
 @Repository
 public interface CertificateRepository extends JpaRepository<CertificateModel, Long> {
-
+	CertificateModel findOneBySerialNumber(Integer serialNumber);
 }

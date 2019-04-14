@@ -15,20 +15,32 @@ public class CertificateStatus
 	private Long id;
 	
 	@Column(name = "Serijski_broj")
-	private Long serijskiBroj ;
+	private Integer serijskiBroj ;
 	
 	@Column(name = "Status")
 	private boolean status ;
+	
+	@Column(name = "Message")
+	private String message ;
 
 	public CertificateStatus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CertificateStatus(Long serijskiBroj, boolean status) {
+	public CertificateStatus(Integer serijskiBroj, boolean status,String message) {
 		super();
 		this.serijskiBroj = serijskiBroj;
 		this.status = status;
+		this.message=message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Long getId() {
@@ -39,11 +51,11 @@ public class CertificateStatus
 		this.id = id;
 	}
 
-	public Long getSerijskiBroj() {
+	public Integer getSerijskiBroj() {
 		return serijskiBroj;
 	}
 
-	public void setSerijskiBroj(Long serijskiBroj) {
+	public void setSerijskiBroj(Integer serijskiBroj) {
 		this.serijskiBroj = serijskiBroj;
 	}
 

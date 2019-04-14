@@ -32,6 +32,7 @@ import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
+import com.ftn.service.CertificateStatusService;
 import com.ftn.service.SubjectSoftwareService;
 import com.ftn.configuration.CertificateGenerator;
 import com.ftn.keystore.KeyStoreReader;
@@ -45,6 +46,8 @@ public class SecurityAdminControler {
 	
 	@Autowired 
 	private SubjectSoftwareService ssService;
+	@Autowired 
+	private CertificateStatusService statusService;
 	
 	@Autowired 
 	private SubjectSoftwareRepository repos;
@@ -216,6 +219,17 @@ public class SecurityAdminControler {
 		return lanacSertifikataNova;
 		 
 	}
+	
+	@RequestMapping(value="/revokeCertificate/{serialNumber}/{message}",	method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public boolean revokeCeritificate(@PathVariable Integer serialNumber ,@PathVariable String message) {
+		System.out.println("Poruka koja je stigla "+ message);
+		boolean pomocni = false;
+		pomocni = statusService.revokeCert(serialNumber, message);
+		
+		return pomocni;
+	}
+		
 	
 	// dodatne metode
 	

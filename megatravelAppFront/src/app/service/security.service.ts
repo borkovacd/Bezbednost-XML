@@ -36,5 +36,10 @@ export class SecurityService {
     return this.http.get('http://localhost:8080/api/security/communicate/' + string1 + '/' + string2, httpOptions);
   }
 
+  revokeCert(serialNumber: any , message: string): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/revokeCertificate/${serialNumber}/${message}`, httpOptions);
+
+  }
+
 
 }

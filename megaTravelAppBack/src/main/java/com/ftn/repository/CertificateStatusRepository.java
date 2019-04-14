@@ -8,4 +8,5 @@ import com.ftn.model.CertificateStatus;
 @Repository
 public interface CertificateStatusRepository extends JpaRepository<CertificateStatus, Long> {
 
+	
 }
