@@ -18,20 +18,33 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
+import javax.naming.ldap.LdapName;
+import javax.naming.ldap.Rdn;
+
+import org.bouncycastle.asn1.x500.RDN;
+import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.asn1.x500.style.IETFUtils;
+import org.bouncycastle.cert.jcajce.JcaX509CertificateHolder;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.ftn.keystore.KeyStoreReader;
+import com.ftn.keystore.KeyStoreWriter;
+import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
 import com.ftn.model.SubjectSoftware;
 import com.ftn.model.User;
+import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.repository.UserRepository;
 
@@ -51,6 +64,11 @@ public class Data implements ApplicationRunner {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private CertificateRepository certRepository;
+	
+	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
+	
 	public Data() {
 		Security.addProvider(new BouncyCastleProvider());
 	}
@@ -58,6 +76,10 @@ public class Data implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		
+
+		loadSubjectSoftware();
+		loadUser();
 		
 		try {
 			keyStore = KeyStore.getInstance("JKS", "SUN");
@@ -70,6 +92,68 @@ public class Data implements ApplicationRunner {
 		File f = new File("./files/keystore.jks");
 		if(f.exists() && !f.isDirectory()) { 
 		    System.out.println("POSTOJI");
+		    
+		    ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>();
+		    
+		    try {
+				lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("alias1")));
+				
+			} catch (KeyStoreException e) {
+				e.printStackTrace();
+			}
+		    
+		    for(int i=0; i<lanacSertifikata.size(); i++){
+		    	
+		    	X509Certificate c = (X509Certificate) lanacSertifikata.get(i);
+		    	
+		    	System.out.println("Issuer\n");
+		    	System.out.println(c.getIssuerDN().getName());
+		    	System.out.println("\n\n");
+		    	
+		    	
+		    	System.out.println("Subject\n");
+		    	System.out.println(c.getSubjectX500Principal().getName());
+		    	System.out.println("\n\n");
+		    	
+		    	System.out.println(c.getNotAfter());
+		    	System.out.println(c.getNotBefore());
+		    	
+		    	
+		    	X500Name x500nameIssuer = new JcaX509CertificateHolder(c).getSubject();
+		    	
+		    	X500Name x500nameSubject = new JcaX509CertificateHolder(c).getIssuer();
+		    	
+		    	RDN emailIss = x500nameIssuer.getRDNs(BCStyle.EmailAddress)[0];
+		    	
+		    	String email_Iss2 =  emailIss.getFirst().getValue().toString();
+		    	
+		    	
+		    	RDN emailSub = x500nameSubject.getRDNs(BCStyle.EmailAddress)[0];
+		    	
+		    	String email_Sub2 =  emailSub.getFirst().getValue().toString();
+		    	
+		    	
+
+		    	SubjectSoftware issuer = subSoftRep.findByEmail(email_Iss2);
+		    	SubjectSoftware subject = subSoftRep.findByEmail(email_Sub2);
+		    	
+		    	CertificateModel cm = new CertificateModel();
+		    	
+		    	cm.setIssuerSoft(issuer);
+		    	cm.setSubSoft(subject);
+		    	
+		    	cm.setStartDate(c.getNotBefore());
+		    	cm.setEndDate(c.getNotAfter());
+		    	
+		    	String serial = c.getSerialNumber().toString();
+		    	
+		    	cm.setSerialNumber(Integer.parseInt(serial));
+		    	
+		    	certRepository.save(cm);
+		    	
+		    }
+		    
+		    
 		} else {
 			System.out.println("NE POSTOJI");
 			String str = "someString"; 
@@ -97,7 +181,23 @@ public class Data implements ApplicationRunner {
 				
 				keyStore.setKeyEntry(alias, issuerData.getPrivateKey(), password, new Certificate[] {certificate});
 				
-
+				CertificateModel cm = new CertificateModel();
+				
+				SubjectSoftware ss = subSoftRep.findByEmail("MTRoot@gmail.com");
+				
+				cm.setSerialNumber(Integer.parseInt(subjectData.getSerialNumber()));
+				
+				cm.setStartDate(subjectData.getStartDate());
+				cm.setEndDate(subjectData.getEndDate());
+				
+				// root sam sebi izdaje sertifikat
+				cm.setIssuerSoft(ss);
+				cm.setSubSoft(ss);
+				
+				cm.setRevoked(false);
+				
+				certRepository.save(cm);
+				
 				System.out.println(keyStore.size());
 				keyStore.store(new FileOutputStream("./files/keystore.jks"), password);
 				
@@ -133,11 +233,14 @@ public class Data implements ApplicationRunner {
 		}
 		
 		
-		loadSubjectSoftware();
-		loadUser();
-		
 	}
 	private void loadUser(){
+		
+		User u0 = new User();
+		u0.setEmail("MTRoot@gmail.com");
+		u0.setPassword("rroott");
+		userRepository.save(u0);
+		
 		User u1 = new User();
 		u1.setEmail("MegaTravelLondon@gmail.com");
 		u1.setPassword("lon");
@@ -153,18 +256,24 @@ public class Data implements ApplicationRunner {
 		u3.setPassword("bost");
 		userRepository.save(u3);
 		
-		User u4 = new User();
-		u4.setEmail("megaTravel@gmail.com");
-		u4.setPassword("bost");
-		userRepository.save(u4 );
-		
 	}
 	
 	private void loadSubjectSoftware() {
 		
+		SubjectSoftware ss0 = new SubjectSoftware();
+		
+		ss0.setState("/");
+		ss0.setCity("/");
+		ss0.setSoftwareId("/");
+		ss0.setEmail("MTRoot@gmail.com");
+		ss0.setHasCert(true);
+
+		subSoftRep.save(ss0);
+		
+		
 		SubjectSoftware ss = new SubjectSoftware();
 		
-		ss.setState("England");
+		ss.setState("Engleska");
 		ss.setCity("London");
 		ss.setSoftwareId("S1");
 		ss.setEmail("MegaTravelLondon@gmail.com");
@@ -199,7 +308,7 @@ public class Data implements ApplicationRunner {
 	    builder.addRDN(BCStyle.O, "MegaTravel");
 	    builder.addRDN(BCStyle.OU, "MegaTravelRoot");
 	    builder.addRDN(BCStyle.C, "RS");
-	    builder.addRDN(BCStyle.E, "megaTravel@gmail.com");
+	    builder.addRDN(BCStyle.E, "MTRoot@gmail.com");
 	    //UID (USER ID) je ID korisnika
 	    builder.addRDN(BCStyle.UID, "654321");
 
@@ -227,7 +336,7 @@ public class Data implements ApplicationRunner {
 		    builder.addRDN(BCStyle.O, "MegaTravel");
 		    builder.addRDN(BCStyle.OU, "MegaTravelRoot");
 		    builder.addRDN(BCStyle.C, "RS");
-		    builder.addRDN(BCStyle.E, "megaTravel@gmail.com");
+		    builder.addRDN(BCStyle.E, "MTRoot@gmail.com");
 		    
 		    //UID (USER ID) je ID korisnika
 		    builder.addRDN(BCStyle.UID, "654321");

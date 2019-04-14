@@ -4,25 +4,31 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-@Entity
-public class Certificate 
+@Entity(name="Certificates")
+public class CertificateModel 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column
-	private Long idIssuer;
+	@OneToOne(fetch = FetchType.EAGER)
+	private SubjectSoftware issuerSoft;
 	
-	@Column
-	private Long idSubject;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private SubjectSoftware subSoft;
 	
-	@Column
+	@Column(name="StartDate")
 	private Date startDate;
+	
+	@Column
+	private Integer serialNumber;
 	
 	@Column
 	private Date endDate;
@@ -39,45 +45,17 @@ public class Certificate
 	@Column
 	private Long idCertificateIssuer;
 
-	public Certificate() {
-
-	}
-	
-	public Certificate(Long idIssuer,
-			Long idSubject, Date startDate, Date endDate, boolean certificateAuthority, boolean isRevoked, String reasonForRevokation) {
+	public CertificateModel() {
 		super();
-	
-		this.idIssuer = idIssuer;
-		this.idSubject = idSubject;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.isCertificateAuthority = certificateAuthority;
-		this.isRevoked = isRevoked;
-		this.reasonForRevokation = reasonForRevokation;
-	}
 
+	}
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getIdIssuer() {
-		return idIssuer;
-	}
-
-	public void setIdIssuer(Long idIssuer) {
-		this.idIssuer = idIssuer;
-	}
-
-	public Long getIdSubject() {
-		return idSubject;
-	}
-
-	public void setIdSubject(Long idSubject) {
-		this.idSubject = idSubject;
 	}
 
 	public Date getStartDate() {
@@ -127,6 +105,31 @@ public class Certificate
 	public void setIdCertificateIssuer(Long idCertificateIssuer) {
 		this.idCertificateIssuer = idCertificateIssuer;
 	}
+
+	public SubjectSoftware getIssuerSoft() {
+		return issuerSoft;
+	}
+
+	public void setIssuerSoft(SubjectSoftware issuerSoft) {
+		this.issuerSoft = issuerSoft;
+	}
+
+	public SubjectSoftware getSubSoft() {
+		return subSoft;
+	}
+
+	public void setSubSoft(SubjectSoftware subSoft) {
+		this.subSoft = subSoft;
+	}
+
+	public Integer getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(Integer serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+	
 	
 	
 

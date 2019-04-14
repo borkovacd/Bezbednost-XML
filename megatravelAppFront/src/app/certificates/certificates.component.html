@@ -1,14 +1,16 @@
 <div class="container">
 
-  <h2 style="text-align: center">Lista sertifikata u sistemu</h2>
+  <h2 style="text-align: center">Lista vasih izdatih sertifikata</h2>
 
-  <div>
+  <div class="md" style="display: inline-block">
 
-    <ol *ngFor="let c of certif">
-      <li>{{c.toString()}}</li>
-
-    </ol>
-
+    <div *ngFor="let cert of certif" style="border: 2px solid grey; border-radius: 5px; padding: 10px; display: inline-block">
+      <label>Serijski broj: {{cert.serialNumber}}</label><br>
+      <label>Izdato za: {{cert.subSoft.email}} </label><br>
+      <label>Vazi od: {{cert.startDate | date : 'medium'}}</label><br>
+      <label>Vazi do: {{cert.endDate | date : 'medium'}} </label><br>
+      <button class="btn btn-dark">Povuci</button>
+    </div>
   </div>
 
 </div>

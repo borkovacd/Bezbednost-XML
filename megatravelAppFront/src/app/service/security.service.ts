@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
 import {CertificateModel} from '../model/certificate.model';
+import {CertificateBackModel} from '../model/certificateBack.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -21,14 +22,14 @@ export class SecurityService {
   }
 
 
-  addCertificate(model: CertificateModel): Observable<any> {
+  addCertificate(model: CertificateModel, email: string): Observable<any> {
     const data = JSON.stringify(model);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( 'http://localhost:8080/api/security/createCertificate', data, {headers: headers});
+    return this.http.post( 'http://localhost:8080/api/security/createCertificate/' + email, data, {headers: headers});
   }
 
-  getCert(): Observable<any> {
-    return this.http.get<any>( `${this.BASE_URL}/getCertificates`, httpOptions);
+  getCert(email: string): Observable<CertificateBackModel[]> {
+    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getCertificates/` + email, httpOptions);
   }
 
   checkCommunication(string1: string, string2: string): Observable<any> {

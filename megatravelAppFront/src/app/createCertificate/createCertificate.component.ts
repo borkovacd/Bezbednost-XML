@@ -5,15 +5,13 @@ import {Router} from '@angular/router';
 import {CertificateModel} from '../model/certificate.model';
 import {SecurityService} from '../service/security.service';
 import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
+import {UserService} from '../service/user.service';
 
 @Component ({
-
   templateUrl: './createCertificate.component.html',
-
-
 })
 
-export class CreateCertificateComponent implements OnInit{
+export class CreateCertificateComponent implements OnInit {
   public form: FormGroup;
   public password: AbstractControl;
   public startDate: AbstractControl;
@@ -22,9 +20,11 @@ export class CreateCertificateComponent implements OnInit{
 
   subjects: SubjectSoftwareModel[];
 
+  user: any;
+
 
   constructor(protected router: Router,
-              private fb: FormBuilder, private data: SecurityService) {
+              private fb: FormBuilder, private data: SecurityService, private userService: UserService) {
     this.form = this.fb.group({
 
       'startDate': ['', Validators.compose([Validators.required])],
@@ -43,6 +43,7 @@ export class CreateCertificateComponent implements OnInit{
 
     this.data.getSubjectSoftware().subscribe(data => this.subjects = data);
 
+    this.user = this.userService.getLoggedUser();
 
   }
 
@@ -53,7 +54,7 @@ export class CreateCertificateComponent implements OnInit{
       this.city.value);
 
 
-    this.data.addCertificate(model).subscribe(dataF =>
+    this.data.addCertificate(model, this.user.email).subscribe(dataF =>
       this.router.navigateByUrl('/certificates'));
 
   }

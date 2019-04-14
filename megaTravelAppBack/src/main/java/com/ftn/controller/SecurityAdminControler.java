@@ -30,11 +30,13 @@ import java.util.Random;
 
 import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
+import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.service.SubjectSoftwareService;
 import com.ftn.configuration.CertificateGenerator;
 import com.ftn.keystore.KeyStoreReader;
 import com.ftn.keystore.KeyStoreWriter;
+import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
 @RestController
@@ -47,16 +49,22 @@ public class SecurityAdminControler {
 	@Autowired 
 	private SubjectSoftwareRepository repos;
 	
+	@Autowired 
+	private CertificateRepository certRepos;
+	
 	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter() ;
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
 	
-	@RequestMapping(value="/createCertificate",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value="/createCertificate/{email}",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public void createSertficate(@RequestBody CertificateDTO cdto) throws KeyStoreException 
+	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String email) throws KeyStoreException 
 	{
 		
-		SubjectSoftware ss = ssService.getSoftware(cdto.getCity()); // entiteti u bazi, divizije
+		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // entiteti u bazi, divizije, njemu se izdaje sert
+
+		SubjectSoftware iss = repos.findByEmail(email); // ovaj izdaje, trenutno ulogovan, koji je kreirao
+		
 		System.out.println(cdto.getCity());
 		System.out.println("ovo je taj: " + ss.getSoftwareId());
 		
@@ -87,6 +95,25 @@ public class SecurityAdminControler {
 		Certificate certificate = cert;
 		// sertifikat je napravljen
 		
+		// Dodavanje u bazu
+		//*********************************************
+		
+		CertificateModel cm = new CertificateModel();
+    	
+    	cm.setIssuerSoft(iss);
+    	cm.setSubSoft(ss);
+    	
+    	cm.setStartDate(cert.getNotBefore());
+    	cm.setEndDate(cert.getNotAfter());
+    	
+    	String serial = cert.getSerialNumber().toString();
+    	
+    	cm.setSerialNumber(Integer.parseInt(serial));
+    	
+    	certRepos.save(cm);
+		
+    	// *********************************************
+    	
 		String alias = "alias1";
 		
 		// u [] smestim lanac sertifikata iz keyStore
@@ -164,30 +191,30 @@ public class SecurityAdminControler {
 		
 	}
 	
-	@RequestMapping(value="/getCertificates",	method = RequestMethod.GET)
+	@RequestMapping(value="/getCertificates/{email}",	method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ArrayList<String> getCeritificates() {
+	public ArrayList<CertificateModel> getCeritificates(@PathVariable String email) {
 		
-		 ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>();
+		 ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+		 
 
-		 ArrayList<String> lanacSertifikata2 = new ArrayList<String>();
-		try {
-			lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("alias1")));
-			
-		} catch (KeyStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 ArrayList<CertificateModel> lanacSertifikataNova = new ArrayList<CertificateModel>();
+	
+		 lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+	
 		
 		for(int i=0; i<lanacSertifikata.size(); i++) {
-			System.out.println(lanacSertifikata.get(i).toString());
 			
-			lanacSertifikata2.add(lanacSertifikata.get(i).toString());
+			String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
+			
+			if(userEmail.equals(email)) {
+				lanacSertifikataNova.add(lanacSertifikata.get(i));
+			}
+			
 		}
 		
-		return lanacSertifikata2;
+		return lanacSertifikataNova;
 		 
-	//	 return lanacSertifikata;
 	}
 	
 	// dodatne metode
@@ -225,10 +252,8 @@ public class SecurityAdminControler {
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 		
 			Random random = new Random();
-			Integer integ = random.nextInt(9);
+			Integer integ = random.nextInt(100);
 			String sn = integ.toString();
-			
-			sn = "2";
 			
 			System.out.println(sn);
 			
