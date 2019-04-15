@@ -25,6 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -196,11 +197,49 @@ public class SecurityAdminControler {
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1); 
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
 		
-		if(soft1.isHasCert() && soft2.isHasCert()) {
-			return true;
-		} else {
-			return false;
+		if(soft1.isHasCert() && soft2.isHasCert()) { //ako oba imaju sertifikate
+			
+			boolean revoked = false;
+			boolean expired = false;
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(Calendar.HOUR_OF_DAY, 0);
+			calendar.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.SECOND, 0);
+			
+			Date current_date = calendar.getTime();
+			
+			ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+			lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+		
+			for(int i=0; i<lanacSertifikata.size(); i++) {
+				String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
+				if(userEmail.equals(string1)) {
+					CertificateModel certificate = lanacSertifikata.get(i);
+					revoked = certificate.isRevoked();
+					Date certificateEndDate = certificate.getEndDate();
+					if(current_date.after(certificateEndDate)) {
+						expired = true;
+					}
+				}
+				if(userEmail.equals(string2)) {
+					CertificateModel certificate = lanacSertifikata.get(i);
+					revoked = certificate.isRevoked();
+					Date certificateEndDate = certificate.getEndDate();
+					if(current_date.after(certificateEndDate)) {
+						expired = true;
+					}
+				}
+			}
+			
+			if(expired == false && revoked == false) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
+		return false;
 		
 	}
 	
