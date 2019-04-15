@@ -24,6 +24,20 @@ public class CertificateModel
 	@ManyToOne(fetch = FetchType.EAGER)
 	private SubjectSoftware subSoft;
 	
+	
+	
+	public CertificateModel(SubjectSoftware issuerSoft, SubjectSoftware subSoft, Date startDate, Date endDate,
+			boolean isCertificateAuthority, boolean isRevoked, String reasonsForRevocation) {
+		super();
+		this.issuerSoft = issuerSoft;
+		this.subSoft = subSoft;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.isCertificateAuthority = isCertificateAuthority;
+		this.isRevoked = isRevoked;
+		this.reasonForRevokation = reasonsForRevocation;
+	}
+
 	@Column(name="StartDate")
 	private Date startDate;
 	

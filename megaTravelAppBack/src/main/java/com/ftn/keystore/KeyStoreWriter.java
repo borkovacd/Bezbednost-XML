@@ -36,9 +36,8 @@ public class KeyStoreWriter {
 	
 	// otvaranje postojeceg keyStore (ukoliko ne postoji, kreiraj novi)
 	// Metoda kao parametar prima samo password, a fileName je zakucan na "./files/keystore.jks"
-	public void loadKeyStore(char[] password) 
+	public void loadKeyStore2(char[] password) 
 	{
-		System.out.println("DDDDD");
 		String fileName = "./files/keystore.jks";
 		
 				try {
@@ -56,13 +55,12 @@ public class KeyStoreWriter {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("pozz");
 			
 	}
 	
 	// cuvanje postojeceg keyStore, za zadati password
 	// Metoda kao parametar prima samo password, a fileName je zakucan na "./files/keystore.jks"
-	public void saveKeyStore(char[] password) 
+	public void saveKeyStore2(char[] password) 
 	{
 		String fileName = "./files/keystore.jks";
 		try {
@@ -81,7 +79,7 @@ public class KeyStoreWriter {
 	}
 	
 	// upis u otvoreni keyStore
-	public void write(String alias, PrivateKey privateKey, char[] password, Certificate certificate) 
+	public void write22(String alias, PrivateKey privateKey, char[] password, Certificate certificate) 
 	{
 		try {
 			keyStore.setKeyEntry(alias, privateKey, password, new Certificate[] {certificate});
@@ -98,6 +96,49 @@ public class KeyStoreWriter {
 		try {
 			keyStore.setKeyEntry(alias, privateKey, password, chain);
 		
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadKeyStore(String fileName, char[] password) {
+		try {
+			if(fileName != null) {
+				keyStore.load(new FileInputStream(fileName), password);
+			} else {
+				//Ako je cilj kreirati novi KeyStore poziva se i dalje load, pri cemu je prvi parametar null
+				keyStore.load(null, password);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveKeyStore(String fileName, char[] password) {
+		try {
+			keyStore.store(new FileOutputStream(fileName), password);
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void write(String alias, PrivateKey privateKey, char[] password, Certificate certificate) {
+		try {
+			keyStore.setKeyEntry(alias, privateKey, password, new Certificate[] {certificate});
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
 		}
