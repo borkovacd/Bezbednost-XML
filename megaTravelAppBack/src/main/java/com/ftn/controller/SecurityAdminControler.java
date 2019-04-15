@@ -62,15 +62,17 @@ public class SecurityAdminControler {
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
 	private KeyPair keyPairIssuer;
 	
+	/*
 	@PostConstruct
 	public void init()
 	{
 		keyStoreWriter = new KeyStoreWriter();
 		String globalPass = "someString";
 		keyStoreWriter.loadKeyStore(null, globalPass.toCharArray());
-		keyStoreWriter.saveKeyStore("someStringKeyStore", globalPass.toCharArray());
+		keyStoreWriter.saveKeyStore("./files/keystore.jks", globalPass.toCharArray());
 		keyPairIssuer = generateKeyPair();
 	}
+	*/
 	
 	@RequestMapping(value="/createCertificate/{email}",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,35 +86,30 @@ public class SecurityAdminControler {
 		Long idSubject = ss.getId();
 		Long idIssuer = iss.getId();
 		
-		
 		ss.setHasCert(true);
 		
 		repos.save(ss);
 		
-		//-String str = "someString"; 
-		//-char[] password = str.toCharArray();
+		String str = "someString"; 
+		char[] password = str.toCharArray();
 		
 		// ucitan keystore.jks, preko passworda
-		//-keyStoreWriter.loadKeyStore(password);
+		keyStoreWriter.loadKeyStore("./files/keystore.jks", password);
 		
 				
 		SubjectData subjectData = generateSubjectData(ss, cdto);
-		KeyStoreReader keyStoreReader = new KeyStoreReader();
+		//KeyStoreReader keyStoreReader = new KeyStoreReader();
 		
 		String issuerPass = "certificatePass" + iss.getId(); // password je oblika certificatePass123456789
-		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("someStringKeyStore", "someString", issuerPass, issuerPass);
-		
-		KeyPair keyPairIssuer = generateKeyPair();
+		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, issuerPass, issuerPass);
+				
+		System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 		
 		IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
 		
 		// generisanje sertifikata
 		CertificateGenerator cg = new CertificateGenerator();
-		
-		//System.out.println(subjectData.getPublicKey());
-		//System.out.println(subjectData.getStartDate());
-		//System.out.println(subjectData.getEndDate());
-		
+
 		X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
 		
 		Certificate certificate = cert;
@@ -143,18 +140,18 @@ public class SecurityAdminControler {
 		keyStoreWriter.write(certificatePass, subjectData.getPrivateKey(), certificatePass.toCharArray(), cert);
 		
 		String globalPass = "someString";
-		keyStoreWriter.saveKeyStore("someStringKeyStore", globalPass.toCharArray());
+		keyStoreWriter.saveKeyStore("./files/keystore.jks", globalPass.toCharArray());
 		
 		// upis u njegov keystore
 		KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
 		keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
 		
-		keyStoreWriterNovi.saveKeyStore("localKeyStore" + ss.getId(), ss.getId().toString().toCharArray());
+		keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".jks", ss.getId().toString().toCharArray());
 		
 		String localAllias = "myCertificate";
 		
 		keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
-		keyStoreWriterNovi.saveKeyStore("localKeyStore" + ss.getId().toString(), ss.getId().toString().toCharArray());
+		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".jks", ss.getId().toString().toCharArray());
 		
 		
 	}
@@ -342,12 +339,12 @@ public class SecurityAdminControler {
 		
 			
 		// oznaka softvera, drzava i email adresa
-			builder.addRDN(BCStyle.UNIQUE_IDENTIFIER, ss.getSoftwareId());
-			builder.addRDN(BCStyle.PLACE_OF_BIRTH, ss.getCity());
-			builder.addRDN(BCStyle.COUNTRY_OF_RESIDENCE, ss.getState());
-			builder.addRDN(BCStyle.EmailAddress, ss.getEmail());
+			builder.addRDN(BCStyle.CN, "Security");
+			builder.addRDN(BCStyle.O, ss.getSoftwareId());
+			builder.addRDN(BCStyle.OU, ss.getCity());
+			builder.addRDN(BCStyle.C, ss.getState());
+			builder.addRDN(BCStyle.E, ss.getEmail());
 			builder.addRDN(BCStyle.UID, ss.getId().toString());
-
 						
 			// datumi
 			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
@@ -380,10 +377,11 @@ public class SecurityAdminControler {
 	public IssuerData generateIssuerData(PrivateKey issuerKey, SubjectSoftware ss) 
 	{
 		X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
-		builder.addRDN(BCStyle.UNIQUE_IDENTIFIER, ss.getSoftwareId());
-		builder.addRDN(BCStyle.PLACE_OF_BIRTH, ss.getCity());
-		builder.addRDN(BCStyle.COUNTRY_OF_RESIDENCE, ss.getState());
-		builder.addRDN(BCStyle.EmailAddress, ss.getEmail());
+		builder.addRDN(BCStyle.CN, "Security");
+		builder.addRDN(BCStyle.O, ss.getSoftwareId());
+		builder.addRDN(BCStyle.OU, ss.getCity());
+		builder.addRDN(BCStyle.C, ss.getState());
+		builder.addRDN(BCStyle.E, ss.getEmail());
 		builder.addRDN(BCStyle.UID, ss.getId().toString());
 
 		//Kreiraju se podaci za issuer-a, sto u ovom slucaju ukljucuje:

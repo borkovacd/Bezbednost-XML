@@ -168,7 +168,9 @@ public class Data implements ApplicationRunner {
 				
 				KeyPair keyPairIssuer = generateKeyPair();
 				IssuerData issuerData = generateIssuerData(keyPairIssuer.getPrivate());
-			    
+				subjectData.setPublicKey(keyPairIssuer.getPublic());
+				subjectData.setPrivateKey(keyPairIssuer.getPrivate());
+						    
 				//Generise se sertifikat za subjekta, potpisan od strane issuer-a
 				CertificateGenerator cg = new CertificateGenerator();
 				
@@ -176,14 +178,18 @@ public class Data implements ApplicationRunner {
 				X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
 				
 				Certificate certificate = cert;
-				
-				String alias = "alias1";
-				
-				keyStore.setKeyEntry(alias, issuerData.getPrivateKey(), password, new Certificate[] {certificate});
+								
 				
 				CertificateModel cm = new CertificateModel();
 				
 				SubjectSoftware ss = subSoftRep.findByEmail("MTRoot@gmail.com");
+				
+				String certificatePass = "certificatePass" + ss.getId();
+				System.out.println("certificatePass: " + certificatePass);
+				
+				String alias = "alias1";
+				
+				keyStore.setKeyEntry(certificatePass, keyPairIssuer.getPrivate(), certificatePass.toCharArray(), new Certificate[] {certificate});
 				
 				cm.setSerialNumber(Integer.parseInt(subjectData.getSerialNumber()));
 				
@@ -199,6 +205,8 @@ public class Data implements ApplicationRunner {
 				certRepository.save(cm);
 				
 				System.out.println(keyStore.size());
+				
+				String globalPass = "someString";
 				keyStore.store(new FileOutputStream("./files/keystore.jks"), password);
 				
 				
@@ -346,7 +354,7 @@ public class Data implements ApplicationRunner {
 		    // - podatke o vlasniku
 		    // - serijski broj sertifikata
 		    // - od kada do kada vazi sertifikat
-		    return new SubjectData(keyPairSubject.getPublic(), builder.build(), sn, startDate, endDate);
+		    return new SubjectData(keyPairSubject.getPublic(), keyPairSubject.getPrivate(), builder.build(), sn, startDate, endDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
