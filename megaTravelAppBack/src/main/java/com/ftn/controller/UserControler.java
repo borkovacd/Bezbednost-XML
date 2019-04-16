@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.model.User;
 
 import com.ftn.modelDTO.UserDTO;
-import com.ftn.repository.AuthorityRepository;
+
 import com.ftn.repository.UserRepository;
 import com.ftn.service.UserService;
 
@@ -33,8 +33,7 @@ public class UserControler {
 	@Autowired
 	private UserRepository userRep;
 	
-	@Autowired
-	private AuthorityRepository authRepository;
+	
 	
 	@RequestMapping(value="/login",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)

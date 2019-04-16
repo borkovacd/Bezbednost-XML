@@ -17,7 +17,7 @@ public class Role {
 	private String name;
 	
 	@ManyToMany()
-	private Set<Privilege> roles = new HashSet<Privilege>();
+	private Set<Privilege> privilege = new HashSet<Privilege>();
 	public void Role(){
 		
 	}
@@ -38,13 +38,14 @@ public class Role {
 		this.name = name;
 	}
 
-	public Set<Privilege> getRoles() {
-		return roles;
+	public Set<Privilege> getPrivilege() {
+		return privilege;
 	}
 
-	public void setRoles(Set<Privilege> roles) {
-		this.roles = roles;
+	public void setPrivilege(Set<Privilege> privilege) {
+		this.privilege = privilege;
 	}
+
 	
 	
 

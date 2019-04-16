@@ -42,11 +42,13 @@ import com.ftn.keystore.KeyStoreWriter;
 
 import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
+import com.ftn.model.Role;
 import com.ftn.model.SubjectData;
 import com.ftn.model.SubjectSoftware;
 import com.ftn.model.User;
 
 import com.ftn.repository.CertificateRepository;
+import com.ftn.repository.RoleRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.repository.UserRepository;
 
@@ -65,6 +67,8 @@ public class Data implements ApplicationRunner {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 	
 
 	
@@ -84,7 +88,7 @@ public class Data implements ApplicationRunner {
 
 		loadSubjectSoftware();
 		loadUser();
-		//loadAuthority();
+		loadAuthority();
 		
 		try {
 			keyStore = KeyStore.getInstance("JKS", "SUN");
@@ -389,17 +393,17 @@ public class Data implements ApplicationRunner {
         return null;
 	}
 	
-	/*public void loadAuthority() {
+	public void loadAuthority() {
 		
-		Authority admin = new Authority();
-		Authority user = new Authority();
+		Role admin = new Role();
+		Role user = new Role();
 		
 		admin.setName("ADMIN");
 		user.setName("USER");
 		
-		authRepository.save(admin);
-		authRepository.save(user);
-	}*/
+		roleRepository.save(admin);
+		roleRepository.save(user);
+	}
 	
 	
 
