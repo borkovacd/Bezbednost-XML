@@ -10,7 +10,7 @@ import {UserService} from '../service/user.service';
   templateUrl: './registration.component.html',
 })
 
-export class RegistrationComponent{
+export class RegistrationComponent {
 
   public form: FormGroup;
   public username: AbstractControl;
@@ -34,7 +34,7 @@ export class RegistrationComponent{
       'lastName': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required])],
       'city': ['', Validators.compose([Validators.required])],
-    })
+    });
 
     this.username = this.form.controls['username'];
     this.password = this.form.controls['password'];
@@ -46,23 +46,88 @@ export class RegistrationComponent{
 
   }
 
-  signUp() {
+  validateRegData() {
 
-    const user = new UserModel(
-      this.username.value,
-      this.password.value,
-      this.rePassword.value,
-      this.firstName.value,
-      this.lastName.value,
-      this.email.value,
-      this.city.value
-    );
+    let error = false;
+    let errorMessage = '';
 
-this.userService.registration(user).subscribe(data =>{
-  this.router.navigateByUrl('')
-})
+    /* PROVERA LOZINKE */
+    if (this.password.value.length < 8) {
+      error = true;
+      errorMessage = 'Password needs to be at least 8 characters long';
+      return errorMessage;
+      /*alert('Password needs to be at least 8 characters long');*/
+    } else if (/\d/.test(this.password.value) == false) {
+      error = true;
+      errorMessage = 'Password needs to contain at least one number!';
+      return errorMessage;
+      /*alert('Password needs to contain at least one number!');*/
+    } else if (!this.password.value.match('.*[A-Z].*')) {
+      error = true;
+      errorMessage = 'Password needs to contain at lease one uppercase letter!';
+      return errorMessage;
+      /*alert('Password needs to contain at lease one uppercase letter!');*/
+    }
+
+    /* PROVERA POKLAPANJA LOZINKI */
+    if(this.password.value !== this.rePassword.value) {
+      error = true;
+      errorMessage = 'Lozinke se ne poklapaju!';
+      return errorMessage
+    }
+
+    /* PROVERA MEJLA */
+    const patternMail = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/;
+    if (!patternMail.test(this.email.value)) {
+      error = true;
+      errorMessage = 'Email adresa sadrzi nedozvoljene karaktere!';
+      return errorMessage;
+    }
+
+      return "Ok";
 
   }
+
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/\'/g, '&#39;')
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
+
+  }
+
+
+  signUp() {
+
+    let message = this.validateRegData();
+
+    if (message == "Ok") {
+      const user = new UserModel(
+        this.escapeCharacters(this.username.value),
+        this.password.value,
+        this.rePassword.value,
+        this.escapeCharacters(this.firstName.value),
+        this.escapeCharacters(this.lastName.value),
+        this.escapeCharacters(this.email.value),
+        this.escapeCharacters(this.city.value)
+      );
+
+      this.userService.registration(user).subscribe(data => {
+        this.router.navigateByUrl('');
+      });
+
+    } else {
+      alert(message);
+    }
+
+
+  }
+
   exit() {
     this.router.navigateByUrl('');
   }
