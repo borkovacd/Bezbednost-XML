@@ -258,7 +258,27 @@ public class SecurityAdminControler {
 			}
 		}
 
-		return ssList2;
+		return ssList2;	
+	}
+	
+	@RequestMapping(value="/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) {
+
+		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
+		ssList = ssService.getSoftwares();
+
+		ArrayList<SubjectSoftware> ssList2 = new ArrayList<SubjectSoftware>();
+		
+		for(int i=0; i<ssList.size(); i++) {
+			if(!ssList.get(i).getEmail().equals(email)) {
+				//System.out.println("1 - " + ssList.get(i).getEmail() + " 2 - " + email);
+				if(!ssList.get(i).getEmail().equals("MTRoot@gmail.com"))
+					ssList2.add(ssList.get(i));
+			}
+		}
+
+		return ssList2;	
 		
 	}
 	

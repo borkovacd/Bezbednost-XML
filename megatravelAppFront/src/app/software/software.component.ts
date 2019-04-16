@@ -4,6 +4,7 @@ import {SubjectSoftwareModel} from '../model/subjectSoftware.model';
 import {SecurityService} from '../service/security.service';
 import {UserService} from '../service/user.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AllSubjectSoftwareModel} from '../model/allSubjectSoftware.model';
 
 @Component ({
   selector: 'app-home',
@@ -16,7 +17,8 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 export class SoftwareComponent implements  OnInit {
 
   public city: AbstractControl;
-  subjects: SubjectSoftwareModel[];
+  subjects: AllSubjectSoftwareModel[];
+  /*subjects: SubjectSoftwareModel[];*/
   public user: any;
   public form: FormGroup;
 
@@ -36,8 +38,8 @@ export class SoftwareComponent implements  OnInit {
 
   ngOnInit() {
 
-    this.data.getSubjectSoftware().subscribe(data => this.subjects = data);
     this.user = this.serviceUser.getLoggedUser();
+    this.data.getAllSubjectSoftwares(this.user.email).subscribe(data => this.subjects = data);
   }
 
   communicate(): any {
