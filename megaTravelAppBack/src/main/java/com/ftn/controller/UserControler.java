@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,12 +75,12 @@ public class UserControler {
 			u.setUsername(userDto.getUsername());
 			u.setPassword(userDto.getPassword());
 			
-			//String pass = u.getPassword();
+			String pass = u.getPassword();
 			
-			//String salt = BCrypt.gensalt();
-			//String passwordHashed = BCrypt.hashpw(pass, salt);
+			String salt = BCrypt.gensalt();
+			String passwordHashed = BCrypt.hashpw(pass, salt);
 			
-			//u.setPassword(passwordHashed);
+			u.setPassword(passwordHashed);
 			
 			Authority au = authRepository.findOneByName("USER");
 			u.getAuthorities().add(au);
