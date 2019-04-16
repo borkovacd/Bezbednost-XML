@@ -1,6 +1,7 @@
 <factorypath>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-data-jpa/2.1.0.RELEASE/spring-boot-starter-data-jpa-2.1.0.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-aop/2.1.0.RELEASE/spring-boot-starter-aop-2.1.0.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.1.2.RELEASE/spring-aop-5.1.2.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/aspectj/aspectjweaver/1.9.2/aspectjweaver-1.9.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-jdbc/2.1.0.RELEASE/spring-boot-starter-jdbc-2.1.0.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-jdbc/5.1.2.RELEASE/spring-jdbc-5.1.2.RELEASE.jar" enabled="true" runInBatchMode="false"/>
@@ -97,12 +98,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/net/bytebuddy/byte-buddy-agent/1.9.3/byte-buddy-agent-1.9.3.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/objenesis/objenesis/2.6/objenesis-2.6.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-configuration-processor/2.1.0.RELEASE/spring-boot-configuration-processor-2.1.0.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-test/5.1.1.RELEASE/spring-security-test-5.1.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-core/5.1.1.RELEASE/spring-security-core-5.1.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-web/5.1.1.RELEASE/spring-security-web-5.1.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-security/2.1.0.RELEASE/spring-boot-starter-security-2.1.0.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.1.2.RELEASE/spring-aop-5.1.2.RELEASE.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-config/5.1.1.RELEASE/spring-security-config-5.1.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/hibernate/hibernate-core/5.3.7.Final/hibernate-core-5.3.7.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar" enabled="true" runInBatchMode="false"/>
