@@ -26,4 +26,25 @@ public class UserService {
 		
 	}
 	
+	public boolean exists(String email) {
+		
+		ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
+		
+		for(User u : list){
+			if(u.getEmail().equals(email)){
+				return false;
+				
+			}
+		}
+		
+		return true;
+		
+	}
+	
+		public void saveUser(User user) {
+
+			userRepository.save(user);
+		
+	}
+	
 }
