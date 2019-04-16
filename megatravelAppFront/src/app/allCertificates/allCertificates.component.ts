@@ -1,20 +1,16 @@
-
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {CertificateBackModel} from '../model/certificateBack.model';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SecurityService} from '../service/security.service';
 import {UserService} from '../service/user.service';
-import {CertificateBackModel} from '../model/certificateBack.model';
-import {nextTick} from "q";
 
 @Component ({
-
-  templateUrl: './certificates.component.html',
-
+  templateUrl: './allCertificates.component.html'
 
 })
 
-export class CeritifcatesComponent implements OnInit {
+export class AllCertificatesComponent implements OnInit {
 
   certif: CertificateBackModel[];
   selfCert: CertificateBackModel;
@@ -36,9 +32,9 @@ export class CeritifcatesComponent implements OnInit {
 
     this.user = this.userService.getLoggedUser();
 
-   // alert(this.user.email);
+    // alert(this.user.email);
 
-    this.data.getCert(this.user.email).subscribe( data => this.certif = data);
+    this.data.getAllCert(this.user.email).subscribe( data => this.certif = data);
     this.visibleMessage=false;
 
   }
@@ -48,11 +44,11 @@ export class CeritifcatesComponent implements OnInit {
   }
   potvrdiPovlacenje(serialNumber: any){
 
-this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
-    if( data == true){
-     alert('Sertifikat uspesno povucen');
-      this.router.navigateByUrl('home');
-   }
+    this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
+      if( data == true){
+        alert('Sertifikat uspesno povucen');
+        this.router.navigateByUrl('home');
+      }
 
     })
   }
@@ -66,7 +62,5 @@ this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
     }
   }
 
-  listAll() {
-    this.router.navigateByUrl('allCertificates');
-  }
 }
+

@@ -4,11 +4,15 @@
 
   <div class="md" style="display: inline-block">
 
+    <button style="display: block" class="btn btn-dark" (click)="listAll()">Lista svih sertifikata u sistemu</button>
+
     <div *ngFor="let cert of certif" style="border: 2px solid grey; border-radius: 5px; padding: 10px; display: inline-block">
       <label>Serijski broj: {{cert.serialNumber}}</label><br>
+      <label>Izdato od: {{cert.issuerSoft.email}} </label><br>
       <label>Izdato za: {{cert.subSoft.email}} </label><br>
-      <label>Vazi od: {{cert.startDate | date : 'medium'}}</label><br>
-      <label>Vazi do: {{cert.endDate | date : 'medium'}} </label><br>
+      <label>Vazi od: {{cert.startDate | date : 'mediumDate'}}</label><br>
+      <label>Vazi do: {{cert.endDate | date : 'mediumDate'}} </label><br>
+      <label>Status: {{cert.isRevoked}} </label><br>
       <button class="btn btn-dark" (click)="revoke(cert.serialNumber)">Povuci</button>
       <br>
       <form [formGroup]="form">
@@ -19,7 +23,7 @@
         <option>Privremeno povlacenje PKI</option>
 
       </select>
-      <button  *ngIf = "visibleMessage== true" class="btn btn-dark" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
+      <button  *ngIf = "visibleMessage== true" class="btn btn-dark" [disabled]="cert.isRevoked" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
       </form>
     </div>
   </div>

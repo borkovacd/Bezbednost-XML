@@ -23,34 +23,20 @@ public class CertificateModel
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private SubjectSoftware subSoft;
-	
-	
-	
-	public CertificateModel(SubjectSoftware issuerSoft, SubjectSoftware subSoft, Date startDate, Date endDate,
-			boolean isCertificateAuthority, boolean isRevoked, String reasonsForRevocation) {
-		super();
-		this.issuerSoft = issuerSoft;
-		this.subSoft = subSoft;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.isCertificateAuthority = isCertificateAuthority;
-		this.isRevoked = isRevoked;
-		this.reasonForRevokation = reasonsForRevocation;
-	}
 
 	@Column(name="StartDate")
 	private Date startDate;
 	
-	@Column
+	@Column(name="SerialNumber")
 	private Integer serialNumber;
 	
-	@Column
+	@Column(name="EndDate")
 	private Date endDate;
 	
 	@Column
 	private boolean isCertificateAuthority;
 	
-	@Column
+	@Column(name="IsRevoked")
 	private boolean isRevoked;
 	
 	@Column
@@ -62,6 +48,18 @@ public class CertificateModel
 	public CertificateModel() {
 		super();
 
+	}
+	
+	public CertificateModel(SubjectSoftware issuerSoft, SubjectSoftware subSoft, Date startDate, Date endDate,
+			boolean isCertificateAuthority, boolean isRevoked, String reasonsForRevocation) {
+		super();
+		this.issuerSoft = issuerSoft;
+		this.subSoft = subSoft;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.isCertificateAuthority = isCertificateAuthority;
+		this.isRevoked = isRevoked;
+		this.reasonForRevokation = reasonsForRevocation;
 	}
 	
 	public Long getId() {

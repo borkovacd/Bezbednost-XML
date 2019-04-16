@@ -8,6 +8,7 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {LoginComponent} from './login/login.component';
 import {SoftwareComponent} from './software/software.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {AllCertificatesComponent} from './allCertificates/allCertificates.component';
 
 const routes: Routes = [
   {path: '', component: WelcomepageComponent, pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'createCertificate', component: CreateCertificateComponent},
   {path: 'certificates', component: CeritifcatesComponent},
   {path: 'software', component: SoftwareComponent},
+  {path: 'allCertificates', component: AllCertificatesComponent},
   ];
 
 @NgModule({

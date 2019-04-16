@@ -5,6 +5,7 @@ export class CertificateBackModel {
     public  startDate: Date;
     public  endDate: Date;
     public  serialNumber: number;
+    public  isRevoked: boolean;
     public  issuerSoft: SubjectSoftwareModel;
     public  subSoft: SubjectSoftwareModel;
 }

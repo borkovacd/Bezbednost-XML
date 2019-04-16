@@ -131,6 +131,8 @@ public class SecurityAdminControler {
     	
     	cm.setSerialNumber(Integer.parseInt(serial));
     	
+    	cm.setRevoked(false);
+    	
     	certRepos.save(cm);
 		
     	// *********************************************
@@ -300,11 +302,24 @@ public class SecurityAdminControler {
 			
 			if(userEmail.equals(email)) {
 				lanacSertifikataNova.add(lanacSertifikata.get(i));
+				System.out.println(lanacSertifikata.get(i).isRevoked());
 			}
 			
 		}
 		
 		return lanacSertifikataNova;
+		 
+	}
+	
+	@RequestMapping(value="/getAllCertificates/{email}",	method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ArrayList<CertificateModel> getAllCeritificates(@PathVariable String email) {
+		
+		 ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+		 
+		 lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+		
+		return lanacSertifikata;
 		 
 	}
 	

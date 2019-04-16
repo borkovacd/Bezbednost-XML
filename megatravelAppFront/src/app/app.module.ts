@@ -15,7 +15,7 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {UserService} from './service/user.service';
 import {SoftwareComponent} from './software/software.component';
 import {RegistrationComponent} from './registration/registration.component';
-
+import {AllCertificatesComponent} from './allCertificates/allCertificates.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import {RegistrationComponent} from './registration/registration.component';
     WelcomepageComponent,
     SoftwareComponent,
     RegistrationComponent,
+    AllCertificatesComponent,
   ],
   imports: [
     BrowserModule,

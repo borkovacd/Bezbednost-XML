@@ -47,5 +47,8 @@ export class SecurityService {
 
   }
 
+  getAllCert(email: string): Observable<CertificateBackModel[]> {
+    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getAllCertificates/` + email, httpOptions);
+  }
 
 }
