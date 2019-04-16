@@ -39,11 +39,13 @@ import org.springframework.stereotype.Component;
 
 import com.ftn.keystore.KeyStoreReader;
 import com.ftn.keystore.KeyStoreWriter;
+import com.ftn.model.Authority;
 import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
 import com.ftn.model.SubjectSoftware;
 import com.ftn.model.User;
+import com.ftn.repository.AuthorityRepository;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.repository.UserRepository;
@@ -65,6 +67,9 @@ public class Data implements ApplicationRunner {
 	private UserRepository userRepository;
 	
 	@Autowired
+	private AuthorityRepository authRepository;
+	
+	@Autowired
 	private CertificateRepository certRepository;
 	
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
@@ -80,6 +85,7 @@ public class Data implements ApplicationRunner {
 
 		loadSubjectSoftware();
 		loadUser();
+		loadAuthority();
 		
 		try {
 			keyStore = KeyStore.getInstance("JKS", "SUN");
@@ -382,6 +388,18 @@ public class Data implements ApplicationRunner {
 			e.printStackTrace();
 		}
         return null;
+	}
+	
+	public void loadAuthority() {
+		
+		Authority admin = new Authority();
+		Authority user = new Authority();
+		
+		admin.setName("ADMIN");
+		user.setName("USER");
+		
+		authRepository.save(admin);
+		authRepository.save(user);
 	}
 	
 	
