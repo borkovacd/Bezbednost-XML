@@ -14,4 +14,9 @@ export  class WelcomepageComponent{
   logIn(){
     this.router.navigateByUrl('login');
   }
+
+  registration(){
+    this.router.navigateByUrl('registration');
+  }
+
 }

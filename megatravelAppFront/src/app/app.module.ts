@@ -12,8 +12,9 @@ import {SecurityService} from './service/security.service';
 import {CeritifcatesComponent} from './certificates/ceritifcates.component';
 import {LoginComponent} from './login/login.component';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
-import {UserService} from "./service/user.service";
+import {UserService} from './service/user.service';
 import {SoftwareComponent} from './software/software.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {SoftwareComponent} from './software/software.component';
     CeritifcatesComponent,
     LoginComponent,
     WelcomepageComponent,
-    SoftwareComponent
+    SoftwareComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

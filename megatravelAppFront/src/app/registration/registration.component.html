@@ -1,0 +1,65 @@
+<div class=" offset-4 col-md-4" style="margin-top:60px;margin-top: 13%">
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label style="font-weight: bold">Korisničko ime:</label>
+      <input name="username" class="form-control margin" id="input-username"
+             placeholder="Unesite korisničko ime..." [formControl]="username">
+
+      <small class="form-text error" *ngIf="username.errors?.required && username.touched" style="color: red">
+        Korisnicko ime je obavezano!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Lozinka:</label>
+      <input name="password" class="form-control margin" type="password" id="input-password"
+             placeholder="Unesite lozinku..." [formControl]="password">
+      <small class="form-text error" *ngIf="password.errors?.required && password.touched" style="color: red">
+        Lozinka je obavezana!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Potvrdite lozinku:</label>
+      <input name="rePassword" class="form-control margin" type="password" id="input-rePassword"
+             placeholder="Potvrdite lozinku..." [formControl]="rePassword">
+      <small class="form-text error" *ngIf="rePassword.errors?.required && rePassword.touched" style="color: red">
+        Lozinka je obavezana!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Ime:</label>
+      <input name="firstName" class="form-control margin"  id="input-firstName"
+             placeholder="Unesite ime..." [formControl]="firstName">
+      <small class="form-text error" *ngIf="firstName.errors?.required && firstName.touched" style="color: red">
+        Ime je obavezno!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Prezime:</label>
+      <input name="lastName" class="form-control margin"  id="input-lastName"
+             placeholder="Unesite prezime..." [formControl]="lastName">
+      <small class="form-text error" *ngIf="lastName.errors?.required && lastName.touched" style="color: red">
+        Prezime je obavezno!
+      </small>
+
+
+      <label style="margin-top: 15px;font-weight: bold">Email:</label>
+      <input name="email" class="form-control margin"  id="input-email"
+             placeholder="Unesite email..." [formControl]="email">
+      <small class="form-text error" *ngIf="email.errors?.required && email.touched" style="color: red">
+        Email je obavezan!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Grad:</label>
+      <input name="city" class="form-control margin"  id="input-city"
+             placeholder="Unesite grad..." [formControl]="city">
+      <small class="form-text error" *ngIf="city.errors?.required && city.touched" style="color: red">
+        Grad je obavezan!
+      </small>
+
+
+
+      <button class="btn btn-primary" style="width: 100%;margin-top: 20px;margin-bottom: 15px"
+              (click)="signUp()" [disabled]="!form.valid">Registruj se
+      </button>
+
+      <button class="btn btn-primary" style="width: 100%;margin-bottom: 30px" (click)="exit()">Nazad</button>
+    </div>
+  </form>
+</div>

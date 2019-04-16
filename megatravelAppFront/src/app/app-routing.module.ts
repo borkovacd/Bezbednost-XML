@@ -7,10 +7,12 @@ import {CeritifcatesComponent} from './certificates/ceritifcates.component';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {LoginComponent} from './login/login.component';
 import {SoftwareComponent} from './software/software.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
   {path: '', component: WelcomepageComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: 'home', component: HomeComponent},
   {path: 'createCertificate', component: CreateCertificateComponent},
   {path: 'certificates', component: CeritifcatesComponent},
