@@ -23,7 +23,7 @@
         <option>Privremeno povlacenje PKI</option>
 
       </select>
-      <button  *ngIf = "visibleMessage== true" class="btn btn-dark" [disabled]="cert.isRevoked" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
+      <button  *ngIf = "visibleMessage== true" class="btn btn-dark" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
       </form>
     </div>
   </div>
