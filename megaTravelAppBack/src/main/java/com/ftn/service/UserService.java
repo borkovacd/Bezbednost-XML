@@ -18,8 +18,8 @@ public class UserService {
 		ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
 		for(User u : list){
 			if(u.getEmail().equals(user.getEmail())){
-				return true;
-				
+				if(u.getPassword().equals(user.getPassword()))
+					return true;
 			}
 		}
 		return false;

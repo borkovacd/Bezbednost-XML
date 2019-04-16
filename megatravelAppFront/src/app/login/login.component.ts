@@ -33,26 +33,62 @@ export class LoginComponent implements OnInit{
 
   }
 
+  validateLogData() {
+
+    let error = false;
+    let errorMessage = '';
+
+    /* PROVERA MEJLA */
+    const patternMail = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/;
+    if (!patternMail.test(this.email.value)) {
+      error = true;
+      errorMessage = 'Email adresa sadrzi nedozvoljene karaktere!';
+      return errorMessage;
+    }
+
+    return 'Ok';
+
+  }
+
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
+
+  }
+
   logIn() {
-    const object = new LoginModel(this.email.value,
-      this.password.value,);
-    this.accountService.login(object).subscribe(user => {
-      if(user == null){
-        alert('Bad email or password!');
-        return
-      }
 
+    let message = this.validateLogData();
 
-      localStorage.setItem('loggedUser', JSON.stringify(user));
-      console.log(localStorage);
-      if(this.email.value === 'MTRoot@gmail.com')
-        this.router.navigateByUrl('home');
-      else {
-        this.router.navigateByUrl('software');
-      }
+    if (message == "Ok") {
+      const object = new LoginModel(this.escapeCharacters(this.email.value), this.password.value,);
+      this.accountService.login(object).subscribe(user => {
+        if (user == null) {
+          alert('Ne postoji korisnik sa unetim kredencijalima!');
+          return
+        } else {
+        }
 
-    });
+        localStorage.setItem('loggedUser', JSON.stringify(user));
+        console.log(localStorage);
+        if (this.email.value === 'MTRoot@gmail.com')
+          this.router.navigateByUrl('home');
+        else {
+          this.router.navigateByUrl('software');
+        }
 
+      });
+
+    } else {
+      alert(message);
+    }
   }
 
   exit() {

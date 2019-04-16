@@ -84,7 +84,7 @@ export class RegistrationComponent {
       return errorMessage;
     }
 
-      return "Ok";
+      return 'Ok';
 
   }
 
@@ -94,7 +94,7 @@ export class RegistrationComponent {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/\"/g, '&quot;')
-      .replace(/\'/g, '&#39;')
+      /*.replace(/\'/g, '&#39;')*/
       .replace(/\//g, '&#x2F;')
       .replace('src', 'drc')
       .replace(/\'/g, '&apos')
@@ -106,7 +106,7 @@ export class RegistrationComponent {
 
     let message = this.validateRegData();
 
-    if (message == "Ok") {
+    if (message == 'Ok') {
       const user = new UserModel(
         this.escapeCharacters(this.username.value),
         this.password.value,
