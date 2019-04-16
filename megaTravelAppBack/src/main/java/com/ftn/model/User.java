@@ -36,7 +36,7 @@ public class User {
 	private String city;
 	
 	@ManyToMany()
-	private Set<Authority> authorities = new HashSet<Authority>();
+	private Set<Role> roles = new HashSet<Role>();
 
 
 	public void User(){
@@ -114,14 +114,16 @@ public class User {
 	}
 
 
-	public Set<Authority> getAuthorities() {
-		return authorities;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 
-	public void setAuthorities(Set<Authority> authorities) {
-		this.authorities = authorities;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
+
+
 	
 	
 	

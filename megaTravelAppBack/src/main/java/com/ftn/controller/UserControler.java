@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.ftn.model.User;
-import com.ftn.model.Authority;
+
 import com.ftn.modelDTO.UserDTO;
 import com.ftn.repository.AuthorityRepository;
 import com.ftn.repository.UserRepository;
@@ -82,8 +82,7 @@ public class UserControler {
 			
 			u.setPassword(passwordHashed);
 			
-			Authority au = authRepository.findOneByName("USER");
-			u.getAuthorities().add(au);
+		
 			
 			userRep.save(u);
 			System.out.println("upisao");
