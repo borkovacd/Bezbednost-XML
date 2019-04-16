@@ -63,4 +63,7 @@ this.userService.registration(user).subscribe(data =>{
 })
 
   }
+  exit() {
+    this.router.navigateByUrl('');
+  }
 }
