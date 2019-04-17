@@ -35,4 +35,10 @@ export class UserService {
   checkIfMailExists(email: string): Observable<any> {
     return this.http.get('http://localhost:8080/api/user/checkIfMailExists/' + email, httpOptions);
   }
+
+  logout(): Observable<any> {
+    localStorage.clear();
+    return this.http.get('http://localhost:8080/api/user/logOut' , httpOptions);
+
+  }
 }
