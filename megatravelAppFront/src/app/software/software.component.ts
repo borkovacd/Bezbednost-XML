@@ -39,6 +39,7 @@ export class SoftwareComponent implements  OnInit {
   ngOnInit() {
 
     this.user = this.serviceUser.getLoggedUser();
+
     this.data.getAllSubjectSoftwares(this.user.email).subscribe(data => this.subjects = data);
   }
 

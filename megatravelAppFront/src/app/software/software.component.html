@@ -6,8 +6,9 @@
 
       <label style="display: block"><b>Izaberite softver sa kojim zelite da ostvarite komunikaciju</b></label>
       <select  id="searchTo" name="searchTo"  class="form-control" style="margin-left:20px;width: 300px; margin-bottom: 15px; display: inline-block" [formControl]="city">
-        <option *ngFor = "let software of subjects">{{software.city}}</option>
+        <option *ngFor = "let software of subjects" [ngValue]="software.city">{{software.city}}</option>
       </select>
+      
     </div>
   </div>
 </form>
