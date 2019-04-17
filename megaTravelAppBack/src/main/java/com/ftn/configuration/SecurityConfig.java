@@ -1,6 +1,11 @@
 package com.ftn.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,13 +21,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.ftn.service.UserService;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
 
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled=true, jsr250Enabled=true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+public class SecurityConfig extends WebSecurityConfigurerAdapter 
+
+{
 	@Bean
 	@Override
 	 public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -32,6 +40,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new  BCryptPasswordEncoder();
+	}
+
+	 /*
+	 @Bean
+	 public ServletWebServerFactory  servletContainer() {
+		 TomcatServletWebServerFactory  tomcat = new TomcatServletWebServerFactory() {
+		 @Override
+		 protected void postProcessContext(Context context) {
+			 SecurityConstraint securityConstraint = new SecurityConstraint();
+			 securityConstraint.setUserConstraint("CONFIDENTIAL");
+			 SecurityCollection collection = new SecurityCollection();
+			 collection.addPattern("/*");
+			 securityConstraint.addCollection(collection);
+			 context.addConstraint(securityConstraint);
+			 }
+			 };
+		 tomcat.addAdditionalTomcatConnectors(getHttpConnector());
+		 return tomcat;
+	 }
+	 
+	 */
+	 
+	 /*
+	 private Connector getHttpConnector() {
+		 Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		 connector.setScheme("http");
+		 connector.setPort(serverPortHttp);
+		 connector.setSecure(false);
+		 connector.setRedirectPort(serverPortHttps);
+		 return connector;
+	}
+	*/
+	 
+	 private Connector getHttpConnector() 
+	 {
+		 Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		 connector.setScheme("http");
+		 connector.setPort(8080);
+		 connector.setSecure(false);
+		 connector.setRedirectPort(8443);
+		 return connector;
 	}
 	
     @Override
@@ -59,11 +108,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
-@Bean
-CorsConfigurationSource corsConfigurationSource() {
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
     UrlBasedCorsConfigurationSource source = new 
-UrlBasedCorsConfigurationSource();
+    		UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
     return source;
    }
+    
    }

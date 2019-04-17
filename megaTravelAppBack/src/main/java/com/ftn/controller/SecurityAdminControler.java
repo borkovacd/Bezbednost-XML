@@ -86,6 +86,7 @@ public class SecurityAdminControler {
 		
 		
 		if (iss.isHasCert() == true) {
+			
 		Long idSubject = ss.getId();
 		Long idIssuer = iss.getId();
 		
@@ -104,7 +105,8 @@ public class SecurityAdminControler {
 		//KeyStoreReader keyStoreReader = new KeyStoreReader();
 		
 		String issuerPass = "certificatePass" + iss.getId(); // password je oblika certificatePass123456789
-		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, issuerPass, issuerPass);
+		String alias = "alias1";
+		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, alias, alias);
 				
 		System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 		
@@ -142,10 +144,10 @@ public class SecurityAdminControler {
     	
     	// upis u globalni keystore
 		String certificatePass = "certificatePass"  + ss.getId(); // oblika subjectPass123456789
-		keyStoreWriter.write(certificatePass, subjectData.getPrivateKey(), certificatePass.toCharArray(), cert);
+		keyStoreWriter.write(alias, subjectData.getPrivateKey(), alias.toCharArray(), cert);
 		
 		String globalPass = "someString";
-		keyStoreWriter.saveKeyStore("./files/keystore.jks", globalPass.toCharArray());
+		keyStoreWriter.saveKeyStore("./files/keystore.jks", alias.toCharArray());
 		
 		// upis u njegov keystore
 		KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
@@ -161,7 +163,7 @@ public class SecurityAdminControler {
 		
 		else
 		{
-			System.out.println("Izabrani izdavalac nema sertifikat, pa ni ne moze da ga izda!");
+			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
 		}
 		
 	}

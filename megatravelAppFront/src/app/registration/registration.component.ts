@@ -50,6 +50,7 @@ export class RegistrationComponent {
 
     let error = false;
     let errorMessage = '';
+    let errorMail = false;
 
     /* PROVERA LOZINKE */
     if (this.password.value.length < 8) {
@@ -70,10 +71,10 @@ export class RegistrationComponent {
     }
 
     /* PROVERA POKLAPANJA LOZINKI */
-    if(this.password.value !== this.rePassword.value) {
+    if (this.password.value !== this.rePassword.value) {
       error = true;
       errorMessage = 'Lozinke se ne poklapaju!';
-      return errorMessage
+      return errorMessage;
     }
 
     /* PROVERA MEJLA */
@@ -84,11 +85,12 @@ export class RegistrationComponent {
       return errorMessage;
     }
 
-      return 'Ok';
+    return 'Ok';
 
   }
 
-  escapeCharacters(value: string): string{
+
+  escapeCharacters(value: string): string {
     return value
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -97,16 +99,32 @@ export class RegistrationComponent {
       /*.replace(/\'/g, '&#39;')*/
       .replace(/\//g, '&#x2F;')
       .replace('src', 'drc')
-      .replace(/\'/g, '&apos')
+      .replace(/\'/g, '&apos');
 
+  }
+
+  checkEmails(): any {
+
+    this.userService.checkIfMailExists(this.email.value).subscribe(res => {
+      if (res == true) {
+        alert('Uneta je vec postojeca email adresa');
+        return 'Error';
+      } else {
+        return 'Ok';
+      }
+    });
   }
 
 
   signUp() {
 
-    let message = this.validateRegData();
+    const message = this.validateRegData();
 
     if (message == 'Ok') {
+
+      /* PROVERA POSTOJANJA ISTOG MEJLA */
+      this.checkEmails();
+
       const user = new UserModel(
         this.escapeCharacters(this.username.value),
         this.password.value,

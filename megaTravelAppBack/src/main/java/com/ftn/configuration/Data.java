@@ -168,7 +168,9 @@ public class Data implements ApplicationRunner {
 		    }
 		    
 		    
-		} else {
+		} 
+		else 
+		{
 			System.out.println("NE POSTOJI");
 			String str = "someString"; 
 			char[] password = str.toCharArray();
@@ -202,8 +204,8 @@ public class Data implements ApplicationRunner {
 				System.out.println("certificatePass: " + certificatePass);
 				
 				String alias = "alias1";
-				
-				keyStore.setKeyEntry(certificatePass, keyPairIssuer.getPrivate(), certificatePass.toCharArray(), new Certificate[] {certificate});
+				String pass = "someString";
+				keyStore.setKeyEntry(alias, keyPairIssuer.getPrivate(), pass.toCharArray(), new Certificate[] {certificate});
 				
 				cm.setSerialNumber(Integer.parseInt(subjectData.getSerialNumber()));
 				

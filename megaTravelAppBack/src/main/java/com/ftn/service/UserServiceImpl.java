@@ -67,5 +67,19 @@ public class UserServiceImpl implements UserService {
 		public User findByEmail(String email) {
 			return userRepository.findByEmail(email);
 		}
+		
+		public boolean checkMailExistence(String email) {
+			
+			ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
+			
+			for(User u : list){
+				if(u.getEmail().equals(email)){
+					return true;
+					
+				}
+			}
+			
+			return false;
+		}
 
 }
