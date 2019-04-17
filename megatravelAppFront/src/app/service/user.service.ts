@@ -32,4 +32,7 @@ export class UserService {
     return JSON.parse(localStorage.getItem('loggedUser'));
   }
 
+  checkIfMailExists(email: string): Observable<any> {
+    return this.http.get('http://localhost:8080/api/user/checkIfMailExists/' + email, httpOptions);
+  }
 }

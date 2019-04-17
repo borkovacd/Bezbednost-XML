@@ -46,5 +46,19 @@ public class UserService {
 			userRepository.save(user);
 		
 	}
+
+		public boolean checkMailExistence(String email) {
+			
+			ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
+			
+			for(User u : list){
+				if(u.getEmail().equals(email)){
+					return true;
+					
+				}
+			}
+			
+			return false;
+		}
 	
 }

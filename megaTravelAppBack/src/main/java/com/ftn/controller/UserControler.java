@@ -1,5 +1,8 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 
 import org.hibernate.mapping.Set;
@@ -9,12 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.ftn.model.CertificateModel;
+import com.ftn.model.SubjectSoftware;
 import com.ftn.model.User;
 
 import com.ftn.modelDTO.UserDTO;
@@ -95,4 +100,12 @@ public class UserControler {
 		}
 		
 	//}
+	
+	@RequestMapping(value="/checkIfMailExists/{email}",	method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
+	public boolean checkCommunication(@PathVariable String email) {
+		
+		boolean response = userService.checkMailExistence(email);
+		return response;
+	}
 }
