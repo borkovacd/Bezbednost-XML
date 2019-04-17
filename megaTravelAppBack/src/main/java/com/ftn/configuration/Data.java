@@ -35,6 +35,8 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import com.ftn.keystore.KeyStoreReader;
@@ -51,6 +53,7 @@ import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.repository.UserRepository;
+import com.ftn.service.RoleService;
 
 
 // pri pokretanju treba namestiti podatak o root-u odnosno issuer-u i o divizijama
@@ -70,7 +73,8 @@ public class Data implements ApplicationRunner {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-
+	@Autowired
+	private RoleService roleService;
 	
 	@Autowired
 	private CertificateRepository certRepository;
@@ -86,9 +90,10 @@ public class Data implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		
 
+		loadAuthority();
 		loadSubjectSoftware();
 		loadUser();
-		loadAuthority();
+		//System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		try {
 			keyStore = KeyStore.getInstance("JKS", "SUN");
@@ -252,25 +257,43 @@ public class Data implements ApplicationRunner {
 		
 	}
 	private void loadUser(){
+
+		String salt = BCrypt.gensalt();
 		
 		User u0 = new User();
 		u0.setEmail("MTRoot@gmail.com");
-		u0.setPassword("rroott");
+		u0.setRoles(Arrays.asList(roleService.findByName("ADMIN")));
+		
+		String passwordHashed0 = BCrypt.hashpw("rroott", salt);
+		
+		u0.setPassword(passwordHashed0);
 		userRepository.save(u0);
 		
 		User u1 = new User();
 		u1.setEmail("MegaTravelLondon@gmail.com");
-		u1.setPassword("lon");
+		u1.setRoles(Arrays.asList(roleService.findByName("USER")));
+		
+		String passwordHashed1 = BCrypt.hashpw("lon", salt);
+		
+		u1.setPassword(passwordHashed1);
 		userRepository.save(u1);
 		
 		User u2 = new User();
 		u2.setEmail("MegaTravelHongKong@gmail.com");
-		u2.setPassword("hong");
+		u2.setRoles(Arrays.asList(roleService.findByName("USER")));
+		
+		String passwordHashed2 = BCrypt.hashpw("honkon", salt);
+		
+		u2.setPassword(passwordHashed2);
 		userRepository.save(u2);
 		
 		User u3 = new User();
 		u3.setEmail("MegaTravelBoston@gmail.com");
-		u3.setPassword("bost");
+		u3.setRoles(Arrays.asList(roleService.findByName("USER")));
+		
+		String passwordHashed3 = BCrypt.hashpw("bost", salt);
+		
+		u3.setPassword(passwordHashed3);
 		userRepository.save(u3);
 		
 	}

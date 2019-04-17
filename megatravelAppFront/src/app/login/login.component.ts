@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit{
         if (this.email.value === 'MTRoot@gmail.com')
           this.router.navigateByUrl('home');
         else {
-          this.router.navigateByUrl('software');
+          this.router.navigateByUrl('home');
         }
 
       });
