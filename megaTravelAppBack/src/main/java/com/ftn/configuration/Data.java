@@ -110,7 +110,7 @@ public class Data implements ApplicationRunner {
 		    ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>();
 		    
 		    try {
-				lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("alias1")));
+				lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("someString")));
 				
 			} catch (KeyStoreException e) {
 				e.printStackTrace();
@@ -205,7 +205,7 @@ public class Data implements ApplicationRunner {
 				
 				String alias = "alias1";
 				String pass = "someString";
-				keyStore.setKeyEntry(alias, keyPairIssuer.getPrivate(), pass.toCharArray(), new Certificate[] {certificate});
+				keyStore.setKeyEntry(pass, keyPairIssuer.getPrivate(), pass.toCharArray(), new Certificate[] {certificate});
 				
 				cm.setSerialNumber(Integer.parseInt(subjectData.getSerialNumber()));
 				
