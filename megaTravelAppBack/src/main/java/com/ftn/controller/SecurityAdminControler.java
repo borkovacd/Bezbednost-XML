@@ -83,6 +83,8 @@ public class SecurityAdminControler {
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 		
+		
+		if (iss.isHasCert() == true) {
 		Long idSubject = ss.getId();
 		Long idIssuer = iss.getId();
 		
@@ -154,7 +156,12 @@ public class SecurityAdminControler {
 		
 		keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".jks", ss.getId().toString().toCharArray());
+		}
 		
+		else
+		{
+			System.out.println("Izabrani izdavalac nema sertifikat, pa ni ne moze da ga izda!");
+		}
 		
 	}
 	
@@ -231,7 +238,7 @@ public class SecurityAdminControler {
 				}
 			}
 			
-			if(expired == false && revoked == false) {
+			if(expired == false || revoked == false) {
 				return true;
 			} else {
 				return false;
