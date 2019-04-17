@@ -199,8 +199,8 @@ public class Data implements ApplicationRunner {
 				System.out.println("certificatePass: " + certificatePass);
 				
 				String alias = "alias1";
-				
-				keyStore.setKeyEntry(alias, keyPairIssuer.getPrivate(), alias.toCharArray(), new Certificate[] {certificate});
+				String pass = "someString";
+				keyStore.setKeyEntry(alias, keyPairIssuer.getPrivate(), pass.toCharArray(), new Certificate[] {certificate});
 				
 				cm.setSerialNumber(Integer.parseInt(subjectData.getSerialNumber()));
 				

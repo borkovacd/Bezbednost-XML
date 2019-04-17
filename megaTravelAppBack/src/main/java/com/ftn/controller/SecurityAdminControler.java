@@ -104,7 +104,8 @@ public class SecurityAdminControler {
 		//KeyStoreReader keyStoreReader = new KeyStoreReader();
 		
 		String issuerPass = "certificatePass" + iss.getId(); // password je oblika certificatePass123456789
-		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, "alias1", "alias1");
+		String alias = "alias1";
+		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, alias, alias);
 				
 		System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 		
@@ -141,12 +142,11 @@ public class SecurityAdminControler {
     	// *********************************************
     	
     	// upis u globalni keystore
-    	String alias = "alias1";
 		String certificatePass = "certificatePass"  + ss.getId(); // oblika subjectPass123456789
 		keyStoreWriter.write(alias, subjectData.getPrivateKey(), alias.toCharArray(), cert);
 		
 		String globalPass = "someString";
-		keyStoreWriter.saveKeyStore("./files/keystore.jks", globalPass.toCharArray());
+		keyStoreWriter.saveKeyStore("./files/keystore.jks", alias.toCharArray());
 		
 		// upis u njegov keystore
 		KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
