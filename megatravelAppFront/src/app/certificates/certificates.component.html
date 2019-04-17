@@ -12,8 +12,8 @@
       <label>Izdato za: {{cert.subSoft.email}} </label><br>
       <label>Vazi od: {{cert.startDate | date : 'mediumDate'}}</label><br>
       <label>Vazi do: {{cert.endDate | date : 'mediumDate'}} </label><br>
-      <label>Status: {{cert.isRevoked}} </label><br>
-      <button class="btn btn-dark" (click)="revoke(cert.serialNumber)">Povuci</button>
+      <label>Status: <b> {{getStatus(cert.revoked)}} </b> </label><br>
+      <button *ngIf="!cert.revoked" class="btn btn-dark" (click)="revoke(cert.serialNumber)">Povuci</button>
       <br>
       <form [formGroup]="form">
       <label *ngIf = "visibleMessage== true" style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>

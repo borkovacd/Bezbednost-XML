@@ -54,7 +54,6 @@ export class AllCertificatesComponent implements OnInit {
   }
 
   getStatus(isRevoked: boolean) {
-    alert(isRevoked);
     if  (isRevoked == true) {
       return 'Povucen';
     } else {

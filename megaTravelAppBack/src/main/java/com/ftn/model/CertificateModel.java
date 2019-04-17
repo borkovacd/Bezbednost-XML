@@ -37,7 +37,7 @@ public class CertificateModel
 	private boolean isCertificateAuthority;
 	
 	@Column(name="IsRevoked")
-	private boolean isRevoked;
+	private boolean revoked;
 	
 	@Column
 	private String reasonForRevokation;
@@ -51,14 +51,14 @@ public class CertificateModel
 	}
 	
 	public CertificateModel(SubjectSoftware issuerSoft, SubjectSoftware subSoft, Date startDate, Date endDate,
-			boolean isCertificateAuthority, boolean isRevoked, String reasonsForRevocation) {
+			boolean isCertificateAuthority, boolean revoked, String reasonsForRevocation) {
 		super();
 		this.issuerSoft = issuerSoft;
 		this.subSoft = subSoft;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.isCertificateAuthority = isCertificateAuthority;
-		this.isRevoked = isRevoked;
+		this.revoked = revoked;
 		this.reasonForRevokation = reasonsForRevocation;
 	}
 	
@@ -95,11 +95,11 @@ public class CertificateModel
 	}
 
 	public boolean isRevoked() {
-		return isRevoked;
+		return revoked;
 	}
 
-	public void setRevoked(boolean isRevoked) {
-		this.isRevoked = isRevoked;
+	public void setRevoked(boolean revoked) {
+		this.revoked = revoked;
 	}
 
 	public String getReasonForRevokation() {

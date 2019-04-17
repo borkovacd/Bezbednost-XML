@@ -58,7 +58,6 @@ this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
   }
 
   getStatus(isRevoked: boolean) {
-    alert(isRevoked);
     if  (isRevoked == true) {
       return 'Povucen';
     } else {

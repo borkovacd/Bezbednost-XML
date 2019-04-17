@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.model.CertificateModel;
 import com.ftn.model.CertificateStatus;
+import com.ftn.model.SubjectSoftware;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.CertificateStatusRepository;
+import com.ftn.repository.SubjectSoftwareRepository;
 
 @Service
 public class CertificateStatusService {
@@ -16,6 +18,9 @@ public class CertificateStatusService {
 	
 	@Autowired
 	private CertificateRepository certRepository;
+	
+	@Autowired
+	private SubjectSoftwareRepository subSoftRep;
 	
 	public void saveAfterCreated() {
 		
@@ -29,6 +34,15 @@ public class CertificateStatusService {
 		certStatRepository.save(novi);
 		
 		CertificateModel certificat = certRepository.findOneBySerialNumber(serialNumber);
+		
+		String email = certificat.getSubSoft().getEmail();
+		
+		SubjectSoftware ss = subSoftRep.findByEmail(email);
+		
+		ss.setHasCert(false);
+		
+		subSoftRep.save(ss);
+		
 		certificat.setRevoked(true);
 		certRepository.save(certificat);
 		return true;
