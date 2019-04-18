@@ -265,7 +265,7 @@ public class SecurityAdminControler {
 		
 		
 		for(int i=0; i<ssList.size(); i++) {
-			if(ssList.get(i).isHasCert() == false) {
+			if(ssList.get(i).isHasCert() == false && !ssList.get(i).getEmail().equals("MTRoot@gmail.com")) {
 				ssList2.add(ssList.get(i));
 			}
 		}

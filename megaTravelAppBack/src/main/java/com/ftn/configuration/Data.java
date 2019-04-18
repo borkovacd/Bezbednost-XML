@@ -264,7 +264,7 @@ public class Data implements ApplicationRunner {
 		
 		User u0 = new User();
 		u0.setEmail("MTRoot@gmail.com");
-		u0.setRoles(Arrays.asList(roleService.findByName("ADMIN")));
+		u0.setRoles(Arrays.asList(roleService.findByName("ROLE_ADMIN")));
 		
 		String passwordHashed0 = BCrypt.hashpw("rroott", salt);
 		
@@ -273,7 +273,7 @@ public class Data implements ApplicationRunner {
 		
 		User u1 = new User();
 		u1.setEmail("MegaTravelLondon@gmail.com");
-		u1.setRoles(Arrays.asList(roleService.findByName("USER")));
+		u1.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
 		
 		String passwordHashed1 = BCrypt.hashpw("lon", salt);
 		
@@ -282,7 +282,7 @@ public class Data implements ApplicationRunner {
 		
 		User u2 = new User();
 		u2.setEmail("MegaTravelHongKong@gmail.com");
-		u2.setRoles(Arrays.asList(roleService.findByName("USER")));
+		u2.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
 		
 		String passwordHashed2 = BCrypt.hashpw("honkon", salt);
 		
@@ -291,7 +291,7 @@ public class Data implements ApplicationRunner {
 		
 		User u3 = new User();
 		u3.setEmail("MegaTravelBoston@gmail.com");
-		u3.setRoles(Arrays.asList(roleService.findByName("USER")));
+		u3.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
 		
 		String passwordHashed3 = BCrypt.hashpw("bost", salt);
 		
@@ -423,8 +423,8 @@ public class Data implements ApplicationRunner {
 		Role admin = new Role();
 		Role user = new Role();
 		
-		admin.setName("ADMIN");
-		user.setName("USER");
+		admin.setName("ROLE_ADMIN");
+		user.setName("ROLE_USER");
 		
 		roleRepository.save(admin);
 		roleRepository.save(user);

@@ -36,7 +36,6 @@ import com.ftn.repository.RoleRepository;
 import com.ftn.repository.UserRepository;
 import com.ftn.service.RoleService;
 import com.ftn.service.UserService;
-import com.ftn.service.UserServiceImpl;
 
 
 @RestController
@@ -45,9 +44,6 @@ public class UserControler {
 	
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private UserServiceImpl userService2;
 	
 	@Autowired
 	private UserRepository userRep;
@@ -73,12 +69,12 @@ public class UserControler {
 		
 		if(BCrypt.checkpw(user.getPassword(), userNew.getPassword())) {
 		
-			System.out.println("uspesna prijava");
+	//		Authentication authentication = authManager
+	//				.authenticate(new UsernamePasswordAuthenticationToken(userNew, user.getPassword()));
 			
-			Authentication authentication = authManager
-					.authenticate(new UsernamePasswordAuthenticationToken(userNew, user.getPassword(), userNew.getAuthorities()));
 
-			SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	//		SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 			
 			/*
@@ -92,7 +88,6 @@ public class UserControler {
 			 
 		//	 System.out.println(cud.getUsername());
 			// System.out.println(cud.getPassword());
-			
 			
 			
 			return new ResponseEntity<User>(userNew, HttpStatus.OK);

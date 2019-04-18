@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 		 return connector;
 	}
 	*/
-	 
+	 /*
 	 private Connector getHttpConnector() 
 	 {
 		 Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
@@ -82,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 		 connector.setRedirectPort(8443);
 		 return connector;
 	}
-	
+	*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	
@@ -94,8 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         
         	.cors().and()
             .authorizeRequests()
-                .antMatchers("/api/user/**").permitAll()
-                .antMatchers("/api/security/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                // .antMatchers("/api/security/**").hasAuthority("ADMIN")
              //   .antMatchers("/api/security/**").hasRole("ADMIN")
             .anyRequest().authenticated();
