@@ -158,4 +158,11 @@ public class UserControler {
 		boolean response = userService.checkMailExistence(email);
 		return response;
 	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public void logOutUser(){	
+				
+		SecurityContextHolder.clearContext();
+	}
+	
 }

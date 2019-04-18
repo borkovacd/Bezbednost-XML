@@ -22,13 +22,13 @@ export class HomeComponent implements  OnInit{
   }
 
   show() {
-    this.router.navigateByUrl('certificates')
+    this.router.navigateByUrl('certificates');
   }
 
   odjaviSe() {
     this.userService.logout();
-    this.router.navigate(['']);
-    window.location.reload();
+    //window.location.reload();
+    this.router.navigateByUrl('');
 
   }
 }
