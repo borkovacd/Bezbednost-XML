@@ -90,9 +90,9 @@ public class Data implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		
 
-		loadAuthority();
-		loadSubjectSoftware();
-		loadUser();
+		//loadAuthority();
+		//loadSubjectSoftware();
+		//loadUser();
 		//System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		try {
