@@ -81,7 +81,7 @@ public class UserControler {
 			
 			System.out.println("zzzzzzzzzzzzzzzz");
 			
-			
+		/*	
 			UsernamePasswordAuthenticationToken authReq
 			 = new UsernamePasswordAuthenticationToken(userNew, user.getPassword());
 			Authentication auth = authManager.authenticate(authReq);
@@ -92,7 +92,7 @@ public class UserControler {
 			HttpSession session = req.getSession(true);
 		    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
 			
-			
+		*/	
 			/*
 			for (GrantedAuthority a : ud.getAuthorities()) {
 				Role s = (Role) a;
