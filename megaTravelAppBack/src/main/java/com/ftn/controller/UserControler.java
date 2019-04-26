@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 import com.ftn.model.Role;
 import com.ftn.model.CertificateModel;
@@ -57,7 +62,7 @@ public class UserControler {
 	@RequestMapping(value="/login",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<User> logIn(@RequestBody User user) {
+	public ResponseEntity<User> logIn(@RequestBody User user, HttpServletRequest req) {
 		
 		boolean response = userService.logIn(user);
 		
@@ -69,12 +74,23 @@ public class UserControler {
 		
 		if(BCrypt.checkpw(user.getPassword(), userNew.getPassword())) {
 		
-	//		Authentication authentication = authManager
-	//				.authenticate(new UsernamePasswordAuthenticationToken(userNew, user.getPassword()));
+			
+			System.out.println("pozzz");
 			
 
+			
+			System.out.println("zzzzzzzzzzzzzzzz");
+			
+			
+			UsernamePasswordAuthenticationToken authReq
+			 = new UsernamePasswordAuthenticationToken(userNew, user.getPassword());
+			Authentication auth = authManager.authenticate(authReq);
 
-	//		SecurityContextHolder.getContext().setAuthentication(authentication);
+			SecurityContext sc = SecurityContextHolder.getContext();
+			sc.setAuthentication(auth);
+			
+			HttpSession session = req.getSession(true);
+		    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
 			
 			
 			/*
