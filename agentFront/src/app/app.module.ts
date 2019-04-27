@@ -7,7 +7,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AccomodationComponent} from './accomodation/accomodation.component';
-import {AddEditAccomodationComponent} from "./add-edit-accomodation/add-edit-accomodation.component";
+import {AddEditAccomodationComponent} from './add-edit-accomodation/add-edit-accomodation.component';
+import {AccomodationService} from './service/accomodation.service';
+import {AdditionalServicesService} from './service/additionalServices.service';
+import {CityService} from './service/city.service';
+import {CategoryService} from './service/category.service';
+import {TypeAccomodationService} from './service/typeAccomodation.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,13 @@ import {AddEditAccomodationComponent} from "./add-edit-accomodation/add-edit-acc
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AccomodationService,
+    AdditionalServicesService,
+    CityService,
+    CategoryService,
+    TypeAccomodationService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,11 @@ export class AddEditAccomodationComponent implements OnInit{
   public description: AbstractControl;
   public pic: AbstractControl;
 
+  types = []
+  cities = []
+  categoris = []
+  services = []
+
   constructor (protected  router: Router,
                public fb: FormBuilder,
                public route: ActivatedRoute,) {
@@ -41,6 +46,9 @@ export class AddEditAccomodationComponent implements OnInit{
 
   }
   ngOnInit(){
+    const mode = this.route.snapshot.params.mode;
+
+
 
   }
 }

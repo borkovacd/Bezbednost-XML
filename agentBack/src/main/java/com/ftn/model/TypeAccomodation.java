@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Country {
+public class TypeAccomodation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class Country {
 	@Column
 	private String name;
 
-	public Country() {
+	public TypeAccomodation() {
 
 	}
 
-	public Country(Long id, String name) {
+	public TypeAccomodation(Long id, @NotNull String name) {
 		super();
 		this.id = id;
 		this.name = name;
