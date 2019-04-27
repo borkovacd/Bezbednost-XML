@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  private BASE_URL = 'http://localhost:8080/api/user';
+  private BASE_URL = 'https://localhost:8443/api/user';
 
   constructor(private http: HttpClient) {
   }
@@ -33,12 +33,12 @@ export class UserService {
   }
 
   checkIfMailExists(email: string): Observable<any> {
-    return this.http.get('http://localhost:8080/api/user/checkIfMailExists/' + email, httpOptions);
+    return this.http.get('https://localhost:8443/api/user/checkIfMailExists/' + email, httpOptions);
   }
 
   logout(): Observable<any> {
     localStorage.clear();
-    return this.http.get('http://localhost:8080/api/user/logOut' , httpOptions);
+    return this.http.get('https://localhost:8443/api/user/logOut' , httpOptions);
 
   }
 }

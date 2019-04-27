@@ -14,7 +14,7 @@ const httpOptions = {
 @Injectable()
 export class SecurityService {
 
-  private BASE_URL = 'http://localhost:8080/api/security';
+  private BASE_URL = 'https://localhost:8443/api/security';
 
   constructor(private http: HttpClient) {
   }
@@ -31,7 +31,7 @@ export class SecurityService {
   addCertificate(model: CertificateModel, email: string): Observable<any> {
     const data = JSON.stringify(model);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( 'http://localhost:8080/api/security/createCertificate/' + email, data, {headers: headers});
+    return this.http.post( 'https://localhost:8443/api/security/createCertificate/' + email, data, {headers: headers});
   }
 
   getCert(email: string): Observable<CertificateBackModel[]> {
@@ -39,7 +39,7 @@ export class SecurityService {
   }
 
   checkCommunication(string1: string, string2: string): Observable<any> {
-    return this.http.get('http://localhost:8080/api/security/communicate/' + string1 + '/' + string2, httpOptions);
+    return this.http.get('https://localhost:8443/api/security/communicate/' + string1 + '/' + string2, httpOptions);
   }
 
   revokeCert(serialNumber: any , message: string): Observable<any> {
