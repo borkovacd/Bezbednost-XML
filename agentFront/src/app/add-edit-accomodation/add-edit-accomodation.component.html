@@ -1,0 +1,42 @@
+<div>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label>Naziv smestaja:</label>
+      <input name="name" class="form-control margin" [formControl]="name">
+
+      <label>Grad:</label>
+      <select class="form-control margin" [formControl]="city">
+        <option></option>
+      </select>
+
+      <label>Adresa:</label>
+      <input name="address" class="form-control margin" [formControl]="address">
+
+      <label>Tip smestajne jedinice:</label>
+      <select class="form-control margin" [formControl]="type">
+        <option></option>
+      </select>
+
+      <label>Kategorija:</label>
+      <select class="form-control" [formControl]="category">
+        <option></option>
+      </select>
+
+      <label>Opis:</label>
+      <textarea name="description" class="form-control" [formControl]="description"></textarea>
+
+      <label>Kapacitet:</label>
+      <input name="capacity" class="form-control margin" [formControl]="capacity">
+
+      <label>Slika:</label>
+      <input name="pic" class="form-control margin" [formControl]="pic">
+
+      <div>
+
+      </div>
+
+      <button></button>
+      <button>Zatvori</button>
+    </div>
+  </form>
+</div>
