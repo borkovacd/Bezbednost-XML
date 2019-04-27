@@ -27,14 +27,14 @@ import org.apache.catalina.connector.Connector;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled=true, jsr250Enabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter 
 
 {
-	@Bean
 	@Override
-	 public AuthenticationManager authenticationManagerBean() throws Exception {
-	     return super.authenticationManagerBean();
+	@Bean
+	 public AuthenticationManager authenticationManager() throws Exception {
+	     return super.authenticationManager();
 	 }
 	
 	@Bean
