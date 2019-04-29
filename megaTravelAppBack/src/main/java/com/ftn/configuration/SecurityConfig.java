@@ -8,39 +8,64 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.ftn.service.UserService;
-import org.apache.catalina.Context;
-import org.apache.catalina.connector.Connector;
+
+
+
+
+
 
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+
+@EnableGlobalMethodSecurity(
+		  prePostEnabled = true, 
+		  securedEnabled = true, 
+		  jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter 
 
 {
-	@Override
+
+	@Autowired
+	private UserService jwtUserDetailsService;
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+	}
+	
+	
 	@Bean
-	 public AuthenticationManager authenticationManager() throws Exception {
-	     return super.authenticationManager();
+	@Override
+	 public AuthenticationManager authenticationManagerBean() throws Exception {
+	     return super.authenticationManagerBean();
 	 }
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new  BCryptPasswordEncoder();
 	}
+	
+	
 
 	 /*
 	 @Bean
@@ -92,20 +117,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     	
         http
         
-        	.cors().and()
-            .authorizeRequests()
-                .antMatchers("/api/**").permitAll()
+        	//.cors().and()
+      
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .authorizeRequests()
+        .antMatchers("/api/user/**").permitAll()
+        .antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
+        .formLogin().and().exceptionHandling()
+
+            	//.antMatchers("/api/security/**").permitAll()
                // .antMatchers("/api/security/**").hasAuthority("ADMIN")
              //   .antMatchers("/api/security/**").hasRole("ADMIN")
-            .anyRequest().authenticated();
+            
         
         	//.addFilterBefore(new CustomFilter(), BasicAuthenticationFilter.class);
         
         
           //  .addFilterBefore(new TokenAutheticationFilter(tokenUtils, jwtUserDetailsService), BasicAuthenticationFilter.class);
 
-        http.csrf().disable();
+        .and()
+        .csrf().disable();
     }
+   
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
