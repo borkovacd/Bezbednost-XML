@@ -70,13 +70,12 @@ export class LoginComponent implements OnInit{
     if (message == "Ok") {
       const object = new LoginModel(this.escapeCharacters(this.email.value), this.password.value,);
       this.accountService.login(object).subscribe(user => {
-        if (user == null) {
+        if (user.accessToken == null) {
           alert('Ne postoji korisnik sa unetim kredencijalima!');
           return
-        } else {
         }
 
-        localStorage.setItem('loggedUser', JSON.stringify(user));
+        localStorage.setItem('loggedUser', JSON.stringify(user.accessToken));
         console.log(localStorage);
         if (this.email.value === 'MTRoot@gmail.com')
           this.router.navigateByUrl('home');

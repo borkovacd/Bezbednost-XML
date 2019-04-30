@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,9 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 import com.ftn.model.User;
-
+import com.ftn.model.UserToken;
 import com.ftn.modelDTO.UserDTO;
 import com.ftn.repository.UserRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.service.RoleService;
 
 import com.ftn.service.UserServiceImpl;
@@ -49,6 +51,9 @@ public class UserControler {
 
 	@Autowired
 	private AuthenticationManager authManager;
+	@Autowired
+	TokenUtils tokenUtils;
+
 	
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -112,7 +117,7 @@ public class UserControler {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<User> logIn(@RequestBody User user, HttpServletRequest req) {
+	public ResponseEntity<?> logIn(@RequestBody User user, HttpServletRequest req) {
 
 		boolean response = userService.logIn(user);
 
@@ -137,9 +142,15 @@ public class UserControler {
 
 				SecurityContext sc = SecurityContextHolder.getContext();
 				sc.setAuthentication(auth);
+				User user1 = (User) auth.getPrincipal();
+				String token = tokenUtils.generateToken(user1.getEmail());
+				long expiresIn = tokenUtils.getExpiredIn();
+				System.out.println("ExpirsIn: "+expiresIn);
+				
+				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 
-				HttpSession session = req.getSession(true);
-				session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+				//HttpSession session = req.getSession(true);
+				//session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
 
 				/*
 				 * for (GrantedAuthority a : ud.getAuthorities()) { Role s =
@@ -151,7 +162,7 @@ public class UserControler {
 				// System.out.println(cud.getUsername());
 				// System.out.println(cud.getPassword());
 
-				return new ResponseEntity<User>(userNew, HttpStatus.OK);
+				
 
 				// final Authentication authentication = authenticationManager
 				// .authenticate(new
@@ -162,14 +173,14 @@ public class UserControler {
 				// SecurityContextHolder.getContext().setAuthentication(authentication);
 
 			} else {
-				return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 		}
 	}
 
-	
+
 	@RequestMapping(value = "/checkIfMailExists/{email}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean checkCommunication(@PathVariable String email) {
@@ -177,7 +188,7 @@ public class UserControler {
 		boolean response = userService.checkMailExistence(email);
 		return response;
 	}
-
+	@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public void logOutUser() {
 
