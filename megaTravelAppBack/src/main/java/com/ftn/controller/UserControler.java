@@ -194,5 +194,11 @@ public class UserControler {
 
 		SecurityContextHolder.clearContext();
 	}
+	
+	@RequestMapping(value = "/ssl-test", method = RequestMethod.GET)
+	public String TestSSl() {
+
+		return "SSL WORKS";
+	}
 
 }
