@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListAgentComponent } from './list-agent/list-agent.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import {AdminService} from './service/admin.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { ListUserComponent } from './list-user/list-user.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

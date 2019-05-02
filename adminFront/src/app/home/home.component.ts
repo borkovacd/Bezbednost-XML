@@ -13,4 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  agents() {
+    this.router.navigateByUrl('/listAgents');
+  }
 }

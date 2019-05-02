@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {AddAgentComponent} from './add-agent/add-agent.component';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
+import {ListAgentComponent} from './list-agent/list-agent.component';
 
 const routes: Routes = [
   {path: '', component: WelcomePageComponent, pathMatch: 'full'},
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path: 'addAgent', component: AddAgentComponent},
   {path: 'home', component: HomeComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'listAgents', component: ListAgentComponent},
+  {path: 'addAgent', component: AddAgentComponent},
 ];
 
 @NgModule({
