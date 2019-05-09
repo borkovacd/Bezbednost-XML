@@ -9,7 +9,7 @@ const httpOptions = {
 
 @Injectable()
 export class CityService{
-  private BASE_URL = 'http://localhost:8099/api/city';
+  private BASE_URL = 'https://localhost:8099/api/city';
 
   constructor(private http: HttpClient) {
 

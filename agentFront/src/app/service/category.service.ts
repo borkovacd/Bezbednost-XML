@@ -8,7 +8,7 @@ const httpOptions = {
 
 @Injectable()
 export class CategoryService {
-  private BASE_URL = 'http://localhost:8099/api/category';
+  private BASE_URL = 'https://localhost:8099/api/category';
   constructor(private http: HttpClient) {
 
   }
