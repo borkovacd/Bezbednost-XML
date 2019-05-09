@@ -1,6 +1,7 @@
 package com.ftn.configuration;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
@@ -10,10 +11,12 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.security.SignatureException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.text.ParseException;
@@ -41,14 +44,14 @@ import org.springframework.stereotype.Component;
 
 import com.ftn.keystore.KeyStoreReader;
 import com.ftn.keystore.KeyStoreWriter;
-
+import com.ftn.model.Agent;
 import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
 import com.ftn.model.Role;
 import com.ftn.model.SubjectData;
 import com.ftn.model.SubjectSoftware;
 import com.ftn.model.User;
-
+import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
@@ -64,6 +67,7 @@ import com.ftn.service.RoleService;
 public class Data implements ApplicationRunner {
 	
 	private KeyStore keyStore;
+	private KeyStore keyStoreAgent;
 	
 	@Autowired
 	private SubjectSoftwareRepository subSoftRep;
@@ -80,6 +84,11 @@ public class Data implements ApplicationRunner {
 	private CertificateRepository certRepository;
 	
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
+	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter() ;
+	
+
+	private KeyStoreWriter keyStoreWriterAgent = new KeyStoreWriter() ;
+	private KeyStoreReader keyStoreReaderAgent = new KeyStoreReader() ;
 	
 	public Data() {
 		Security.addProvider(new BouncyCastleProvider());
@@ -89,30 +98,48 @@ public class Data implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-
+	
 		//loadAuthority();
 		//loadSubjectSoftware();
 		//loadUser();
 		//System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		try {
-			keyStore = KeyStore.getInstance("JKS", "SUN");
+			keyStore = KeyStore.getInstance("PKCS12");
+			keyStoreAgent = KeyStore.getInstance("PKCS12");
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
-		}
+		} 
 		
-		File f = new File("./files/keystore.jks");
+		File f = new File("./files/keystore.p12");
+		File f2 = new File("");
+
+		String parent =  f2.getAbsoluteFile().getParent();
+
+		File fAgent = new File(parent + "/agentBack/keystoreAgent.p12");
+		
+		String agentPath = parent + "\\agentBack\\keystoreAgent.p12";
+		 
+		System.out.println("Ovo je agent path: " + agentPath);
+		
 		if(f.exists() && !f.isDirectory()) { 
 		    System.out.println("POSTOJI");
 		    
+		    if(fAgent.exists()) {
+		    	System.out.println("postoji agent keystore");
+		    } else {
+		    	System.out.println("nne postoji agent keystore");
+		    }
+		    
 		    ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>();
+		    ArrayList<Certificate> agentLanacSertifikata = new ArrayList<Certificate>();
 		    
 		    try {
-				lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("someString")));
+				lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystore.p12").getCertificateChain("someString")));
+				//agentLanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore(agentPath).getCertificateChain("someString")));
 				
 			} catch (KeyStoreException e) {
+				System.out.println("Eror se desio");
 				e.printStackTrace();
 			}
 		    
@@ -167,6 +194,8 @@ public class Data implements ApplicationRunner {
 		    	
 		    }
 		    
+
+		    
 		    
 		} 
 		else 
@@ -176,6 +205,7 @@ public class Data implements ApplicationRunner {
 			char[] password = str.toCharArray();
 			
 			keyStore.load(null, password);
+		//	keyStoreAgent.load(null, password);
 			
 			// kreiran keystore, inicijalno kreirati jedan sertifikat koji on sam sebi dodeljuje
 			
@@ -256,93 +286,54 @@ public class Data implements ApplicationRunner {
 			}
 		}
 		
+		if (keyStoreReader.getKeyStore(agentPath).getCertificateChain("someString") == null ) {
+			System.out.println("prazan je");
+			
+			// kreirati sertifikat za agenta
+			
+			String str = "someString"; 
+			char[] password = str.toCharArray();
+			
+			//keyStoreAgent.load(agentPath, password);
+			
+			//
+			PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.p12", str, str, str);
+			
+			//System.out.println("privatni kljuc je:" + privateKeyIssuer);
+			
+			ArrayList<Certificate> lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystore.p12").getCertificateChain("someString")));
+			
+			PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
+			
+			SubjectData subjectData = generateSubjectData2(privateKeyIssuer, publicKey);
+			
+			IssuerData issuerData = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata.get(0));
+			
+			//keyStoreWriter.loadKeyStore(agentPath, password);
+			
+			CertificateGenerator cg = new CertificateGenerator();
+			
+			// izgenerisi sertifikat za subject-a od issuer-a
+			X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
+			
+			Certificate certificate = cert;
+			
+			String pass = "someString";
+			
+			keyStoreAgent.load(new FileInputStream(agentPath), password);
+			
+			keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, pass.toCharArray(), new Certificate[] {certificate});
+			
+			keyStoreAgent.store(new FileOutputStream(agentPath), password);
+			
+			
+		} else {
+			System.out.println("nije prazan");
+		}
 		
-	}
-	private void loadUser(){
-
-		String salt = BCrypt.gensalt();
-		
-		User u0 = new User();
-		u0.setEmail("MTRoot@gmail.com");
-		u0.setRoles(Arrays.asList(roleService.findByName("ROLE_ADMIN")));
-		
-		String passwordHashed0 = BCrypt.hashpw("rroott", salt);
-		
-		u0.setPassword(passwordHashed0);
-		userRepository.save(u0);
-		
-		User u1 = new User();
-		u1.setEmail("MegaTravelLondon@gmail.com");
-		u1.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
-		
-		String passwordHashed1 = BCrypt.hashpw("lon", salt);
-		
-		u1.setPassword(passwordHashed1);
-		userRepository.save(u1);
-		
-		User u2 = new User();
-		u2.setEmail("MegaTravelHongKong@gmail.com");
-		u2.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
-		
-		String passwordHashed2 = BCrypt.hashpw("honkon", salt);
-		
-		u2.setPassword(passwordHashed2);
-		userRepository.save(u2);
-		
-		User u3 = new User();
-		u3.setEmail("MegaTravelBoston@gmail.com");
-		u3.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
-		
-		String passwordHashed3 = BCrypt.hashpw("bost", salt);
-		
-		u3.setPassword(passwordHashed3);
-		userRepository.save(u3);
 		
 	}
 	
-	private void loadSubjectSoftware() {
-		
-		SubjectSoftware ss0 = new SubjectSoftware();
-		
-		ss0.setState("/");
-		ss0.setCity("/");
-		ss0.setSoftwareId("/");
-		ss0.setEmail("MTRoot@gmail.com");
-		ss0.setHasCert(true);
-
-		subSoftRep.save(ss0);
-		
-		
-		SubjectSoftware ss = new SubjectSoftware();
-		
-		ss.setState("Engleska");
-		ss.setCity("London");
-		ss.setSoftwareId("S1");
-		ss.setEmail("MegaTravelLondon@gmail.com");
-		
-		subSoftRep.save(ss);
-		
-		SubjectSoftware ss2 = new SubjectSoftware();
-		
-		ss2.setState("Kina");
-		ss2.setCity("Hong Kong");
-		ss2.setSoftwareId("S2");
-		ss2.setEmail("MegaTravelHongKong@gmail.com");
-		
-		subSoftRep.save(ss2);
-		
-		SubjectSoftware ss3 = new SubjectSoftware();
-		
-		ss3.setState("USA");
-		ss3.setCity("Boston");
-		ss3.setSoftwareId("S3");
-		ss3.setEmail("MegaTravelBoston@gmail.com");
-		
-		subSoftRep.save(ss3);
-				
-	}
-
-
 	// izdavac sertifikata
 	private IssuerData generateIssuerData(PrivateKey issuerKey) {
 		X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
@@ -418,17 +409,71 @@ public class Data implements ApplicationRunner {
         return null;
 	}
 	
-	public void loadAuthority() {
+	// metoda 2 - generisanje podataka subjekta, na osnovu dto
+		// ISPRAVLJENO
+		public SubjectData generateSubjectData2(PrivateKey privKey, PublicKey publKey)
+		{
+			try {
+				X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
+				
+				SubjectSoftware ss = subSoftRep.findByEmail("MTAgent@gmail.com");
+				
+				String sn = "1556994940";
+				
+				
+			// oznaka softvera, drzava i email adresa
+				builder.addRDN(BCStyle.CN, "AgentModuleCertificate");
+				builder.addRDN(BCStyle.O, ss.getSoftwareId());
+				builder.addRDN(BCStyle.OU, ss.getCity());
+				builder.addRDN(BCStyle.C, ss.getState());
+				builder.addRDN(BCStyle.EmailAddress, ss.getEmail());
+				builder.addRDN(BCStyle.UID, ss.getId().toString());
+							
+				// datumi
+				SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
+				Date startDate = iso8601Formater.parse("2019-05-05");
+				Date endDate = iso8601Formater.parse("2020-05-05");
+				
+				System.out.println("uspeo");
+
+				//Kreiraju se podaci za sertifikat, sto ukljucuje:
+			    // - javni kljuc koji se vezuje za sertifikat
+			    // - podatke o vlasniku
+			    // - serijski broj sertifikata
+			    // - od kada do kada vazi sertifikat
+				
+				return new SubjectData(publKey, privKey, builder.build(), sn, startDate, endDate);
+			}
+			
+			catch(ParseException e)
+			{
+				
+			}
+			
+			return null ;
+			
+
+		}
 		
-		Role admin = new Role();
-		Role user = new Role();
-		
-		admin.setName("ROLE_ADMIN");
-		user.setName("ROLE_USER");
-		
-		roleRepository.save(admin);
-		roleRepository.save(user);
-	}
+		// izdavalac sertifikata za agenta
+		// ISPRAVLJENO
+		public IssuerData generateIssuerData2(PrivateKey issuerKey, X509Certificate certificate) throws CertificateEncodingException 
+		{
+			X500Name x500nameIssuer = new JcaX509CertificateHolder(certificate).getIssuer();
+			
+			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
+			builder.addRDN(BCStyle.CN, x500nameIssuer.getRDNs(BCStyle.CN)[0].getFirst().getValue());
+			builder.addRDN(BCStyle.O, x500nameIssuer.getRDNs(BCStyle.O)[0].getFirst().getValue());
+			builder.addRDN(BCStyle.OU, x500nameIssuer.getRDNs(BCStyle.OU)[0].getFirst().getValue());
+			builder.addRDN(BCStyle.C, x500nameIssuer.getRDNs(BCStyle.C)[0].getFirst().getValue());
+			builder.addRDN(BCStyle.E, x500nameIssuer.getRDNs(BCStyle.EmailAddress)[0].getFirst().getValue());
+			//builder.addRDN(BCStyle.UID, x500nameIssuer.getRDNs(BCStyle.UID)[0]);
+
+			//Kreiraju se podaci za issuer-a, sto u ovom slucaju ukljucuje:
+		    // - privatni kljuc koji ce se koristiti da potpise sertifikat koji se izdaje
+		    // - podatke o vlasniku sertifikata koji izdaje nov sertifikat
+			return new IssuerData(issuerKey, builder.build());
+		}
 	
 	
 

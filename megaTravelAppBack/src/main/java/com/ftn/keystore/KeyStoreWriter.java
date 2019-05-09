@@ -26,19 +26,17 @@ public class KeyStoreWriter {
 	
 	public KeyStoreWriter() {
 		try {
-			keyStore = KeyStore.getInstance("JKS", "SUN");
+			keyStore = KeyStore.getInstance("PKCS12");
 		} catch (KeyStoreException e) {
-			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	// otvaranje postojeceg keyStore (ukoliko ne postoji, kreiraj novi)
 	// Metoda kao parametar prima samo password, a fileName je zakucan na "./files/keystore.jks"
-	public void loadKeyStore2(char[] password) 
+	public void loadKeyStore2(String place, char[] password) 
 	{
-		String fileName = "./files/keystore.jks";
+		String fileName = place;
 		
 				try {
 					keyStore.load(new FileInputStream(fileName), password);
@@ -60,9 +58,9 @@ public class KeyStoreWriter {
 	
 	// cuvanje postojeceg keyStore, za zadati password
 	// Metoda kao parametar prima samo password, a fileName je zakucan na "./files/keystore.jks"
-	public void saveKeyStore2(char[] password) 
+	public void saveKeyStore2(String place, char[] password) 
 	{
-		String fileName = "./files/keystore.jks";
+		String fileName = place;
 		try {
 			keyStore.store(new FileOutputStream(fileName), password);
 		} catch (KeyStoreException e) {

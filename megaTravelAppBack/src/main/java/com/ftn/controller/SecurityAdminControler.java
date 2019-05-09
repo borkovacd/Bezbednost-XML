@@ -98,7 +98,7 @@ public class SecurityAdminControler {
 		char[] password = str.toCharArray();
 		
 		// ucitan keystore.jks, preko passworda
-		keyStoreWriter.loadKeyStore("./files/keystore.jks", password);
+		keyStoreWriter.loadKeyStore("./files/keystore.p12", password);
 		
 				
 		SubjectData subjectData = generateSubjectData(ss, cdto);
@@ -106,7 +106,7 @@ public class SecurityAdminControler {
 		
 		String issuerPass = "certificatePass" + iss.getId(); // password je oblika certificatePass123456789
 		String alias = "alias1";
-		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.jks", str, str, str);
+		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.p12", str, str, str);
 				
 		System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 		
@@ -147,18 +147,18 @@ public class SecurityAdminControler {
 		keyStoreWriter.write(str, subjectData.getPrivateKey(), str.toCharArray(), cert);
 		
 		String globalPass = "someString";
-		keyStoreWriter.saveKeyStore("./files/keystore.jks", str.toCharArray());
+		keyStoreWriter.saveKeyStore("./files/keystore.p12", str.toCharArray());
 		
 		// upis u njegov keystore
 		KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
 		keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
 		
-		keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".jks", ss.getId().toString().toCharArray());
+		keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12", ss.getId().toString().toCharArray());
 		
 		String localAllias = "myCertificate";
 		
 		keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
-		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".jks", ss.getId().toString().toCharArray());
+		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12", ss.getId().toString().toCharArray());
 		}
 		
 		else

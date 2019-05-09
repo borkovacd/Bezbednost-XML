@@ -15,3 +15,6 @@ insert into users_roles (users_id, roles_id) values (8,2);
 insert into users_roles (users_id, roles_id) values (9,3);
 insert into users_roles (users_id, roles_id) values (10,3);
 insert into users_roles (users_id, roles_id) values (11,3);
+
+insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (12, "/", "MTAgent@gmail.com", 0, "SAgent", "/");
+insert into agents(id, address, first_name, last_name, mbr, password, username) values (13, "/", "Agent", "Agent", "2653225CD", "$2a$10$um7ZtQ79vXrrS2jsZNjdZeSvwma.0yuKkeHM5tarAProLMHjFrgyG", "agent1");
