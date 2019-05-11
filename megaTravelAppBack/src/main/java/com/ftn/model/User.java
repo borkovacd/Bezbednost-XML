@@ -13,8 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -28,22 +29,25 @@ public class User implements UserDetails, Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="FirstName")
+	@Column(name="FirstName", nullable=false)
 	private String firstName;
 	
-	@Column(name="LastName")
+	@Column(name="LastName", nullable=false)
 	private String lastName;
 	
 	@Column(name="Username")
 	private String username;
 	
+	@NotNull
+	@Size(min=8, max = 99)
 	@Column(name="Password")
 	private String password;
 
-	@Column(name="Email")
+	@NotNull
+	@Column(name="Email", nullable=false)
 	private String email;
 	
-	@Column(name="City")
+	@Column(name="City", nullable=false)
 	private String city;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
