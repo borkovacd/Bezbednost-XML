@@ -5,6 +5,8 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 import com.ftn.model.User;
 import com.ftn.model.UserToken;
@@ -40,6 +41,8 @@ import com.ftn.service.UserServiceImpl;
 @RequestMapping(value = "/api/user")
 public class UserControler {
 
+	private static final Logger log = LoggerFactory.getLogger(UserControler.class);
+	
 	@Autowired
 	private UserServiceImpl userService;
 
@@ -59,23 +62,30 @@ public class UserControler {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<UserDTO> registrate(@RequestBody UserDTO userDto) {
-		System.out.println("usao da se registruje sa mejlom:  " + userDto.getEmail());
-
+		log.debug("Registracija korisnika sa mejlom: "+userDto.getEmail());
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
+			log.warn("User with email: "+userDto.getEmail()+" exist.");
+
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
+				log.warn("User with email: "+userDto.getEmail()+" exist.");
+
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
+				log.warn("User with email: "+userDto.getEmail()+" exist.");
+
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
+				log.warn("User with email: "+userDto.getEmail()+" exist.");
+
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
@@ -102,7 +112,8 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-
+				log.info("User with email: "+userDto.getEmail()+" registred.");
+				log.debug("User with email: "+userDto.getEmail()+" registred.");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -131,13 +142,9 @@ public class UserControler {
 			// proveravam da li se password podudara sa onim u bazi
 			if (BCrypt.checkpw(user.getPassword(), userNew.getPassword())) {
 
-				System.out.println("pozzz");
-
-				System.out.println("zzzzzzzzzzzzzzzz");
-
+				try{
 				UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(),
 						user.getPassword());
-				System.out.println("da li je prosao>");
 				Authentication auth = authManager.authenticate(authReq);
 
 				SecurityContext sc = SecurityContextHolder.getContext();
@@ -145,37 +152,23 @@ public class UserControler {
 				User user1 = (User) auth.getPrincipal();
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
-				System.out.println("ExpirsIn: "+expiresIn);
 				
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
-
-				//HttpSession session = req.getSession(true);
-				//session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-
-				/*
-				 * for (GrantedAuthority a : ud.getAuthorities()) { Role s =
-				 * (Role) a; System.out.println(s.getName()); }
-				 */
-
-				// System.out.println(user1.getEmail());
-
-				// System.out.println(cud.getUsername());
-				// System.out.println(cud.getPassword());
-
+				}catch (Exception e) {
+					log.error("Email "+user.getEmail() + " unsuccessfully logged in with password: " + user.getPassword());
+					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
+				}
 				
-
-				// final Authentication authentication = authenticationManager
-				// .authenticate(new
-				// UsernamePasswordAuthenticationToken(user.getEmail(),
-				// user.getPassword()));
-
-				// Ubaci username + password u kontext
-				// SecurityContextHolder.getContext().setAuthentication(authentication);
-
 			} else {
+				log.info("User with email: "+ user.getEmail() +"not found with matching password");
+				log.debug("User with email: "+ user.getEmail() +"not found with matching password");
+
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
+			log.info("User with email: "+ user.getEmail() +"not found");
+			log.debug("User with email: "+ user.getEmail() +"not found");
+
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 		}
 	}
