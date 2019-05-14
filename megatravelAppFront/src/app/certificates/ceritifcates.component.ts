@@ -19,6 +19,7 @@ export class CeritifcatesComponent implements OnInit {
   certif: CertificateBackModel[];
   selfCert: CertificateBackModel;
   user: any;
+  email: string;
   visibleMessage: boolean;
   public form: FormGroup;
   public message: AbstractControl;
@@ -38,7 +39,8 @@ export class CeritifcatesComponent implements OnInit {
 
    // alert(this.user.email);
 
-    this.data.getCert(this.user.email).subscribe( data => this.certif = data);
+    this.data.getCert(localStorage.getItem('loggedUser')).subscribe( data => this.certif = data);
+
     this.visibleMessage=false;
 
   }

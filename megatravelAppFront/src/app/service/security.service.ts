@@ -34,8 +34,8 @@ export class SecurityService {
     return this.http.post( 'https://localhost:8443/api/security/createCertificate/' + email, data, {headers: headers});
   }
 
-  getCert(email: string): Observable<CertificateBackModel[]> {
-    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getCertificates/` + email, httpOptions);
+  getCert(token: string): Observable<CertificateBackModel[]> {
+    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getCertificates/` + token, httpOptions);
   }
 
   checkCommunication(string1: string, string2: string): Observable<any> {

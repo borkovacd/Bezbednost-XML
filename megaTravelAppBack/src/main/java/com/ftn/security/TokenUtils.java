@@ -1,15 +1,13 @@
 package com.ftn.security;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.cglib.core.internal.Function;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -17,7 +15,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class TokenUtils {
 
 	@Value("thesecret")
-	public String secret;
+	public String SIGNING_KEY;
 
 	@Value("18000")
 	private Long expiration;
@@ -26,11 +24,35 @@ public class TokenUtils {
 		return Jwts.builder()
 				.setSubject(email)
 				.setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret).compact();
+				.signWith(SignatureAlgorithm.HS512, SIGNING_KEY).compact();
 	}
 	
 	public long getExpiredIn() {
 		return expiration;
+	}
+	
+	private Claims getAllClaimsFromToken(String token) {
+		Claims claims = null;
+		try {
+			claims = Jwts.parser()
+					.setSigningKey(SIGNING_KEY)
+					.parseClaimsJws(token)
+					.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return claims;
+	}
+
+	public String getUsernameFromToken(String token) {
+		String username;
+		try {
+			final Claims claims = this.getAllClaimsFromToken(token);
+			username = claims.getSubject();
+		} catch (Exception e) {
+			username = null;
+		}
+		return username;
 	}
 
 }

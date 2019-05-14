@@ -5,6 +5,7 @@ import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +37,7 @@ import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.service.CertificateStatusService;
 import com.ftn.service.SubjectSoftwareService;
 import com.ftn.configuration.CertificateGenerator;
@@ -58,6 +60,9 @@ public class SecurityAdminControler {
 	
 	@Autowired 
 	private CertificateRepository certRepos;
+	
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter() ;
 	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
@@ -295,18 +300,22 @@ public class SecurityAdminControler {
 	}
 	
 	//@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value="/getCertificates/{email}",	method = RequestMethod.GET)
+	@RequestMapping(value="/getCertificates/{token}",	method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ArrayList<CertificateModel> getCeritificates(@PathVariable String email) {
+	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) {
 		
 		System.out.println("Usao da ispise sertifikate");
+		System.out.println("Token je: " + token);
 		
-		 ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+		String email = tokenUtils.getUsernameFromToken(token);
+		
+		System.out.println("Dobio sam mejl: " + email);
+		
+		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 		 
-
-		 ArrayList<CertificateModel> lanacSertifikataNova = new ArrayList<CertificateModel>();
+		ArrayList<CertificateModel> lanacSertifikataNova = new ArrayList<CertificateModel>();
 	
-		 lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+		lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
 	
 		
 		for(int i=0; i<lanacSertifikata.size(); i++) {

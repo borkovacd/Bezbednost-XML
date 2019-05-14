@@ -53,6 +53,8 @@ public class UserControler {
 	private AuthenticationManager authManager;
 	@Autowired
 	TokenUtils tokenUtils;
+	
+	private boolean field = false;
 
 	
 	
@@ -143,6 +145,7 @@ public class UserControler {
 				SecurityContext sc = SecurityContextHolder.getContext();
 				sc.setAuthentication(auth);
 				User user1 = (User) auth.getPrincipal();
+				System.out.println(user1.getEmail());
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
 				System.out.println("ExpirsIn: "+expiresIn);
@@ -188,17 +191,39 @@ public class UserControler {
 		boolean response = userService.checkMailExistence(email);
 		return response;
 	}
+	
 	@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public void logOutUser() {
+	public boolean logOutUser() {
 
+		System.out.println("usao ovde");
 		SecurityContextHolder.clearContext();
+		field = true;
+		
+		return field;
 	}
 	
 	@RequestMapping(value = "/ssl-test", method = RequestMethod.GET)
 	public String TestSSl() {
 
 		return "SSL WORKS";
+	}
+	
+	@RequestMapping(value = "/communicate/{message}", method = RequestMethod.GET)
+	public String communicateMethod(@PathVariable String message) {
+
+		System.out.println(message);
+		return "Central module responded! Got message: " + message;
+	}
+	
+	@RequestMapping(value = "/loggedUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void getLoggedUserEmail(@RequestBody String token) {
+
+		String email = tokenUtils.getUsernameFromToken(token);
+		
+		System.out.println(email);
+		
+		
 	}
 
 }

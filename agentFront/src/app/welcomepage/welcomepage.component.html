@@ -5,6 +5,13 @@
   <li>Odjavi se</li>
 </ul>
 
+<div>
+  <label>Posalji poruku centralnom modulu: </label>
+  <input name="messageToCentral" class="form-control margin" [formControl]="messageToCentral">
+  <button class="btn btn-primary" (click)="sendToCentral()">Posalji sledecu poruku poruku centralnom modulu</button>
+
+</div>
+
 <div *ngIf="accomodation == true">
   <accomodation></accomodation>
 </div>
