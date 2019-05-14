@@ -1,0 +1,112 @@
+2019-05-14 18:33:19,298 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 6012 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 18:33:19,305 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 18:33:19,307 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 18:33:22,907 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:33:22,912 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:33:22,912 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 18:33:30,575 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 12.136 seconds (JVM running for 13.339)
+2019-05-14 18:33:51,692 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:33:51,693 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:34:50,641 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 14040 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 18:34:50,651 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 18:34:50,656 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 18:34:54,274 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:34:54,275 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:34:54,276 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 18:37:30,955 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 12704 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 18:37:30,963 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 18:37:30,967 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 18:37:34,695 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:37:34,696 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:37:34,697 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 18:37:43,386 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 13.193 seconds (JVM running for 14.45)
+2019-05-14 18:37:48,356 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:37:48,357 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:39:52,176 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 15352 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 18:39:52,182 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 18:39:52,186 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 18:39:55,724 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:39:55,725 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:39:55,726 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 18:40:03,776 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 12.321 seconds (JVM running for 13.559)
+2019-05-14 18:40:14,899 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:14,900 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:15,947 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:15,948 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:16,724 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:16,725 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:16,929 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:16,930 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,100 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,101 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,287 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,288 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,465 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,466 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,633 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,634 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,952 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:17,952 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,125 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,126 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,297 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,298 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,467 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,468 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,641 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,642 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,807 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,808 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,966 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:18,967 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,136 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,137 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,318 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,319 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,512 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,513 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,684 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,685 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,876 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:19,877 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,065 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,066 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,318 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,319 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,421 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,422 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-8] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,610 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,611 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,784 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,785 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-10] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,968 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:20,969 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-1] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,131 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,132 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,310 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,312 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,478 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,479 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,673 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,674 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,869 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:21,870 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:22,059 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:40:22,060 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] User with email: ilinkaKo@gmail.comnot found
+2019-05-14 18:44:42,620 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 6228 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 18:44:42,630 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 18:44:42,636 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 18:44:48,080 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:44:48,081 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 18:44:48,084 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 18:44:59,036 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 17.388 seconds (JVM running for 19.682)
+2019-05-14 18:58:39,154 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] Registracija korisnika sa mejlom: ilinkaKo@gmail.com
+2019-05-14 19:17:31,857 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 11516 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-14 19:17:31,865 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-14 19:17:31,870 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-14 19:17:37,231 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 19:17:37,232 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-14 19:17:37,233 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-14 19:17:47,936 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 17.32 seconds (JVM running for 20.042)
+2019-05-14 19:18:11,132 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] Registracija korisnika sa mejlom: ilinkaakovacevic@gmail.com
+2019-05-14 19:18:11,195 WARN com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] User with email: ilinkaakovacevic@gmail.com exist.
