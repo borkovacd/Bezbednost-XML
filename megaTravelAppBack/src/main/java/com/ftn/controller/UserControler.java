@@ -68,25 +68,25 @@ public class UserControler {
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
-			log.error("REGERR");
+			log.error("REG_ERR");
 
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
-				log.error("REGERREMAIL");
+				log.error("REG_ERR_EMAIL");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
-				log.error("REGERRFN");
+				log.error("REG_ERR_FN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
-				log.error("REGERRLN");
+				log.error("REG_ERR_LN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
@@ -165,7 +165,7 @@ public class UserControler {
 				}
 				
 			} else {
-				log.error("LOGERR");
+				log.error("LOG_ERR");
 				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
 
 				
@@ -190,16 +190,14 @@ public class UserControler {
 		return response;
 	}
 	
-	@PreAuthorize("hasRole('USER')") 
+	//@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public boolean logOutUser() {
+	public void logOutUser() {
 		log.debug("LOGOUT");
 
 		System.out.println("usao ovde");
 		SecurityContextHolder.clearContext();
-		field = true;
 		
-		return field;
 	}
 	
 	@RequestMapping(value = "/ssl-test", method = RequestMethod.GET)

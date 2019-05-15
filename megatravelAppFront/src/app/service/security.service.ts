@@ -28,10 +28,10 @@ export class SecurityService {
   }
 
 
-  addCertificate(model: CertificateModel, email: string): Observable<any> {
+  addCertificate(model: CertificateModel, token: string): Observable<any> {
     const data = JSON.stringify(model);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( 'https://localhost:8443/api/security/createCertificate/' + email, data, {headers: headers});
+    return this.http.post( 'https://localhost:8443/api/security/createCertificate/' + token, data, {headers: headers});
   }
 
   getCert(token: string): Observable<CertificateBackModel[]> {
@@ -47,8 +47,8 @@ export class SecurityService {
 
   }
 
-  getAllCert(email: string): Observable<CertificateBackModel[]> {
-    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getAllCertificates/` + email, httpOptions);
+  getAllCert(): Observable<CertificateBackModel[]> {
+    return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getAllCertificates`, httpOptions);
   }
 
 }

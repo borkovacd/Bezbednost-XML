@@ -83,3 +83,16 @@
 2019-05-15 21:47:23,633 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 15.117 seconds (JVM running for 16.603)
 2019-05-15 21:47:31,417 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
 2019-05-15 21:47:31,418 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] NEPOR_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 23:49:10,444 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 53464 (D:\Marin\ProjekatB\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\ProjekatB\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 23:49:10,452 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 23:49:18,365 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 8.511 seconds (JVM running for 10.77)
+2019-05-15 23:50:50,491 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
+2019-05-15 23:50:50,492 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] NEPOR_EVENT user id:8 LOGSUC, ip 0:0:0:0:0:0:0:1
+2019-05-15 23:50:51,953 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-8] GCA
+2019-05-15 23:50:52,008 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:50:57,767 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-1] GCA
+2019-05-15 23:50:57,779 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:51:33,957 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] GCA
+2019-05-15 23:51:33,967 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:51:36,556 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-10] GCA
+2019-05-15 23:51:36,565 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 

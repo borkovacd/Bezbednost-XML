@@ -4,3 +4,4 @@
 2019-05-15 18:28:43,189 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] SECURITY_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
 2019-05-15 21:45:08,556 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] SECURITY_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
 2019-05-15 21:47:31,417 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 23:50:50,491 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1

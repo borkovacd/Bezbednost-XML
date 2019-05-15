@@ -4,7 +4,6 @@ import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.internal.Function;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -14,9 +13,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class TokenUtils {
 
-	@Value("thesecret")
-	public String SIGNING_KEY;
-
+	@Value("thesecretkeyforthetoken6526")
+	private String SIGNING_KEY;
+	
 	@Value("18000")
 	private Long expiration;
 
