@@ -113,7 +113,7 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REGSUC,ip: {}", u.getId(), request.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REG_SUC,ip: {}", u.getId(), request.getRemoteAddr());
 				log.debug("REG_SUC");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
@@ -154,19 +154,19 @@ public class UserControler {
 				System.out.println(user1.getEmail());
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGSUC ,ip {}", userNew.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOGSUC, ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", userNew.getId(),req.getRemoteAddr());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
+					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
 
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
 				log.error("LOG_ERR");
-				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
+				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
 
 				
 
@@ -174,7 +174,7 @@ public class UserControler {
 			}
 		} else {
 			log.error("LOG_ERR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", user.getId());
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", user.getId());
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
