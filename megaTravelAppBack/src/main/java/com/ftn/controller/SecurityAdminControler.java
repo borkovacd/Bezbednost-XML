@@ -355,6 +355,8 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getAllCeritificates() {
+		
+		log.info("GET_ACA");
 
 		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 

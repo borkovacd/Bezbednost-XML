@@ -114,7 +114,7 @@ public class UserControler {
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
 				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REGSUC,ip: {}", u.getId(), request.getRemoteAddr());
-				log.debug("REGSUC");
+				log.debug("REG_SUC");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -173,7 +173,7 @@ public class UserControler {
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.error("LOGERR");
+			log.error("LOG_ERR");
 			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", user.getId());
 
 
