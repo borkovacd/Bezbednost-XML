@@ -55,3 +55,31 @@
 2019-05-14 22:46:42,219 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 43512 (D:\Marin\BezbednostNovi\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BezbednostNovi\Bezbednost-XML\megaTravelAppBack)
 2019-05-14 22:46:42,225 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
 2019-05-14 22:46:48,732 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 6.974 seconds (JVM running for 7.941)
+2019-05-15 13:20:35,642 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 11692 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 13:20:35,835 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 13:20:59,580 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 24.729 seconds (JVM running for 26.124)
+2019-05-15 13:21:50,647 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] SECURITY_EVENT MTRoot@gmail.com successfull login from ip {}
+2019-05-15 13:21:50,648 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] NEPOR_EVENT MTRoot@gmail.com successfull login from ip {}
+2019-05-15 18:12:11,111 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 324 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 18:12:11,126 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 18:12:28,311 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 18.662 seconds (JVM running for 21.085)
+2019-05-15 18:25:02,135 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 11796 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 18:25:02,148 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 18:25:18,167 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 17.135 seconds (JVM running for 19.155)
+2019-05-15 18:25:20,193 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] SECURITY_EVENT null LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 18:25:20,194 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] NEPOR_EVENT null LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 18:28:10,710 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 8152 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 18:28:10,725 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 18:28:24,995 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 15.539 seconds (JVM running for 17.247)
+2019-05-15 18:28:43,189 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] SECURITY_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 18:28:43,190 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] NEPOR_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 21:44:17,291 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 7332 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 21:44:17,305 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 21:44:35,239 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 18.72 seconds (JVM running for 20.123)
+2019-05-15 21:45:08,556 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] SECURITY_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 21:45:08,558 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-9] NEPOR_EVENT 8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 21:47:09,621 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 16872 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 21:47:09,640 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 21:47:23,633 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 15.117 seconds (JVM running for 16.603)
+2019-05-15 21:47:31,417 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
+2019-05-15 21:47:31,418 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] NEPOR_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1

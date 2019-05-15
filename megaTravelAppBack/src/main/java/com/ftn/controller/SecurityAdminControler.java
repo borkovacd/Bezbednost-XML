@@ -2,9 +2,10 @@ package com.ftn.controller;
 
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -26,17 +26,15 @@ import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
-import javax.annotation.PostConstruct;
 
 import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
+import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.CertificateStatusService;
 import com.ftn.service.SubjectSoftwareService;
@@ -49,7 +47,7 @@ import com.ftn.model.SubjectData;
 @RestController
 @RequestMapping(value = "/api/security")
 public class SecurityAdminControler {
-	
+	private static final Logger log = LoggerFactory.getLogger(SecurityAdminControler.class);
 	@Autowired 
 	private SubjectSoftwareService ssService;
 	@Autowired 
@@ -85,7 +83,7 @@ public class SecurityAdminControler {
 	@CrossOrigin(origins = "http://localhost:4200")
 	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String email) throws KeyStoreException 
 	{
-		
+		log.debug("CREATE_CA");
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 		
@@ -144,6 +142,9 @@ public class SecurityAdminControler {
     	cm.setRevoked(false);
     	
     	certRepos.save(cm);
+		log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT{} CREATE_CA {} signed by issuer ",cm.getSerialNumber(),iss.getId());
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CREATE_CA {} signed by issuer ",cm.getSerialNumber(),iss.getId());
+
 		
     	// *********************************************
     	
@@ -164,11 +165,14 @@ public class SecurityAdminControler {
 		
 		keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12", ss.getId().toString().toCharArray());
+		log.info("CREATE_CA_SUCCESS");
 		}
 		
 		else
 		{
 			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
+			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT {}User with email does not have certificat {}  ",email);
+
 		}
 		
 	}
@@ -207,7 +211,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value="/communicate/{string1}/{string2}",	method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
-		
+		log.debug("CK_COMM");
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1); 
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
 		
@@ -247,12 +251,18 @@ public class SecurityAdminControler {
 			}
 			
 			if(expired == false || revoked == false) {
+				log.info("CK_SUCCESS");
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_SUCCESS between {} and {}",soft1.getId(),soft2.getId());
+
 				return true;
 			} else {
+				log.info("CK_FAIL");
 				return false;
 			}
 			
 		}
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_FAIL , CA not found between {} ",soft1.getId(),soft2.getId());
+
 		return false;
 		
 	}
@@ -260,6 +270,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value="/getSubjectSoftware",	method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getSubjectSoftware() {
+		log.debug("SUBSOFT");
 
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		
@@ -274,6 +285,8 @@ public class SecurityAdminControler {
 				ssList2.add(ssList.get(i));
 			}
 		}
+		log.info("SUBSOFT_SUCCESS");
+
 
 		return ssList2;	
 	}
@@ -328,6 +341,8 @@ public class SecurityAdminControler {
 			}
 			
 		}
+		log.info(LoggerUtils.getNMarker(), "{}User with email requested all certificates ",email);
+
 		
 		return lanacSertifikataNova;
 		 
@@ -349,6 +364,7 @@ public class SecurityAdminControler {
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean revokeCeritificate(@PathVariable Integer serialNumber ,@PathVariable String message) {
 		System.out.println("Poruka koja je stigla "+ message);
+		log.info("REV_CA");
 		boolean pomocni = false;
 		pomocni = statusService.revokeCert(serialNumber, message);
 		

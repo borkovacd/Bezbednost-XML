@@ -32,6 +32,7 @@ import com.ftn.model.User;
 import com.ftn.model.UserToken;
 import com.ftn.modelDTO.UserDTO;
 import com.ftn.repository.UserRepository;
+import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.RoleService;
 
@@ -63,37 +64,36 @@ public class UserControler {
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<UserDTO> registrate(@RequestBody UserDTO userDto) {
-		log.debug("Registracija korisnika sa mejlom: "+userDto.getEmail());
+	public ResponseEntity<UserDTO> registrate(@RequestBody UserDTO userDto, HttpServletRequest request) {
+		log.debug("REG");
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
-			log.warn("User with email: "+userDto.getEmail()+" exist.");
+			log.error("REG_ERROR");
 
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
-				log.warn("User with email: "+userDto.getEmail()+" exist.");
+				log.error("REG_ERROR_EMAIL");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
-				log.warn("User with email: "+userDto.getEmail()+" exist.");
+				log.error("REG_ERROR_FIRSTNAME");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
-				log.warn("User with email: "+userDto.getEmail()+" exist.");
+				log.error("REG_ERROR_LASTNAME");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 
 			if (userDto.getPassword().equals(userDto.getRePassword())) {
-
 				User u = new User();
 
 				u.setCity(userDto.getCity());
@@ -114,8 +114,8 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-				log.info("User with email: "+userDto.getEmail()+" registred.");
-				log.debug("User with email: "+userDto.getEmail()+" registred.");
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} REG_SUCCESS from ip {}", u.getId(), request.getRemoteAddr());
+				log.debug("REG_SUCCESS");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -131,10 +131,10 @@ public class UserControler {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> logIn(@RequestBody User user, HttpServletRequest req) {
+		log.debug("LOG");
 
 		boolean response = userService.logIn(user);
 
-		System.out.println(user.getPassword());
 
 		if (response == true) {
 			// ako korisnik postoji u bazi
@@ -155,22 +155,28 @@ public class UserControler {
 				System.out.println(user1.getEmail());
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
-				
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_SUCCESS from ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT id:{} LOG_SUCCESS from ip {}", userNew.getId(),req.getRemoteAddr());
+
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.error("Email "+user.getEmail() + " unsuccessfully logged in with password: " + user.getPassword());
+					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", userNew.getId());
+
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
-				log.info("User with email: "+ user.getEmail() +"not found with matching password");
-				log.debug("User with email: "+ user.getEmail() +"not found with matching password");
+				log.error("LOG_ERROR");
+				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", userNew.getId());
+
+				
 
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.info("User with email: "+ user.getEmail() +"not found");
-			log.debug("User with email: "+ user.getEmail() +"not found");
+			log.error("LOG_ERROR");
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", user.getId());
+
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 		}
@@ -188,6 +194,7 @@ public class UserControler {
 	@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public boolean logOutUser() {
+		log.debug("LOGOUT");
 
 		System.out.println("usao ovde");
 		SecurityContextHolder.clearContext();
@@ -213,8 +220,10 @@ public class UserControler {
 	public void getLoggedUserEmail(@RequestBody String token) {
 
 		String email = tokenUtils.getUsernameFromToken(token);
+		User u = userService.findByEmail(email);
 		
 		System.out.println(email);
+		log.info("id:{} LOGED_USER",u.getId());
 		
 		
 	}
