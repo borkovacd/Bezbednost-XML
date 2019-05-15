@@ -13,6 +13,7 @@ import {AdditionalServicesService} from './service/additionalServices.service';
 import {CityService} from './service/city.service';
 import {CategoryService} from './service/category.service';
 import {TypeAccomodationService} from './service/typeAccomodation.service';
+import {AgentService} from './service/agent.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {TypeAccomodationService} from './service/typeAccomodation.service';
     CityService,
     CategoryService,
     TypeAccomodationService,
+    AgentService,
   ],
   bootstrap: [AppComponent]
 })

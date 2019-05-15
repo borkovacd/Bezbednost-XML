@@ -286,7 +286,7 @@ public class Data implements ApplicationRunner {
 			}
 		}
 		
-		if (keyStoreReader.getKeyStore(agentPath).getCertificateChain("someString") == null ) {
+		if (keyStoreReader.getKeyStore(agentPath).getCertificateChain("someString2") == null ) {
 			System.out.println("prazan je");
 			
 			// kreirati sertifikat za agenta
@@ -305,24 +305,24 @@ public class Data implements ApplicationRunner {
 			
 			PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
 			
-			SubjectData subjectData = generateSubjectData2(privateKeyIssuer, publicKey);
+			SubjectData subjectData33 = generateSubjectData2(privateKeyIssuer, publicKey);
 			
-			IssuerData issuerData = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata.get(0));
+			IssuerData issuerData33 = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata.get(0));
 			
 			//keyStoreWriter.loadKeyStore(agentPath, password);
 			
 			CertificateGenerator cg = new CertificateGenerator();
 			
 			// izgenerisi sertifikat za subject-a od issuer-a
-			X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
+			X509Certificate cert = cg.generateCertificate(subjectData33, issuerData33);
 			
 			Certificate certificate = cert;
 			
-			String pass = "someString";
+			String pass = "someString2";
 			
 			keyStoreAgent.load(new FileInputStream(agentPath), password);
 			
-			keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, pass.toCharArray(), new Certificate[] {certificate});
+			keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, "someString".toCharArray(), new Certificate[] {certificate});
 			
 			keyStoreAgent.store(new FileOutputStream(agentPath), password);
 			

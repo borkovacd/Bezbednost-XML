@@ -4,7 +4,7 @@
 
   <div class="md" style="display: inline-block">
 
-    <button style="display: block" class="btn btn-dark" *ngIf="user.roles[0].name == 'ROLE_ADMIN'" (click)="listAll()">Lista svih sertifikata u sistemu</button>
+    <button style="display: block" class="btn btn-dark"  (click)="listAll()">Lista svih sertifikata u sistemu</button>
 
     <div *ngFor="let cert of certif" style="border: 2px solid grey; border-radius: 5px; padding: 10px; display: inline-block">
       <label>Serijski broj: {{cert.serialNumber}}</label><br>
