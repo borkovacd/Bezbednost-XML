@@ -3,7 +3,6 @@ package com.ftn.controller;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,25 +68,25 @@ public class UserControler {
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
-			log.error("REG_ERROR");
+			log.error("REGERR");
 
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
-				log.error("REG_ERROR_EMAIL");
+				log.error("REGERREMAIL");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
-				log.error("REG_ERROR_FIRSTNAME");
+				log.error("REGERRFN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
-				log.error("REG_ERROR_LASTNAME");
+				log.error("REGERRLN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
@@ -114,8 +113,8 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} REG_SUCCESS from ip {}", u.getId(), request.getRemoteAddr());
-				log.debug("REG_SUCCESS");
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REGSUC,ip: {}", u.getId(), request.getRemoteAddr());
+				log.debug("REGSUC");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -155,27 +154,27 @@ public class UserControler {
 				System.out.println(user1.getEmail());
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_SUCCESS from ip {}", userNew.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT id:{} LOG_SUCCESS from ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGSUC ,ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOGSUC, ip {}", userNew.getId(),req.getRemoteAddr());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", userNew.getId());
+					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
 
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
-				log.error("LOG_ERROR");
-				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", userNew.getId());
+				log.error("LOGERR");
+				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
 
 				
 
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.error("LOG_ERROR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT id:{} LOG_FAIL ", user.getId());
+			log.error("LOGERR");
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", user.getId());
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
@@ -223,7 +222,7 @@ public class UserControler {
 		User u = userService.findByEmail(email);
 		
 		System.out.println(email);
-		log.info("id:{} LOGED_USER",u.getId());
+		log.info("user id:{} LOGEDUSER",u.getId());
 		
 		
 	}

@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-
 import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
@@ -44,411 +43,407 @@ import com.ftn.keystore.KeyStoreWriter;
 import com.ftn.model.CertificateModel;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
+
 @RestController
 @RequestMapping(value = "/api/security")
 public class SecurityAdminControler {
 	private static final Logger log = LoggerFactory.getLogger(SecurityAdminControler.class);
-	@Autowired 
+	@Autowired
 	private SubjectSoftwareService ssService;
-	@Autowired 
+	@Autowired
 	private CertificateStatusService statusService;
-	
-	@Autowired 
+
+	@Autowired
 	private SubjectSoftwareRepository repos;
-	
-	@Autowired 
+
+	@Autowired
 	private CertificateRepository certRepos;
-	
+
 	@Autowired
 	private TokenUtils tokenUtils;
-	
-	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter() ;
-	private KeyStoreReader keyStoreReader = new KeyStoreReader() ;
+
+	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter();
+	private KeyStoreReader keyStoreReader = new KeyStoreReader();
 	private KeyPair keyPairIssuer;
-	
+
 	/*
-	@PostConstruct
-	public void init()
-	{
-		keyStoreWriter = new KeyStoreWriter();
-		String globalPass = "someString";
-		keyStoreWriter.loadKeyStore(null, globalPass.toCharArray());
-		keyStoreWriter.saveKeyStore("./files/keystore.jks", globalPass.toCharArray());
-		keyPairIssuer = generateKeyPair();
-	}
-	*/
-	
-	@RequestMapping(value="/createCertificate/{email}",	method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	 * @PostConstruct public void init() { keyStoreWriter = new
+	 * KeyStoreWriter(); String globalPass = "someString";
+	 * keyStoreWriter.loadKeyStore(null, globalPass.toCharArray());
+	 * keyStoreWriter.saveKeyStore("./files/keystore.jks",
+	 * globalPass.toCharArray()); keyPairIssuer = generateKeyPair(); }
+	 */
+
+	@RequestMapping(value = "/createCertificate/{email}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String email) throws KeyStoreException 
-	{
-		log.debug("CREATE_CA");
+	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String email)
+			throws KeyStoreException {
+		log.debug("CREACA");
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
-		
-		
+
 		if (iss.isHasCert() == true) {
-			
-		Long idSubject = ss.getId();
-		Long idIssuer = iss.getId();
-		
-		ss.setHasCert(true);
-		
-		repos.save(ss);
-		
-		String str = "someString"; 
-		char[] password = str.toCharArray();
-		
-		// ucitan keystore.jks, preko passworda
-		keyStoreWriter.loadKeyStore("./files/keystore.p12", password);
-		
-				
-		SubjectData subjectData = generateSubjectData(ss, cdto);
-		//KeyStoreReader keyStoreReader = new KeyStoreReader();
-		
-		String issuerPass = "certificatePass" + iss.getId(); // password je oblika certificatePass123456789
-		String alias = "alias1";
-		PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.p12", str, str, str);
-				
-		System.out.println("Privatni kljuc je: " + privateKeyIssuer);
-		
-		IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
-		
-		// generisanje sertifikata
-		CertificateGenerator cg = new CertificateGenerator();
 
-		X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
-		
-		Certificate certificate = cert;
-		// sertifikat je napravljen
-		
-		
-		// Dodavanje u bazu
-		//*********************************************
-		
-		CertificateModel cm = new CertificateModel();
-    	
-    	cm.setIssuerSoft(iss);
-    	cm.setSubSoft(ss);
-    	
-    	cm.setStartDate(cert.getNotBefore());
-    	cm.setEndDate(cert.getNotAfter());
-    	
-    	String serial = cert.getSerialNumber().toString();
-    	
-    	cm.setSerialNumber(Integer.parseInt(serial));
-    	
-    	cm.setRevoked(false);
-    	
-    	certRepos.save(cm);
-		log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT{} CREATE_CA {} signed by issuer ",cm.getSerialNumber(),iss.getId());
-		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CREATE_CA {} signed by issuer ",cm.getSerialNumber(),iss.getId());
+			Long idSubject = ss.getId();
+			Long idIssuer = iss.getId();
 
-		
-    	// *********************************************
-    	
-    	// upis u globalni keystore
-		String certificatePass = "certificatePass"  + ss.getId(); // oblika subjectPass123456789
-		keyStoreWriter.write(str, subjectData.getPrivateKey(), str.toCharArray(), cert);
-		
-		String globalPass = "someString";
-		keyStoreWriter.saveKeyStore("./files/keystore.p12", str.toCharArray());
-		
-		// upis u njegov keystore
-		KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
-		keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
-		
-		keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12", ss.getId().toString().toCharArray());
-		
-		String localAllias = "myCertificate";
-		
-		keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
-		keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12", ss.getId().toString().toCharArray());
-		log.info("CREATE_CA_SUCCESS");
+			ss.setHasCert(true);
+
+			repos.save(ss);
+
+			String str = "someString";
+			char[] password = str.toCharArray();
+
+			// ucitan keystore.jks, preko passworda
+			keyStoreWriter.loadKeyStore("./files/keystore.p12", password);
+
+			SubjectData subjectData = generateSubjectData(ss, cdto);
+			// KeyStoreReader keyStoreReader = new KeyStoreReader();
+
+			String issuerPass = "certificatePass" + iss.getId(); // password je
+																	// oblika
+																	// certificatePass123456789
+			String alias = "alias1";
+			PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.p12", str, str, str);
+
+			System.out.println("Privatni kljuc je: " + privateKeyIssuer);
+
+			IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
+
+			// generisanje sertifikata
+			CertificateGenerator cg = new CertificateGenerator();
+
+			X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
+
+			Certificate certificate = cert;
+			// sertifikat je napravljen
+
+			// Dodavanje u bazu
+			// *********************************************
+
+			CertificateModel cm = new CertificateModel();
+
+			cm.setIssuerSoft(iss);
+			cm.setSubSoft(ss);
+
+			cm.setStartDate(cert.getNotBefore());
+			cm.setEndDate(cert.getNotAfter());
+
+			String serial = cert.getSerialNumber().toString();
+
+			cm.setSerialNumber(Integer.parseInt(serial));
+
+			cm.setRevoked(false);
+
+			certRepos.save(cm);
+			log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CREACA id: {} ", cm.getSerialNumber(),
+					iss.getId());
+			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CREACA id:{} ", cm.getSerialNumber(),
+					iss.getId());
+
+			// *********************************************
+
+			// upis u globalni keystore
+			String certificatePass = "certificatePass" + ss.getId(); // oblika
+																		// subjectPass123456789
+			keyStoreWriter.write(str, subjectData.getPrivateKey(), str.toCharArray(), cert);
+
+			String globalPass = "someString";
+			keyStoreWriter.saveKeyStore("./files/keystore.p12", str.toCharArray());
+
+			// upis u njegov keystore
+			KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
+			keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
+
+			keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12",
+					ss.getId().toString().toCharArray());
+
+			String localAllias = "myCertificate";
+
+			keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
+			keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
+					ss.getId().toString().toCharArray());
+			log.info("CREACASUC");
 		}
-		
-		else
-		{
+
+		else {
 			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
-			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT {}User with email does not have certificat {}  ",email);
+			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User {} CREERR  ", email);
 
 		}
-		
+
 	}
-	
+
 	/**
 	 * String alias = "alias1";
-		
-		// u [] smestim lanac sertifikata iz keyStore
-		Certificate[] lanacS = keyStoreReader.getKeyStore().getCertificateChain("alias1");
-		
-		// izvrsim kastovanje u listu
-		ArrayList<Certificate>lanacSertifikata = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().getCertificateChain("alias1")));
-		// dodam trenutni sertifikat u listu
-		lanacSertifikata.add(certificate);
-		System.out.println("duzina novog: " + lanacSertifikata.size());
-		
-		Certificate[] arr= new Certificate[lanacSertifikata.size()];
-
-		for(int i=0; i<lanacSertifikata.size(); i++) {
-			arr[i] = lanacSertifikata.get(i);
-		}
-		
-		lanacS = lanacSertifikata.toArray(new Certificate[lanacSertifikata.size()]);
-				
-		// upis u keyStore
-		keyStoreReader.getKeyStore().setKeyEntry(alias, issuerData.getPrivateKey(), password, arr);
-		
-		keyStoreWriter.write2(alias, issuerData.getPrivateKey(), password, arr);
-		// cuvanje keyStore
-		keyStoreWriter.saveKeyStore(password);
+	 * 
+	 * // u [] smestim lanac sertifikata iz keyStore Certificate[] lanacS =
+	 * keyStoreReader.getKeyStore().getCertificateChain("alias1");
+	 * 
+	 * // izvrsim kastovanje u listu ArrayList<Certificate>lanacSertifikata =
+	 * new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore().
+	 * getCertificateChain("alias1"))); // dodam trenutni sertifikat u listu
+	 * lanacSertifikata.add(certificate); System.out.println("duzina novog: " +
+	 * lanacSertifikata.size());
+	 * 
+	 * Certificate[] arr= new Certificate[lanacSertifikata.size()];
+	 * 
+	 * for(int i=0; i<lanacSertifikata.size(); i++) { arr[i] =
+	 * lanacSertifikata.get(i); }
+	 * 
+	 * lanacS = lanacSertifikata.toArray(new
+	 * Certificate[lanacSertifikata.size()]);
+	 * 
+	 * // upis u keyStore keyStoreReader.getKeyStore().setKeyEntry(alias,
+	 * issuerData.getPrivateKey(), password, arr);
+	 * 
+	 * keyStoreWriter.write2(alias, issuerData.getPrivateKey(), password, arr);
+	 * // cuvanje keyStore keyStoreWriter.saveKeyStore(password);
+	 * 
 	 * @param string1
 	 * @param string2
 	 * @return
 	 */
-	
-	@RequestMapping(value="/communicate/{string1}/{string2}",	method = RequestMethod.GET)
+
+	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
-		log.debug("CK_COMM");
-		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1); 
+		log.debug("CKCOMM");
+		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1);
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
-		
-		if(soft1.isHasCert() && soft2.isHasCert()) { //ako oba imaju sertifikate
-			
+
+		if (soft1.isHasCert() && soft2.isHasCert()) { // ako oba imaju
+														// sertifikate
+
 			boolean revoked = false;
 			boolean expired = false;
-			
+
 			Calendar calendar = Calendar.getInstance();
 			calendar.set(Calendar.HOUR_OF_DAY, 0);
 			calendar.set(Calendar.MINUTE, 0);
 			calendar.set(Calendar.SECOND, 0);
-			
+
 			Date current_date = calendar.getTime();
-			
+
 			ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 			lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
-		
-			for(int i=0; i<lanacSertifikata.size(); i++) {
+
+			for (int i = 0; i < lanacSertifikata.size(); i++) {
 				String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
-				if(userEmail.equals(string1)) {
+				if (userEmail.equals(string1)) {
 					CertificateModel certificate = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
 					Date certificateEndDate = certificate.getEndDate();
-					if(current_date.after(certificateEndDate)) {
+					if (current_date.after(certificateEndDate)) {
 						expired = true;
 					}
 				}
-				if(userEmail.equals(string2)) {
+				if (userEmail.equals(string2)) {
 					CertificateModel certificate = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
 					Date certificateEndDate = certificate.getEndDate();
-					if(current_date.after(certificateEndDate)) {
+					if (current_date.after(certificateEndDate)) {
 						expired = true;
 					}
 				}
 			}
-			
-			if(expired == false || revoked == false) {
-				log.info("CK_SUCCESS");
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_SUCCESS between {} and {}",soft1.getId(),soft2.getId());
+
+			if (expired == false || revoked == false) {
+				log.info("CKSUC");
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMMSUC between {} and {}", soft1.getId(),
+						soft2.getId());
 
 				return true;
 			} else {
-				log.info("CK_FAIL");
+				log.info("CKFAIL");
 				return false;
 			}
-			
+
 		}
-		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_FAIL , CA not found between {} ",soft1.getId(),soft2.getId());
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMMFAIL , CA not found between {} ", soft1.getId(),
+				soft2.getId());
 
 		return false;
-		
+
 	}
-	
-	@RequestMapping(value="/getSubjectSoftware",	method = RequestMethod.GET)
+
+	@RequestMapping(value = "/getSubjectSoftware", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getSubjectSoftware() {
 		log.debug("SUBSOFT");
 
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
-		
+
 		ssList = ssService.getSoftwares();
-		
 
 		ArrayList<SubjectSoftware> ssList2 = new ArrayList<SubjectSoftware>();
-		
-		
-		for(int i=0; i<ssList.size(); i++) {
-			if(ssList.get(i).isHasCert() == false && !ssList.get(i).getEmail().equals("MTRoot@gmail.com")) {
+
+		for (int i = 0; i < ssList.size(); i++) {
+			if (ssList.get(i).isHasCert() == false && !ssList.get(i).getEmail().equals("MTRoot@gmail.com")) {
 				ssList2.add(ssList.get(i));
 			}
 		}
-		log.info("SUBSOFT_SUCCESS");
+		log.info("SUBSOFTSUC");
 
-
-		return ssList2;	
+		return ssList2;
 	}
-	
-	@RequestMapping(value="/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) {
-
+		log.info("GACA");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		ssList = ssService.getSoftwares();
 
 		ArrayList<SubjectSoftware> ssList2 = new ArrayList<SubjectSoftware>();
-		
-		for(int i=0; i<ssList.size(); i++) {
-			if(!ssList.get(i).getEmail().equals(email)) {
-				//System.out.println("1 - " + ssList.get(i).getEmail() + " 2 - " + email);
-				if(!ssList.get(i).getEmail().equals("MTRoot@gmail.com"))
+
+		for (int i = 0; i < ssList.size(); i++) {
+			if (!ssList.get(i).getEmail().equals(email)) {
+				// System.out.println("1 - " + ssList.get(i).getEmail() + " 2 -
+				// " + email);
+				if (!ssList.get(i).getEmail().equals("MTRoot@gmail.com"))
 					ssList2.add(ssList.get(i));
 			}
 		}
 
-		return ssList2;	
-		
+		return ssList2;
+
 	}
-	
-	//@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value="/getCertificates/{token}",	method = RequestMethod.GET)
+
+	// @PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/getCertificates/{token}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) {
-		
+		log.info("GCA");
 		System.out.println("Usao da ispise sertifikate");
 		System.out.println("Token je: " + token);
-		
+
 		String email = tokenUtils.getUsernameFromToken(token);
-		
+
 		System.out.println("Dobio sam mejl: " + email);
-		
+
 		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
-		 
+
 		ArrayList<CertificateModel> lanacSertifikataNova = new ArrayList<CertificateModel>();
-	
+
 		lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
-	
-		
-		for(int i=0; i<lanacSertifikata.size(); i++) {
-			
+
+		for (int i = 0; i < lanacSertifikata.size(); i++) {
+
 			String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
-			
-			if(userEmail.equals(email)) {
+
+			if (userEmail.equals(email)) {
 				lanacSertifikataNova.add(lanacSertifikata.get(i));
 				System.out.println(lanacSertifikata.get(i).isRevoked());
 			}
-			
-		}
-		log.info(LoggerUtils.getNMarker(), "{}User with email requested all certificates ",email);
 
-		
+		}
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user {} CA ", email);
+
 		return lanacSertifikataNova;
-		 
+
 	}
-	
-	@RequestMapping(value="/getAllCertificates/{email}",	method = RequestMethod.GET)
+
+	@RequestMapping(value = "/getAllCertificates/{email}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getAllCeritificates(@PathVariable String email) {
-		
-		 ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
-		 
-		 lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
-		
+
+		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+
+		lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+
 		return lanacSertifikata;
-		 
+
 	}
-	
-	@RequestMapping(value="/revokeCertificate/{serialNumber}/{message}",	method = RequestMethod.POST)
+
+	@RequestMapping(value = "/revokeCertificate/{serialNumber}/{message}", method = RequestMethod.POST)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public boolean revokeCeritificate(@PathVariable Integer serialNumber ,@PathVariable String message) {
-		System.out.println("Poruka koja je stigla "+ message);
-		log.info("REV_CA");
+	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message) {
+		System.out.println("Poruka koja je stigla " + message);
+		log.info("REVCA");
 		boolean pomocni = false;
 		pomocni = statusService.revokeCert(serialNumber, message);
-		
+
 		return pomocni;
 	}
-		
-	
+
 	// dodatne metode
-	
+
 	// metoda 1 - generisanje para kljuceva
 	public KeyPair generateKeyPair() {
-        try {
-			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA"); 
-			
+		try {
+			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+
 			// SecureRandom.getInstance - PARAMETRI -->
-			// The name of the pseudo-random number generation (PRNG) algorithm supplied by the SUN provider. 
-			// This algorithm uses SHA-1 as the foundation of the PRNG. It computes the SHA-1 hash over a true-random
-			// seed value concatenated with a 64-bit counter which is incremented by 1 for each operation. 
+			// The name of the pseudo-random number generation (PRNG) algorithm
+			// supplied by the SUN provider.
+			// This algorithm uses SHA-1 as the foundation of the PRNG. It
+			// computes the SHA-1 hash over a true-random
+			// seed value concatenated with a 64-bit counter which is
+			// incremented by 1 for each operation.
 			// From the 160-bit SHA-1 output, only 64 bits are used.
-			
+
 			SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
-			
-			// 2048 - The maximum key size that the provider supports for the cryptographic service.
+
+			// 2048 - The maximum key size that the provider supports for the
+			// cryptographic service.
 			keyGen.initialize(2048, random);
 			return keyGen.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		}
-        return null;
+		return null;
 	}
-	
+
 	// metoda 2 - generisanje podataka subjekta, na osnovu dto
 	// ISPRAVLJENO
-	public SubjectData generateSubjectData(SubjectSoftware ss, CertificateDTO cdto)
-	{
+	public SubjectData generateSubjectData(SubjectSoftware ss, CertificateDTO cdto) {
 		try {
 			KeyPair keyPairSubject = generateKeyPair();
-		
+
 			String sn = ss.getId().toString();
 			System.out.println(sn);
-			
+
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
-		
-			
-		// oznaka softvera, drzava i email adresa
+
+			// oznaka softvera, drzava i email adresa
 			builder.addRDN(BCStyle.CN, "Security");
 			builder.addRDN(BCStyle.O, ss.getSoftwareId());
 			builder.addRDN(BCStyle.OU, ss.getCity());
 			builder.addRDN(BCStyle.C, ss.getState());
 			builder.addRDN(BCStyle.E, ss.getEmail());
 			builder.addRDN(BCStyle.UID, ss.getId().toString());
-						
+
 			// datumi
 			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
 			Date startDate = iso8601Formater.parse(cdto.getStartDate());
 			Date endDate = iso8601Formater.parse(cdto.getEndDate());
-			
+
 			System.out.println("uspeo");
 
-			//Kreiraju se podaci za sertifikat, sto ukljucuje:
-		    // - javni kljuc koji se vezuje za sertifikat
-		    // - podatke o vlasniku
-		    // - serijski broj sertifikata
-		    // - od kada do kada vazi sertifikat
-			
-			return new SubjectData(keyPairSubject.getPublic(), keyPairSubject.getPrivate(), builder.build(), sn, startDate, endDate);
+			// Kreiraju se podaci za sertifikat, sto ukljucuje:
+			// - javni kljuc koji se vezuje za sertifikat
+			// - podatke o vlasniku
+			// - serijski broj sertifikata
+			// - od kada do kada vazi sertifikat
+
+			return new SubjectData(keyPairSubject.getPublic(), keyPairSubject.getPrivate(), builder.build(), sn,
+					startDate, endDate);
 		}
-		
-		catch(ParseException e)
-		{
-			
+
+		catch (ParseException e) {
+
 		}
-		
-		return null ;
-		
+
+		return null;
 
 	}
-	
+
 	// izdavalac sertifikata
 	// ISPRAVLJENO
-	public IssuerData generateIssuerData(PrivateKey issuerKey, SubjectSoftware ss) 
-	{
+	public IssuerData generateIssuerData(PrivateKey issuerKey, SubjectSoftware ss) {
 		X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 		builder.addRDN(BCStyle.CN, "Security");
 		builder.addRDN(BCStyle.O, ss.getSoftwareId());
@@ -457,15 +452,11 @@ public class SecurityAdminControler {
 		builder.addRDN(BCStyle.E, ss.getEmail());
 		builder.addRDN(BCStyle.UID, ss.getId().toString());
 
-		//Kreiraju se podaci za issuer-a, sto u ovom slucaju ukljucuje:
-	    // - privatni kljuc koji ce se koristiti da potpise sertifikat koji se izdaje
-	    // - podatke o vlasniku sertifikata koji izdaje nov sertifikat
+		// Kreiraju se podaci za issuer-a, sto u ovom slucaju ukljucuje:
+		// - privatni kljuc koji ce se koristiti da potpise sertifikat koji se
+		// izdaje
+		// - podatke o vlasniku sertifikata koji izdaje nov sertifikat
 		return new IssuerData(issuerKey, builder.build());
 	}
-	
-	
-	
-	
-	
-	
+
 }

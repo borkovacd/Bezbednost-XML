@@ -162,6 +162,32 @@
         </rollingPolicy>
     </appender>
     
+     <appender name="DebugFile"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/debug-logger.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+	      <level>DEBUG</level>
+	      <onMatch>ACCEPT</onMatch>
+	      <onMismatch>DENY</onMismatch>
+	    </filter>
+        <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+        </encoder>
+
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${LOGS}/archived/debug-logger-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
    
 
     
@@ -178,6 +204,7 @@
         <appender-ref ref="InfoFile" />
           <appender-ref ref="SFile" />
         <appender-ref ref="NFile" />
+        <appender-ref ref="DebugFile" />
 
     </logger>
 
