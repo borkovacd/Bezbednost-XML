@@ -1,0 +1,12 @@
+2019-05-16 00:47:35,391 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-16 00:47:40,406 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-16 00:47:40,408 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-16 00:47:40,409 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-16 00:47:57,134 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] LOG
+2019-05-16 00:48:10,253 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-1] SUBSOFT
+2019-05-16 00:53:45,475 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-10] SUBSOFT
+2019-05-16 01:15:01,035 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-16 01:15:07,702 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-16 01:15:07,704 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-16 01:15:07,705 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-16 01:15:46,822 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] LOG
