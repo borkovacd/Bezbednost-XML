@@ -34,7 +34,7 @@ export class AllCertificatesComponent implements OnInit {
 
     // alert(this.user.email);
 
-    this.data.getAllCert(this.user.email).subscribe( data => this.certif = data);
+    this.data.getAllCert().subscribe( data => this.certif = data);
     this.visibleMessage=false;
 
   }

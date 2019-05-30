@@ -27,7 +27,7 @@ export class HomeComponent implements  OnInit{
 
   odjaviSe() {
     this.userService.logout().subscribe(res => {
-      alert(res);
+      // alert(res);
     });
     // window.location.reload();
     this.router.navigateByUrl('');

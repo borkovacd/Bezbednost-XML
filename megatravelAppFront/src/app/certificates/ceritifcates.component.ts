@@ -37,7 +37,7 @@ export class CeritifcatesComponent implements OnInit {
 
     this.user = this.userService.getLoggedUser();
 
-   // alert(this.user.email);
+    // alert(this.user.email);
 
     this.data.getCert(localStorage.getItem('loggedUser')).subscribe( data => this.certif = data);
 
@@ -50,11 +50,11 @@ export class CeritifcatesComponent implements OnInit {
   }
   potvrdiPovlacenje(serialNumber: any){
 
-this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
-    if( data == true){
-     alert('Sertifikat uspesno povucen');
-      this.router.navigateByUrl('home');
-   }
+    this.data.revokeCert(serialNumber,this.message.value).subscribe( data =>{
+      if( data == true){
+        alert('Sertifikat uspesno povucen');
+        this.router.navigateByUrl('home');
+      }
 
     })
   }

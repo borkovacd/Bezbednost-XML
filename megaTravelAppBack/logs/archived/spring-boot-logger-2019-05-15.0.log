@@ -18,10 +18,22 @@
 2019-05-15 21:47:30,883 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] LOG
 2019-05-15 21:47:31,417 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
 2019-05-15 21:47:31,418 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] NEPOR_EVENT id:8 LOG_SUCCESS from ip 0:0:0:0:0:0:0:1
-2019-05-15 23:56:49,987 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 6356 (D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatXML\Bezbednost-XML\megaTravelAppBack)
-2019-05-15 23:56:49,996 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
-2019-05-15 23:56:50,002 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-05-15 23:56:55,552 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-05-15 23:56:55,554 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-05-15 23:56:55,555 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2019-05-15 23:57:08,945 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 20.086 seconds (JVM running for 22.392)
+2019-05-15 23:49:10,444 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 53464 (D:\Marin\ProjekatB\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\ProjekatB\Bezbednost-XML\megaTravelAppBack)
+2019-05-15 23:49:10,450 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-05-15 23:49:10,452 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-15 23:49:12,418 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-15 23:49:12,419 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-05-15 23:49:12,419 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-05-15 23:49:18,365 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 8.511 seconds (JVM running for 10.77)
+2019-05-15 23:50:36,557 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] LOGOUT
+2019-05-15 23:50:50,095 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] LOG
+2019-05-15 23:50:50,491 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
+2019-05-15 23:50:50,492 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] NEPOR_EVENT user id:8 LOGSUC, ip 0:0:0:0:0:0:0:1
+2019-05-15 23:50:51,953 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-8] GCA
+2019-05-15 23:50:52,008 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:50:57,767 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-1] GCA
+2019-05-15 23:50:57,779 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:51:33,957 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] GCA
+2019-05-15 23:51:33,967 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-15 23:51:36,556 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-10] GCA
+2019-05-15 23:51:36,565 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 

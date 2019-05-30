@@ -68,25 +68,25 @@ public class UserControler {
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
-			log.error("REGERR");
+			log.error("REG_ERR");
 
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
-				log.error("REGERREMAIL");
+				log.error("REG_ERR_EMAIL");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
-				log.error("REGERRFN");
+				log.error("REG_ERR_FN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
-				log.error("REGERRLN");
+				log.error("REG_ERR_LN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
@@ -113,8 +113,8 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REGSUC,ip: {}", u.getId(), request.getRemoteAddr());
-				log.debug("REGSUC");
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REG_SUC,ip: {}", u.getId(), request.getRemoteAddr());
+				log.debug("REG_SUC");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -154,27 +154,27 @@ public class UserControler {
 				System.out.println(user1.getEmail());
 				String token = tokenUtils.generateToken(user1.getEmail());
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGSUC ,ip {}", userNew.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOGSUC, ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", userNew.getId(),req.getRemoteAddr());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
+					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
 
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
-				log.error("LOGERR");
-				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", userNew.getId());
+				log.error("LOG_ERR");
+				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
 
 				
 
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.error("LOGERR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOGFAIL ", user.getId());
+			log.error("LOG_ERR");
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", user.getId());
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
@@ -190,16 +190,14 @@ public class UserControler {
 		return response;
 	}
 	
-	@PreAuthorize("hasRole('USER')") 
+	//@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public boolean logOutUser() {
+	public void logOutUser() {
 		log.debug("LOGOUT");
 
 		System.out.println("usao ovde");
 		SecurityContextHolder.clearContext();
-		field = true;
 		
-		return field;
 	}
 	
 	@RequestMapping(value = "/ssl-test", method = RequestMethod.GET)

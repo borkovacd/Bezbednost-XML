@@ -74,12 +74,17 @@ public class SecurityAdminControler {
 	 * globalPass.toCharArray()); keyPairIssuer = generateKeyPair(); }
 	 */
 
-	@RequestMapping(value = "/createCertificate/{email}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/createCertificate/{token}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String email)
+	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
 			throws KeyStoreException {
-		log.debug("CREACA");
+		log.debug("CRE_CA");
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
+		
+		token = token.substring(1,token.length()-1).toString();
+		
+		String email = tokenUtils.getUsernameFromToken(token);
+		
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 
 		if (iss.isHasCert() == true) {
@@ -136,9 +141,9 @@ public class SecurityAdminControler {
 			cm.setRevoked(false);
 
 			certRepos.save(cm);
-			log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CREACA id: {} ", cm.getSerialNumber(),
+			log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
 					iss.getId());
-			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CREACA id:{} ", cm.getSerialNumber(),
+			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
 					iss.getId());
 
 			// *********************************************
@@ -163,12 +168,12 @@ public class SecurityAdminControler {
 			keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 			keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
 					ss.getId().toString().toCharArray());
-			log.info("CREACASUC");
+			log.info("CRE_CA_SUC");
 		}
 
 		else {
 			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
-			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User {} CREERR  ", email);
+			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User {} CRE_ERR  ", email);
 
 		}
 
@@ -208,7 +213,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
-		log.debug("CKCOMM");
+		log.debug("CK_COMM");
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1);
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
 
@@ -249,18 +254,18 @@ public class SecurityAdminControler {
 			}
 
 			if (expired == false || revoked == false) {
-				log.info("CKSUC");
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMMSUC between {} and {}", soft1.getId(),
+				log.info("CK_SUC");
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_SUC between {} and {}", soft1.getId(),
 						soft2.getId());
 
 				return true;
 			} else {
-				log.info("CKFAIL");
+				log.info("CK_FAIL");
 				return false;
 			}
 
 		}
-		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMMFAIL , CA not found between {} ", soft1.getId(),
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_FAIL , CA not found between {} ", soft1.getId(),
 				soft2.getId());
 
 		return false;
@@ -270,7 +275,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getSubjectSoftware", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getSubjectSoftware() {
-		log.debug("SUBSOFT");
+		log.debug("SS");
 
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 
@@ -283,7 +288,7 @@ public class SecurityAdminControler {
 				ssList2.add(ssList.get(i));
 			}
 		}
-		log.info("SUBSOFTSUC");
+		log.info("SS_SUC");
 
 		return ssList2;
 	}
@@ -291,7 +296,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) {
-		log.info("GACA");
+		log.info("GET_SS");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		ssList = ssService.getSoftwares();
 
@@ -314,10 +319,13 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getCertificates/{token}", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) {
-		log.info("GCA");
+		
+		log.info("GET_CA");
 		System.out.println("Usao da ispise sertifikate");
 		System.out.println("Token je: " + token);
-
+		
+		token = token.substring(1,token.length()-1).toString();
+		
 		String email = tokenUtils.getUsernameFromToken(token);
 
 		System.out.println("Dobio sam mejl: " + email);
@@ -327,10 +335,13 @@ public class SecurityAdminControler {
 		ArrayList<CertificateModel> lanacSertifikataNova = new ArrayList<CertificateModel>();
 
 		lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+		
+		System.out.println(lanacSertifikata.size());
 
 		for (int i = 0; i < lanacSertifikata.size(); i++) {
-
+			System.out.println("uso");
 			String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
+			System.out.println(userEmail);
 
 			if (userEmail.equals(email)) {
 				lanacSertifikataNova.add(lanacSertifikata.get(i));
@@ -344,9 +355,11 @@ public class SecurityAdminControler {
 
 	}
 
-	@RequestMapping(value = "/getAllCertificates/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ArrayList<CertificateModel> getAllCeritificates(@PathVariable String email) {
+	public ArrayList<CertificateModel> getAllCeritificates() {
+		
+		log.info("GET_ACA");
 
 		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 
@@ -360,7 +373,7 @@ public class SecurityAdminControler {
 	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message) {
 		System.out.println("Poruka koja je stigla " + message);
-		log.info("REVCA");
+		log.info("REV_CA");
 		boolean pomocni = false;
 		pomocni = statusService.revokeCert(serialNumber, message);
 
