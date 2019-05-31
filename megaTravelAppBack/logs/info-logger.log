@@ -125,3 +125,8 @@
 2019-05-16 01:10:47,562 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
 2019-05-16 01:10:59,009 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] GET_CA
 2019-05-16 01:10:59,051 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-05-31 19:08:17,695 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 9276 (D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack)
+2019-05-31 19:08:17,702 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-31 19:08:41,843 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 10356 (D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack)
+2019-05-31 19:08:41,853 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-05-31 19:08:48,194 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 6.767 seconds (JVM running for 7.728)
