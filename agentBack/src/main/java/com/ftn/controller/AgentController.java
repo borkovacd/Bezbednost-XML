@@ -35,7 +35,7 @@ public class AgentController {
 	@CrossOrigin(origins = "http://localhost:4201")
 	public String communicateWithCentral(@PathVariable String message) {
 
-		String uri = "https://localhost:8443/api/user/communicate";
+		String uri = "https://localhost:8443/api/admin/communicate";
 		
 		//message = message.substring(1,message.length()-1).toString();
 		//System.out.println(message);

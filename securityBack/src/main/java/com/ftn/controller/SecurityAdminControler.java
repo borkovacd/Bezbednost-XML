@@ -100,7 +100,7 @@ public class SecurityAdminControler {
 			char[] password = str.toCharArray();
 
 			// ucitan keystore.jks, preko passworda
-			keyStoreWriter.loadKeyStore("./files/keystore.p12", password);
+			keyStoreWriter.loadKeyStore("./files/keystoreSecurity.p12", password);
 
 			SubjectData subjectData = generateSubjectData(ss, cdto);
 			// KeyStoreReader keyStoreReader = new KeyStoreReader();
@@ -109,7 +109,7 @@ public class SecurityAdminControler {
 																	// oblika
 																	// certificatePass123456789
 			String alias = "alias1";
-			PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystore.p12", str, str, str);
+			PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, str, str);
 
 			System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 
@@ -154,7 +154,7 @@ public class SecurityAdminControler {
 			keyStoreWriter.write(str, subjectData.getPrivateKey(), str.toCharArray(), cert);
 
 			String globalPass = "someString";
-			keyStoreWriter.saveKeyStore("./files/keystore.p12", str.toCharArray());
+			keyStoreWriter.saveKeyStore("./files/keystoreSecurity.p12", str.toCharArray());
 
 			// upis u njegov keystore
 			KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();

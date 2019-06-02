@@ -1,8 +1,0 @@
-
-2019-05-15 23:49:10,450 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
-2019-05-15 23:49:12,418 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-05-15 23:49:12,419 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-05-15 23:49:12,419 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2019-05-15 23:50:36,557 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] LOGOUT
-2019-05-15 23:50:50,095 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8443-exec-2] LOG
-
