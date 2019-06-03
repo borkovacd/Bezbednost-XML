@@ -1,0 +1,16 @@
+2019-06-04 00:25:34,612 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGOUT
+2019-06-04 00:25:42,202 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOG
+2019-06-04 00:25:42,845 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-04 00:25:42,852 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-04 00:25:44,183 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_CA
+2019-06-04 00:25:44,183 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_ACA
+2019-06-04 00:25:44,229 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-04 00:29:07,909 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GET_ACA
+2019-06-04 00:29:07,909 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-04 00:29:07,923 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-04 00:29:18,942 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GET_CA
+2019-06-04 00:29:18,943 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_ACA
+2019-06-04 00:29:18,955 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-04 00:29:43,260 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_CA
+2019-06-04 00:29:43,261 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_ACA
+2019-06-04 00:29:43,273 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MTRoot@gmail.com CA 
