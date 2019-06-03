@@ -6,10 +6,10 @@ insert into subject_softwares (id, city, email, has_certificate, software_id, st
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (6, "HongKong", "MegaTravelHongKong@gmail.com", 0, "S2", "USA");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (7, "Boston", "MegaTravelBoston@gmail.com", 0, "S3", "Kina");
 
-insert into users (id, city, email, first_name, last_name, password) values (8, null, "MTRoot@gmail.com", null, null, "$2a$10$hqAlGmj1Pf0uWCnYelh7vuhdIwYuE2HyvS4XBBEAVe5ErUksUlYzK");
-insert into users (id, city, email, first_name, last_name, password) values (9, null, "MegaTravelLondon@gmail.com", null, null, "$2a$10$hqAlGmj1Pf0uWCnYelh7vuF4S6yiKza6RPNm3d60L2.EcApMKI926");
-insert into users (id, city, email, first_name, last_name, password) values (10, null, "MegaTravelHongKong@gmail.com", null, null, "$2a$10$hqAlGmj1Pf0uWCnYelh7vug8K1sPeZuYSNYEBgGFclod90CHK.FIC");
-insert into users (id, city, email, first_name, last_name, password) values (11, null, "MegaTravelBoston@gmail.com", null, null, "$2a$10$hqAlGmj1Pf0uWCnYelh7vudsk9bcvoKDJME6EE9yQIH8/aDcfTENu");
+insert into users (id, city, email, first_name, last_name, password) values (8, "/", "MTRoot@gmail.com", "MTRoot", "MTRoot", "$2a$10$hqAlGmj1Pf0uWCnYelh7vuhdIwYuE2HyvS4XBBEAVe5ErUksUlYzK");
+insert into users (id, city, email, first_name, last_name, password) values (9, "London", "MegaTravelLondon@gmail.com", "MegaTravelLondon", "MegaTravelLondon", "$2a$10$hqAlGmj1Pf0uWCnYelh7vuF4S6yiKza6RPNm3d60L2.EcApMKI926");
+insert into users (id, city, email, first_name, last_name, password) values (10, "Hong Kong", "MegaTravelHongKong@gmail.com", "MegaTravelHongKong", "MegaTravelHongKong", "$2a$10$hqAlGmj1Pf0uWCnYelh7vug8K1sPeZuYSNYEBgGFclod90CHK.FIC");
+insert into users (id, city, email, first_name, last_name, password) values (11, "Boston", "MegaTravelBoston@gmail.com", "MegaTravelBoston", "MegaTravelBoston", "$2a$10$hqAlGmj1Pf0uWCnYelh7vudsk9bcvoKDJME6EE9yQIH8/aDcfTENu");
 
 insert into users_roles (users_id, roles_id) values (8,2);
 insert into users_roles (users_id, roles_id) values (9,3);

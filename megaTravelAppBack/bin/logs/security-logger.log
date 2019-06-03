@@ -13,4 +13,3 @@
 2019-05-16 00:55:37,483 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
 2019-05-16 00:56:34,566 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT 5 CREACA id: 4 
 2019-05-16 01:00:02,189 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-06-03 00:41:49,103 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8443-exec-4] SECURITY_EVENT Unauthorised access attempt to https://192.168.72.243:8443/ from  adress192.168.72.243
