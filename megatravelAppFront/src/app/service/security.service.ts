@@ -51,4 +51,8 @@ export class SecurityService {
     return this.http.get<CertificateBackModel[]>( `${this.BASE_URL}/getAllCertificates`, httpOptions);
   }
 
+  getMyCert(token: string): Observable<CertificateBackModel> {
+    return this.http.get<CertificateBackModel>(`${this.BASE_URL}/getMyCertificate/${token}`, httpOptions);
+  }
+
 }

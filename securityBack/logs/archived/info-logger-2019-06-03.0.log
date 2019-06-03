@@ -1,0 +1,136 @@
+2019-06-03 21:53:37,650 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 11880 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 21:53:37,702 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 21:53:47,020 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 9.966 seconds (JVM running for 11.374)
+2019-06-03 21:53:56,102 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 21:53:56,105 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 21:53:58,533 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_CA
+2019-06-03 21:53:58,585 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:54:17,873 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SS_SUC
+2019-06-03 21:54:30,507 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-03 21:54:30,508 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-03 21:54:31,155 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CRE_CA_SUC
+2019-06-03 21:54:31,335 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GET_CA
+2019-06-03 21:54:31,354 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:54:36,572 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-03 21:54:36,589 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:55:23,727 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 11292 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 21:55:23,735 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 21:55:32,286 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 9.231 seconds (JVM running for 10.601)
+2019-06-03 21:57:39,744 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 21:57:39,746 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 21:57:48,911 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 21:57:48,912 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 21:57:50,042 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS_SUC
+2019-06-03 21:58:01,146 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT 6 CRE_CA id: 4 
+2019-06-03 21:58:01,147 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT6 CRE_CA id:4 
+2019-06-03 21:58:01,756 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CRE_CA_SUC
+2019-06-03 21:58:01,961 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-03 21:58:01,989 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:58:08,437 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GET_CA
+2019-06-03 21:58:08,455 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:58:27,213 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 21:58:27,215 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 21:58:28,501 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_CA
+2019-06-03 21:58:28,517 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 21:59:43,662 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 12092 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 21:59:43,670 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 21:59:51,236 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 8.32 seconds (JVM running for 9.759)
+2019-06-03 22:00:38,149 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 4620 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 22:00:38,159 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 22:00:47,712 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 10.228 seconds (JVM running for 11.739)
+2019-06-03 22:02:22,456 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 22:02:22,458 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 22:02:24,240 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_CA
+2019-06-03 22:02:24,294 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:02:33,904 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_ACA
+2019-06-03 22:03:07,843 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_ACA
+2019-06-03 22:06:21,924 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 9688 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 22:06:21,931 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 22:06:32,014 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 10.756 seconds (JVM running for 12.239)
+2019-06-03 22:12:35,503 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 22:12:35,504 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 22:12:37,069 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_CA
+2019-06-03 22:12:37,117 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:22:42,334 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_CA
+2019-06-03 22:22:42,350 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:25:43,407 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-03 22:25:43,424 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:25:59,809 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_CA
+2019-06-03 22:25:59,827 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:26:29,588 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_CA
+2019-06-03 22:26:29,607 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:27:25,638 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 12928 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 22:27:25,647 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 22:27:35,398 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 10.46 seconds (JVM running for 12.499)
+2019-06-03 22:44:16,984 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GET_CA
+2019-06-03 22:44:17,134 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:44:41,860 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 22:44:41,861 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 22:44:43,447 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-03 22:44:43,461 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:46:15,175 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 6940 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 22:46:15,181 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 22:46:21,635 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 6.878 seconds (JVM running for 7.822)
+2019-06-03 22:54:44,230 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 22:54:44,231 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 22:54:45,303 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_CA
+2019-06-03 22:54:45,348 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:54:55,299 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GET_ACA
+2019-06-03 22:54:58,970 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GET_CA
+2019-06-03 22:54:58,990 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:56:26,375 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_CA
+2019-06-03 22:56:26,389 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:57:58,465 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GET_CA
+2019-06-03 22:57:58,481 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:58:39,233 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GET_CA
+2019-06-03 22:58:39,249 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:58:39,326 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_ACA
+2019-06-03 22:58:43,855 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_CA
+2019-06-03 22:58:43,865 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_ACA
+2019-06-03 22:58:43,870 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 22:59:38,151 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GET_CA
+2019-06-03 22:59:38,152 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_ACA
+2019-06-03 22:59:38,165 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:00:03,777 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GET_CA
+2019-06-03 23:00:03,777 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_ACA
+2019-06-03 23:00:03,787 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:00:12,311 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_CA
+2019-06-03 23:00:12,314 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GET_ACA
+2019-06-03 23:00:12,323 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:01:46,528 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
+2019-06-03 23:01:46,529 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_ACA
+2019-06-03 23:01:46,540 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:02:36,306 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_CA
+2019-06-03 23:02:36,310 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_ACA
+2019-06-03 23:02:36,336 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:03:11,585 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 7292 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 23:03:11,591 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 23:03:21,507 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 10.529 seconds (JVM running for 11.916)
+2019-06-03 23:04:16,589 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_ACA
+2019-06-03 23:04:16,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_CA
+2019-06-03 23:04:16,736 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:04:32,050 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 23:04:32,051 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 23:04:33,182 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GET_CA
+2019-06-03 23:04:33,183 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_ACA
+2019-06-03 23:04:33,196 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:06:00,792 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 10620 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 23:06:00,805 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 23:06:10,564 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 10.545 seconds (JVM running for 12.272)
+2019-06-03 23:08:44,471 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-03 23:08:44,472 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-03 23:08:45,623 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_CA
+2019-06-03 23:08:45,623 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GET_ACA
+2019-06-03 23:08:45,665 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:09:14,976 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_CA
+2019-06-03 23:09:14,991 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:09:15,014 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_ACA
+2019-06-03 23:11:37,348 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_CA
+2019-06-03 23:11:37,348 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_ACA
+2019-06-03 23:11:37,364 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:12:03,156 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GET_ACA
+2019-06-03 23:12:03,156 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GET_CA
+2019-06-03 23:12:03,170 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-03 23:13:57,551 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 6280 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-03 23:13:57,560 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-03 23:14:07,970 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 11.137 seconds (JVM running for 12.649)

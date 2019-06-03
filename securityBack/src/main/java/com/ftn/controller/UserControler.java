@@ -39,6 +39,7 @@ import com.ftn.service.UserServiceImpl;
 
 @RestController
 @RequestMapping(value = "/api/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserControler {
 
 	private static final Logger log = LoggerFactory.getLogger(UserControler.class);
@@ -192,6 +193,7 @@ public class UserControler {
 	
 	//@PreAuthorize("hasRole('USER')") 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public void logOutUser() {
 		log.debug("LOGOUT");
 

@@ -17,6 +17,7 @@ import {nextTick} from "q";
 export class CeritifcatesComponent implements OnInit {
 
   certif: CertificateBackModel[];
+  myCert: CertificateBackModel;
   selfCert: CertificateBackModel;
   user: any;
   email: string;
@@ -40,6 +41,8 @@ export class CeritifcatesComponent implements OnInit {
     // alert(this.user.email);
 
     this.data.getCert(localStorage.getItem('loggedUser')).subscribe( data => this.certif = data);
+
+    this.data.getMyCert(localStorage.getItem('loggedUser')).subscribe(data => this.myCert = data)
 
     this.visibleMessage=false;
 

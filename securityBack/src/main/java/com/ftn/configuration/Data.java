@@ -155,6 +155,8 @@ public class Data implements ApplicationRunner {
 		    	cm.setStartDate(c.getNotBefore());
 		    	cm.setEndDate(c.getNotAfter());
 		    	
+		    	cm.setRevoked(false);
+		    	
 		    	String serial = c.getSerialNumber().toString();
 		    	
 		    	cm.setSerialNumber(Integer.parseInt(serial));
@@ -221,9 +223,9 @@ public class Data implements ApplicationRunner {
 			    	
 			    	X509Certificate c = (X509Certificate) agentLanacSertifikata.get(i);
 			    	
-			    	X500Name x500nameIssuer = new JcaX509CertificateHolder(c).getSubject();
+			    	X500Name x500nameIssuer = new JcaX509CertificateHolder(c).getIssuer();
 			    	
-			    	X500Name x500nameSubject = new JcaX509CertificateHolder(c).getIssuer();
+			    	X500Name x500nameSubject = new JcaX509CertificateHolder(c).getSubject();
 			    	
 			    	RDN emailIss = x500nameIssuer.getRDNs(BCStyle.EmailAddress)[0];
 			    	
@@ -248,7 +250,8 @@ public class Data implements ApplicationRunner {
 			    	cm.setEndDate(c.getNotAfter());
 			    	
 			    	String serial = c.getSerialNumber().toString();
-			    	
+
+			    	cm.setRevoked(false);
 			    	cm.setSerialNumber(Integer.parseInt(serial));
 			    	
 			    	certRepository.save(cm);
@@ -319,9 +322,9 @@ public class Data implements ApplicationRunner {
 			    	
 			    	X509Certificate c = (X509Certificate) mainLanacSertifikata.get(i);
 			    	
-			    	X500Name x500nameIssuer = new JcaX509CertificateHolder(c).getSubject();
+			    	X500Name x500nameIssuer = new JcaX509CertificateHolder(c).getIssuer();
 			    	
-			    	X500Name x500nameSubject = new JcaX509CertificateHolder(c).getIssuer();
+			    	X500Name x500nameSubject = new JcaX509CertificateHolder(c).getSubject();
 			    	
 			    	RDN emailIss = x500nameIssuer.getRDNs(BCStyle.EmailAddress)[0];
 			    	
@@ -352,6 +355,7 @@ public class Data implements ApplicationRunner {
 			    	cm.setSerialNumber(Integer.parseInt(serial));
 			    	
 
+			    	cm.setRevoked(false);
 			    	
 			    	certRepository.save(cm);
 			    	

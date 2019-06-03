@@ -46,6 +46,7 @@ import com.ftn.model.SubjectData;
 
 @RestController
 @RequestMapping(value = "/api/security")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SecurityAdminControler {
 	private static final Logger log = LoggerFactory.getLogger(SecurityAdminControler.class);
 	@Autowired
@@ -75,7 +76,6 @@ public class SecurityAdminControler {
 	 */
 
 	@RequestMapping(value = "/createCertificate/{token}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
 			throws KeyStoreException {
 		log.debug("CRE_CA");
@@ -211,7 +211,6 @@ public class SecurityAdminControler {
 	 */
 
 	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
 		log.debug("CK_COMM");
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1);
@@ -273,7 +272,6 @@ public class SecurityAdminControler {
 	}
 
 	@RequestMapping(value = "/getSubjectSoftware", method = RequestMethod.GET)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getSubjectSoftware() {
 		log.debug("SS");
 
@@ -294,7 +292,6 @@ public class SecurityAdminControler {
 	}
 
 	@RequestMapping(value = "/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) {
 		log.info("GET_SS");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
@@ -314,10 +311,11 @@ public class SecurityAdminControler {
 		return ssList2;
 
 	}
+	
+	
 
 	// @PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/getCertificates/{token}", method = RequestMethod.GET)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) {
 		
 		log.info("GET_CA");
@@ -356,7 +354,6 @@ public class SecurityAdminControler {
 	}
 
 	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public ArrayList<CertificateModel> getAllCeritificates() {
 		
 		log.info("GET_ACA");
@@ -368,9 +365,35 @@ public class SecurityAdminControler {
 		return lanacSertifikata;
 
 	}
+	
+	@RequestMapping(value = "/getMyCertificate/{token}", method = RequestMethod.GET)
+	public CertificateModel getMyCeritificate(@PathVariable String token) {
+		
+		log.info("GET_ACA");
+		
+		token = token.substring(1,token.length()-1).toString();
+		
+		String email = tokenUtils.getUsernameFromToken(token);
+
+		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
+		ArrayList<CertificateModel> lanacSertifikata2 = new ArrayList<CertificateModel>();
+
+		lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+		
+		for(int i=0; i<lanacSertifikata.size(); i++){
+			
+			if (lanacSertifikata.get(i).getSubSoft().getEmail().equals(email)) {
+				System.out.println("nasao sam moj");
+				return lanacSertifikata.get(i);
+			}
+			
+		}
+		
+		return null;
+
+	}
 
 	@RequestMapping(value = "/revokeCertificate/{serialNumber}/{message}", method = RequestMethod.POST)
-	@CrossOrigin(origins = "http://localhost:4200")
 	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message) {
 		System.out.println("Poruka koja je stigla " + message);
 		log.info("REV_CA");
