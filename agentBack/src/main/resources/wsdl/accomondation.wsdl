@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ftn.com/webservice-accomondation" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ftn.com/webservice-accomondation" targetNamespace="http://ftn.com/webservice-accomondation">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.com/webservice-accomondation">
+
+    <xs:element name="RegisterAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomondation" type="tns:accomodation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RegisterAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="accomodation">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterAccomodationResponse">
+    <wsdl:part element="tns:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RegisterAccomodationRequest">
+    <wsdl:part element="tns:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AccomondationPort">
+    <wsdl:operation name="RegisterAccomodation">
+      <wsdl:input message="tns:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccomondationPortSoap11" type="tns:AccomondationPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RegisterAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RegisterAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RegisterAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccomondationPortService">
+    <wsdl:port binding="tns:AccomondationPortSoap11" name="AccomondationPortSoap11">
+      <soap:address location="https://localhost:8443/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
