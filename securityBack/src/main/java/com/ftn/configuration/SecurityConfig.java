@@ -100,6 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 				.authorizeRequests()
 				.antMatchers("/api/user/**").permitAll()
+				.antMatchers("/api/security/**").permitAll()
 				.antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
 
 				.formLogin().and().exceptionHandling();
