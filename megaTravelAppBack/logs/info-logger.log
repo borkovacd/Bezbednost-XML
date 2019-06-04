@@ -9,3 +9,8 @@
 2019-06-04 20:50:36,230 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 14.734 seconds (JVM running for 15.452)
 2019-06-04 20:55:49,127 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-F3G1DCA with PID 8276 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\megaTravelAppBack)
 2019-06-04 20:55:49,133 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-04 22:59:48,388 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 188 (D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack)
+2019-06-04 22:59:48,394 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-04 22:59:55,483 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 7.546 seconds (JVM running for 8.571)
+2019-06-04 23:43:00,871 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 14036 (D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack)
+2019-06-04 23:43:00,878 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default

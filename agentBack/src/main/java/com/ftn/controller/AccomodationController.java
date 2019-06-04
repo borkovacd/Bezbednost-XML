@@ -12,7 +12,6 @@ import com.ftn.service.AccomodationService;
 
 @RestController
 @RequestMapping(value = "/api/accomodation")
-@CrossOrigin(origins = "http://localhost:4201")
 public class AccomodationController {
 
 	@Autowired
