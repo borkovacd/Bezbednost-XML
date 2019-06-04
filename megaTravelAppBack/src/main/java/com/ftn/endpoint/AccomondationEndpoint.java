@@ -7,6 +7,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.ftn.repository.AccomondationRepository;
+import com.ftn.webservice_accomondation.Accomodation;
 import com.ftn.webservice_accomondation.RegisterAccomodationRequest;
 import com.ftn.webservice_accomondation.RegisterAccomodationResponse;
 
@@ -33,7 +34,11 @@ public class AccomondationEndpoint {
 	public RegisterAccomodationResponse getAccomondation(@RequestPayload RegisterAccomodationRequest request) {
 		
 		RegisterAccomodationResponse response = new RegisterAccomodationResponse();
-		response.setResponse(accomondationRepository.findAccomodation(request.getAccomondation().getName()).getName());
+		
+		Accomodation a = request.getAccomondation();
+		accomondationRepository.save(a);
+		
+		response.setResponse("Uspesno");
 
 		return response;
 	}

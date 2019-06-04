@@ -81,3 +81,6 @@
 2019-06-04 18:51:07,400 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GET_ACA
 2019-06-04 18:51:07,400 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GET_CA
 2019-06-04 18:51:07,451 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-04 21:55:28,614 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 5604 (D:\Marin\BEZBProj\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\securityBack)
+2019-06-04 21:55:28,620 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-04 21:55:35,464 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 7.355 seconds (JVM running for 8.563)
