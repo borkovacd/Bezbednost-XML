@@ -11,21 +11,20 @@ package com.ftn.webservice.files;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for typeAccomodation complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="typeAccomodation"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="accomondation" type="{http://ftn.com/webservice-accomondation}accomodation"/&gt;
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,37 +34,36 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "accomondation"
+@XmlType(name = "typeAccomodation", propOrder = {
+    "name"
 })
-@XmlRootElement(name = "RegisterAccomodationRequest")
-public class RegisterAccomodationRequest {
+public class TypeAccomodation {
 
     @XmlElement(required = true)
-    protected Accomodation accomondation;
+    protected String name;
 
     /**
-     * Gets the value of the accomondation property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link Accomodation }
+     *     {@link String }
      *     
      */
-    public Accomodation getAccomondation() {
-        return accomondation;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the accomondation property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Accomodation }
+     *     {@link String }
      *     
      */
-    public void setAccomondation(Accomodation value) {
-        this.accomondation = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }
