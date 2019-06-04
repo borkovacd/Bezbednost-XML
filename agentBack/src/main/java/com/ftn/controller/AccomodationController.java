@@ -1,6 +1,8 @@
 package com.ftn.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +12,13 @@ import com.ftn.service.AccomodationService;
 
 @RestController
 @RequestMapping(value = "/api/accomodation")
+@CrossOrigin(origins = "http://localhost:4201")
 public class AccomodationController {
 
 	@Autowired
 	private AccomodationService accomodationService;
 	
+	@PostMapping("/createAccomodation")
 	public void createAccomodation(@RequestBody AccomodationDTO accDTO){
 		
 	}
