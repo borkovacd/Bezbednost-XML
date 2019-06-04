@@ -1,16 +1,1 @@
-
-2019-05-16 00:28:17,320 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:29:33,340 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-2] SECURITY_EVENT 6 CREACA id: 4 
-2019-05-16 00:33:29,929 WARN com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:9 LOGFAIL 
-2019-05-16 00:33:56,346 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] SECURITY_EVENT user id:9 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:35:10,536 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT user id:9 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:39:38,808 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-7] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:42:14,725 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:43:57,495 WARN com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT user id:8 LOGFAIL 
-2019-05-16 00:44:04,915 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-3] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:47:47,345 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:51:32,501 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-5] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:55:37,483 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-05-16 00:56:34,566 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8443-exec-4] SECURITY_EVENT 5 CREACA id: 4 
-2019-05-16 01:00:02,189 INFO com.ftn.controller.UserControler [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:8 LOGSUC ,ip 0:0:0:0:0:0:0:1
-2019-06-03 00:41:49,103 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8443-exec-4] SECURITY_EVENT Unauthorised access attempt to https://192.168.72.243:8443/ from  adress192.168.72.243
+2019-06-04 00:52:08,430 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8443-exec-4] SECURITY_EVENT Unauthorised access attempt to https://192.168.137.1:8443/ from  adress192.168.137.1
