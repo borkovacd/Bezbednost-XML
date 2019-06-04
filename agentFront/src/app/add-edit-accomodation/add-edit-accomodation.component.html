@@ -6,7 +6,8 @@
 
       <label>Grad:</label>
       <select class="form-control margin" [formControl]="city">
-        <option></option>
+        <option>Novi Sad</option>
+        <option>Beograd</option>
       </select>
 
       <label>Adresa:</label>
@@ -14,12 +15,18 @@
 
       <label>Tip smestajne jedinice:</label>
       <select class="form-control margin" [formControl]="type">
-        <option></option>
+        <option>Hotel</option>
+        <option>Bed&breakfast</option>
+        <option>Apartman</option>
       </select>
 
       <label>Kategorija:</label>
       <select class="form-control" [formControl]="category">
-        <option></option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
       </select>
 
       <label>Opis:</label>
@@ -35,7 +42,7 @@
 
       </div>
 
-      <button></button>
+      <button (click)="addAccomodation()" >Dodaj</button>
       <button>Zatvori</button>
     </div>
   </form>
