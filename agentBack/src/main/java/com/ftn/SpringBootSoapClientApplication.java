@@ -17,7 +17,7 @@ public class SpringBootSoapClientApplication {
         SpringApplication.run(SpringBootSoapClientApplication.class, args);
     }
      
-    @Bean
+    /*@Bean
     CommandLineRunner lookup(SOAPConnector soapConnector) {
         return args -> {
             String name = "Sajal";//Default Name
@@ -39,5 +39,5 @@ public class SpringBootSoapClientApplication {
             System.out.println("Response : "+response.getResponse());
            
         };
-    }
+    }*/
 }
