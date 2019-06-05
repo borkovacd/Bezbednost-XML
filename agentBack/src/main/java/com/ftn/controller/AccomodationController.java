@@ -55,6 +55,6 @@ public class AccomodationController {
         RegisterAccomodationResponse response =(RegisterAccomodationResponse) soapConnector.callWebService("https://localhost:8443/ws/accomondation", request);
         
         
-        System.out.println("Response : "+response.getResponse());
+        System.out.println("Odogovor : "+response.getResponse());
 	}
 }

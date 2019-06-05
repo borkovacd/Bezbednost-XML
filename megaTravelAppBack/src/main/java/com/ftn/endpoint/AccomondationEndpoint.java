@@ -36,9 +36,22 @@ public class AccomondationEndpoint {
 		RegisterAccomodationResponse response = new RegisterAccomodationResponse();
 		
 		Accomodation a = request.getAccomondation();
-		accomondationRepository.save(a);
 		
-		response.setResponse("Uspesno");
+		com.ftn.model.Accomodation newAccomodation = new com.ftn.model.Accomodation();
+		
+		newAccomodation.setName(a.getName());
+		
+		/*com.ftn.model.City newCity = new com.ftn.model.City();
+		newCity.setName(a.getCity().getName());
+		newAccomodation.setCity(newCity);*/
+		
+		newAccomodation.setAddress(a.getAddress());
+		//newAccomodation.setDescription(a.getDescription());
+		
+		
+		accomondationRepository.save(newAccomodation);
+		
+		response.setResponse("Ima ih" + accomondationRepository.count());
 
 		return response;
 	}
