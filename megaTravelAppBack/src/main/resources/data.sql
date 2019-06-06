@@ -18,3 +18,5 @@ insert into users_roles (users_id, roles_id) values (11,3);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (12, "/", "MTAgent@gmail.com", 0, "SAgent", "/");
 insert into agents(id, address, first_name, last_name, mbr, password, username) values (13, "/", "Agent", "Agent", "2653225CD", "$2a$10$um7ZtQ79vXrrS2jsZNjdZeSvwma.0yuKkeHM5tarAProLMHjFrgyG", "agent1");
+
+insert into clients(id, city, email, first_name, last_name, password, username) value (14, "Beograd", "markm@gmail.com", "Marko", "Markovic", "$2a$10$oVTxQOmorhFqM2WTByy7Pu1ij2yZXf40CK1mP8Weq8WrIVrVdIRr6", "markoM");
