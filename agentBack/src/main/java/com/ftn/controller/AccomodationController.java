@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftn.model.dto.AccomodationDTO;
+import com.ftn.dto.AccomodationDTO;
 import com.ftn.service.AccomodationService;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.Accomodation;

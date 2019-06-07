@@ -1,4 +1,4 @@
-package com.ftn.model.dto;
+package com.ftn.dto;
 
 public class AccomodationDTO {
 	private String image;
