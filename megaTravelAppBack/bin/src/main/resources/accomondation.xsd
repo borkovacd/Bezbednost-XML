@@ -1,0 +1,64 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ftn.com/webservice-accomondation"
+           targetNamespace="http://ftn.com/webservice-accomondation" elementFormDefault="qualified">
+
+    <xs:element name="RegisterAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomondation" type="tns:accomodation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RegisterAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="accomodation">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="city" type="tns:city"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="typeAccomodation" type="tns:typeAccomodation"/>
+            <xs:element name="category" type="tns:category"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="capacity" type="xs:int"/>
+            <xs:element name="pic" type="xs:string"/>
+            
+            <!-- lista dodatnih usluga -->    
+            <!-- agent -->  
+            
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="city">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="country" type="tns:country"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="country">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="typeAccomodation">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="category">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+
+</xs:schema>
