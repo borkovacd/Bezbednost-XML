@@ -8,4 +8,5 @@ import com.ftn.model.Accomodation;
 @Repository
 public interface AccomodationRepository extends JpaRepository<Accomodation, Long>{
 
+	Accomodation findOneById(Long id);
 }

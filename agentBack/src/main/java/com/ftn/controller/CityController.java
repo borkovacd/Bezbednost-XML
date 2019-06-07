@@ -20,7 +20,8 @@ public class CityController {
 
 	@GetMapping("/getAllCities")
 	public ResponseEntity<List<City>> getCity() {
-		List<City> list = cityService.getAllCities();
+		List<City> list = null;
+		//isto i za gradove
 		return new ResponseEntity<List<City>>(list, HttpStatus.OK);
 	}
 

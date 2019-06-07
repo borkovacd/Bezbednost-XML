@@ -21,7 +21,8 @@ public class TypeAccomodationController {
 	
 	@GetMapping("/getAllTypes")
 	public ResponseEntity<List<TypeAccomodation>> getTypes() {
-		List<TypeAccomodation> list = typeService.getAllTypes();
+		List<TypeAccomodation> list = null;
+		//istp i ovde
 		return new ResponseEntity<List<TypeAccomodation>>(list, HttpStatus.OK);
 	}
 }

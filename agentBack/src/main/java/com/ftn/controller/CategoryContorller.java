@@ -20,7 +20,8 @@ public class CategoryContorller {
 
 	@GetMapping("/getAllCategories")
 	public ResponseEntity<List<Category>> getCategory() {
-		List<Category> list = categoryService.getAllCategories();
+		List<Category> list = null;
+		//treba vratiti sa glavnog back-a sve kategorije na front
 		return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
 
 	}
