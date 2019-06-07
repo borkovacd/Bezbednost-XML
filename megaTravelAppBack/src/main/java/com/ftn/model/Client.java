@@ -2,11 +2,15 @@ package com.ftn.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.ftn.enums.ClientStatus;
 
 @Entity(name="Clients")
 public class Client {
@@ -35,6 +39,9 @@ public class Client {
 	
 	@Column(name="City", nullable=false)
 	private String city;
+	
+	@Enumerated(EnumType.STRING)
+	private ClientStatus status;
 
 	
 	public Client() {
@@ -96,6 +103,16 @@ public class Client {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	public ClientStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ClientStatus status) {
+		this.status = status;
+	}
+
+	
 	
 	
 }

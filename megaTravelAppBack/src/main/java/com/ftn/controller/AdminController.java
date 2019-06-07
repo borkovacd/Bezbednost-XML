@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.enums.ClientStatus;
 import com.ftn.model.AdditionalServices;
 import com.ftn.model.Agent;
 import com.ftn.model.Category;
+import com.ftn.model.Client;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.modelDTO.AdditionalServiceDTO;
 import com.ftn.modelDTO.AgentDTO;
@@ -20,6 +22,7 @@ import com.ftn.modelDTO.TypeAccomodationDTO;
 import com.ftn.service.AdditionalServicesService;
 import com.ftn.service.AgentService;
 import com.ftn.service.CategoryService;
+import com.ftn.service.ClientService;
 import com.ftn.service.TypeAccomodationService;
 
 @RestController
@@ -37,6 +40,9 @@ public class AdminController {
 	
 	@Autowired
 	private TypeAccomodationService typeAccomodationService ;
+	
+	@Autowired
+	private ClientService clientService;
 	
 	@RequestMapping(value="/addAgent",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addAgent(@RequestBody AgentDTO agentDto) {
@@ -63,7 +69,7 @@ public class AdminController {
 	{
 		AdditionalServices addServ = new AdditionalServices();
 		addServ.setName(additionalServiceDto.getName());
-		addServ.setPrice(additionalServiceDto.getPrice());
+	//	addServ.setPrice(additionalServiceDto.getPrice());
 		
 		return additionalServicesService.saveAdditionalService(addServ);
 	}
@@ -84,6 +90,45 @@ public class AdminController {
 		typeAccomodation.setName(typeAccomodationDto.getName());
 	
 		typeAccomodationService.saveTypeAccomodation(typeAccomodation);
+	}
+	
+	@RequestMapping(value="/activateUser/{username}", method = RequestMethod.GET)
+	public Client activateClient(@PathVariable String username) {
+	
+		Client client = clientService.findByUsername(username);
+		
+		client.setStatus(ClientStatus.AKTIVAN);
+		
+		clientService.saveClient(client);
+		
+		return client;
+
+	}
+	
+	@RequestMapping(value="/blockUser/{username}", method = RequestMethod.GET)
+	public Client blockClient(@PathVariable String username) {
+	
+		Client client = clientService.findByUsername(username);
+		
+		client.setStatus(ClientStatus.BLOKIRAN);
+		
+		clientService.saveClient(client);
+		
+		return client;
+
+	}
+	
+	@RequestMapping(value="/removeUser/{username}", method = RequestMethod.GET)
+	public Client removeClient(@PathVariable String username) {
+	
+		Client client = clientService.findByUsername(username);
+		
+		client.setStatus(ClientStatus.UKLONJEN);
+		
+		clientService.saveClient(client);
+		
+		return client;
+
 	}
 	
 

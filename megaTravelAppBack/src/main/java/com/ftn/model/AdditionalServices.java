@@ -18,29 +18,14 @@ public class AdditionalServices {
 	@Column
 	private String name;
 
-	
-	@NotNull
-	@Column
-	private double price ;
-	
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public AdditionalServices() {
 
 	}
 
-	public AdditionalServices(Long id, @NotNull String name, double price) 
-	{
+	public AdditionalServices(Long id, @NotNull String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.price = price ;
 	}
 
 	public Long getId() {

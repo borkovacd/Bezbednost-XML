@@ -51,4 +51,9 @@ public class ClientService  {
 		
 	}
 
+	public Client findByUsername(String username) {
+
+		return clientRepository.findByUsername(username);
+	}
+
 }

@@ -1,1 +1,2 @@
 2019-06-06 19:04:15,525 INFO com.ftn.controller.ClientController [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:1 REG_SUC,ip: 0:0:0:0:0:0:0:1
+2019-06-06 19:35:02,315 INFO com.ftn.controller.ClientController [https-jsse-nio-8443-exec-5] SECURITY_EVENT user id:15 REG_SUC,ip: 0:0:0:0:0:0:0:1
