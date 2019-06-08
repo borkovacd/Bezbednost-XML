@@ -32,6 +32,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllAccomodationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAccomodationsList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomodationsList" maxOccurs="unbounded" type="tns:accomodationSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>

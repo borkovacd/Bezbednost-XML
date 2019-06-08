@@ -1,5 +1,9 @@
 package com.ftn.endpoint;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -11,8 +15,11 @@ import com.ftn.repository.AccomondationRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
+import com.ftn.webservice.GetAllAccomodationsRequest;
+import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
+
 
 
 
@@ -73,6 +80,30 @@ public class AccomondationEndpoint {
 		response.setDeletedAccomodationId(a.getId());
 		
 		accomondationRepository.delete(a);
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllAccomodationsRequest")
+	@ResponsePayload
+	public GetAllAccomodationsResponse getAllAccomodations(@RequestPayload GetAllAccomodationsRequest request) {
+		
+		GetAllAccomodationsResponse response = new GetAllAccomodationsResponse();
+	
+		List<AccomodationSoap> accomodations = new ArrayList<AccomodationSoap>();
+		
+		for(int i = 0; i < accomondationRepository.findAll().size(); i++) {
+			
+			AccomodationSoap a = new AccomodationSoap();
+			a.setId(accomondationRepository.findAll().get(i).getId());
+			a.setName(accomondationRepository.findAll().get(i).getName());
+			a.setAddress(accomondationRepository.findAll().get(i).getAddress());
+			
+			accomodations.add(a);
+			
+		}
+		
+		response.setAccomodationsList(accomodations);
 		
 		return response;
 	}

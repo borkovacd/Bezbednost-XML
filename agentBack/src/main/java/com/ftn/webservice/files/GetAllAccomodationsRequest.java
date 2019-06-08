@@ -10,6 +10,7 @@ package com.ftn.webservice.files;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="deleteAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="getAccomodationsList" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,27 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "deleteAccomodationId"
+    "getAccomodationsList"
 })
-@XmlRootElement(name = "DeleteAccomodationRequest")
-public class DeleteAccomodationRequest {
+@XmlRootElement(name = "GetAllAccomodationsRequest")
+public class GetAllAccomodationsRequest {
 
-    protected long deleteAccomodationId;
+    @XmlElement(required = true)
+    protected String getAccomodationsList;
 
     /**
-     * Gets the value of the deleteAccomodationId property.
+     * Gets the value of the getAccomodationsList property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public long getDeleteAccomodationId() {
-        return deleteAccomodationId;
+    public String getGetAccomodationsList() {
+        return getAccomodationsList;
     }
 
     /**
-     * Sets the value of the deleteAccomodationId property.
+     * Sets the value of the getAccomodationsList property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setDeleteAccomodationId(long value) {
-        this.deleteAccomodationId = value;
+    public void setGetAccomodationsList(String value) {
+        this.getAccomodationsList = value;
     }
 
 }

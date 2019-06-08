@@ -1,6 +1,7 @@
 package com.ftn.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import com.ftn.webservice.files.CategorySoap;
 import com.ftn.webservice.files.CitySoap;
 import com.ftn.webservice.files.DeleteAccomodationRequest;
 import com.ftn.webservice.files.DeleteAccomodationResponse;
+import com.ftn.webservice.files.GetAllAccomodationsRequest;
+import com.ftn.webservice.files.GetAllAccomodationsResponse;
 import com.ftn.webservice.files.RegisterAccomodationRequest;
 import com.ftn.webservice.files.RegisterAccomodationResponse;
 import com.ftn.webservice.files.TypeAccomodationSoap;
@@ -102,8 +105,28 @@ public class AccomodationService {
 	}
 
 	public ArrayList<Accomodation> getAllAccomodation() {
+		
+		GetAllAccomodationsRequest request = new GetAllAccomodationsRequest();
+		request.setGetAccomodationsList("GetAllAccomodations");
+		
+		GetAllAccomodationsResponse response = (GetAllAccomodationsResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		List<Accomodation> accomodations = new ArrayList<Accomodation>();
+		
+		for(int i = 0; i < response.getAccomodationsList().size(); i++) {
+			
+			Accomodation a = new Accomodation();
+			a.setId(response.getAccomodationsList().get(i).getId());
+			a.setName(response.getAccomodationsList().get(i).getName());
+			a.setAddress(response.getAccomodationsList().get(i).getAddress());
+			
+			accomodations.add(a);
+			
+		}
+		
 
-		return (ArrayList<Accomodation>) accomodationRepository.findAll();
+		return (ArrayList<Accomodation>) accomodations;
 	}
 
 	public Accomodation getAccomodation(Long id) {
