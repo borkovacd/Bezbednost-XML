@@ -6,17 +6,20 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.ftn.model.Accomodation;
 import com.ftn.repository.AccomondationRepository;
-import com.ftn.webservice_accomondation.Accomodation;
-import com.ftn.webservice_accomondation.RegisterAccomodationRequest;
-import com.ftn.webservice_accomondation.RegisterAccomodationResponse;
+import com.ftn.webservice.AccomodationSoap;
+import com.ftn.webservice.DeleteAccomodationRequest;
+import com.ftn.webservice.DeleteAccomodationResponse;
+import com.ftn.webservice.RegisterAccomodationRequest;
+import com.ftn.webservice.RegisterAccomodationResponse;
 
 
 
 //@Endpoint registers the class with Spring WS as a potential candidate for processing incoming SOAP messages.
 @Endpoint
 public class AccomondationEndpoint {
-	private static final String NAMESPACE_URI = "http://ftn.com/webservice-accomondation";
+	private static final String NAMESPACE_URI = "http://ftn.com/webservice";
 	
 	private AccomondationRepository accomondationRepository;
 	
@@ -35,9 +38,9 @@ public class AccomondationEndpoint {
 		
 		RegisterAccomodationResponse response = new RegisterAccomodationResponse();
 		
-		Accomodation a = request.getAccomondation();
+		AccomodationSoap a = request.getAccomondation();
 		
-		com.ftn.model.Accomodation newAccomodation = new com.ftn.model.Accomodation();
+		Accomodation newAccomodation = new Accomodation();
 		
 		newAccomodation.setName(a.getName());
 		
@@ -51,8 +54,26 @@ public class AccomondationEndpoint {
 		
 		accomondationRepository.save(newAccomodation);
 		
-		response.setResponse("Ima ih" + accomondationRepository.count());
+		
+		response.setResponse(newAccomodation.getId());
 
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "DeleteAccomodationRequest")
+	@ResponsePayload
+	public DeleteAccomodationResponse deleteAccomodation(@RequestPayload DeleteAccomodationRequest request) {
+		
+		DeleteAccomodationResponse response = new DeleteAccomodationResponse();
+		
+		Long id = request.getDeleteAccomodationId();
+		
+		Accomodation a = accomondationRepository.findOneById(id);
+		
+		response.setDeletedAccomodationId(a.getId());
+		
+		accomondationRepository.delete(a);
+		
 		return response;
 	}
 

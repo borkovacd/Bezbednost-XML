@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -22,14 +21,14 @@ public class Accomodation {
 	@Column
 	private String name;
 
-	/*@OneToOne
-	private City city;*/
+	@OneToOne
+	private City city;
 
 	@NotNull
 	@Column
 	private String address;
 
-	/*@OneToOne
+	@OneToOne
 	private TypeAccomodation typeAccomodation;
 
 	@OneToOne
@@ -48,13 +47,13 @@ public class Accomodation {
 	private List<AdditionalServices> additionalServices;
 
 	@OneToOne
-	private Agent agent;*/
+	private Agent agent;
 
 	public Accomodation() {
 
 	}
 
-	/*public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
+	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
 			TypeAccomodation typeAccomodation, Category category, String description, int capacity, String pic,
 			List<AdditionalServices> additionalServices, Agent agent) {
 		super();
@@ -69,7 +68,7 @@ public class Accomodation {
 		this.pic = pic;
 		this.additionalServices = additionalServices;
 		this.agent = agent;
-	}*/
+	}
 
 	public Long getId() {
 		return id;
@@ -87,13 +86,13 @@ public class Accomodation {
 		this.name = name;
 	}
 
-	/*public City getCity() {
+	public City getCity() {
 		return city;
 	}
 
 	public void setCity(City city) {
 		this.city = city;
-	}*/
+	}
 
 	public String getAddress() {
 		return address;
@@ -103,7 +102,7 @@ public class Accomodation {
 		this.address = address;
 	}
 
-	/*public TypeAccomodation getTypeAccomodation() {
+	public TypeAccomodation getTypeAccomodation() {
 		return typeAccomodation;
 	}
 
@@ -157,6 +156,6 @@ public class Accomodation {
 
 	public void setAdditionalServices(List<AdditionalServices> additionalServices) {
 		this.additionalServices = additionalServices;
-	}*/
+	}
 
 }

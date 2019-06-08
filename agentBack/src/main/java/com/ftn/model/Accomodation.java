@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Accomodation {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull

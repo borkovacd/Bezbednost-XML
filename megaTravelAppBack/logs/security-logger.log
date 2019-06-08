@@ -1,2 +1,1 @@
-2019-06-06 19:04:15,525 INFO com.ftn.controller.ClientController [https-jsse-nio-8443-exec-6] SECURITY_EVENT user id:1 REG_SUC,ip: 0:0:0:0:0:0:0:1
-2019-06-06 19:35:02,315 INFO com.ftn.controller.ClientController [https-jsse-nio-8443-exec-5] SECURITY_EVENT user id:15 REG_SUC,ip: 0:0:0:0:0:0:0:1
+2019-06-08 01:12:52,031 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8443-exec-10] SECURITY_EVENT Unauthorised access attempt to https://192.168.0.104:8443/ from  adress192.168.0.104

@@ -7,55 +7,87 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.model.Accomodation;
-import com.ftn.model.Category;
-import com.ftn.model.City;
-import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.AccomodationSoap;
+import com.ftn.webservice.files.AgentSoap;
+import com.ftn.webservice.files.CategorySoap;
+import com.ftn.webservice.files.CitySoap;
+import com.ftn.webservice.files.DeleteAccomodationRequest;
+import com.ftn.webservice.files.DeleteAccomodationResponse;
 import com.ftn.webservice.files.RegisterAccomodationRequest;
 import com.ftn.webservice.files.RegisterAccomodationResponse;
+import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class AccomodationService {
+	
 	@Autowired
 	private AccomodationRepository accomodationRepository;
+	
 	@Autowired
 	private SOAPConnector soapConnector;
 
-	public Accomodation create(AccomodationDTO accDTO) {
+	//Zasto bismo ovde vracali Accomodation? Zasto ne neki String odgovor ili nesto slicno zvanicnije?
+	public AccomodationSoap create(AccomodationDTO accDTO) {
+		
 		RegisterAccomodationRequest request = new RegisterAccomodationRequest();
 
-		Accomodation a = new Accomodation();
+		AccomodationSoap a = new AccomodationSoap();
 
 		a.setName(accDTO.getName());
-		City city = new City();
+		CitySoap city = new CitySoap();
 		city.setName(accDTO.getCity());
 		a.setCity(city);
 		a.setAddress(accDTO.getAddress());
-		TypeAccomodation typeAccomodation = new TypeAccomodation();
+		TypeAccomodationSoap typeAccomodation = new TypeAccomodationSoap();
 		typeAccomodation.setName(accDTO.getType());
 		a.setTypeAccomodation(typeAccomodation);
-		Category category = new Category();
+		CategorySoap category = new CategorySoap();
 		category.setName(accDTO.getCategory());
 		a.setCategory(category);
 		a.setDescription(accDTO.getDescription());
 		// a.setCapacity(accDTO.getCapacity());
 		a.setPic(accDTO.getImage());
+		AgentSoap agent = new AgentSoap();
+		//Zasto DTO nema polje za agenta?
+		//agent.setUsername(accDTO.getA);
+		//a.setAgent(value);
 
-		// OVO SAM ZAKOMENTARISALA
-		// request.setAccomondation(a);
+		
+		request.setAccomondation(a);
 
 		RegisterAccomodationResponse response = (RegisterAccomodationResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
 
 		System.out.println("Odogovor : " + response.getResponse());
+		
+		Accomodation accomodation = new Accomodation();
+		
+		
+		accomodation.setId(response.getResponse());
+		accomodation.setName(a.getName());
+		accomodation.setAddress(a.getAddress());
+		
+		accomodationRepository.save(accomodation);
+		
 		return a;
 
 	}
 
 	public Accomodation delete(Long id) {
-		Accomodation accomodation = accomodationRepository.findOneById(id);
-
+		
+		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
+		request.setDeleteAccomodationId(id);
+		
+		DeleteAccomodationResponse response = (DeleteAccomodationResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		System.out.println("Odogovor : " + response.getDeletedAccomodationId());
+		
+		Accomodation accomodation = accomodationRepository.findOneById(response.getDeletedAccomodationId());
+		accomodationRepository.delete(accomodation);
+		
 		// Ovde treba da se obrise sve sto je vezano za taj smestaj
 
 		return accomodation;
