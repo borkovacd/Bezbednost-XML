@@ -1,0 +1,3 @@
+Link za pokretanje zahteva u Postman-u:
+
+https://documenter.getpostman.com/view/6224419/S1TZxvVH?version=latest#3eb36465-8db6-4fe7-949d-8cce87727bc4
