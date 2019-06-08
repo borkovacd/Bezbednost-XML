@@ -33,6 +33,39 @@
         </xs:complexType>
     </xs:element>
     
+    <xs:element name="EditAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editAccomodationId" type="xs:long"/>
+                <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:element name="GetAllAccomodationsRequest">
         <xs:complexType>
             <xs:sequence>

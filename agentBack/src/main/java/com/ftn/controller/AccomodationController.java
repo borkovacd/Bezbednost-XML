@@ -34,10 +34,10 @@ public class AccomodationController {
 	}
 
 	@DeleteMapping("/deleteAccomodation/{id}")
-	public ResponseEntity<Accomodation> deleteAccomodation(@PathVariable Long id) {
+	public ResponseEntity<String> deleteAccomodation(@PathVariable Long id) {
 
-		Accomodation accomodation = accomodationService.delete(id);
-		return new ResponseEntity<>(accomodation, HttpStatus.OK);
+		String response = accomodationService.delete(id);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@PutMapping("/editAccomodation/{idAgent}/{id}")

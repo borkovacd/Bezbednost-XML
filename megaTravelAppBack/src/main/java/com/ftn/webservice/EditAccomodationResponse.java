@@ -11,20 +11,21 @@ package com.ftn.webservice;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for typeAccomodationSoap complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="typeAccomodationSoap">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="editedAccomodation" type="{http://ftn.com/webservice}accomodationSoap"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,36 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "typeAccomodationSoap", propOrder = {
-    "name"
+@XmlType(name = "", propOrder = {
+    "editedAccomodation"
 })
-public class TypeAccomodationSoap {
+@XmlRootElement(name = "EditAccomodationResponse")
+public class EditAccomodationResponse {
 
     @XmlElement(required = true)
-    protected String name;
+    protected AccomodationSoap editedAccomodation;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the editedAccomodation property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link AccomodationSoap }
      *     
      */
-    public String getName() {
-        return name;
+    public AccomodationSoap getEditedAccomodation() {
+        return editedAccomodation;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the editedAccomodation property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link AccomodationSoap }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setEditedAccomodation(AccomodationSoap value) {
+        this.editedAccomodation = value;
     }
 
 }

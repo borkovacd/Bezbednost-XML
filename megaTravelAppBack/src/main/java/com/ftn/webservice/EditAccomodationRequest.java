@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="getAccomodationsList" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="editAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="editAccomodationData" type="{http://ftn.com/webservice}accomodationSoap"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +37,54 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getAccomodationsList"
+    "editAccomodationId",
+    "editAccomodationData"
 })
-@XmlRootElement(name = "GetAllAccomodationsRequest")
-public class GetAllAccomodationsRequest {
+@XmlRootElement(name = "EditAccomodationRequest")
+public class EditAccomodationRequest {
 
+    protected long editAccomodationId;
     @XmlElement(required = true)
-    protected String getAccomodationsList;
+    protected AccomodationSoap editAccomodationData;
 
     /**
-     * Gets the value of the getAccomodationsList property.
+     * Gets the value of the editAccomodationId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getGetAccomodationsList() {
-        return getAccomodationsList;
+    public long getEditAccomodationId() {
+        return editAccomodationId;
     }
 
     /**
-     * Sets the value of the getAccomodationsList property.
+     * Sets the value of the editAccomodationId property.
+     * 
+     */
+    public void setEditAccomodationId(long value) {
+        this.editAccomodationId = value;
+    }
+
+    /**
+     * Gets the value of the editAccomodationData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AccomodationSoap }
+     *     
+     */
+    public AccomodationSoap getEditAccomodationData() {
+        return editAccomodationData;
+    }
+
+    /**
+     * Sets the value of the editAccomodationData property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link AccomodationSoap }
      *     
      */
-    public void setGetAccomodationsList(String value) {
-        this.getAccomodationsList = value;
+    public void setEditAccomodationData(AccomodationSoap value) {
+        this.editAccomodationData = value;
     }
 
 }

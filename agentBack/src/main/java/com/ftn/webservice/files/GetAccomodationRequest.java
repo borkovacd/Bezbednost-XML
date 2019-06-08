@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="requestedAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,27 +35,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response"
+    "requestedAccomodationId"
 })
-@XmlRootElement(name = "RegisterAccomodationResponse")
-public class RegisterAccomodationResponse {
+@XmlRootElement(name = "GetAccomodationRequest")
+public class GetAccomodationRequest {
 
-    protected long response;
+    protected long requestedAccomodationId;
 
     /**
-     * Gets the value of the response property.
+     * Gets the value of the requestedAccomodationId property.
      * 
      */
-    public long getResponse() {
-        return response;
+    public long getRequestedAccomodationId() {
+        return requestedAccomodationId;
     }
 
     /**
-     * Sets the value of the response property.
+     * Sets the value of the requestedAccomodationId property.
      * 
      */
-    public void setResponse(long value) {
-        this.response = value;
+    public void setRequestedAccomodationId(long value) {
+        this.requestedAccomodationId = value;
     }
 
 }

@@ -15,6 +15,10 @@ import com.ftn.repository.AccomondationRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
+import com.ftn.webservice.EditAccomodationRequest;
+import com.ftn.webservice.EditAccomodationResponse;
+import com.ftn.webservice.GetAccomodationRequest;
+import com.ftn.webservice.GetAccomodationResponse;
 import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
@@ -84,13 +88,56 @@ public class AccomondationEndpoint {
 		return response;
 	}
 	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "EditAccomodationRequest")
+	@ResponsePayload
+	public EditAccomodationResponse editAccomodation(@RequestPayload EditAccomodationRequest request) {
+		
+		EditAccomodationResponse response = new EditAccomodationResponse();
+		
+		Long id = request.getEditAccomodationId();
+		AccomodationSoap newAccomodation = request.getEditAccomodationData();
+		
+		Accomodation a = accomondationRepository.findOneById(id);
+		a.setName(newAccomodation.getName());
+		a.setAddress(newAccomodation.getAddress());
+		
+		accomondationRepository.save(a);
+	
+		newAccomodation.setId(id);
+		response.setEditedAccomodation(newAccomodation);
+		
+		return response;
+	}
+	
+	
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAccomodationRequest")
+	@ResponsePayload
+	public GetAccomodationResponse getAccomodation(@RequestPayload GetAccomodationRequest request) {
+		
+		GetAccomodationResponse response = new GetAccomodationResponse();
+		
+		Long id = request.getRequestedAccomodationId();
+		
+		Accomodation requestedAccomodation = accomondationRepository.findOneById(id);
+		
+		AccomodationSoap a = new AccomodationSoap();
+		a.setId(requestedAccomodation.getId());
+		a.setName(requestedAccomodation.getName());
+		a.setAddress(requestedAccomodation.getAddress());
+		
+		response.setReturnedAccomodation(a);
+		
+		return response;
+	}
+	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllAccomodationsRequest")
 	@ResponsePayload
 	public GetAllAccomodationsResponse getAllAccomodations(@RequestPayload GetAllAccomodationsRequest request) {
 		
 		GetAllAccomodationsResponse response = new GetAllAccomodationsResponse();
 	
-		List<AccomodationSoap> accomodations = new ArrayList<AccomodationSoap>();
+		//List<AccomodationSoap> accomodations = new ArrayList<AccomodationSoap>();
 		
 		for(int i = 0; i < accomondationRepository.findAll().size(); i++) {
 			
@@ -99,11 +146,12 @@ public class AccomondationEndpoint {
 			a.setName(accomondationRepository.findAll().get(i).getName());
 			a.setAddress(accomondationRepository.findAll().get(i).getAddress());
 			
-			accomodations.add(a);
+			//accomodations.add(a);
+			response.getAccomodationsList().add(a);
 			
 		}
 		
-		response.setAccomodationsList(accomodations);
+		//response.setAccomodationsList(accomodations);
 		
 		return response;
 	}

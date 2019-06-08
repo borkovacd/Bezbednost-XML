@@ -34,6 +34,39 @@
         </xs:complexType>
     </xs:element>
     
+    <xs:element name="EditAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editAccomodationId" type="xs:long"/>
+                <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:element name="GetAllAccomodationsRequest">
         <xs:complexType>
             <xs:sequence>
@@ -111,12 +144,20 @@
     <wsdl:part element="sch:DeleteAccomodationResponse" name="DeleteAccomodationResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="EditAccomodationResponse">
+    <wsdl:part element="sch:EditAccomodationResponse" name="EditAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllAccomodationsRequest">
     <wsdl:part element="sch:GetAllAccomodationsRequest" name="GetAllAccomodationsRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="RegisterAccomodationResponse">
     <wsdl:part element="sch:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAccomodationResponse">
+    <wsdl:part element="sch:GetAccomodationResponse" name="GetAccomodationResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DeleteAccomodationRequest">
@@ -127,8 +168,16 @@
     <wsdl:part element="sch:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="EditAccomodationRequest">
+    <wsdl:part element="sch:EditAccomodationRequest" name="EditAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllAccomodationsResponse">
     <wsdl:part element="sch:GetAllAccomodationsResponse" name="GetAllAccomodationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAccomodationRequest">
+    <wsdl:part element="sch:GetAccomodationRequest" name="GetAccomodationRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
@@ -136,6 +185,12 @@
       <wsdl:input message="tns:DeleteAccomodationRequest" name="DeleteAccomodationRequest">
     </wsdl:input>
       <wsdl:output message="tns:DeleteAccomodationResponse" name="DeleteAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccomodation">
+      <wsdl:input message="tns:EditAccomodationRequest" name="EditAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:EditAccomodationResponse" name="EditAccomodationResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllAccomodations">
@@ -150,6 +205,12 @@
       <wsdl:output message="tns:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAccomodation">
+      <wsdl:input message="tns:GetAccomodationRequest" name="GetAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAccomodationResponse" name="GetAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AccomondationPortSoap11" type="tns:AccomondationPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -159,6 +220,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="DeleteAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="EditAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EditAccomodationResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -177,6 +247,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="RegisterAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAccomodationResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

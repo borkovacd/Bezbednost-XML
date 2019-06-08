@@ -16,6 +16,10 @@ import com.ftn.webservice.files.CategorySoap;
 import com.ftn.webservice.files.CitySoap;
 import com.ftn.webservice.files.DeleteAccomodationRequest;
 import com.ftn.webservice.files.DeleteAccomodationResponse;
+import com.ftn.webservice.files.EditAccomodationRequest;
+import com.ftn.webservice.files.EditAccomodationResponse;
+import com.ftn.webservice.files.GetAccomodationRequest;
+import com.ftn.webservice.files.GetAccomodationResponse;
 import com.ftn.webservice.files.GetAllAccomodationsRequest;
 import com.ftn.webservice.files.GetAllAccomodationsResponse;
 import com.ftn.webservice.files.RegisterAccomodationRequest;
@@ -31,8 +35,7 @@ public class AccomodationService {
 	@Autowired
 	private SOAPConnector soapConnector;
 
-	//Zasto bismo ovde vracali Accomodation? Zasto ne neki String odgovor ili nesto slicno zvanicnije?
-	public AccomodationSoap create(AccomodationDTO accDTO) {
+	public Accomodation create(AccomodationDTO accDTO) {
 		
 		RegisterAccomodationRequest request = new RegisterAccomodationRequest();
 
@@ -74,11 +77,11 @@ public class AccomodationService {
 		
 		accomodationRepository.save(accomodation);
 		
-		return a;
+		return accomodation;
 
 	}
 
-	public Accomodation delete(Long id) {
+	public String delete(Long id) {
 		
 		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
 		request.setDeleteAccomodationId(id);
@@ -93,13 +96,49 @@ public class AccomodationService {
 		
 		// Ovde treba da se obrise sve sto je vezano za taj smestaj
 
-		return accomodation;
+		return "Accomodation with id " + id + " successfully deleted!";
 
 	}
 
 	public Accomodation edit(Long idAgent, Long id, AccomodationDTO accDTO) {
-		Accomodation accomodation = accomodationRepository.findOneById(id);
+		
+		EditAccomodationRequest request = new EditAccomodationRequest();
+		request.setEditAccomodationId(id);
+		
+		AccomodationSoap a = new AccomodationSoap();
 
+		a.setName(accDTO.getName());
+		CitySoap city = new CitySoap();
+		city.setName(accDTO.getCity());
+		a.setCity(city);
+		a.setAddress(accDTO.getAddress());
+		TypeAccomodationSoap typeAccomodation = new TypeAccomodationSoap();
+		typeAccomodation.setName(accDTO.getType());
+		a.setTypeAccomodation(typeAccomodation);
+		CategorySoap category = new CategorySoap();
+		category.setName(accDTO.getCategory());
+		a.setCategory(category);
+		a.setDescription(accDTO.getDescription());
+		// a.setCapacity(accDTO.getCapacity());
+		a.setPic(accDTO.getImage());
+		AgentSoap agent = new AgentSoap();
+		//Zasto DTO nema polje za agenta?
+		//agent.setUsername(accDTO.getA);
+		//a.setAgent(value);
+		
+		request.setEditAccomodationData(a);
+		
+		
+		EditAccomodationResponse response = (EditAccomodationResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		Accomodation accomodation = accomodationRepository.findOneById(response.getEditedAccomodation().getId());
+		
+		accomodation.setName(response.getEditedAccomodation().getName());
+		accomodation.setAddress(response.getEditedAccomodation().getAddress());
+		
+		accomodationRepository.save(accomodation);
+		
 		return accomodation;
 
 	}
@@ -130,7 +169,17 @@ public class AccomodationService {
 	}
 
 	public Accomodation getAccomodation(Long id) {
-		return accomodationRepository.findOneById(id);
+		
+		GetAccomodationRequest request = new GetAccomodationRequest();
+		request.setRequestedAccomodationId(id);
+		
+		GetAccomodationResponse response = (GetAccomodationResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		
+		Accomodation accomodation = accomodationRepository.findOneById(response.getReturnedAccomodation().getId());
+		
+		return accomodation;
 	}
 
 }
