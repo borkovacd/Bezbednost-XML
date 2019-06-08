@@ -12,7 +12,9 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.ftn.model.Accomodation;
 import com.ftn.repository.AccomondationRepository;
+import com.ftn.repository.AdditionalServicesRepository;
 import com.ftn.webservice.AccomodationSoap;
+import com.ftn.webservice.AdditionalServicesSoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
 import com.ftn.webservice.EditAccomodationRequest;
@@ -21,6 +23,8 @@ import com.ftn.webservice.GetAccomodationRequest;
 import com.ftn.webservice.GetAccomodationResponse;
 import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
+import com.ftn.webservice.GetAllAdditionalServicesRequest;
+import com.ftn.webservice.GetAllAdditionalServicesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 
@@ -33,11 +37,15 @@ public class AccomondationEndpoint {
 	private static final String NAMESPACE_URI = "http://ftn.com/webservice";
 	
 	private AccomondationRepository accomondationRepository;
+	private AdditionalServicesRepository additionalServicesRepository;
 	
 	@Autowired
-	public AccomondationEndpoint(AccomondationRepository accomondationRepository) {
+	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository) {
 		this.accomondationRepository = accomondationRepository;
+		this.additionalServicesRepository = additionalServicesRepository;
 	}
+	
+	
 	
 	//@PayloadRoot is then used by Spring WS to pick the handler method based on the message’s 
 	//namespace and localPart.
@@ -155,6 +163,27 @@ public class AccomondationEndpoint {
 		
 		return response;
 	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllAdditionalServicesRequest")
+	@ResponsePayload
+	public GetAllAdditionalServicesResponse getAllAdditionalServices(@RequestPayload GetAllAdditionalServicesRequest request) {
+		
+		GetAllAdditionalServicesResponse response = new GetAllAdditionalServicesResponse();
+	
+		
+		for(int i = 0; i < additionalServicesRepository.findAll().size(); i++) {
+			
+			AdditionalServicesSoap a = new AdditionalServicesSoap();
+			a.setId(additionalServicesRepository.findAll().get(i).getId());
+			a.setName(additionalServicesRepository.findAll().get(i).getName());
+			
+			response.getAdditionalServicesList().add(a);
+			
+		}
+		
+		return response;
+	}
+
 
 }
 

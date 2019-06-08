@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
 import com.ftn.service.AdditionalServicesService;
 
@@ -23,7 +24,8 @@ public class AdditionalServicesController {
 	@GetMapping("/allAditionalServices")
 	public ResponseEntity<?> getAditionalSevices() {
 		
-		ArrayList<AdditionalServices> services = null;
+		ArrayList<AdditionalServices> services = additionalService.getAllAdditionalServices();
+		
 		//u tu listu treba sa glavnog back-a ubaciti sve usluge i vratiti na front 
 		return new ResponseEntity<>(services, HttpStatus.OK);
 

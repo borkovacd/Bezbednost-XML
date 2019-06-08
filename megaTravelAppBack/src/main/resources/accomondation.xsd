@@ -81,6 +81,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAdditionalServicesList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="additionalServicesList" maxOccurs="unbounded" type="tns:additionalServicesSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -136,5 +152,14 @@
             <xs:element name="mbr" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+    
+    <xs:complexType name="additionalServicesSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
     
 </xs:schema>

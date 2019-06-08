@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="accomodationsList" type="{http://ftn.com/webservice}accomodationSoap" maxOccurs="unbounded"/>
+ *         &lt;element name="additionalServicesList" type="{http://ftn.com/webservice}additionalServicesSoap" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,41 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "accomodationsList"
+    "additionalServicesList"
 })
-@XmlRootElement(name = "GetAllAccomodationsResponse")
-public class GetAllAccomodationsResponse {
+@XmlRootElement(name = "GetAllAdditionalServicesResponse")
+public class GetAllAdditionalServicesResponse {
 
     @XmlElement(required = true)
-    protected List<AccomodationSoap> accomodationsList;
+    protected List<AdditionalServicesSoap> additionalServicesList;
 
     /**
-     * Gets the value of the accomodationsList property.
+     * Gets the value of the additionalServicesList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the accomodationsList property.
+     * This is why there is not a <CODE>set</CODE> method for the additionalServicesList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAccomodationsList().add(newItem);
+     *    getAdditionalServicesList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AccomodationSoap }
+     * {@link AdditionalServicesSoap }
      * 
      * 
      */
-    public List<AccomodationSoap> getAccomodationsList() {
-        if (accomodationsList == null) {
-            accomodationsList = new ArrayList<AccomodationSoap>();
+    public List<AdditionalServicesSoap> getAdditionalServicesList() {
+        if (additionalServicesList == null) {
+            additionalServicesList = new ArrayList<AdditionalServicesSoap>();
         }
-        return this.accomodationsList;
+        return this.additionalServicesList;
     }
 
 }

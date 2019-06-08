@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="accomondation" type="{http://ftn.com/webservice}accomodationSoap"/>
+ *         &lt;element name="getAdditionalServicesList" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "accomondation"
+    "getAdditionalServicesList"
 })
-@XmlRootElement(name = "RegisterAccomodationRequest")
-public class RegisterAccomodationRequest {
+@XmlRootElement(name = "GetAllAdditionalServicesRequest")
+public class GetAllAdditionalServicesRequest {
 
     @XmlElement(required = true)
-    protected AccomodationSoap accomondation;
+    protected String getAdditionalServicesList;
 
     /**
-     * Gets the value of the accomondation property.
+     * Gets the value of the getAdditionalServicesList property.
      * 
      * @return
      *     possible object is
-     *     {@link AccomodationSoap }
+     *     {@link String }
      *     
      */
-    public AccomodationSoap getAccomondation() {
-        return accomondation;
+    public String getGetAdditionalServicesList() {
+        return getAdditionalServicesList;
     }
 
     /**
-     * Sets the value of the accomondation property.
+     * Sets the value of the getAdditionalServicesList property.
      * 
      * @param value
      *     allowed object is
-     *     {@link AccomodationSoap }
+     *     {@link String }
      *     
      */
-    public void setAccomondation(AccomodationSoap value) {
-        this.accomondation = value;
+    public void setGetAdditionalServicesList(String value) {
+        this.getAdditionalServicesList = value;
     }
 
 }
