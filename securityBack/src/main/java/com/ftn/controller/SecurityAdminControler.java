@@ -33,6 +33,7 @@ import java.util.Date;
 import com.ftn.model.SubjectSoftware;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
+import com.ftn.repository.CommunicationRelationshipRepository;
 import com.ftn.repository.SubjectSoftwareRepository;
 import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
@@ -42,6 +43,7 @@ import com.ftn.configuration.CertificateGenerator;
 import com.ftn.keystore.KeyStoreReader;
 import com.ftn.keystore.KeyStoreWriter;
 import com.ftn.model.CertificateModel;
+import com.ftn.model.CommunicationRelationship;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
 
@@ -57,6 +59,9 @@ public class SecurityAdminControler {
 
 	@Autowired
 	private SubjectSoftwareRepository repos;
+	
+	@Autowired
+	private CommunicationRelationshipRepository communicationRelationshipRepository;
 
 	@Autowired
 	private CertificateRepository certRepos;
@@ -232,19 +237,24 @@ public class SecurityAdminControler {
 
 			ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 			lanacSertifikata = (ArrayList<CertificateModel>) certRepos.findAll();
+			
+			CertificateModel cert1 = null;
+			CertificateModel cert2 = null;
 
 			for (int i = 0; i < lanacSertifikata.size(); i++) {
 				String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
 				if (userEmail.equals(string1)) {
 					CertificateModel certificate = lanacSertifikata.get(i);
+					cert1 = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
 					Date certificateEndDate = certificate.getEndDate();
 					if (current_date.after(certificateEndDate)) {
 						expired = true;
-					}
+					} 
 				}
 				if (userEmail.equals(string2)) {
 					CertificateModel certificate = lanacSertifikata.get(i);
+					cert2 = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
 					Date certificateEndDate = certificate.getEndDate();
 					if (current_date.after(certificateEndDate)) {
@@ -255,8 +265,16 @@ public class SecurityAdminControler {
 
 			if (expired == false || revoked == false) {
 				log.info("CK_SUC");
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_SUC between {} and {}", soft1.getId(),
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , "
+						+ "COMM_SUC between {} and {}", soft1.getId(),
 						soft2.getId());
+				
+				CommunicationRelationship cr = new CommunicationRelationship();
+				cr.setCertificateCommunication1(cert1);
+				cr.setCertificateCommunication2(cert2);
+				
+				communicationRelationshipRepository.save(cr);
+				
 
 				return true;
 			} else {
