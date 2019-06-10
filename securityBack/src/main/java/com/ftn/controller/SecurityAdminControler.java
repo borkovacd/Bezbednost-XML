@@ -217,14 +217,21 @@ public class SecurityAdminControler {
 	 */
 
 	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
-	public boolean checkCommunication(@PathVariable String string1, @PathVariable String string2) {
+	public Integer checkCommunication(@PathVariable String string1, @PathVariable String string2) {
 		log.debug("CK_COMM");
-		SubjectSoftware soft1 = ssService.getSoftwareByEmail(string1);
+		
+		string1 = string1.substring(1, string1.length()-1).toString();
+		
+		String email = tokenUtils.getUsernameFromToken(string1);
+		
+		SubjectSoftware soft1 = ssService.getSoftwareByEmail(email);
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
 
 		if (soft1.isHasCert() && soft2.isHasCert()) { // ako oba imaju
 														// sertifikate
-
+			
+			boolean alreadyCommunicating = false;
+			
 			boolean revoked = false;
 			boolean expired = false;
 
@@ -242,8 +249,11 @@ public class SecurityAdminControler {
 			CertificateModel cert2 = null;
 
 			for (int i = 0; i < lanacSertifikata.size(); i++) {
-				String userEmail = lanacSertifikata.get(i).getIssuerSoft().getEmail();
-				if (userEmail.equals(string1)) {
+				String userEmail = lanacSertifikata.get(i).getSubSoft().getEmail();
+				System.out.println("UserEmail: " + userEmail);
+				System.out.println("Email1: " + email);
+				System.out.println("Email2: " + soft2.getEmail());
+				if (userEmail.equals(email)) {
 					CertificateModel certificate = lanacSertifikata.get(i);
 					cert1 = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
@@ -252,7 +262,7 @@ public class SecurityAdminControler {
 						expired = true;
 					} 
 				}
-				if (userEmail.equals(string2)) {
+				if (userEmail.equals(soft2.getEmail())) {
 					CertificateModel certificate = lanacSertifikata.get(i);
 					cert2 = lanacSertifikata.get(i);
 					revoked = certificate.isRevoked();
@@ -262,31 +272,47 @@ public class SecurityAdminControler {
 					}
 				}
 			}
+			
+			ArrayList<CommunicationRelationship> communicatingList = (ArrayList<CommunicationRelationship>) communicationRelationshipRepository.findAll();
+			for (int i = 0; i < communicatingList.size(); i++) {
+				if((communicatingList.get(i).getCertificateCommunication1() == cert1 || communicatingList.get(i).getCertificateCommunication1() == cert2) 
+				  && (communicatingList.get(i).getCertificateCommunication2() == cert1 || communicatingList.get(i).getCertificateCommunication2() == cert2)) {
+					alreadyCommunicating = true;
+				}
+			
+			}
 
 			if (expired == false || revoked == false) {
-				log.info("CK_SUC");
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , "
-						+ "COMM_SUC between {} and {}", soft1.getId(),
-						soft2.getId());
 				
-				CommunicationRelationship cr = new CommunicationRelationship();
-				cr.setCertificateCommunication1(cert1);
-				cr.setCertificateCommunication2(cert2);
+				if(alreadyCommunicating == true) {
+					
+					return 0;
+					
+				} else {
+					log.info("CK_SUC");
+					log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , "
+							+ "COMM_SUC between {} and {}", soft1.getId(),
+							soft2.getId());
 				
-				communicationRelationshipRepository.save(cr);
+					CommunicationRelationship cr = new CommunicationRelationship();
+					cr.setCertificateCommunication1(cert1);
+					cr.setCertificateCommunication2(cert2);
+				
+					communicationRelationshipRepository.save(cr);
 				
 
-				return true;
+					return 1;
+				}
 			} else {
 				log.info("CK_FAIL");
-				return false;
+				return 2;
 			}
 
 		}
 		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_FAIL , CA not found between {} ", soft1.getId(),
 				soft2.getId());
 
-		return false;
+		return 2;
 
 	}
 
@@ -315,15 +341,22 @@ public class SecurityAdminControler {
 		log.info("GET_SS");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		ssList = ssService.getSoftwares();
+		
+		String etwas = email.substring(1, email.length()-1).toString();
+		
+		String emailString = tokenUtils.getUsernameFromToken(etwas);
+		
+		SubjectSoftware soft1 = ssService.getSoftwareByEmail(emailString);
 
 		ArrayList<SubjectSoftware> ssList2 = new ArrayList<SubjectSoftware>();
 
 		for (int i = 0; i < ssList.size(); i++) {
-			if (!ssList.get(i).getEmail().equals(email)) {
+			if (!ssList.get(i).getEmail().equals(emailString)) {
 				// System.out.println("1 - " + ssList.get(i).getEmail() + " 2 -
 				// " + email);
-				if (!ssList.get(i).getEmail().equals("MTRoot@gmail.com"))
+				if (!ssList.get(i).getEmail().equals("MTRoot@gmail.com") && !ssList.get(i).getEmail().contentEquals("MTAgent@gmail.com") && !ssList.get(i).getEmail().contentEquals("localhost@gmail.com")) 
 					ssList2.add(ssList.get(i));
+				
 			}
 		}
 

@@ -45,11 +45,13 @@ export class SoftwareComponent implements  OnInit {
 
   communicate(): any {
 
-    this.data.checkCommunication(this.user.email, this.city.value).subscribe(res => {
-        if (res == true) {
-          alert("Uspesna komunikacija!");
-        } else {
-          alert("Neuspesna komunikacija!");
+    this.data.checkCommunication(localStorage.getItem('loggedUser'), this.city.value).subscribe(res => {
+        if (res == 0) {
+          alert("Omogucena komunikacija");
+        } else if (res == 1) {
+          alert("Uspesno ste omogucili komunikaciju");
+        } else if (res == 2) {
+          alert("Nije moguce ostvariti komunikaciju");
         }
       });
   }

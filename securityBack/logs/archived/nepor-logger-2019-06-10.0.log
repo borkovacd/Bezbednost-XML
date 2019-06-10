@@ -1,0 +1,27 @@
+2019-06-10 23:38:02,687 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:38:15,426 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-10 23:38:15,918 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:38:35,958 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT7 CRE_CA id:4 
+2019-06-10 23:38:36,383 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:39:00,376 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:42:43,006 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:42:56,674 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-10 23:42:57,103 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:43:18,217 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT7 CRE_CA id:4 
+2019-06-10 23:43:18,676 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:43:32,376 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:43:43,722 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT , COMM_SUC between 7 and 5
+2019-06-10 23:48:34,117 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:48:44,727 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-10 23:48:45,207 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:49:02,407 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT7 CRE_CA id:4 
+2019-06-10 23:49:02,823 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:49:20,140 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:49:30,057 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT , COMM_SUC between 7 and 5
+2019-06-10 23:53:08,307 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:53:19,891 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-10 23:53:20,341 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:53:44,241 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT7 CRE_CA id:4 
+2019-06-10 23:53:44,679 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-10 23:53:52,027 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-10 23:54:06,616 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT , COMM_SUC between 7 and 5

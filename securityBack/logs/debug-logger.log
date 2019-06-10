@@ -1,27 +1,65 @@
-2019-06-09 16:08:44,907 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
-2019-06-09 16:08:47,098 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 16:08:47,106 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 16:08:47,107 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2019-06-09 16:49:21,814 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
-2019-06-09 16:49:23,364 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 16:49:23,365 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 16:49:23,365 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2019-06-09 18:31:57,482 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
-2019-06-09 18:31:59,590 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 18:31:59,590 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
-2019-06-09 18:31:59,590 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2019-06-09 18:32:50,896 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOG
-2019-06-09 18:33:37,591 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] LOG
-2019-06-09 18:33:55,627 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOG
-2019-06-09 18:35:33,630 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOG
-2019-06-09 18:48:03,730 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SS
-2019-06-09 18:48:12,572 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CRE_CA
-2019-06-09 18:48:41,658 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOG
-2019-06-09 18:48:43,927 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SS
-2019-06-09 18:48:50,090 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CRE_CA
-2019-06-09 18:49:33,697 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOG
-2019-06-09 18:50:05,657 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOG
-2019-06-09 18:51:27,201 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CK_COMM
-2019-06-09 18:51:56,844 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] CK_COMM
-2019-06-09 18:54:54,415 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOG
-2019-06-09 18:55:19,357 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CK_COMM
+2019-06-11 00:00:28,849 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:00:30,552 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:00:30,554 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:00:30,554 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:01:21,587 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOG
+2019-06-11 00:01:22,924 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-11 00:01:29,282 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CRE_CA
+2019-06-11 00:01:37,010 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] LOG
+2019-06-11 00:01:38,150 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SS
+2019-06-11 00:01:46,358 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CRE_CA
+2019-06-11 00:01:54,549 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] LOG
+2019-06-11 00:01:55,729 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SS
+2019-06-11 00:02:04,214 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CK_COMM
+2019-06-11 00:23:52,536 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:23:53,751 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:23:53,751 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:23:53,751 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:26:54,932 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOG
+2019-06-11 00:26:56,477 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SS
+2019-06-11 00:27:04,552 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CRE_CA
+2019-06-11 00:27:14,431 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SS
+2019-06-11 00:27:22,693 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] CRE_CA
+2019-06-11 00:27:32,180 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] LOG
+2019-06-11 00:27:41,275 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CK_COMM
+2019-06-11 00:32:11,710 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:32:12,961 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:32:12,961 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:32:12,961 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:33:53,679 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] LOG
+2019-06-11 00:33:55,245 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-11 00:34:01,002 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CRE_CA
+2019-06-11 00:34:10,606 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SS
+2019-06-11 00:34:16,827 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] CRE_CA
+2019-06-11 00:34:27,480 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOG
+2019-06-11 00:34:28,718 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SS
+2019-06-11 00:34:40,920 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CK_COMM
+2019-06-11 00:34:49,734 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CK_COMM
+2019-06-11 00:34:53,778 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] CK_COMM
+2019-06-11 00:34:57,472 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CK_COMM
+2019-06-11 00:36:33,815 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] CK_COMM
+2019-06-11 00:43:38,136 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:43:39,407 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:43:39,407 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:43:39,407 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:46:07,936 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:46:09,388 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:46:09,389 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:46:09,389 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:47:00,671 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOG
+2019-06-11 00:47:02,538 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-11 00:47:10,251 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CRE_CA
+2019-06-11 00:47:17,998 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SS
+2019-06-11 00:47:25,146 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] CRE_CA
+2019-06-11 00:47:36,670 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] LOG
+2019-06-11 00:47:37,989 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-11 00:47:51,232 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CK_COMM
+2019-06-11 00:47:53,931 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CK_COMM
+2019-06-11 00:48:39,527 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:48:40,955 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:48:40,956 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:48:40,957 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:49:13,117 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOG
+2019-06-11 00:49:22,827 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] CK_COMM
+2019-06-11 00:50:20,017 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] LOG
+2019-06-11 00:52:00,618 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOG

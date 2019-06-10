@@ -24,7 +24,7 @@ export class SecurityService {
   }
 
   getAllSubjectSoftwares(email: string): Observable<AllSubjectSoftwareModel[]> {
-    return this.http.get<AllSubjectSoftwareModel[]>(`${this.BASE_URL}/getAllSubjectSoftwares/` + email, httpOptions);
+    return this.http.get<AllSubjectSoftwareModel[]>(`${this.BASE_URL}/getAllSubjectSoftwares/` + localStorage.getItem('loggedUser'), httpOptions);
   }
 
 
