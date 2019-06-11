@@ -24,7 +24,7 @@ public class Response implements Serializable{
 	private Agent sender;
 	
 	@OneToOne
-	private User recipient;
+	private Client recipient;
 	
 	private String text;
 
@@ -33,7 +33,7 @@ public class Response implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Response(Long id, Agent sender, User recipient, String text) {
+	public Response(Long id, Agent sender, Client recipient, String text) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -57,11 +57,11 @@ public class Response implements Serializable{
 		this.sender = sender;
 	}
 
-	public User getRecipient() {
+	public Client getRecipient() {
 		return recipient;
 	}
 
-	public void setRecipient(User recipient) {
+	public void setRecipient(Client recipient) {
 		this.recipient = recipient;
 	}
 

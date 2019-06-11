@@ -22,7 +22,7 @@ public class Message implements Serializable {
 	private Long id;
 
 	@OneToOne
-	private User sender;
+	private Client sender;
 
 	@OneToOne
 	private Agent recipient;
@@ -44,7 +44,7 @@ public class Message implements Serializable {
 	
 	
 	
-	public Message(Long id, User sender, Agent recipient, Response response, Long idCore, String text) {
+	public Message(Long id, Client sender, Agent recipient, Response response, Long idCore, String text) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -68,12 +68,12 @@ public class Message implements Serializable {
 	}
 
 
-	public User getSender() {
+	public Client getSender() {
 		return sender;
 	}
 
 
-	public void setSender(User sender) {
+	public void setSender(Client sender) {
 		this.sender = sender;
 	}
 

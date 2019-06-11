@@ -5,21 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
-import org.hibernate.validator.constraints.Email;
 
 @Entity
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "user")
-public class User{
-
+public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -33,12 +22,11 @@ public class User{
 	private String password;
 
 	@Column(nullable = false)
-	@Email
 	private String email;
 	
 	private String type;
 
-	public User(String username, String password, String email, String type) {
+	public Client(String username, String password, String email, String type) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -46,7 +34,7 @@ public class User{
 		this.type=type;
 	}
 
-	public User() {
+	public Client() {
 	}
 
 	public Long getId() {
@@ -88,5 +76,4 @@ public class User{
 	public void setType(String type) {
 		this.type = type;
 	}
-
 }

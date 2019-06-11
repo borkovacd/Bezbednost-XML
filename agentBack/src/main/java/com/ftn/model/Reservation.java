@@ -25,11 +25,11 @@ public class Reservation {
 	private Period period;
 
 	@ManyToOne
-	private User user;
+	private Client user;
 
 	private boolean confirmed = false;
 
-	public Reservation(Period period, User user) {
+	public Reservation(Period period, Client user) {
 		super();
 		this.period = period;
 		this.user = user;
@@ -55,11 +55,11 @@ public class Reservation {
 		this.period = period;
 	}
 
-	public User getUser() {
+	public Client getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Client user) {
 		this.user = user;
 	}
 
