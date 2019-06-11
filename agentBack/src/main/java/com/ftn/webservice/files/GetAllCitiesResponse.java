@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="additionalServicesList" type="{http://ftn.com/webservice}additionalServicesSoap" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="citieslist" type="{http://ftn.com/webservice}citySoap" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,41 +39,68 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "additionalServicesList"
+    "response",
+    "citieslist"
 })
-@XmlRootElement(name = "GetAllAdditionalServicesResponse")
-public class GetAllAdditionalServicesResponse {
+@XmlRootElement(name = "GetAllCitiesResponse")
+public class GetAllCitiesResponse {
 
     @XmlElement(required = true)
-    protected List<AdditionalServicesSoap> additionalServicesList;
+    protected String response;
+    @XmlElement(required = true)
+    protected List<CitySoap> citieslist;
 
     /**
-     * Gets the value of the additionalServicesList property.
+     * Gets the value of the response property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getResponse() {
+        return response;
+    }
+
+    /**
+     * Sets the value of the response property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setResponse(String value) {
+        this.response = value;
+    }
+
+    /**
+     * Gets the value of the citieslist property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the additionalServicesList property.
+     * This is why there is not a <CODE>set</CODE> method for the citieslist property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAdditionalServicesList().add(newItem);
+     *    getCitieslist().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AdditionalServicesSoap }
+     * {@link CitySoap }
      * 
      * 
      */
-    public List<AdditionalServicesSoap> getAdditionalServicesList() {
-        if (additionalServicesList == null) {
-            additionalServicesList = new ArrayList<AdditionalServicesSoap>();
+    public List<CitySoap> getCitieslist() {
+        if (citieslist == null) {
+            citieslist = new ArrayList<CitySoap>();
         }
-        return this.additionalServicesList;
+        return this.citieslist;
     }
 
 }

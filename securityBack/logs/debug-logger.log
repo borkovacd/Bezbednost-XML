@@ -63,3 +63,25 @@
 2019-06-11 00:49:22,827 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] CK_COMM
 2019-06-11 00:50:20,017 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] LOG
 2019-06-11 00:52:00,618 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOG
+2019-06-11 00:53:16,096 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-11 00:53:17,752 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:53:17,753 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-11 00:53:17,753 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-11 00:55:00,806 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOG
+2019-06-11 00:55:25,077 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CK_COMM
+2019-06-11 00:55:27,968 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CK_COMM
+2019-06-11 00:55:40,154 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] LOG
+2019-06-11 00:55:41,613 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SS
+2019-06-11 00:55:48,555 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CRE_CA
+2019-06-11 00:56:12,617 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOG
+2019-06-11 00:56:16,064 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] SS
+2019-06-11 00:56:22,454 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CRE_CA
+2019-06-11 00:56:31,674 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOG
+2019-06-11 00:56:39,125 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CK_COMM
+2019-06-11 00:56:42,316 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CK_COMM
+2019-06-11 00:56:45,026 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] CK_COMM
+2019-06-11 00:56:59,660 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SS
+2019-06-11 00:57:05,391 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CRE_CA
+2019-06-11 00:57:15,767 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CK_COMM
+2019-06-11 02:26:40,480 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] LOG
+2019-06-11 02:26:43,224 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SS

@@ -97,6 +97,23 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllCitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="citieslist" maxOccurs="unbounded" type="tns:citySoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -119,6 +136,7 @@
     
     <xs:complexType name="citySoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="country" type="tns:countrySoap"/>
         </xs:sequence>
@@ -126,18 +144,21 @@
     
     <xs:complexType name="countrySoap">
         <xs:sequence>
+      	    <xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
     <xs:complexType name="typeAccomodationSoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
      <xs:complexType name="categorySoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>

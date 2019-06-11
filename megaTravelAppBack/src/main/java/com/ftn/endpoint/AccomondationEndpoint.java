@@ -11,10 +11,18 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.ftn.model.Accomodation;
+import com.ftn.model.Category;
+import com.ftn.model.City;
+import com.ftn.model.Country;
 import com.ftn.repository.AccomondationRepository;
 import com.ftn.repository.AdditionalServicesRepository;
+import com.ftn.repository.CategoryRepository;
+import com.ftn.repository.CityRepository;
+import com.ftn.repository.CountryRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.AdditionalServicesSoap;
+import com.ftn.webservice.CitySoap;
+import com.ftn.webservice.CountrySoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
 import com.ftn.webservice.EditAccomodationRequest;
@@ -25,6 +33,8 @@ import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.GetAllAdditionalServicesRequest;
 import com.ftn.webservice.GetAllAdditionalServicesResponse;
+import com.ftn.webservice.GetAllCitiesRequest;
+import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 
@@ -38,11 +48,18 @@ public class AccomondationEndpoint {
 	
 	private AccomondationRepository accomondationRepository;
 	private AdditionalServicesRepository additionalServicesRepository;
+	private CityRepository cityRepository;
+	private CategoryRepository categoryRepository;
+	private CountryRepository countryRepository;
 	
 	@Autowired
-	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository) {
+	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
+			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
+		this.cityRepository = cityRepository;
+		this.categoryRepository = categoryRepository;
+		this.countryRepository = countryRepository;
 	}
 	
 	
@@ -63,12 +80,17 @@ public class AccomondationEndpoint {
 		
 		newAccomodation.setName(a.getName());
 		
-		/*com.ftn.model.City newCity = new com.ftn.model.City();
+		City newCity = new City();
 		newCity.setName(a.getCity().getName());
-		newAccomodation.setCity(newCity);*/
+		cityRepository.save(newCity);
+		newAccomodation.setCity(newCity);
 		
 		newAccomodation.setAddress(a.getAddress());
-		//newAccomodation.setDescription(a.getDescription());
+		newAccomodation.setDescription(a.getDescription());
+		
+		Category newCategory = new Category();
+		newCategory.setName(a.getCategory().getName());
+		categoryRepository.save(newCategory);
 		
 		
 		accomondationRepository.save(newAccomodation);
@@ -145,8 +167,6 @@ public class AccomondationEndpoint {
 		
 		GetAllAccomodationsResponse response = new GetAllAccomodationsResponse();
 	
-		//List<AccomodationSoap> accomodations = new ArrayList<AccomodationSoap>();
-		
 		for(int i = 0; i < accomondationRepository.findAll().size(); i++) {
 			
 			AccomodationSoap a = new AccomodationSoap();
@@ -154,12 +174,9 @@ public class AccomondationEndpoint {
 			a.setName(accomondationRepository.findAll().get(i).getName());
 			a.setAddress(accomondationRepository.findAll().get(i).getAddress());
 			
-			//accomodations.add(a);
 			response.getAccomodationsList().add(a);
 			
 		}
-		
-		//response.setAccomodationsList(accomodations);
 		
 		return response;
 	}
@@ -178,6 +195,41 @@ public class AccomondationEndpoint {
 			a.setName(additionalServicesRepository.findAll().get(i).getName());
 			
 			response.getAdditionalServicesList().add(a);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllCitiesRequest")
+	@ResponsePayload
+	public GetAllCitiesResponse getAllCities(@RequestPayload GetAllCitiesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllCitiesResponse response = new GetAllCitiesResponse();
+	
+		for(int i = 0; i < cityRepository.findAll().size(); i++) {
+			
+			CitySoap c = new CitySoap();
+			c.setId(cityRepository.findAll().get(i).getId());
+			c.setName(cityRepository.findAll().get(i).getName());
+			
+			//Prinudno cuvanje Country
+			//dok se ne odradi prosledjivanje sa admina na agenta
+			Country newCountry = new Country();
+			newCountry.setName(cityRepository.findAll().get(i).getCountry().getName());
+			countryRepository.save(newCountry); //!
+			CountrySoap cs = new CountrySoap();
+			cs.setName(newCountry.getName());
+			cs.setId(newCountry.getId());
+			
+			c.setCountry(cs);
+			
+			response.getCitieslist().add(c);
 			
 		}
 		

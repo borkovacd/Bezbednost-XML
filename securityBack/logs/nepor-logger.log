@@ -33,3 +33,19 @@
 2019-06-11 00:49:22,855 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT , COMM_FAIL , CA not found between 7 
 2019-06-11 00:50:20,226 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
 2019-06-11 00:52:00,826 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-11 00:55:01,150 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-11 00:55:25,089 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT , COMM_FAIL , CA not found between 7 
+2019-06-11 00:55:27,977 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT , COMM_FAIL , CA not found between 7 
+2019-06-11 00:55:40,381 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-11 00:55:50,354 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT5 CRE_CA id:4 
+2019-06-11 00:55:50,864 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-11 00:56:12,831 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user id:9 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-11 00:56:23,182 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT7 CRE_CA id:5 
+2019-06-11 00:56:23,672 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-11 00:56:31,895 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:11 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-11 00:56:39,143 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT , COMM_SUC between 7 and 5
+2019-06-11 00:56:42,322 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT , COMM_FAIL , CA not found between 7 
+2019-06-11 00:57:05,894 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT6 CRE_CA id:7 
+2019-06-11 00:57:06,339 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MegaTravelBoston@gmail.com CA 
+2019-06-11 00:57:15,783 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT , COMM_SUC between 7 and 6
+2019-06-11 02:26:40,720 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:8 LOG_SUC, ip 0:0:0:0:0:0:0:1

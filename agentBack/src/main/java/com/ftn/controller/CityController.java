@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.model.AdditionalServices;
 import com.ftn.model.City;
 import com.ftn.service.CityService;
 
@@ -20,9 +22,10 @@ public class CityController {
 
 	@GetMapping("/getAllCities")
 	public ResponseEntity<List<City>> getCity() {
-		List<City> list = null;
-		//isto i za gradove
-		return new ResponseEntity<List<City>>(list, HttpStatus.OK);
+		
+		ArrayList<City> cities = (ArrayList<City>) cityService.getAllCities();
+		
+		return new ResponseEntity<List<City>>(cities, HttpStatus.OK);
 	}
 
 }
