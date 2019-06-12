@@ -7,6 +7,7 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AppRoutingModule} from './аpp-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { UiModule } from './ui/ui.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
 
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { AppPage } from './app.po';
+import {expect} from 'jasmine';
+import {describe} from 'jasmine';
 
 describe('client-xml App', () => {
   let page: AppPage;

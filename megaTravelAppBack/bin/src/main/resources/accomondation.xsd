@@ -1,10 +1,10 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ftn.com/webservice-accomondation"
-           targetNamespace="http://ftn.com/webservice-accomondation" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ftn.com/webservice"
+           targetNamespace="http://ftn.com/webservice" elementFormDefault="qualified">
 
     <xs:element name="RegisterAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="accomondation" type="tns:accomodation"/>
+                <xs:element name="accomondation" type="tns:accomodationSoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -12,21 +12,121 @@
     <xs:element name="RegisterAccomodationResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="response" type="xs:string"/>
+                <xs:element name="response" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deleteAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deletedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editAccomodationId" type="xs:long"/>
+                <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAccomodationsList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomodationsList" maxOccurs="unbounded" type="tns:accomodationSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAdditionalServicesList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="additionalServicesList" maxOccurs="unbounded" type="tns:additionalServicesSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="citieslist" maxOccurs="unbounded" type="tns:citySoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="accomodation">
+    <xs:complexType name="accomodationSoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="city" type="tns:city"/>
+            <xs:element name="city"  type="tns:citySoap"/>
             <xs:element name="address" type="xs:string"/>
-            <xs:element name="typeAccomodation" type="tns:typeAccomodation"/>
-            <xs:element name="category" type="tns:category"/>
+            <xs:element name="typeAccomodation" type="tns:typeAccomodationSoap"/>
+            <xs:element name="category" type="tns:categorySoap"/>
             <xs:element name="description" type="xs:string"/>
             <xs:element name="capacity" type="xs:int"/>
             <xs:element name="pic" type="xs:string"/>
+            <xs:element name="agent" type="tns:agentSoap"/>
             
             <!-- lista dodatnih usluga -->    
             <!-- agent -->  
@@ -34,31 +134,53 @@
         </xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="city">
+    <xs:complexType name="citySoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="country" type="tns:country"/>
+            <xs:element name="country" type="tns:countrySoap"/>
         </xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="country">
+    <xs:complexType name="countrySoap">
         <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-    
-    <xs:complexType name="typeAccomodation">
-        <xs:sequence>
+      	    <xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
-     <xs:complexType name="category">
+    <xs:complexType name="typeAccomodationSoap">
         <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="categorySoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="agentSoap">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="mbr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="additionalServicesSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
     
-
+    
 </xs:schema>
