@@ -405,7 +405,7 @@ public class SecurityAdminControler {
 
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
 	public ArrayList<CertificateModel> getAllCeritificates() {
 		

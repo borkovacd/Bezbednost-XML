@@ -26,3 +26,26 @@
 2019-06-11 00:56:31,895 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:11 LOG_SUC ,ip 0:0:0:0:0:0:0:1
 2019-06-11 00:57:05,894 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT 6 CRE_CA id: 7 
 2019-06-11 02:26:40,719 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 15:03:26,080 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 15:03:36,040 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-8] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-13 15:03:56,391 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-13 15:04:08,290 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-6] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-13 15:37:53,223 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-1] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-13 15:44:21,075 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-7] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-13 15:44:49,129 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 15:47:59,374 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-10] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-13 16:49:19,783 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 16:49:37,847 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-13 16:56:24,532 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 16:56:33,153 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-13 16:59:46,867 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 16:59:55,228 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-13 17:08:11,517 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 17:08:27,386 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-13 17:08:59,862 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT 7 CRE_CA id: 4 
+2019-06-13 17:09:39,536 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT user id:11 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 17:09:53,747 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT 6 CRE_CA id: 7 
+2019-06-13 17:10:14,028 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 17:10:54,807 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:11 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 17:11:30,619 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT user id:10 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-13 17:27:01,893 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1

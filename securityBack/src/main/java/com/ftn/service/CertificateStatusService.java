@@ -1,5 +1,7 @@
 package com.ftn.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,30 @@ public class CertificateStatusService {
 		
 		certificat.setRevoked(true);
 		certRepository.save(certificat);
+		
+		List<CertificateModel> allCertificate = certRepository.findAll();
+		
+		for(CertificateModel cert : allCertificate){
+			if(cert.getIssuerSoft().getId() == ss.getId()){
+				System.out.println(""+ss.getId() + ", "+cert.getIssuerSoft().getId());
+				cert.setRevoked(true);
+				
+				CertificateStatus novi1 = new CertificateStatus();
+				novi1.setMessage("Issuer's certificate has been revoked.");
+				novi1.setSerijskiBroj(serialNumber);
+				novi1.setStatus(true);
+				certStatRepository.save(novi1);
+				
+				String email1 = cert.getSubSoft().getEmail();
+				
+				SubjectSoftware s = subSoftRep.findByEmail(email1);
+				
+				s.setHasCert(false);
+				
+				subSoftRep.save(s);
+				
+			}
+		}
 		return true;
 	}
 }

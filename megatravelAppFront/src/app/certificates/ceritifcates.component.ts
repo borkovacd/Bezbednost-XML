@@ -24,6 +24,7 @@ export class CeritifcatesComponent implements OnInit {
   visibleMessage: boolean;
   public form: FormGroup;
   public message: AbstractControl;
+  serialN: any;
 
   constructor(protected router: Router,
               private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
@@ -50,6 +51,7 @@ export class CeritifcatesComponent implements OnInit {
   revoke(serialNumber: any){
 
     this.visibleMessage=true;
+    this.serialN = serialNumber;
   }
   potvrdiPovlacenje(serialNumber: any){
 

@@ -17,8 +17,8 @@
       <label>Status: <b> {{getStatus(myCert.revoked)}} </b> </label><br>
       <button *ngIf="!myCert.revoked" class="btn btn-dark" (click)="revoke(myCert.serialNumber)">Povuci</button>
       <br>
-      <form [formGroup]="form">
-        <label *ngIf = "visibleMessage== true" style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>
+      <form  *ngIf = "visibleMessage== true && myCert.serialNumber == serialN " [formGroup]="form">
+        <label style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>
         <select [formControl]="message" id="myMessage" name="message" *ngIf = "visibleMessage== true" class="form-control margin "  style="margin-bottom: 30px;width: 100%;">
           <option>Ukraden PKI</option>
           <option>Izgubljen PKI</option>
@@ -41,8 +41,8 @@
       <label>Status: <b> {{getStatus(cert.revoked)}} </b> </label><br>
       <button *ngIf="!cert.revoked" class="btn btn-dark" (click)="revoke(cert.serialNumber)">Povuci</button>
       <br>
-      <form [formGroup]="form">
-      <label *ngIf = "visibleMessage== true" style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>
+      <form *ngIf = "visibleMessage== true && cert.serialNumber == serialN "[formGroup]="form">
+      <label  style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>
       <select [formControl]="message" id="message" name="message" *ngIf = "visibleMessage== true" class="form-control margin "  style="margin-bottom: 30px;width: 100%;">
         <option>Ukraden PKI</option>
         <option>Izgubljen PKI</option>
