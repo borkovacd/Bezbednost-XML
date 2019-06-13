@@ -1,6 +1,0 @@
-2019-06-13 15:39:49,675 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 6544 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack)
-2019-06-13 15:39:49,694 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-13 15:40:05,642 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 16.521 seconds (JVM running for 18.244)
-2019-06-13 15:51:35,950 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 15300 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack)
-2019-06-13 15:51:35,959 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-13 15:51:43,034 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 7.575 seconds (JVM running for 8.621)
