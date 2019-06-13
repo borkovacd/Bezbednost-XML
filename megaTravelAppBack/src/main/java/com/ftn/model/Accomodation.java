@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Accomodation {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -38,13 +40,13 @@ public class Accomodation {
 	private String description;
 
 	@Column
-	private int capacity;
-
-	@Column
 	private String pic;
 
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
+
+	@ManyToOne(targetEntity = Room.class)
+	private List<Room> rooms;
 
 	@OneToOne
 	private Agent agent;
@@ -54,8 +56,8 @@ public class Accomodation {
 	}
 
 	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
-			TypeAccomodation typeAccomodation, Category category, String description, int capacity, String pic,
-			List<AdditionalServices> additionalServices, Agent agent) {
+			TypeAccomodation typeAccomodation, Category category, String description, String pic,
+			List<AdditionalServices> additionalServices, List<Room> rooms, Agent agent) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,9 +66,9 @@ public class Accomodation {
 		this.typeAccomodation = typeAccomodation;
 		this.category = category;
 		this.description = description;
-		this.capacity = capacity;
 		this.pic = pic;
 		this.additionalServices = additionalServices;
+		this.rooms = rooms;
 		this.agent = agent;
 	}
 
@@ -126,14 +128,6 @@ public class Accomodation {
 		this.description = description;
 	}
 
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
 	public String getPic() {
 		return pic;
 	}
@@ -156,6 +150,14 @@ public class Accomodation {
 
 	public void setAdditionalServices(List<AdditionalServices> additionalServices) {
 		this.additionalServices = additionalServices;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 }

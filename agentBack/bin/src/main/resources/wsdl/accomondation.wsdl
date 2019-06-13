@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ftn.com/webservice-accomondation" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ftn.com/webservice-accomondation" targetNamespace="http://ftn.com/webservice-accomondation">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ftn.com/webservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ftn.com/webservice-accomondation" targetNamespace="http://ftn.com/webservice-accomondation">
   <wsdl:types>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.com/webservice-accomondation">
+    <xs:schema xmlns:tns="http://ftn.com/webservice" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.com/webservice">
 
     <xs:element name="RegisterAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="accomondation" type="tns:accomodation"/>
+                <xs:element name="accomondation" type="tns:accomodationSoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -13,21 +13,121 @@
     <xs:element name="RegisterAccomodationResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="response" type="xs:string"/>
+                <xs:element name="response" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deleteAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deletedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editAccomodationId" type="xs:long"/>
+                <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedAccomodationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAccomodationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedAccomodation" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAccomodationsList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="accomodationsList" type="tns:accomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getAdditionalServicesList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAdditionalServicesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="additionalServicesList" type="tns:additionalServicesSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="citieslist" type="tns:citySoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="accomodation">
+    <xs:complexType name="accomodationSoap">
         <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="city" type="tns:city"/>
+            <xs:element name="city" type="tns:citySoap"/>
             <xs:element name="address" type="xs:string"/>
-            <xs:element name="typeAccomodation" type="tns:typeAccomodation"/>
-            <xs:element name="category" type="tns:category"/>
+            <xs:element name="typeAccomodation" type="tns:typeAccomodationSoap"/>
+            <xs:element name="category" type="tns:categorySoap"/>
             <xs:element name="description" type="xs:string"/>
             <xs:element name="capacity" type="xs:int"/>
             <xs:element name="pic" type="xs:string"/>
+            <xs:element name="agent" type="tns:agentSoap"/>
             
             <!-- lista dodatnih usluga -->    
             <!-- agent -->  
@@ -35,59 +135,219 @@
         </xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="city">
+    <xs:complexType name="citySoap">
         <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="country" type="tns:country"/>
+            <xs:element name="country" type="tns:countrySoap"/>
         </xs:sequence>
     </xs:complexType>
     
-    <xs:complexType name="country">
+    <xs:complexType name="countrySoap">
         <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-    
-    <xs:complexType name="typeAccomodation">
-        <xs:sequence>
+      	    <xs:element name="id" nillable="true" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
-     <xs:complexType name="category">
+    <xs:complexType name="typeAccomodationSoap">
         <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="categorySoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="agentSoap">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="mbr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="additionalServicesSoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     
     
-
+    
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="RegisterAccomodationResponse">
-    <wsdl:part element="tns:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
+  <wsdl:message name="GetAllCitiesResponse">
+    <wsdl:part element="sch:GetAllCitiesResponse" name="GetAllCitiesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAccomodationResponse">
+    <wsdl:part element="sch:GetAccomodationResponse" name="GetAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteAccomodationRequest">
+    <wsdl:part element="sch:DeleteAccomodationRequest" name="DeleteAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllCitiesRequest">
+    <wsdl:part element="sch:GetAllCitiesRequest" name="GetAllCitiesRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="RegisterAccomodationRequest">
-    <wsdl:part element="tns:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
+    <wsdl:part element="sch:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EditAccomodationRequest">
+    <wsdl:part element="sch:EditAccomodationRequest" name="EditAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationsResponse">
+    <wsdl:part element="sch:GetAllAccomodationsResponse" name="GetAllAccomodationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAdditionalServicesResponse">
+    <wsdl:part element="sch:GetAllAdditionalServicesResponse" name="GetAllAdditionalServicesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAccomodationRequest">
+    <wsdl:part element="sch:GetAccomodationRequest" name="GetAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteAccomodationResponse">
+    <wsdl:part element="sch:DeleteAccomodationResponse" name="DeleteAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EditAccomodationResponse">
+    <wsdl:part element="sch:EditAccomodationResponse" name="EditAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationsRequest">
+    <wsdl:part element="sch:GetAllAccomodationsRequest" name="GetAllAccomodationsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RegisterAccomodationResponse">
+    <wsdl:part element="sch:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAdditionalServicesRequest">
+    <wsdl:part element="sch:GetAllAdditionalServicesRequest" name="GetAllAdditionalServicesRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
+    <wsdl:operation name="GetAllCities">
+      <wsdl:input message="tns:GetAllCitiesRequest" name="GetAllCitiesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllCitiesResponse" name="GetAllCitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccomodation">
+      <wsdl:input message="tns:GetAccomodationRequest" name="GetAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAccomodationResponse" name="GetAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccomodation">
+      <wsdl:input message="tns:DeleteAccomodationRequest" name="DeleteAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:DeleteAccomodationResponse" name="DeleteAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegisterAccomodation">
       <wsdl:input message="tns:RegisterAccomodationRequest" name="RegisterAccomodationRequest">
     </wsdl:input>
       <wsdl:output message="tns:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EditAccomodation">
+      <wsdl:input message="tns:EditAccomodationRequest" name="EditAccomodationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:EditAccomodationResponse" name="EditAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodations">
+      <wsdl:input message="tns:GetAllAccomodationsRequest" name="GetAllAccomodationsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllAccomodationsResponse" name="GetAllAccomodationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAdditionalServices">
+      <wsdl:input message="tns:GetAllAdditionalServicesRequest" name="GetAllAdditionalServicesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllAdditionalServicesResponse" name="GetAllAdditionalServicesResponse">
+    </wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AccomondationPortSoap11" type="tns:AccomondationPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetAllCities">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllCitiesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllCitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegisterAccomodation">
       <soap:operation soapAction=""/>
       <wsdl:input name="RegisterAccomodationRequest">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="RegisterAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccomodation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="EditAccomodationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EditAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodations">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllAccomodationsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllAccomodationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAdditionalServices">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllAdditionalServicesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllAdditionalServicesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

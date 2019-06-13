@@ -186,7 +186,8 @@
 		<artifactId>spring-boot-maven-plugin</artifactId>
 	</plugin>
 	
-<!--  <plugin>
+<!-- WEBSERVICE FILES GENERATOR PLUGIN -->
+  <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>jaxb2-maven-plugin</artifactId>
 	<version>1.6</version>
@@ -203,7 +204,7 @@
 		<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
 		<clearOutputDir>false</clearOutputDir>
 	</configuration>
-</plugin>-->
+  </plugin>
   
 </plugins>
 </build>

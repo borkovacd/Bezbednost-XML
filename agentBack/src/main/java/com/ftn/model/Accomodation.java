@@ -35,18 +35,14 @@ public class Accomodation {
 	@Column
 	private String description;
 
-	// DRAGANE OVO OBRISI
-	@Column
-	private int capacity;
-
 	@Column
 	private String pic;
 
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
 
-	@ManyToOne
-	private List<Room> room;
+	@ManyToOne(targetEntity = Room.class)
+	private List<Room> rooms;
 
 	@OneToOne
 	private Agent agent;
@@ -56,8 +52,8 @@ public class Accomodation {
 	}
 
 	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
-			TypeAccomodation typeAccomodation, Category category, String description, int capacity, String pic,
-			List<AdditionalServices> additionalServices, List<Room> room, Agent agent) {
+			TypeAccomodation typeAccomodation, Category category, String description, String pic,
+			List<AdditionalServices> additionalServices, List<Room> rooms, Agent agent) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,10 +62,9 @@ public class Accomodation {
 		this.typeAccomodation = typeAccomodation;
 		this.category = category;
 		this.description = description;
-		this.capacity = capacity;
 		this.pic = pic;
 		this.additionalServices = additionalServices;
-		this.room = room;
+		this.rooms = rooms;
 		this.agent = agent;
 	}
 
@@ -129,14 +124,6 @@ public class Accomodation {
 		this.description = description;
 	}
 
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
 	public String getPic() {
 		return pic;
 	}
@@ -161,12 +148,12 @@ public class Accomodation {
 		this.additionalServices = additionalServices;
 	}
 
-	public List<Room> getRoom() {
-		return room;
+	public List<Room> getRooms() {
+		return rooms;
 	}
 
-	public void setRoom(List<Room> room) {
-		this.room = room;
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 }

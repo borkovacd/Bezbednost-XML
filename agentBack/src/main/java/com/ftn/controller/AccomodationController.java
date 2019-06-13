@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.model.Accomodation;
+import com.ftn.model.Room;
 import com.ftn.service.AccomodationService;
 
 @RestController
@@ -65,6 +66,14 @@ public class AccomodationController {
 		}
 
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAccomodationRooms/{id}")
+	public ResponseEntity<?> getAccomodationRooms(@PathVariable Long id) {
+
+		ArrayList<Room> rooms = accomodationService.getAllAccomodationRooms(id);
+
+		return new ResponseEntity<>(rooms, HttpStatus.OK);
 	}
 
 }

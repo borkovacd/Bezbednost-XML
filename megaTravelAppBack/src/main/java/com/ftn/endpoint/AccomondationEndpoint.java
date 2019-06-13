@@ -14,11 +14,13 @@ import com.ftn.model.Accomodation;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
+import com.ftn.model.Room;
 import com.ftn.repository.AccomondationRepository;
 import com.ftn.repository.AdditionalServicesRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
+import com.ftn.repository.RoomRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.AdditionalServicesSoap;
 import com.ftn.webservice.CitySoap;
@@ -29,6 +31,8 @@ import com.ftn.webservice.EditAccomodationRequest;
 import com.ftn.webservice.EditAccomodationResponse;
 import com.ftn.webservice.GetAccomodationRequest;
 import com.ftn.webservice.GetAccomodationResponse;
+import com.ftn.webservice.GetAccomodationRoomsRequest;
+import com.ftn.webservice.GetAccomodationRoomsResponse;
 import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.GetAllAdditionalServicesRequest;
@@ -37,6 +41,9 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
+import com.ftn.webservice.RoomSoap;
+
+import net.bytebuddy.asm.Advice.This;
 
 
 
@@ -51,15 +58,17 @@ public class AccomondationEndpoint {
 	private CityRepository cityRepository;
 	private CategoryRepository categoryRepository;
 	private CountryRepository countryRepository;
+	private RoomRepository roomRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
-			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository) {
+			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
 		this.cityRepository = cityRepository;
 		this.categoryRepository = categoryRepository;
 		this.countryRepository = countryRepository;
+		this.roomRepository = roomRepository;
 	}
 	
 	
@@ -91,7 +100,6 @@ public class AccomondationEndpoint {
 		Category newCategory = new Category();
 		newCategory.setName(a.getCategory().getName());
 		categoryRepository.save(newCategory);
-		
 		
 		accomondationRepository.save(newAccomodation);
 		
@@ -230,6 +238,37 @@ public class AccomondationEndpoint {
 			c.setCountry(cs);
 			
 			response.getCitieslist().add(c);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAccomodationRoomsRequest")
+	@ResponsePayload
+	public GetAccomodationRoomsResponse getAccomodationRooms(@RequestPayload GetAccomodationRoomsRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAccomodationRoomsResponse response = new GetAccomodationRoomsResponse();
+		
+		Accomodation requestedAccomodation = accomondationRepository.getOne(request.getAccomodationId());
+		
+		System.out.println("Accomodation : " + requestedAccomodation.getName());
+	
+		for(int i = 0; i < requestedAccomodation.getRooms().size(); i++) {
+			
+			RoomSoap rs = new RoomSoap();
+			rs.setId(requestedAccomodation.getRooms().get(i).getId());
+			rs.setCapacity(requestedAccomodation.getRooms().get(i).getCapacity());
+			rs.setFloor(requestedAccomodation.getRooms().get(i).getFloor());
+			rs.setHasBalcony(requestedAccomodation.getRooms().get(i).isHasBalcony());
+			rs.setActive(requestedAccomodation.getRooms().get(i).isActive());
+			
+			response.getRoomslist().add(rs);
 			
 		}
 		
