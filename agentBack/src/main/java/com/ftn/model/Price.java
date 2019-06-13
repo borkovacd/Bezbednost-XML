@@ -6,93 +6,63 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 
 public class Price {
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-   
-	@ManyToOne
-    private Accomodation accomodation;
+	private long id;
 
-    private String month;
-    
-    
-    private String sum;
-    
-    
-    
-    
-    public Price() {
+	@ManyToOne
+	private Room room;
+
+	private String month;
+
+	private Double price;
+
+	public Price() {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	
-
-
-	public Price(long id, Accomodation accomodation, String month, String sum) {
+	public Price(long id, Room room, String month, Double price) {
 		super();
 		this.id = id;
-		this.accomodation = accomodation;
+		this.room = room;
 		this.month = month;
-		this.sum = sum;
+		this.price = price;
 	}
-
-
-
-
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public Accomodation getAccomodation() {
-		return accomodation;
+	public Room getRoom() {
+		return room;
 	}
 
-
-	public void setAccomodation(Accomodation accomodation) {
-		this.accomodation = accomodation;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
-
 
 	public String getMonth() {
 		return month;
 	}
 
-
 	public void setMonth(String month) {
 		this.month = month;
 	}
 
-
-
-
-
-	public String getSum() {
-		return sum;
+	public Double getPrice() {
+		return price;
 	}
 
-
-
-
-
-	public void setSum(String sum) {
-		this.sum = sum;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
-	
-	
-	
-	
+
 }

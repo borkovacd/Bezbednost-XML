@@ -1,4 +1,0 @@
-2019-06-06 19:32:09,737 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 2368 (D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BEZBProj\Bezbednost-XML\megaTravelAppBack)
-2019-06-06 19:32:09,743 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-06 19:32:18,483 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 9.186 seconds (JVM running for 10.512)
-2019-06-06 19:35:02,315 INFO com.ftn.controller.ClientController [https-jsse-nio-8443-exec-5] SECURITY_EVENT user id:15 REG_SUC,ip: 0:0:0:0:0:0:0:1

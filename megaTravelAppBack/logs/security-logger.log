@@ -1,1 +1,0 @@
-2019-06-08 01:12:52,031 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8443-exec-10] SECURITY_EVENT Unauthorised access attempt to https://192.168.0.104:8443/ from  adress192.168.0.104

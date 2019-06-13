@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -36,6 +35,7 @@ public class Accomodation {
 	@Column
 	private String description;
 
+	// DRAGANE OVO OBRISI
 	@Column
 	private int capacity;
 
@@ -44,6 +44,9 @@ public class Accomodation {
 
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
+
+	@ManyToOne
+	private List<Room> room;
 
 	@OneToOne
 	private Agent agent;
@@ -54,7 +57,7 @@ public class Accomodation {
 
 	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
 			TypeAccomodation typeAccomodation, Category category, String description, int capacity, String pic,
-			List<AdditionalServices> additionalServices, Agent agent) {
+			List<AdditionalServices> additionalServices, List<Room> room, Agent agent) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,6 +69,7 @@ public class Accomodation {
 		this.capacity = capacity;
 		this.pic = pic;
 		this.additionalServices = additionalServices;
+		this.room = room;
 		this.agent = agent;
 	}
 
@@ -155,6 +159,14 @@ public class Accomodation {
 
 	public void setAdditionalServices(List<AdditionalServices> additionalServices) {
 		this.additionalServices = additionalServices;
+	}
+
+	public List<Room> getRoom() {
+		return room;
+	}
+
+	public void setRoom(List<Room> room) {
+		this.room = room;
 	}
 
 }
