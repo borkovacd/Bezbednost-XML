@@ -222,16 +222,6 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public GetAllCitiesResponse getAllCities(@RequestPayload GetAllCitiesRequest request) {
 		
-		Country temp1 = new Country();
-		temp1.setName("Srbija");
-		countryRepository.save(temp1);
-		City temp2 = new City();
-		temp2.setCountry(temp1);
-		temp2.setName("Beograd");
-		cityRepository.save(temp2);
-		
-		
-		
 		//Request poruka sa agentskog back-a
 		System.out.println("*****");
 		System.out.println(request.getRequest());
@@ -244,7 +234,7 @@ public class AccomondationEndpoint {
 			CitySoap c = new CitySoap();
 			c.setId(cityRepository.findAll().get(i).getId());
 			c.setName(cityRepository.findAll().get(i).getName());
-			Country newCountry = countryRepository.getOne(cityRepository.findAll().get(i).getId());
+			Country newCountry = countryRepository.getOne(cityRepository.findAll().get(i).getCountry().getId());
 			CountrySoap cs = new CountrySoap();
 			cs.setName(newCountry.getName());
 			cs.setId(newCountry.getId());
