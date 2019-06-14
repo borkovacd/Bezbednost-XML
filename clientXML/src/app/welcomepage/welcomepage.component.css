@@ -1,0 +1,21 @@
+.pocetna_text {
+  font-size: x-large;
+  color: white;
+  font-style: oblique;
+}
+
+.img-gradient {
+  position:relative;
+  display:inline-block;
+}
+
+
+.img-gradient-overlay { /* FF3.6+ */ /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(rgba(0,47,75,0.5) 0%, rgba(220, 66, 37, 0.5) 100%);
+  background: -o-linear-gradient(rgba(0,47,75,0.5) 0%, rgba(220, 66, 37, 0.5) 100%);
+  background: linear-gradient(rgba(0,47,75,0.5) 0%, rgba(220, 66, 37, 0.5) 100%); /* Chrome10+,Safari5.1+ */ /*
+  Opera 11.10+ */ /* IE10+ */ /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002f4b',
+  endColorstr='#0000000',GradientType=0 ); /* IE6-9 */
+  border-radius: .3rem;
+}
