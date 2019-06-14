@@ -1,3 +1,4 @@
+/*
 insert into country (id, name) values (1, "UK");
 
 insert into city (id, name,country_id) values (1, "London", 1);
@@ -24,4 +25,5 @@ insert into additional_services (id, name) values (8, "Tv");
 insert into additional_services (id, name) values (9, "Minikuhinja/kuhinja");
 insert into additional_services (id, name) values (10, "Privatno kupatilo");
 insert into additional_services (id, name) values (11, "Otkazivanje");
+*/
 

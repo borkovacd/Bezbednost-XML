@@ -11,21 +11,21 @@ package com.ftn.webservice;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for additionalServicesSoap complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="additionalServicesSoap">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,63 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "additionalServicesSoap", propOrder = {
-    "id",
-    "name"
+@XmlType(name = "", propOrder = {
+    "request"
 })
-public class AdditionalServicesSoap {
+@XmlRootElement(name = "GetAllAgentsRequest")
+public class GetAllAgentsRequest {
 
-    @XmlElement(required = true, type = Long.class, nillable = true)
-    protected Long id;
     @XmlElement(required = true)
-    protected String name;
+    protected String request;
 
     /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setId(Long value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the name property.
+     * Gets the value of the request property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getRequest() {
+        return request;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the request property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setRequest(String value) {
+        this.request = value;
     }
 
 }

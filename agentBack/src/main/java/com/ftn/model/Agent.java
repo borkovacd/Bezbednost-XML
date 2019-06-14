@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Agent {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull

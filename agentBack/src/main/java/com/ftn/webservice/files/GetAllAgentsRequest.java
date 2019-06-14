@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="editedAccomodation" type="{http://ftn.com/webservice}accomodationSoap"/&gt;
+ *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "editedAccomodation"
+    "request"
 })
-@XmlRootElement(name = "EditAccomodationResponse")
-public class EditAccomodationResponse {
+@XmlRootElement(name = "GetAllAgentsRequest")
+public class GetAllAgentsRequest {
 
     @XmlElement(required = true)
-    protected AccomodationSoap editedAccomodation;
+    protected String request;
 
     /**
-     * Gets the value of the editedAccomodation property.
+     * Gets the value of the request property.
      * 
      * @return
      *     possible object is
-     *     {@link AccomodationSoap }
+     *     {@link String }
      *     
      */
-    public AccomodationSoap getEditedAccomodation() {
-        return editedAccomodation;
+    public String getRequest() {
+        return request;
     }
 
     /**
-     * Sets the value of the editedAccomodation property.
+     * Sets the value of the request property.
      * 
      * @param value
      *     allowed object is
-     *     {@link AccomodationSoap }
+     *     {@link String }
      *     
      */
-    public void setEditedAccomodation(AccomodationSoap value) {
-        this.editedAccomodation = value;
+    public void setRequest(String value) {
+        this.request = value;
     }
 
 }
