@@ -14,6 +14,7 @@ import {CityService} from './service/city.service';
 import {CategoryService} from './service/category.service';
 import {TypeAccomodationService} from './service/typeAccomodation.service';
 import {AgentService} from './service/agent.service';
+import {LogInComponent} from './log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {AgentService} from './service/agent.service';
     WelcomepageComponent,
     AccomodationComponent,
     AddEditAccomodationComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,

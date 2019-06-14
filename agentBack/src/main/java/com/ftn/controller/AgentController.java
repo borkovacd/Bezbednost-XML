@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import com.ftn.model.Agent;
 import com.ftn.model.City;
 import com.ftn.service.AgentService;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4201")
@@ -73,4 +75,9 @@ public class AgentController {
 		
 		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 	}
+	
+	//DRAGANE OVO JE MEODA ZA LOG-IN
+	/*@PutMapping("/log-in")
+	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
+	}*/
 }

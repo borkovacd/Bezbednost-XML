@@ -1,0 +1,40 @@
+
+<div style="margin-bottom:50px;margin-right: 35%;margin-left: 35%;margin-top: 15%">
+  <div style="text-align: center;">
+    <div style=" display: inline-block;">
+      <h1 style="ng sngfont-size: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel.com</h1>
+    </div>
+
+    <div style=" display: inline-block;">
+      <h1 style="font-size: 50px;margin-bottom: 40px;color: darkturquoise">Agent </h1>
+    </div>
+
+
+  </div>
+  <form [formGroup]="form">
+
+    <div class="form-group">
+
+      <label style="margin-top: 20px">Korisnicko ime:</label>
+      <input name="username" class="form-control margin" id="input-username"
+             [formControl]="username">
+      <small class="form-text error" *ngIf="username.errors?.required && username.touched" style="color: red">
+        Korisnicko ime je obavezno!
+      </small>
+
+      <label style="margin-top: 20px">Lozinka:</label>
+      <input name="password" class="form-control margin" id="input-password" type="password"
+             [formControl]="password">
+      <small class="form-text error"  *ngIf="password.errors?.required && password.touched" style="color: red">
+        Korisnicko ime je obavezno!
+      </small>
+
+      <button class="btn btn-success" style="width: 100%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"
+              (click)="confirmClick()" [disabled]="!form.valid">Prijavi se
+      </button>
+
+
+    </div>
+  </form>
+
+</div>
