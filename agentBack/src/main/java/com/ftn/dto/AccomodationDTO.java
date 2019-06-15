@@ -1,37 +1,41 @@
 package com.ftn.dto;
 
+import java.util.ArrayList;
+
 public class AccomodationDTO {
-	private String image;
-
-	private String description;
-
-	private String capacity;
-
-	private String price;
-
-	private String type;
-
 	private String name;
 
 	private String city;
 
 	private String address;
+	
+	private String type;
 
 	private String category;
+	private String description;
 	
-	public AccomodationDTO(){
-		
+	private String pic;
+
+	
+	private ArrayList<String> list;
+
+	public AccomodationDTO() {
+
 	}
-	
+
 	
 
-	public String getImage() {
-		return image;
+	public String getPic() {
+		return pic;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
+
+
 
 	public String getDescription() {
 		return description;
@@ -41,21 +45,9 @@ public class AccomodationDTO {
 		this.description = description;
 	}
 
-	public String getCapacity() {
-		return capacity;
-	}
 
-	public void setCapacity(String capacity) {
-		this.capacity = capacity;
-	}
 
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
+	
 
 	public String getType() {
 		return type;
@@ -96,7 +88,14 @@ public class AccomodationDTO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
+	public ArrayList<String> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<String> list) {
+		this.list = list;
+	}
 	
 
 }

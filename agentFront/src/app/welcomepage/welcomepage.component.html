@@ -1,11 +1,24 @@
+<div>
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
+</div>
+
 <ul>
-  <li (click)="accomodationButton()"><a>Smestajne jedinice</a></li>
+  <li (click)="accomodationButton()"><a>Smestaj</a></li>
   <li (click)="message()"><a>Poruke</a></li>
   <li (click)="reservation()"><a>Rezervacije</a></li>
-  <li>Odjavi se</li>
+  <li (click)="communicateC()"><a>Komunikacija</a></li>
+  <li (click)="logOut()"><a>Odjavi se</a></li>
 </ul>
 
-<div>
+<div  *ngIf="communicate == true">
   <label>Posalji poruku centralnom modulu: </label>
   <input name="messageToCentral" class="form-control margin" [formControl]="messageToCentral">
   <button class="btn btn-primary" (click)="sendToCentral()">Posalji sledecu poruku poruku centralnom modulu</button>

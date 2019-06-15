@@ -5,6 +5,6 @@ export class  AccomodationModel{
               public type: string,
               public category: string,
               public description: string,
-              public capacity: any,
-              public pic: string){}
+              public pic: string,
+              public list: any,){}
 }

@@ -2,8 +2,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AccomodationModel} from "../model/accomodation.model";
-import {AccomodationService} from "../service/accomodation.service";
+import {AccomodationModel} from '../model/accomodation.model';
+import {AccomodationService} from '../service/accomodation.service';
+import {CityService} from '../service/city.service';
+import {CategoryService} from '../service/category.service';
+import {TypeAccomodationService} from '../service/typeAccomodation.service';
+import {AdditionalServicesService} from '../service/additionalServices.service';
+import {CountryService} from '../service/country.service';
 
 @Component ({
   templateUrl: './add-edit-accomodation.component.html'
@@ -18,18 +23,30 @@ export class AddEditAccomodationComponent implements OnInit{
   public type: AbstractControl;
   public category: AbstractControl;
   public description: AbstractControl;
-  public capacity: AbstractControl;
   public pic: AbstractControl;
+  public aditional: AbstractControl;
+
 
   types = []
   cities = []
-  categoris = []
+  categories = []
   services = []
+
+  listAditionalService = [];
+  values = '';
+
+  public method_name = 'DODAJ';
+
 
   constructor (protected  router: Router,
                public fb: FormBuilder,
                public route: ActivatedRoute,
-               public accService: AccomodationService,) {
+               public accService: AccomodationService,
+               public cityService: CityService,
+               public categoryService: CategoryService,
+               public typeService: TypeAccomodationService,
+               public additionalService: AdditionalServicesService,
+               public countryService: CountryService,) {
       this.form = this.fb.group({
         'name': ['', Validators.compose([Validators.required])],
         'city': [''],
@@ -37,8 +54,9 @@ export class AddEditAccomodationComponent implements OnInit{
         'type': [''],
         'category': [''],
         'description': [''],
-        'capacity': [''],
-        'pic': ['']
+        'pic': [''],
+        'aditional': ['']
+
 
       })
     this.name = this.form.controls['name'];
@@ -47,15 +65,47 @@ export class AddEditAccomodationComponent implements OnInit{
     this.type = this.form.controls['type'];
     this.category = this.form.controls['category'];
     this.description = this.form.controls['description'];
-    this.capacity = this.form.controls['capacity'];
     this.pic = this.form.controls['pic'];
+    this.aditional = this.form.controls['aditional'];
+
 
   }
   ngOnInit(){
     const mode = this.route.snapshot.params.mode;
+    this.countryService.getCountry().subscribe(data => {
+
+    })
+    this.cityService.getCities().subscribe(data =>{
+      this.cities = data;
+    })
+
+    this.categoryService.getCategory().subscribe(data => {
+      this.categories = data;
+    })
+
+    this.additionalService.getAdditionalService().subscribe(data => {
+      this.services = data.services;
+    })
+
+    this.typeService.getTypeAccomodation().subscribe(data => {
+      this.types = data;
+    })
+
+    if (mode == 'edit') {
+      this.method_name = 'IZMENI';
+    } else if (mode == 'add') {
+      this.method_name = 'DODAJ';
+    }
+  }
+  confirmClick() {
+    if (this.method_name === 'DODAJ') {
+      this.createAccomodation();
+    } else {
+      this.editAccomodatin();
+    }
   }
 
-  addAccomodation(){
+  createAccomodation(){
     const accomodation = new AccomodationModel(
       this.name.value,
       this.city.value,
@@ -63,16 +113,68 @@ export class AddEditAccomodationComponent implements OnInit{
       this.type.value,
       this.category.value,
       this.description.value,
-      this.capacity.value,
-      this.pic.value
+      this.pic.value,
+      this.listAditionalService,
+
     );
 
     this.accService.createAccomodation(accomodation).subscribe(data => {
-      this.router.navigateByUrl('' );
+      this.router.navigateByUrl('/welcomepage' );
 
     })
-
-
+  }
+  editAccomodatin(){
 
   }
-}
+  exit() {
+
+    this.router.navigateByUrl('/welcomepage');
+  }
+
+  public check = false;
+
+  addService(service: any) {
+    this.check = false;
+
+    if (this.listAditionalService.length === 0) {
+      this.listAditionalService.push(service);
+      this.values += service + '    ';
+    } else {
+
+
+      for (var i = 0; i < this.listAditionalService.length; i++) {
+
+        if (this.listAditionalService[i] == service) {
+          this.check = true;
+          break;
+        }
+      }
+
+      if (this.check == false) {
+        this.listAditionalService.push(service);
+        this.values += service + '    ';
+
+      }
+
+    }
+    console.log(this.listAditionalService)
+  }
+
+  removeService(service: any) {
+    this.check = false;
+
+
+    for (var i = 0; i < this.listAditionalService.length; i++) {
+
+      if (this.listAditionalService[i] == service) {
+        this.listAditionalService = this.listAditionalService.filter(item => item != service);
+        break;
+      }
+    }
+    this.values = '';
+    for (var i = 0; i < this.listAditionalService.length; i++) {
+      this.values += this.listAditionalService[i] + '    ';
+    }
+  }
+
+  }

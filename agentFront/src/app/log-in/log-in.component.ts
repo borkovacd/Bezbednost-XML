@@ -1,5 +1,5 @@
 
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {LogInModel} from '../model/logIn.model';
@@ -10,7 +10,7 @@ import {AgentService} from '../service/agent.service';
   styleUrls: ['./log-in.component.css']
 })
 
-export class LogInComponent {
+export class LogInComponent implements OnInit {
   public form: FormGroup;
   public username: AbstractControl;
   public password: AbstractControl;
@@ -26,13 +26,23 @@ export class LogInComponent {
     this.password = this.form.controls['password'];
 
   }
+  ngOnInit() {
+    this.agentService.getAllAgents().subscribe(data => {
+
+    })
+  }
   confirmClick() {
     const model = new LogInModel(
       this.username.value,
       this.password.value,
     );
     this.agentService.logIn(model).subscribe(data => {
-      this.router.navigateByUrl('/welcomepage');
+      if(data == null){
+        alert('Pogresna lozinka! Pokusajte ponovo.');
+      }else{
+        this.router.navigateByUrl('/welcomepage');
+
+      }
 
     })
   }

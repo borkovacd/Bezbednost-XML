@@ -56,7 +56,7 @@ public class AccomodationService {
 		category.setName(accDTO.getCategory());
 		a.setCategory(category);
 		a.setDescription(accDTO.getDescription());
-		a.setPic(accDTO.getImage());
+		a.setPic(accDTO.getPic());
 		AgentSoap agent = new AgentSoap();
 		//Zasto DTO nema polje za agenta?
 		//agent.setUsername(accDTO.getA);
@@ -122,7 +122,7 @@ public class AccomodationService {
 		a.setCategory(category);
 		a.setDescription(accDTO.getDescription());
 		// a.setCapacity(accDTO.getCapacity());
-		a.setPic(accDTO.getImage());
+		a.setPic(accDTO.getPic());
 		AgentSoap agent = new AgentSoap();
 		//Zasto DTO nema polje za agenta?
 		//agent.setUsername(accDTO.getA);

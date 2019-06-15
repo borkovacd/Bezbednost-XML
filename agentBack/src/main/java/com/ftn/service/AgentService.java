@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.repository.AgentRepository;
 import com.ftn.soapclient.SOAPConnector;
@@ -56,6 +57,22 @@ public class AgentService {
 		
 
 		return (ArrayList<Agent>) agents;
+	}
+	
+	public Agent loginAgent(AgentDTO agentDTO){
+		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
+		if (agent == null) {
+			throw new IllegalArgumentException("Agent not found!");
+		}
+
+		if (agent.getPassword().equals(agentDTO.getPassword())) {
+			//OVDE IDE SINHRONIZACIJA
+			return agent;
+		}else{
+			return null;
+		}
+			
+		
 	}
 
 }

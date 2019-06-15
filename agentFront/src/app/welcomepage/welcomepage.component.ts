@@ -7,12 +7,16 @@ import {AgentService} from '../service/agent.service';
 @Component({
   selector: 'welcomepage',
   templateUrl: './welcomepage.component.html',
+  styleUrls: ['./welcomepage.component.scss']
+
 
 })
 
 export class WelcomepageComponent implements OnInit{
 
   accomodation = false;
+  communicate = false;
+
   public form: FormGroup;
   public messageToCentral: AbstractControl;
   public returnMessage: string;
@@ -29,6 +33,7 @@ export class WelcomepageComponent implements OnInit{
   }
   accomodationButton(){
     this.accomodation = true;
+    this.communicate = false;
 
 
   }
@@ -37,6 +42,15 @@ export class WelcomepageComponent implements OnInit{
   }
   reservation() {
 
+  }
+  logOut(){
+    this.router.navigateByUrl('');
+
+
+  }
+  communicateC(){
+    this.communicate = true;
+    this.accomodation = false;
   }
 
   sendToCentral(): any {

@@ -23,4 +23,8 @@ export class AgentService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.put(`${this.BASE_URL}/log-in `, body, {headers: headers});
   }
+
+  getAllAgents(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllAgents`, httpOptions);
+  }
 }

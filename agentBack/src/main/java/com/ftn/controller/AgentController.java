@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.City;
 import com.ftn.service.AgentService;
@@ -76,8 +77,15 @@ public class AgentController {
 		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 	}
 	
-	//DRAGANE OVO JE MEODA ZA LOG-IN
-	/*@PutMapping("/log-in")
+	
+	@PutMapping("/log-in")
 	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
-	}*/
+		Agent agent = agentService.loginAgent(agentDTO);
+		if(agent == null){
+			return new ResponseEntity<Agent>(agent, HttpStatus.NO_CONTENT);
+		}
+			return new ResponseEntity<Agent>(agent, HttpStatus.OK);
+
+		
+	}
 }

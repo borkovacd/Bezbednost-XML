@@ -8,15 +8,15 @@ const httpOptions = {
 };
 
 @Injectable()
-export class CityService{
-  private BASE_URL = 'https://localhost:8099/api/city';
+export class CountryService{
+  private BASE_URL = 'https://localhost:8099/api/country';
 
   constructor(private http: HttpClient) {
 
   }
 
-  getCities(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllCities`, httpOptions);
+  getCountry(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllCountries`, httpOptions);
 
   }
 }

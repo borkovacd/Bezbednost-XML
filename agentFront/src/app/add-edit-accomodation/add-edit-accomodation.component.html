@@ -1,49 +1,89 @@
 <div>
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
+</div>
+<div style="background-color: #24478f;text-align: center">
+  <p style="color: white;font-size:50px ">Smestaj</p>
+</div>
+
+<div style="margin-bottom:50px;margin-right: 30%;margin-left: 30%">
+
   <form [formGroup]="form">
     <div class="form-group">
-      <label>Naziv smestaja:</label>
+      <label style="margin-top: 70px">Naziv smestaja:</label>
       <input name="name" class="form-control margin" [formControl]="name">
+      <small class="form-text error" *ngIf="name.errors?.required && name.touched" style="color: red">
+        Naziv je obavezan!
+      </small>
 
-      <label>Grad:</label>
+      <label style="margin-top:20px">Grad:</label>
       <select class="form-control margin" [formControl]="city">
-        <option>Novi Sad</option>
-        <option>Beograd</option>
+        <option></option>
+        <option *ngFor="let city of cities ">{{city.name}}</option>
       </select>
 
-      <label>Adresa:</label>
+      <label style="margin-top:20px">Adresa:</label>
       <input name="address" class="form-control margin" [formControl]="address">
+      <small class="form-text error" *ngIf="address.errors?.required && address.touched" style="color: red">
+        Adresa je obavezna!
+      </small>
 
-      <label>Tip smestajne jedinice:</label>
+      <label style="margin-top:20px">Tip smestajne jedinice:</label>
       <select class="form-control margin" [formControl]="type">
-        <option>Hotel</option>
-        <option>Bed&breakfast</option>
-        <option>Apartman</option>
+        <option></option>
+        <option *ngFor="let type of types ">{{type.name}}</option>
       </select>
 
-      <label>Kategorija:</label>
+      <label style="margin-top: 20px">Kategorija:</label>
       <select class="form-control" [formControl]="category">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option></option>
+        <option *ngFor="let category of categories ">{{category.name}}</option>
       </select>
 
-      <label>Opis:</label>
+      <label style="margin-top:20px">Opis:</label>
       <textarea name="description" class="form-control" [formControl]="description"></textarea>
 
-      <label>Kapacitet:</label>
-      <input name="capacity" class="form-control margin" [formControl]="capacity">
 
-      <label>Slika:</label>
+      <label style="margin-top:20px">Slika:</label>
       <input name="pic" class="form-control margin" [formControl]="pic">
+
 
       <div>
 
+        <div style=" display: inline-block; width: 50%;margin-top: 20px">
+          <div *ngFor="let s of services ">
+            <button
+              style="margin-right: 15px;height: 30px;width: 70px;border-radius: 12px;background-color: #1a8cff;color: white;"
+              (click)="addService(s.name )">Dodaj
+            </button>
+            <button style="height: 30px;width: 70px;border-radius: 12px;background-color: #ff6666;color: white;"
+                    (click)="removeService(s.name )">Ukloni
+            </button>
+
+            <label style="margin-left: 15px;font-size: 18px">{{s.name}}</label>
+          </div>
+        </div>
+
+        <div style=" display: inline-block;width: 50%;height: 100%">
+          <label style="margin-top:20px">Dodatne usluge:</label>
+          <textarea style=" height: 110px;width: 100%" disabled="true">{{values}}</textarea>
+        </div>
+
+
       </div>
 
-      <button (click)="addAccomodation()" >Dodaj</button>
-      <button>Zatvori</button>
+      <button class="btn btn-success" style="width: 100%;margin-top: 30px" (click)="confirmClick()"
+              [disabled]="!form.valid">
+        {{method_name}}
+      </button>
+      <button class="btn btn-success" style="width: 100% ; margin-top: 20px" (click)="exit()">ZATVORI</button>
     </div>
   </form>
 </div>
