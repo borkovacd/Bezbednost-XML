@@ -85,6 +85,8 @@ public class Data implements ApplicationRunner {
 		String agentPath = parent + "\\agentBack\\keystoreAgent.p12";
 		
 		String mainBackPath = parent + "\\megaTravelAppBack\\keystore.p12";
+		
+		String authPath = parent + "\\auth-service\\authKeystore.p12";
 		 
 		System.out.println("Ovo je agent path: " + agentPath);
 		
@@ -361,6 +363,52 @@ public class Data implements ApplicationRunner {
 			    	
 				
 			    }
+			}
+		    
+		    
+		    if (keyStoreReader.getKeyStore(authPath).getCertificateChain("someString") == null ) {
+				System.out.println("prazan auth");
+				
+				// kreirati sertifikat za agenta
+				
+				String str = "someString"; 
+				char[] password = str.toCharArray();
+				
+				//keyStoreAgent.load(agentPath, password);
+				
+				//
+				PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, str, str);
+				
+				//System.out.println("privatni kljuc je:" + privateKeyIssuer);
+				
+				ArrayList<Certificate> lanacSertifikata2 = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystoreSecurity.p12").getCertificateChain("someString")));
+				
+				PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
+				
+				SubjectData subjectData33 = generateSubjectData2Main(privateKeyIssuer, publicKey);
+				
+				IssuerData issuerData33 = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata2.get(0));
+				
+				//keyStoreWriter.loadKeyStore(agentPath, password);
+				
+				CertificateGenerator cg = new CertificateGenerator();
+				
+				// izgenerisi sertifikat za subject-a od issuer-a
+				X509Certificate cert = cg.generateCertificate(subjectData33, issuerData33);
+				
+				Certificate certificate = cert;
+				
+				String pass = "someString";
+				
+				keyStoreAgent.load(new FileInputStream(authPath), password);
+				
+				keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, "someString".toCharArray(), new Certificate[] {certificate});
+				
+				keyStoreAgent.store(new FileOutputStream(authPath), password);
+				
+				
+			} else {
+				System.out.println("nije prazan auth");
 			}
 		    
 		    
