@@ -85,7 +85,7 @@
     <xs:element name="GetAllAdditionalServicesRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="getAdditionalServicesList" type="xs:string"/>
+                <xs:element name="request" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -93,7 +93,42 @@
     <xs:element name="GetAllAdditionalServicesResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="additionalServicesList" maxOccurs="unbounded" type="tns:additionalServicesSoap" />
+                <xs:element name="response" type="xs:string"/>
+                <xs:element name="additionalServicesList" maxOccurs="unbounded" type="tns:additionalServicesSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationTypesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationTypesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="accomodationTypesList" maxOccurs="unbounded" type="tns:typeAccomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+        <xs:element name="GetAllCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCategoriesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="categoriesList" maxOccurs="unbounded" type="tns:categorySoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,10 @@ public class CategoryContorller {
 
 	@GetMapping("/getAllCategories")
 	public ResponseEntity<List<Category>> getCategory() {
-		List<Category> list = null;
-		//treba vratiti sa glavnog back-a sve kategorije na front
-		return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
+		
+		ArrayList<Category> categories = (ArrayList<Category>) categoryService.getAllCategories();
+		
+		return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
 
 	}
 

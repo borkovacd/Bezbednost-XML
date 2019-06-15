@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="agentslist" type="{http://ftn.com/webservice}agentSoap" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="accomodationTypesList" type="{http://ftn.com/webservice}typeAccomodationSoap" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -40,15 +40,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "response",
-    "agentslist"
+    "accomodationTypesList"
 })
-@XmlRootElement(name = "GetAllAgentsResponse")
-public class GetAllAgentsResponse {
+@XmlRootElement(name = "GetAllAccomodationTypesResponse")
+public class GetAllAccomodationTypesResponse {
 
     @XmlElement(required = true)
     protected String response;
     @XmlElement(required = true)
-    protected List<AgentSoap> agentslist;
+    protected List<TypeAccomodationSoap> accomodationTypesList;
 
     /**
      * Gets the value of the response property.
@@ -75,32 +75,32 @@ public class GetAllAgentsResponse {
     }
 
     /**
-     * Gets the value of the agentslist property.
+     * Gets the value of the accomodationTypesList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the agentslist property.
+     * This is why there is not a <CODE>set</CODE> method for the accomodationTypesList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAgentslist().add(newItem);
+     *    getAccomodationTypesList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AgentSoap }
+     * {@link TypeAccomodationSoap }
      * 
      * 
      */
-    public List<AgentSoap> getAgentslist() {
-        if (agentslist == null) {
-            agentslist = new ArrayList<AgentSoap>();
+    public List<TypeAccomodationSoap> getAccomodationTypesList() {
+        if (accomodationTypesList == null) {
+            accomodationTypesList = new ArrayList<TypeAccomodationSoap>();
         }
-        return this.agentslist;
+        return this.accomodationTypesList;
     }
 
 }

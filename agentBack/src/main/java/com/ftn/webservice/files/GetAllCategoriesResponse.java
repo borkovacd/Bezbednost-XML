@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="agentslist" type="{http://ftn.com/webservice}agentSoap" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="categoriesList" type="{http://ftn.com/webservice}categorySoap" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -40,15 +40,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "response",
-    "agentslist"
+    "categoriesList"
 })
-@XmlRootElement(name = "GetAllAgentsResponse")
-public class GetAllAgentsResponse {
+@XmlRootElement(name = "GetAllCategoriesResponse")
+public class GetAllCategoriesResponse {
 
     @XmlElement(required = true)
     protected String response;
     @XmlElement(required = true)
-    protected List<AgentSoap> agentslist;
+    protected List<CategorySoap> categoriesList;
 
     /**
      * Gets the value of the response property.
@@ -75,32 +75,32 @@ public class GetAllAgentsResponse {
     }
 
     /**
-     * Gets the value of the agentslist property.
+     * Gets the value of the categoriesList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the agentslist property.
+     * This is why there is not a <CODE>set</CODE> method for the categoriesList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAgentslist().add(newItem);
+     *    getCategoriesList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AgentSoap }
+     * {@link CategorySoap }
      * 
      * 
      */
-    public List<AgentSoap> getAgentslist() {
-        if (agentslist == null) {
-            agentslist = new ArrayList<AgentSoap>();
+    public List<CategorySoap> getCategoriesList() {
+        if (categoriesList == null) {
+            categoriesList = new ArrayList<CategorySoap>();
         }
-        return this.agentslist;
+        return this.categoriesList;
     }
 
 }

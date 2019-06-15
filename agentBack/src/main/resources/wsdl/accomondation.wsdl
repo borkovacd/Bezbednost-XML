@@ -86,7 +86,7 @@
     <xs:element name="GetAllAdditionalServicesRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="getAdditionalServicesList" type="xs:string"/>
+                <xs:element name="request" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -94,7 +94,42 @@
     <xs:element name="GetAllAdditionalServicesResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="response" type="xs:string"/>
                 <xs:element maxOccurs="unbounded" name="additionalServicesList" type="tns:additionalServicesSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationTypesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAccomodationTypesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="accomodationTypesList" type="tns:typeAccomodationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+        <xs:element name="GetAllCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCategoriesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="categoriesList" type="tns:categorySoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -302,6 +337,10 @@
     <wsdl:part element="sch:GetAccomodationRequest" name="GetAccomodationRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllCategoriesRequest">
+    <wsdl:part element="sch:GetAllCategoriesRequest" name="GetAllCategoriesRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAccomodationRoomsRequest">
     <wsdl:part element="sch:GetAccomodationRoomsRequest" name="GetAccomodationRoomsRequest">
     </wsdl:part>
@@ -322,8 +361,20 @@
     <wsdl:part element="sch:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllCategoriesResponse">
+    <wsdl:part element="sch:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllAdditionalServicesRequest">
     <wsdl:part element="sch:GetAllAdditionalServicesRequest" name="GetAllAdditionalServicesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationTypesRequest">
+    <wsdl:part element="sch:GetAllAccomodationTypesRequest" name="GetAllAccomodationTypesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationTypesResponse">
+    <wsdl:part element="sch:GetAllAccomodationTypesResponse" name="GetAllAccomodationTypesResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
@@ -385,6 +436,18 @@
       <wsdl:input message="tns:GetAllAdditionalServicesRequest" name="GetAllAdditionalServicesRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllAdditionalServicesResponse" name="GetAllAdditionalServicesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <wsdl:input message="tns:GetAllCategoriesRequest" name="GetAllCategoriesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodationTypes">
+      <wsdl:input message="tns:GetAllAccomodationTypesRequest" name="GetAllAccomodationTypesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllAccomodationTypesResponse" name="GetAllAccomodationTypesResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -477,6 +540,24 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllAdditionalServicesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllCategoriesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllCategoriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodationTypes">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllAccomodationTypesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllAccomodationTypesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

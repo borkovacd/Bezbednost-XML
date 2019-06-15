@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,10 @@ public class TypeAccomodationController {
 	
 	@GetMapping("/getAllTypes")
 	public ResponseEntity<List<TypeAccomodation>> getTypes() {
-		List<TypeAccomodation> list = null;
-		//istp i ovde
-		return new ResponseEntity<List<TypeAccomodation>>(list, HttpStatus.OK);
+		
+		ArrayList<TypeAccomodation> accomodationTypes = (ArrayList<TypeAccomodation>) typeService.getAllTypes();
+
+		
+		return new ResponseEntity<List<TypeAccomodation>>(accomodationTypes, HttpStatus.OK);
 	}
 }

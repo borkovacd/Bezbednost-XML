@@ -22,9 +22,11 @@ import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
 import com.ftn.repository.RoomRepository;
+import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.AdditionalServicesSoap;
 import com.ftn.webservice.AgentSoap;
+import com.ftn.webservice.CategorySoap;
 import com.ftn.webservice.CitySoap;
 import com.ftn.webservice.CountrySoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
@@ -35,12 +37,16 @@ import com.ftn.webservice.GetAccomodationRequest;
 import com.ftn.webservice.GetAccomodationResponse;
 import com.ftn.webservice.GetAccomodationRoomsRequest;
 import com.ftn.webservice.GetAccomodationRoomsResponse;
+import com.ftn.webservice.GetAllAccomodationTypesRequest;
+import com.ftn.webservice.GetAllAccomodationTypesResponse;
 import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.GetAllAdditionalServicesRequest;
 import com.ftn.webservice.GetAllAdditionalServicesResponse;
 import com.ftn.webservice.GetAllAgentsRequest;
 import com.ftn.webservice.GetAllAgentsResponse;
+import com.ftn.webservice.GetAllCategoriesRequest;
+import com.ftn.webservice.GetAllCategoriesResponse;
 import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
@@ -48,6 +54,7 @@ import com.ftn.webservice.GetAllCountriesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RoomSoap;
+import com.ftn.webservice.TypeAccomodationSoap;
 
 import net.bytebuddy.asm.Advice.This;
 
@@ -66,11 +73,12 @@ public class AccomondationEndpoint {
 	private CountryRepository countryRepository;
 	private RoomRepository roomRepository;
 	private AgentRepository agentRepository;
+	private TypeAccomodationRepository typeAccomodationRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
-			AgentRepository agentRepository) {
+			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
 		this.cityRepository = cityRepository;
@@ -78,6 +86,7 @@ public class AccomondationEndpoint {
 		this.countryRepository = countryRepository;
 		this.roomRepository = roomRepository;
 		this.agentRepository = agentRepository;
+		this.typeAccomodationRepository = typeAccomodationRepository;
 	}
 	
 	
@@ -202,6 +211,11 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public GetAllAdditionalServicesResponse getAllAdditionalServices(@RequestPayload GetAllAdditionalServicesRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
 		GetAllAdditionalServicesResponse response = new GetAllAdditionalServicesResponse();
 	
 		
@@ -325,6 +339,55 @@ public class AccomondationEndpoint {
 			c.setName(countryRepository.findAll().get(i).getName());
 			
 			response.getCountrieslist().add(c);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllCategoriesRequest")
+	@ResponsePayload
+	public GetAllCategoriesResponse getAllCategories(@RequestPayload GetAllCategoriesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllCategoriesResponse response = new GetAllCategoriesResponse();
+	
+		for(int i = 0; i < categoryRepository.findAll().size(); i++) {
+			
+			CategorySoap c = new CategorySoap();
+			c.setId(categoryRepository.findAll().get(i).getId());
+			c.setName(categoryRepository.findAll().get(i).getName());
+			
+			response.getCategoriesList().add(c);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllAccomodationTypesRequest")
+	@ResponsePayload
+	public GetAllAccomodationTypesResponse getAllAccomodationTypes(@RequestPayload GetAllAccomodationTypesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllAccomodationTypesResponse response = new GetAllAccomodationTypesResponse();
+	
+		for(int i = 0; i < typeAccomodationRepository.findAll().size(); i++) {
+			
+			TypeAccomodationSoap ta = new TypeAccomodationSoap();
+			ta.setId(typeAccomodationRepository.findAll().get(i).getId());
+			ta.setName(typeAccomodationRepository.findAll().get(i).getName());
+			
+			
+			response.getAccomodationTypesList().add(ta);
 			
 		}
 		

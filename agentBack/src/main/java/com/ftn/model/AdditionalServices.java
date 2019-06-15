@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 public class AdditionalServices {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
