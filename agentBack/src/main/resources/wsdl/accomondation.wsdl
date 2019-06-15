@@ -133,6 +133,40 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllAgentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllAgentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="agentslist" type="tns:agentSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCountriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllCountriesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="countrieslist" type="tns:countrySoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -216,6 +250,18 @@
     <wsdl:part element="sch:GetAllCitiesResponse" name="GetAllCitiesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllCountriesResponse">
+    <wsdl:part element="sch:GetAllCountriesResponse" name="GetAllCountriesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAgentsRequest">
+    <wsdl:part element="sch:GetAllAgentsRequest" name="GetAllAgentsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllCountriesRequest">
+    <wsdl:part element="sch:GetAllCountriesRequest" name="GetAllCountriesRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAccomodationResponse">
     <wsdl:part element="sch:GetAccomodationResponse" name="GetAccomodationResponse">
     </wsdl:part>
@@ -238,6 +284,10 @@
   </wsdl:message>
   <wsdl:message name="EditAccomodationRequest">
     <wsdl:part element="sch:EditAccomodationRequest" name="EditAccomodationRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllAgentsResponse">
+    <wsdl:part element="sch:GetAllAgentsResponse" name="GetAllAgentsResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllAccomodationsResponse">
@@ -281,6 +331,18 @@
       <wsdl:input message="tns:GetAllCitiesRequest" name="GetAllCitiesRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllCitiesResponse" name="GetAllCitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCountries">
+      <wsdl:input message="tns:GetAllCountriesRequest" name="GetAllCountriesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllCountriesResponse" name="GetAllCountriesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAgents">
+      <wsdl:input message="tns:GetAllAgentsRequest" name="GetAllAgentsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllAgentsResponse" name="GetAllAgentsResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAccomodation">
@@ -334,6 +396,24 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllCitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCountries">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllCountriesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllCountriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAgents">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllAgentsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllAgentsResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

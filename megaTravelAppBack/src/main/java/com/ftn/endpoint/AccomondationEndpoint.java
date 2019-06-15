@@ -17,12 +17,14 @@ import com.ftn.model.Country;
 import com.ftn.model.Room;
 import com.ftn.repository.AccomondationRepository;
 import com.ftn.repository.AdditionalServicesRepository;
+import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.webservice.AccomodationSoap;
 import com.ftn.webservice.AdditionalServicesSoap;
+import com.ftn.webservice.AgentSoap;
 import com.ftn.webservice.CitySoap;
 import com.ftn.webservice.CountrySoap;
 import com.ftn.webservice.DeleteAccomodationRequest;
@@ -37,8 +39,12 @@ import com.ftn.webservice.GetAllAccomodationsRequest;
 import com.ftn.webservice.GetAllAccomodationsResponse;
 import com.ftn.webservice.GetAllAdditionalServicesRequest;
 import com.ftn.webservice.GetAllAdditionalServicesResponse;
+import com.ftn.webservice.GetAllAgentsRequest;
+import com.ftn.webservice.GetAllAgentsResponse;
 import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
+import com.ftn.webservice.GetAllCountriesRequest;
+import com.ftn.webservice.GetAllCountriesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RoomSoap;
@@ -59,16 +65,19 @@ public class AccomondationEndpoint {
 	private CategoryRepository categoryRepository;
 	private CountryRepository countryRepository;
 	private RoomRepository roomRepository;
+	private AgentRepository agentRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
-			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository) {
+			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
+			AgentRepository agentRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
 		this.cityRepository = cityRepository;
 		this.categoryRepository = categoryRepository;
 		this.countryRepository = countryRepository;
 		this.roomRepository = roomRepository;
+		this.agentRepository = agentRepository;
 	}
 	
 	
@@ -225,16 +234,10 @@ public class AccomondationEndpoint {
 			CitySoap c = new CitySoap();
 			c.setId(cityRepository.findAll().get(i).getId());
 			c.setName(cityRepository.findAll().get(i).getName());
-			
-			//Prinudno cuvanje Country
-			//dok se ne odradi prosledjivanje sa admina na agenta
-			Country newCountry = new Country();
-			newCountry.setName(cityRepository.findAll().get(i).getCountry().getName());
-			countryRepository.save(newCountry); //!
+			Country newCountry = countryRepository.getOne(cityRepository.findAll().get(i).getCountry().getId());
 			CountrySoap cs = new CountrySoap();
 			cs.setName(newCountry.getName());
 			cs.setId(newCountry.getId());
-			
 			c.setCountry(cs);
 			
 			response.getCitieslist().add(c);
@@ -269,6 +272,59 @@ public class AccomondationEndpoint {
 			rs.setActive(requestedAccomodation.getRooms().get(i).isActive());
 			
 			response.getRoomslist().add(rs);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllAgentsRequest")
+	@ResponsePayload
+	public GetAllAgentsResponse getAllAgents(@RequestPayload GetAllAgentsRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllAgentsResponse response = new GetAllAgentsResponse();
+	
+		for(int i = 0; i < agentRepository.findAll().size(); i++) {
+			
+			AgentSoap as = new AgentSoap();
+			as.setId(agentRepository.findAll().get(i).getId());
+			as.setUsername(agentRepository.findAll().get(i).getUsername());
+			as.setPassword(agentRepository.findAll().get(i).getPassword());
+			as.setFirstName(agentRepository.findAll().get(i).getFirstName());
+			as.setLastName(agentRepository.findAll().get(i).getLastName());
+			as.setAddress(agentRepository.findAll().get(i).getAddress());
+			as.setMbr(agentRepository.findAll().get(i).getMbr());
+			
+			response.getAgentslist().add(as);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllCountriesRequest")
+	@ResponsePayload
+	public GetAllCountriesResponse getAllCountries(@RequestPayload GetAllCountriesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllCountriesResponse response = new GetAllCountriesResponse();
+	
+		for(int i = 0; i < countryRepository.findAll().size(); i++) {
+			
+			CountrySoap c = new CountrySoap();
+			c.setId(countryRepository.findAll().get(i).getId());
+			c.setName(countryRepository.findAll().get(i).getName());
+			
+			response.getCountrieslist().add(c);
 			
 		}
 		

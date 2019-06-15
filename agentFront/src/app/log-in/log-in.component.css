@@ -1,0 +1,14 @@
+.body{
+  height: 95vh;
+  position: relative;
+}
+.header{
+
+  background-size: cover;
+  background-position: top;
+  background-image: url('../../assets/img/logIn.jpg');
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+
+  color: darkturquoise;
+
+}

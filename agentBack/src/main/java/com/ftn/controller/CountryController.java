@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,11 @@ public class CountryController {
 	
 
 	@GetMapping("/getAllCountries")
-	public ResponseEntity<List<Country>> getCity() {
-		List<Country> list = null;
-		//isto i za gradove
-		return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
+	public ResponseEntity<List<Country>> getAllCountries() {
+		
+		ArrayList<Country> countries = (ArrayList<Country>) countryService.getAllCountries();
+		
+		return new ResponseEntity<List<Country>>(countries, HttpStatus.OK);
 	}
 
 }

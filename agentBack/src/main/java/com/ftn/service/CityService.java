@@ -6,13 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ftn.model.AdditionalServices;
 import com.ftn.model.City;
 import com.ftn.model.Country;
 import com.ftn.repository.CityRepository;
+import com.ftn.repository.CountryRepository;
 import com.ftn.soapclient.SOAPConnector;
-import com.ftn.webservice.files.GetAllAdditionalServicesRequest;
-import com.ftn.webservice.files.GetAllAdditionalServicesResponse;
 import com.ftn.webservice.files.GetAllCitiesRequest;
 import com.ftn.webservice.files.GetAllCitiesResponse;
 
@@ -21,6 +19,9 @@ public class CityService {
 	
 	@Autowired
 	private CityRepository cityRepository;
+	
+	@Autowired
+	private CountryRepository countryRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -45,11 +46,10 @@ public class CityService {
 			City c = new City();
 			c.setId(response.getCitieslist().get(i).getId());
 			c.setName(response.getCitieslist().get(i).getName());
-			Country country = new Country();
-			country.setId(response.getCitieslist().get(i).getCountry().getId());
-			country.setName(response.getCitieslist().get(i).getCountry().getName());
+			Country country = countryRepository.getOne(response.getCitieslist().get(i).getCountry().getId());
 			c.setCountry(country);
 			
+			cityRepository.save(c);
 			cities.add(c);
 			
 		}
