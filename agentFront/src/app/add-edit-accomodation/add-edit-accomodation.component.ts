@@ -36,6 +36,7 @@ export class AddEditAccomodationComponent implements OnInit{
   values = '';
 
   public method_name = 'DODAJ';
+  idagent: any;
 
 
   constructor (protected  router: Router,
@@ -117,8 +118,8 @@ export class AddEditAccomodationComponent implements OnInit{
       this.listAditionalService,
 
     );
-
-    this.accService.createAccomodation(accomodation).subscribe(data => {
+    this.idagent = localStorage.getItem('agentId');
+    this.accService.createAccomodation(accomodation,this.idagent).subscribe(data => {
       this.router.navigateByUrl('/welcomepage' );
 
     })

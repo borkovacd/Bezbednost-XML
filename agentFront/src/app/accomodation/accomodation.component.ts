@@ -10,6 +10,7 @@ import {AccomodationService} from "../service/accomodation.service";
 
 export class AccomodationComponent implements OnInit{
   items = []
+  idagent: any;
 
   constructor(protected router: Router,
               private accomodationService: AccomodationService,){
@@ -17,7 +18,8 @@ export class AccomodationComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.accomodationService.getAccomodation().subscribe(data => {
+    this.idagent = localStorage.getItem('agentId');
+    this.accomodationService.getAccomodation(this.idagent).subscribe(data => {
       this.items = data;
     })
 

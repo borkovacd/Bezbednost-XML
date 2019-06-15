@@ -59,7 +59,7 @@ public class AgentService {
 		return (ArrayList<Agent>) agents;
 	}
 	
-	public Agent loginAgent(AgentDTO agentDTO){
+	public Long loginAgent(AgentDTO agentDTO){
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
 		if (agent == null) {
 			throw new IllegalArgumentException("Agent not found!");
@@ -67,7 +67,7 @@ public class AgentService {
 
 		if (agent.getPassword().equals(agentDTO.getPassword())) {
 			//OVDE IDE SINHRONIZACIJA
-			return agent;
+			return agent.getId();
 		}else{
 			return null;
 		}

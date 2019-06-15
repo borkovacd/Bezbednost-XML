@@ -13,13 +13,13 @@ export class AccomodationService {
   constructor(private http: HttpClient) {
 
   }
-  getAccomodation(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllAccomodation`, httpOptions);
+  getAccomodation(idAgent: any): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllAccomodation/${idAgent}`, httpOptions);
   }
 
-  createAccomodation(object: AccomodationModel):Observable<any> {
+  createAccomodation(object: AccomodationModel,idAgent: any): Observable<any> {
     const body = JSON.stringify(object);
-    return this.http.post(`${this.BASE_URL}/createAccomodation`,body,httpOptions);
+    return this.http.post(`${this.BASE_URL}/createAccomodation/${idAgent}`,body,httpOptions);
   }
 
 }

@@ -80,11 +80,11 @@ public class AgentController {
 	
 	@PutMapping("/log-in")
 	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
-		Agent agent = agentService.loginAgent(agentDTO);
-		if(agent == null){
-			return new ResponseEntity<Agent>(agent, HttpStatus.NO_CONTENT);
+		Long idagent = agentService.loginAgent(agentDTO);
+		if(idagent == null){
+			return new ResponseEntity<Long>(idagent, HttpStatus.NO_CONTENT);
 		}
-			return new ResponseEntity<Agent>(agent, HttpStatus.OK);
+			return new ResponseEntity<Long>(idagent, HttpStatus.OK);
 
 		
 	}

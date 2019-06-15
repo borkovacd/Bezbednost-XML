@@ -26,8 +26,8 @@ public class AccomodationController {
 	@Autowired
 	private AccomodationService accomodationService;
 
-	@PostMapping("/createAccomodation")
-	public void createAccomodation(@RequestBody AccomodationDTO accDTO) {
+	@PostMapping("/createAccomodation/{idAgent}")
+	public void createAccomodation(@RequestBody AccomodationDTO accDTO,@PathVariable Long idAgent) {
 
 		accomodationService.create(accDTO);
 
@@ -49,8 +49,8 @@ public class AccomodationController {
 
 	}
 
-	@GetMapping("/getAllAccomodations")
-	public ResponseEntity<?> getAccomodations() {
+	@GetMapping("/getAllAccomodations/{idAgent}")
+	public ResponseEntity<?> getAccomodations(@PathVariable Long idAgent) {
 		ArrayList<Accomodation> accomodations = accomodationService.getAllAccomodation();
 
 		return new ResponseEntity<>(accomodations, HttpStatus.OK);
