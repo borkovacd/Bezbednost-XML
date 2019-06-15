@@ -8,4 +8,6 @@ import com.ftn.model.TypeAccomodation;
 @Repository
 public interface TypeAccomodationRepository extends JpaRepository<TypeAccomodation, Long> {
 
+	TypeAccomodation findByName(String name);
+
 }

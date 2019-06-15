@@ -5,7 +5,8 @@
     <xs:element name="RegisterAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="accomondation" type="tns:accomodationSoap"/>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="accomodation" type="tns:accomodationSoap"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -13,7 +14,8 @@
     <xs:element name="RegisterAccomodationResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="response" type="xs:long"/>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="accomodationId" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -70,7 +72,8 @@
     <xs:element name="GetAllAccomodationsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="getAccomodationsList" type="xs:string"/>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -78,6 +81,7 @@
     <xs:element name="GetAllAccomodationsResponse">
         <xs:complexType>
             <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
                 <xs:element maxOccurs="unbounded" name="accomodationsList" type="tns:accomodationSoap"/>
             </xs:sequence>
         </xs:complexType>
@@ -215,7 +219,7 @@
             <xs:element name="pic" type="xs:string"/>
             <xs:element maxOccurs="unbounded" name="rooms" type="tns:roomSoap"/>
             <xs:element maxOccurs="unbounded" name="additionalServices" type="tns:additionalServicesSoap"/>
-            <xs:element name="agent" type="tns:agentSoap"/>
+            <xs:element name="agent" type="xs:long"/>
         </xs:sequence>
     </xs:complexType>
     

@@ -11,10 +11,12 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.ftn.model.Accomodation;
+import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
 import com.ftn.model.Room;
+import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomondationRepository;
 import com.ftn.repository.AdditionalServicesRepository;
 import com.ftn.repository.AgentRepository;
@@ -99,30 +101,38 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public RegisterAccomodationResponse getAccomondation(@RequestPayload RegisterAccomodationRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
 		RegisterAccomodationResponse response = new RegisterAccomodationResponse();
 		
-		AccomodationSoap a = request.getAccomondation();
+		AccomodationSoap a = request.getAccomodation();
 		
-		Accomodation newAccomodation = new Accomodation();
+		Accomodation accomodation = new Accomodation();
 		
-		newAccomodation.setName(a.getName());
+		accomodation.setName(a.getName());
+		City city = cityRepository.findByName(a.getCity().getName());
+		accomodation.setCity(city);
+		accomodation.setAddress(a.getAddress());
+		TypeAccomodation typeAccomodation = typeAccomodationRepository.findByName(a.getTypeAccomodation().getName());
+		accomodation.setTypeAccomodation(typeAccomodation);
+		Category category = categoryRepository.findByName(a.getCategory().getName());
+		accomodation.setCategory(category);
+		accomodation.setDescription(a.getDescription());
+		accomodation.setPic(a.getPic());
+		accomodation.setAgent(agentRepository.getOne(a.getAgent()));
+		List<AdditionalServices> additionalServices = new ArrayList<AdditionalServices>();
+		for(int i=0; i<a.getAdditionalServices().size(); i++) {
+			AdditionalServices additionalService = additionalServicesRepository.findByName(a.getAdditionalServices().get(i).getName());
+			additionalServices.add(additionalService);
+		}
+		accomodation.setAdditionalServices(additionalServices);
 		
-		City newCity = new City();
-		newCity.setName(a.getCity().getName());
-		cityRepository.save(newCity);
-		newAccomodation.setCity(newCity);
+		accomondationRepository.save(accomodation);
 		
-		newAccomodation.setAddress(a.getAddress());
-		newAccomodation.setDescription(a.getDescription());
-		
-		Category newCategory = new Category();
-		newCategory.setName(a.getCategory().getName());
-		categoryRepository.save(newCategory);
-		
-		accomondationRepository.save(newAccomodation);
-		
-		
-		response.setResponse(newAccomodation.getId());
+		response.setAccomodationId(accomodation.getId());
 
 		return response;
 	}
@@ -191,16 +201,47 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public GetAllAccomodationsResponse getAllAccomodations(@RequestPayload GetAllAccomodationsRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
 		GetAllAccomodationsResponse response = new GetAllAccomodationsResponse();
+		String agentUsername = agentRepository.getOne(request.getAgentId()).getUsername();
+		response.setResponse("Head back response: 'Accomodations added by agent " + agentUsername + " successfully sent");
+
 	
 		for(int i = 0; i < accomondationRepository.findAll().size(); i++) {
 			
-			AccomodationSoap a = new AccomodationSoap();
-			a.setId(accomondationRepository.findAll().get(i).getId());
-			a.setName(accomondationRepository.findAll().get(i).getName());
-			a.setAddress(accomondationRepository.findAll().get(i).getAddress());
-			
-			response.getAccomodationsList().add(a);
+			if(accomondationRepository.findAll().get(i).getAgent().getId() == request.getAgentId()) {
+				
+				AccomodationSoap a = new AccomodationSoap();
+
+				a.setId(accomondationRepository.findAll().get(i).getId());
+				a.setName(accomondationRepository.findAll().get(i).getName());
+				CitySoap c = new CitySoap();
+				c.setName(accomondationRepository.findAll().get(i).getCity().getName());
+				a.setCity(c);
+				a.setAddress(accomondationRepository.findAll().get(i).getAddress());
+				TypeAccomodationSoap ta = new TypeAccomodationSoap();
+				ta.setName(accomondationRepository.findAll().get(i).getTypeAccomodation().getName());
+				a.setTypeAccomodation(ta);
+				CategorySoap ca = new CategorySoap();
+				ca.setName(accomondationRepository.findAll().get(i).getCategory().getName());
+				a.setCategory(ca);
+				a.setDescription(accomondationRepository.findAll().get(i).getDescription());
+				a.setPic(accomondationRepository.findAll().get(i).getPic());
+				a.setAgent(accomondationRepository.findAll().get(i).getAgent().getId());
+				for(int j=0; j<accomondationRepository.findAll().get(i).getAdditionalServices().size(); j++) {
+					AdditionalServicesSoap ass = new AdditionalServicesSoap();
+					ass.setName(accomondationRepository.findAll().get(i).getAdditionalServices().get(j).getName());
+					a.getAdditionalServices().add(ass);
+				}
+				
+				response.getAccomodationsList().add(a);
+				
+			}
+
 			
 		}
 		

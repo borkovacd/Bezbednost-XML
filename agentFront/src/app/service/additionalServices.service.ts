@@ -14,7 +14,7 @@ export class AdditionalServicesService {
   }
 
   getAdditionalService(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllAdditionalServices`, httpOptions);
+    return this.http.get(`${this.BASE_URL}/allAditionalServices`, httpOptions);
   }
 
 }

@@ -14,7 +14,7 @@ export class AccomodationService {
 
   }
   getAccomodation(idAgent: any): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllAccomodation/${idAgent}`, httpOptions);
+    return this.http.get(`${this.BASE_URL}/getAllAccomodations/${idAgent}`, httpOptions);
   }
 
   createAccomodation(object: AccomodationModel,idAgent: any): Observable<any> {

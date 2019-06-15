@@ -21,7 +21,12 @@ import org.springframework.web.client.RestTemplate;
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.City;
+import com.ftn.service.AdditionalServicesService;
 import com.ftn.service.AgentService;
+import com.ftn.service.CategoryService;
+import com.ftn.service.CityService;
+import com.ftn.service.CountryService;
+import com.ftn.service.TypeAccomodationService;
 
 
 @RestController
@@ -32,6 +37,8 @@ public class AgentController {
 	
 	@Autowired
 	private AgentService agentService;
+	
+	
 	
 	@Autowired
 	private RestTemplate restTemplate;

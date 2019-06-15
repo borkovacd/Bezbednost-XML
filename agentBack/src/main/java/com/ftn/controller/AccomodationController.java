@@ -29,10 +29,11 @@ public class AccomodationController {
 	@PostMapping("/createAccomodation/{idAgent}")
 	public void createAccomodation(@RequestBody AccomodationDTO accDTO,@PathVariable Long idAgent) {
 
-		accomodationService.create(accDTO);
+		accomodationService.create(accDTO, idAgent);
 
 	}
 
+	//Treba da proverim
 	@DeleteMapping("/deleteAccomodation/{id}")
 	public ResponseEntity<String> deleteAccomodation(@PathVariable Long id) {
 
@@ -40,6 +41,7 @@ public class AccomodationController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	//Treba da proverim
 	@PutMapping("/editAccomodation/{idAgent}/{id}")
 	public ResponseEntity<Accomodation> editAccomodation(@PathVariable Long idAgent, @PathVariable Long id,
 			@RequestBody AccomodationDTO accomodationDTO) {
@@ -51,11 +53,12 @@ public class AccomodationController {
 
 	@GetMapping("/getAllAccomodations/{idAgent}")
 	public ResponseEntity<?> getAccomodations(@PathVariable Long idAgent) {
-		ArrayList<Accomodation> accomodations = accomodationService.getAllAccomodation();
+		ArrayList<Accomodation> accomodations = accomodationService.getAllAccomodation(idAgent);
 
 		return new ResponseEntity<>(accomodations, HttpStatus.OK);
 	}
 
+	//Treba da proverim
 	@GetMapping("/getAccomodation/{id}")
 	public ResponseEntity<Accomodation> getAccomodation(@PathVariable Long id) {
 
@@ -67,6 +70,7 @@ public class AccomodationController {
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
 	}
 	
+	//Nije zavrseno for now
 	@GetMapping("/getAccomodationRooms/{id}")
 	public ResponseEntity<?> getAccomodationRooms(@PathVariable Long id) {
 

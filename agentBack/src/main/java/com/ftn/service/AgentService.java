@@ -22,6 +22,17 @@ public class AgentService {
 	private AgentRepository agentRepository;
 	
 	@Autowired
+	private CategoryService categoryService;
+	@Autowired
+	private CityService cityService;
+	@Autowired
+	private TypeAccomodationService typeAccomodationService;
+	@Autowired
+	private AdditionalServicesService additionalServicesService;
+	@Autowired
+	private CountryService countryService;
+	
+	@Autowired
 	private SOAPConnector soapConnector;
 	
 	public ArrayList<Agent> getAllAgents() {
@@ -66,7 +77,17 @@ public class AgentService {
 		}
 
 		if (agent.getPassword().equals(agentDTO.getPassword())) {
+			
+			
 			//OVDE IDE SINHRONIZACIJA
+			countryService.getAllCountries();
+			cityService.getAllCities();
+			typeAccomodationService.getAllTypes();
+			additionalServicesService.getAllAdditionalServices();
+			categoryService.getAllCategories();
+				
+			
+			
 			return agent.getId();
 		}else{
 			return null;

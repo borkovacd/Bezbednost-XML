@@ -8,4 +8,6 @@ import com.ftn.model.AdditionalServices;
 @Repository
 public interface AdditionalServicesRepository extends JpaRepository<AdditionalServices, Long>{
 
+	AdditionalServices findByName(String name);
+
 }
