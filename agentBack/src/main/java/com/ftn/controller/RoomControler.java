@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftn.dto.AccomodationDTO;
+import com.ftn.dto.RoomDTO;
 import com.ftn.model.Room;
 
 @RestController
@@ -19,7 +19,7 @@ import com.ftn.model.Room;
 public class RoomControler {
 
 	@PostMapping("/createRoom/{idAccommodation}")
-	public void createAccomodation(@RequestBody AccomodationDTO accDTO, @PathVariable Long idAccommodation) {
+	public void createAccomodation(@RequestBody RoomDTO roomDTO, @PathVariable Long idAccommodation) {
 
 		// ovde treba da doda sobu u smestaj koji je poslat preko id sa fronta
 		// inicijalno stavis da je oba active=false posto nema cenu
