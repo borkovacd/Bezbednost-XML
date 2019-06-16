@@ -327,6 +327,8 @@ public class AccomondationEndpoint {
 			rs.setFloor(requestedAccomodation.getRooms().get(i).getFloor());
 			rs.setHasBalcony(requestedAccomodation.getRooms().get(i).isHasBalcony());
 			rs.setActive(requestedAccomodation.getRooms().get(i).isActive());
+			rs.setReserved(requestedAccomodation.getRooms().get(i).isReserved());
+			rs.setDay(requestedAccomodation.getRooms().get(i).getDay());
 			
 			response.getRoomslist().add(rs);
 			
@@ -462,7 +464,7 @@ public class AccomondationEndpoint {
 		
 		roomRepository.save(room);
 		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
-		List<Room> rooms = new ArrayList<Room>();
+		List<Room> rooms = accomodation.getRooms();
 		rooms.add(room);
 		accomodation.setRooms(rooms);
 		accomondationRepository.save(accomodation);

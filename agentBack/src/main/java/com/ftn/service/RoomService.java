@@ -12,6 +12,8 @@ import com.ftn.model.Room;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.GetAccomodationRoomsRequest;
+import com.ftn.webservice.files.GetAccomodationRoomsResponse;
 import com.ftn.webservice.files.RegisterRoomRequest;
 import com.ftn.webservice.files.RegisterRoomResponse;
 import com.ftn.webservice.files.RoomSoap;
@@ -73,7 +75,38 @@ public class RoomService {
 	}
 
 	public ArrayList<Room> getAllRooms(Long idAccomodation) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		GetAccomodationRoomsRequest request = new GetAccomodationRoomsRequest();
+		request.setRequest("Agent request: 'Get all rooms in accomodation '" + accomodationRepository.getOne(idAccomodation).getName() + "'");
+		request.setAccomodationId(idAccomodation);
+		
+		GetAccomodationRoomsResponse response = (GetAccomodationRoomsResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		List<Room> rooms = new ArrayList<Room>();
+		
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println("Head back response: 'Successfully sent list of all rooms in requested accomodation'");
+		System.out.println("*****");
+		
+		for(int i = 0; i < response.getRoomslist().size(); i++) {
+			
+			Room r = new Room();
+			r.setId(response.getRoomslist().get(i).getId());
+			r.setCapacity(response.getRoomslist().get(i).getCapacity());
+			r.setFloor(response.getRoomslist().get(i).getFloor());
+			r.setHasBalcony(response.getRoomslist().get(i).isHasBalcony());
+			r.setActive(response.getRoomslist().get(i).isActive());
+			r.setDay(response.getRoomslist().get(i).getDay());
+			r.setReserved(response.getRoomslist().get(i).isReserved());
+			
+			rooms.add(r);
+			roomRepository.save(r);
+			
+		}
+		
+
+		return (ArrayList<Room>) rooms;
 	}
 }

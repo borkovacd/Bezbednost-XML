@@ -70,13 +70,5 @@ public class AccomodationController {
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
 	}
 	
-	//Nije zavrseno for now
-	@GetMapping("/getAccomodationRooms/{id}")
-	public ResponseEntity<?> getAccomodationRooms(@PathVariable Long id) {
-
-		ArrayList<Room> rooms = accomodationService.getAllAccomodationRooms(id);
-
-		return new ResponseEntity<>(rooms, HttpStatus.OK);
-	}
 
 }

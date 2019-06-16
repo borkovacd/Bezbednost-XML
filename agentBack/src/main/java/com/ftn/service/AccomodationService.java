@@ -248,39 +248,6 @@ public class AccomodationService {
 		return accomodation;
 	}
 	
-	public ArrayList<Room> getAllAccomodationRooms(Long id) {
-		
-		
-		GetAccomodationRoomsRequest request = new GetAccomodationRoomsRequest();
-		request.setRequest("Agent request: 'Get all rooms in accomodation '" + accomodationRepository.getOne(id).getName() + "'");
-		request.setAccomodationId(id);
-		
-		GetAccomodationRoomsResponse response = (GetAccomodationRoomsResponse) soapConnector
-				.callWebService("https://localhost:8443/ws/accomondation", request);
-		
-		List<Room> rooms = new ArrayList<Room>();
-		
-		//Response poruka sa glavnog back-a
-		System.out.println("*****");
-		System.out.println("Head back response: 'Successfully sent list of all rooms in requested accomodation'");
-		System.out.println("*****");
-		
-		for(int i = 0; i < response.getRoomslist().size(); i++) {
-			
-			Room r = new Room();
-			r.setId(response.getRoomslist().get(i).getId());
-			r.setCapacity(response.getRoomslist().get(i).getCapacity());
-			r.setFloor(response.getRoomslist().get(i).getFloor());
-			r.setHasBalcony(response.getRoomslist().get(i).isHasBalcony());
-			r.setActive(response.getRoomslist().get(i).isActive());
-			
-			rooms.add(r);
-			
-		}
-		
-
-		return (ArrayList<Room>) rooms;
-	}
 
 
 }
