@@ -79,12 +79,13 @@ public class Data implements ApplicationRunner {
 		File f2 = new File("");
 
 		String parent =  f2.getAbsoluteFile().getParent();
+		String parent2 = f.getAbsoluteFile().getParent();
 
 		File fAgent = new File(parent + "/agentBack/keystoreAgent.p12");
 		
 		String agentPath = parent + "\\agentBack\\keystoreAgent.p12";
 		
-		String mainBackPath = parent + "\\megaTravelAppBack\\keystore.p12";
+		String mainBackPath = parent + "\\securityBack\\files\\keystoreSecurity.p12";
 		
 		String authPath = parent + "\\auth-service\\authKeystore.p12";
 		 

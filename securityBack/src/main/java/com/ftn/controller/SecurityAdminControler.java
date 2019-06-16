@@ -93,7 +93,9 @@ public class SecurityAdminControler {
 		
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 
-		if (iss.isHasCert() == true) {
+		// Izdavalac sertifikata mora imati sertifikat!
+		if (iss.isHasCert() == true) 
+		{
 
 			Long idSubject = ss.getId();
 			Long idIssuer = iss.getId();
@@ -115,66 +117,146 @@ public class SecurityAdminControler {
 																	// oblika
 																	// certificatePass123456789
 			String alias = "alias1";
-			PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, str, str);
+			
+			if (iss.getId() == 4)
+			{
+				System.out.println("Izdavalac je Root!");
+				issuerPass = "someString" ;
+				
+				PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, issuerPass, issuerPass);
 
-			System.out.println("Privatni kljuc je: " + privateKeyIssuer);
+				System.out.println("Privatni kljuc je: " + privateKeyIssuer);
 
-			IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
+				IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
 
-			// generisanje sertifikata
-			CertificateGenerator cg = new CertificateGenerator();
+				// generisanje sertifikata
+				CertificateGenerator cg = new CertificateGenerator();
 
-			X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
+				X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
 
-			Certificate certificate = cert;
-			// sertifikat je napravljen
+				Certificate certificate = cert;
+				// sertifikat je napravljen
 
-			// Dodavanje u bazu
-			// *********************************************
+				// Dodavanje u bazu
+				// *********************************************
 
-			CertificateModel cm = new CertificateModel();
+				CertificateModel cm = new CertificateModel();
 
-			cm.setIssuerSoft(iss);
-			cm.setSubSoft(ss);
+				cm.setIssuerSoft(iss);
+				cm.setSubSoft(ss);
 
-			cm.setStartDate(cert.getNotBefore());
-			cm.setEndDate(cert.getNotAfter());
+				cm.setStartDate(cert.getNotBefore());
+				cm.setEndDate(cert.getNotAfter());
 
-			String serial = cert.getSerialNumber().toString();
+				String serial = cert.getSerialNumber().toString();
 
-			cm.setSerialNumber(Integer.parseInt(serial));
+				cm.setSerialNumber(Integer.parseInt(serial));
 
-			cm.setRevoked(false);
+				cm.setRevoked(false);
 
-			certRepos.save(cm);
-			log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
-					iss.getId());
-			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
-					iss.getId());
+				certRepos.save(cm);
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
+						iss.getId());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
+						iss.getId());
 
-			// *********************************************
+				// *********************************************
 
-			// upis u globalni keystore
-			String certificatePass = "certificatePass" + ss.getId(); // oblika
-																		// subjectPass123456789
-			keyStoreWriter.write(str, subjectData.getPrivateKey(), str.toCharArray(), cert);
+				// upis u globalni keystore
+				String certificatePass = "certificatePass" + ss.getId(); // oblika
+																			// subjectPass123456789
+				keyStoreWriter.write(certificatePass, subjectData.getPrivateKey(), certificatePass.toCharArray(), cert);
 
-			String globalPass = "someString";
-			keyStoreWriter.saveKeyStore("./files/keystoreSecurity.p12", str.toCharArray());
+				String globalPass = "someString";
+				keyStoreWriter.saveKeyStore("./files/keystoreSecurity.p12", str.toCharArray());
 
-			// upis u njegov keystore
-			KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
-			keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
+				// upis u njegov keystore
+				KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
+				keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
 
-			keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12",
-					ss.getId().toString().toCharArray());
+				keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12",
+						ss.getId().toString().toCharArray());
 
-			String localAllias = "myCertificate";
+				String localAllias = "myCertificate";
 
-			keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
-			keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
-					ss.getId().toString().toCharArray());
-			log.info("CRE_CA_SUC");
+				keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
+				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
+						ss.getId().toString().toCharArray());
+				log.info("CRE_CA_SUC");
+
+			}
+			
+			else // ukoliko ne izdaje ROOT
+			{
+				System.out.println("Izdavalac nije root!");
+				issuerPass = "certificatePass" + iss.getId(); // password je
+				// oblika
+				// certificatePass123456789
+				alias = "alias1";
+				str = "someString";
+				
+				PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, issuerPass, issuerPass);
+
+				System.out.println("Privatni kljuc je: " + privateKeyIssuer);
+
+				IssuerData issuerData = generateIssuerData(privateKeyIssuer, iss);
+
+				// generisanje sertifikata
+				CertificateGenerator cg = new CertificateGenerator();
+
+				X509Certificate cert = cg.generateCertificate(subjectData, issuerData);
+
+				Certificate certificate = cert;
+				// sertifikat je napravljen
+
+				// Dodavanje u bazu
+				// *********************************************
+
+				CertificateModel cm = new CertificateModel();
+
+				cm.setIssuerSoft(iss);
+				cm.setSubSoft(ss);
+
+				cm.setStartDate(cert.getNotBefore());
+				cm.setEndDate(cert.getNotAfter());
+
+				String serial = cert.getSerialNumber().toString();
+
+				cm.setSerialNumber(Integer.parseInt(serial));
+
+				cm.setRevoked(false);
+
+				certRepos.save(cm);
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
+						iss.getId());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
+						iss.getId());
+
+				// *********************************************
+
+				// upis u globalni keystore
+				String certificatePass = "certificatePass" + ss.getId(); // oblika
+																			// subjectPass123456789
+				keyStoreWriter.write(certificatePass, subjectData.getPrivateKey(), certificatePass.toCharArray(), cert);
+
+				String globalPass = "someString";
+				keyStoreWriter.saveKeyStore("./files/keystoreSecurity.p12", str.toCharArray());
+
+				// upis u njegov keystore
+				KeyStoreWriter keyStoreWriterNovi = new KeyStoreWriter();
+				keyStoreWriterNovi.loadKeyStore(null, ss.getId().toString().toCharArray());
+
+				keyStoreWriterNovi.saveKeyStore("./files/localKeyStore" + ss.getId() + ".p12",
+						ss.getId().toString().toCharArray());
+
+				String localAllias = "myCertificate";
+
+				keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
+				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
+						ss.getId().toString().toCharArray());
+				log.info("CRE_CA_SUC");
+
+			}
 		}
 
 		else {
