@@ -64,11 +64,11 @@ public class RoomService {
 		room.setReserved(r.isReserved());
 		
 		roomRepository.save(room);
-		/*Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
+		Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
 		List<Room> rooms = accomodation.getRooms();
 		rooms.add(room);
 		accomodation.setRooms(rooms);
-		accomodationRepository.save(accomodation);*/
+		accomodationRepository.save(accomodation);
 		
 	}
 

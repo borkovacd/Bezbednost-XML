@@ -462,11 +462,10 @@ public class AccomondationEndpoint {
 		
 		roomRepository.save(room);
 		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
-		System.out.println("ADAHDSAGDJASBDKJASNDKLAS      " + accomodation.getName());
-		/*List<Room> rooms = new ArrayList<Room>();
+		List<Room> rooms = new ArrayList<Room>();
 		rooms.add(room);
 		accomodation.setRooms(rooms);
-		accomondationRepository.save(accomodation);*/
+		accomondationRepository.save(accomodation);
 		
 		response.setRoomId(room.getId());
 		response.setResponse("Head back response: 'New room successfully added in accomodation '" + accomodationName + "'.");

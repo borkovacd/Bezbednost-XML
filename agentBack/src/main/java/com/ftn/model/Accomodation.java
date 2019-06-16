@@ -41,7 +41,8 @@ public class Accomodation {
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
 
-	@ManyToOne(targetEntity = Room.class)
+	//@ManyToOne(targetEntity = Room.class)
+	@ManyToMany
 	private List<Room> rooms;
 
 	@OneToOne
