@@ -2,6 +2,7 @@ package com.ftn.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,25 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.dto.RoomDTO;
 import com.ftn.model.Room;
+import com.ftn.service.RoomService;
 
 @RestController
 @RequestMapping(value = "/api/room")
 public class RoomControler {
+	
+	@Autowired
+	private RoomService roomService;
 
-	@PostMapping("/createRoom/{idAccommodation}")
-	public void createAccomodation(@RequestBody RoomDTO roomDTO, @PathVariable Long idAccommodation) {
+	@PostMapping("/createRoom/{idAccomodation}")
+	public void createAccomodation(@RequestBody RoomDTO roomDTO, @PathVariable Long idAccomodation) {
 
-		// ovde treba da doda sobu u smestaj koji je poslat preko id sa fronta
-		// inicijalno stavis da je oba active=false posto nema cenu
-		// i da jos uvek nije rezervisana reserved=false
-
+		roomService.createRoom(roomDTO, idAccomodation);
 	}
 
-	@GetMapping("/getAllRooms/{idAccommodation}")
-	public ResponseEntity<ArrayList<Room>> getAllRooms(@PathVariable Long idAccommodation) {
+	@GetMapping("/getAllRooms/{idAccomodation}")
+	public ResponseEntity<ArrayList<Room>> getAllRooms(@PathVariable Long idAccomodation) {
 
-		// treba da vrati sve sobe za taj smestaj
-		return null;
+		ArrayList<Room> rooms = roomService.getAllRooms(idAccomodation);
+
+		return new ResponseEntity<>(rooms, HttpStatus.OK);
 	}
 
 }

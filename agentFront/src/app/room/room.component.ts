@@ -15,9 +15,9 @@ export  class RoomComponent implements OnInit{
               private route: ActivatedRoute,
               private roomService: RoomService){}
   ngOnInit(){
-    const idAccommodation = this.route.snapshot.params.idA;
+    const idAccomodation = this.route.snapshot.params.idA;
 
-    this.roomService.getAllRoom(idAccommodation).subscribe(data =>{
+    this.roomService.getAllRoom(idAccomodation).subscribe(data =>{
       this.items = data;
     })
 

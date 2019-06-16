@@ -8,8 +8,6 @@
 
 package com.ftn.webservice;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -27,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="roomslist" type="{http://ftn.com/webservice}roomSoap" maxOccurs="unbounded"/>
+ *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="room" type="{http://ftn.com/webservice}roomSoap"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,68 +38,81 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response",
-    "roomslist"
+    "request",
+    "accomodationId",
+    "room"
 })
-@XmlRootElement(name = "GetAccomodationRoomsResponse")
-public class GetAccomodationRoomsResponse {
+@XmlRootElement(name = "RegisterRoomRequest")
+public class RegisterRoomRequest {
 
     @XmlElement(required = true)
-    protected String response;
+    protected String request;
+    protected long accomodationId;
     @XmlElement(required = true)
-    protected List<RoomSoap> roomslist;
+    protected RoomSoap room;
 
     /**
-     * Gets the value of the response property.
+     * Gets the value of the request property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getResponse() {
-        return response;
+    public String getRequest() {
+        return request;
     }
 
     /**
-     * Sets the value of the response property.
+     * Sets the value of the request property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setResponse(String value) {
-        this.response = value;
+    public void setRequest(String value) {
+        this.request = value;
     }
 
     /**
-     * Gets the value of the roomslist property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the roomslist property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRoomslist().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link RoomSoap }
-     * 
+     * Gets the value of the accomodationId property.
      * 
      */
-    public List<RoomSoap> getRoomslist() {
-        if (roomslist == null) {
-            roomslist = new ArrayList<RoomSoap>();
-        }
-        return this.roomslist;
+    public long getAccomodationId() {
+        return accomodationId;
+    }
+
+    /**
+     * Sets the value of the accomodationId property.
+     * 
+     */
+    public void setAccomodationId(long value) {
+        this.accomodationId = value;
+    }
+
+    /**
+     * Gets the value of the room property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public RoomSoap getRoom() {
+        return room;
+    }
+
+    /**
+     * Sets the value of the room property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public void setRoom(RoomSoap value) {
+        this.room = value;
     }
 
 }

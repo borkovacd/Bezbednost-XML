@@ -15,12 +15,12 @@ export  class RoomService{
 
   }
 
-  createRoom(object: RoomModel,idAccommodtion: any): Observable<any> {
+  createRoom(object: RoomModel,idAccomodation: any): Observable<any> {
     const body = JSON.stringify(object);
-    return this.http.post(`${this.BASE_URL}/createRoom/${idAccommodtion}`,body,httpOptions);
+    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}`,body,httpOptions);
   }
 
-  getAllRoom(idAccommodation: any): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccommodation}`, httpOptions);
+  getAllRoom(idAccomodation: any): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}`, httpOptions);
   }
 }

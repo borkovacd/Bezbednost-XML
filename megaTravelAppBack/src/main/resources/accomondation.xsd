@@ -205,6 +205,25 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="RegisterRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+            	<xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="room" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RegisterRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -265,6 +284,8 @@
             <xs:element name="floor" type="xs:int"/>
             <xs:element name="hasBalcony" type="xs:boolean"/>
             <xs:element name="active" type="xs:boolean"/>
+            <xs:element name="day" type="xs:int"/>
+            <xs:element name="reserved" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
     

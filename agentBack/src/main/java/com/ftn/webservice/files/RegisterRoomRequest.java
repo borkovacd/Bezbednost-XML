@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="room" type="{http://ftn.com/webservice}roomSoap"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,13 +38,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request"
+    "request",
+    "accomodationId",
+    "room"
 })
-@XmlRootElement(name = "GetAllAdditionalServicesRequest")
-public class GetAllAdditionalServicesRequest {
+@XmlRootElement(name = "RegisterRoomRequest")
+public class RegisterRoomRequest {
 
     @XmlElement(required = true)
     protected String request;
+    protected long accomodationId;
+    @XmlElement(required = true)
+    protected RoomSoap room;
 
     /**
      * Gets the value of the request property.
@@ -66,6 +73,46 @@ public class GetAllAdditionalServicesRequest {
      */
     public void setRequest(String value) {
         this.request = value;
+    }
+
+    /**
+     * Gets the value of the accomodationId property.
+     * 
+     */
+    public long getAccomodationId() {
+        return accomodationId;
+    }
+
+    /**
+     * Sets the value of the accomodationId property.
+     * 
+     */
+    public void setAccomodationId(long value) {
+        this.accomodationId = value;
+    }
+
+    /**
+     * Gets the value of the room property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public RoomSoap getRoom() {
+        return room;
+    }
+
+    /**
+     * Sets the value of the room property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public void setRoom(RoomSoap value) {
+        this.room = value;
     }
 
 }

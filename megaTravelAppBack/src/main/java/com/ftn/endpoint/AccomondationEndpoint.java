@@ -55,6 +55,8 @@ import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
+import com.ftn.webservice.RegisterRoomRequest;
+import com.ftn.webservice.RegisterRoomResponse;
 import com.ftn.webservice.RoomSoap;
 import com.ftn.webservice.TypeAccomodationSoap;
 
@@ -432,6 +434,43 @@ public class AccomondationEndpoint {
 			
 		}
 		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "RegisterRoomRequest")
+	@ResponsePayload
+	public RegisterRoomResponse registerRoom(@RequestPayload RegisterRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		RegisterRoomResponse response = new RegisterRoomResponse();
+		
+		RoomSoap r = request.getRoom();
+		String accomodationName = accomondationRepository.getOne(request.getAccomodationId()).getName();
+		
+		Room room = new Room();
+		
+		room.setCapacity(r.getCapacity());
+		room.setFloor(r.getFloor());
+		room.setActive(r.isActive());
+		room.setHasBalcony(r.isHasBalcony());
+		room.setDay(r.getDay());
+		room.setReserved(r.isReserved());
+		
+		roomRepository.save(room);
+		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
+		System.out.println("ADAHDSAGDJASBDKJASNDKLAS      " + accomodation.getName());
+		/*List<Room> rooms = new ArrayList<Room>();
+		rooms.add(room);
+		accomodation.setRooms(rooms);
+		accomondationRepository.save(accomodation);*/
+		
+		response.setRoomId(room.getId());
+		response.setResponse("Head back response: 'New room successfully added in accomodation '" + accomodationName + "'.");
+
 		return response;
 	}
 

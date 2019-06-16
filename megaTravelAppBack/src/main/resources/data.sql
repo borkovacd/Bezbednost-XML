@@ -48,4 +48,3 @@ insert into additional_services (id, name) values (34, "Minikuhinja/kuhinja");
 insert into additional_services (id, name) values (35, "Privatno kupatilo");
 insert into additional_services (id, name) values (36, "Otkazivanje");
 
-insert into room (id, capacity, floor, has_balcony, active) values (44, 123, 4, 0, 1);
