@@ -24,7 +24,7 @@ export class CeritifcatesComponent implements OnInit {
   visibleMessage: boolean;
   public form: FormGroup;
   public message: AbstractControl;
-  serialN: any;z
+  serialN: any;
 
   constructor(protected router: Router,
               private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
