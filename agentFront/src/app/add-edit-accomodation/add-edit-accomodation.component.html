@@ -59,15 +59,20 @@
 
         <div style=" display: inline-block; width: 50%;margin-top: 20px">
           <div *ngFor="let s of services ">
+            <br>
+            <label style="font-size: 18px">{{s.name}}</label>
+            <div>
             <button
-              style="margin-right: 15px;height: 30px;width: 70px;border-radius: 12px;background-color: #1a8cff;color: white;"
+              style="height: 30px;width: 70px;border-radius: 12px;background-color: #1a8cff;color: white;"
               (click)="addService(s.name )">Dodaj
             </button>
             <button style="height: 30px;width: 70px;border-radius: 12px;background-color: #ff6666;color: white;"
                     (click)="removeService(s.name )">Ukloni
             </button>
+            </div>
+            <br>
 
-            <label style="margin-left: 15px;font-size: 18px">{{s.name}}</label>
+
           </div>
         </div>
 

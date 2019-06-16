@@ -9,10 +9,10 @@
        style="text-align: center;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
     <h1 style="margin-top: 20px">{{item.name}} - {{item.category.name}}</h1>
     <p style="font-size: 20px">{{item.city.name}},{{item.city.country.name}}</p>
-    <p style="font-size: 20px">{{item.type.name}}</p>
+    <p style="font-size: 20px">{{item.typeAccomodation.name}}</p>
     <p style="font-size: 20px">{{item.description}}</p>
     <p style="margin-bottom: 0%;font-size: 20px">Dodatne usluge :</p>
-    <div style="display: inline-block" *ngFor="let a of item.additions ">
+    <div style="display: inline-block" *ngFor="let a of item.additionalServices ">
       <p style="margin-right: 12px;color: #1a8cff;font-size: 20px">{{a.name}} </p>
     </div>
 

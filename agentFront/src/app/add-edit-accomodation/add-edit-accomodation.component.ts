@@ -85,7 +85,7 @@ export class AddEditAccomodationComponent implements OnInit{
     })
 
     this.additionalService.getAdditionalService().subscribe(data => {
-      this.services = data.services;
+      this.services = data;
     })
 
     this.typeService.getTypeAccomodation().subscribe(data => {
