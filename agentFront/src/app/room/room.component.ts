@@ -1,6 +1,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {RoomService} from '../service/room.service';
 
 @Component ({
   templateUrl: './room.component.html',
@@ -8,11 +9,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 
 export  class RoomComponent implements OnInit{
-
+  items=[]
 
   constructor(protected  router: Router,
-              private route: ActivatedRoute,){}
+              private route: ActivatedRoute,
+              private roomService: RoomService){}
   ngOnInit(){
+    const idAccommodation = this.route.snapshot.params.idA;
+
+    this.roomService.getAllRoom(idAccommodation).subscribe(data =>{
+      this.items = data;
+    })
 
   }
 
@@ -21,4 +28,12 @@ export  class RoomComponent implements OnInit{
 
     this.router.navigateByUrl('welcomepage/room/' +  idA  + '/add' );
   }
+  editRoom(id: any){
+  }
+  deleteRoom(id: any){
+
+  }
+  priceList(id: any){
+
+}
 }

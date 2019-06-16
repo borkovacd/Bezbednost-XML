@@ -18,3 +18,7 @@
 2019-06-16 16:21:46,207 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SECURITY_EVENT 7 CRE_CA id: 4 
 2019-06-16 16:22:50,425 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT user id:11 LOG_SUC ,ip 0:0:0:0:0:0:0:1
 2019-06-16 16:23:09,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT 6 CRE_CA id: 7 
+2019-06-16 18:20:46,750 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-16 18:20:47,144 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1
+2019-06-16 18:20:58,128 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT 5 CRE_CA id: 4 
+2019-06-16 18:34:05,146 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT user id:8 LOG_SUC ,ip 0:0:0:0:0:0:0:1

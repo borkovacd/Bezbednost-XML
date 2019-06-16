@@ -19,4 +19,8 @@ export  class RoomService{
     const body = JSON.stringify(object);
     return this.http.post(`${this.BASE_URL}/createRoom/${idAccommodtion}`,body,httpOptions);
   }
+
+  getAllRoom(idAccommodation: any): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccommodation}`, httpOptions);
+  }
 }
