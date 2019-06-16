@@ -17,6 +17,7 @@ export class AccomodationService {
     return this.http.get(`${this.BASE_URL}/getAllAccomodations/${idAgent}`, httpOptions);
   }
 
+
   createAccomodation(object: AccomodationModel,idAgent: any): Observable<any> {
     const body = JSON.stringify(object);
     return this.http.post(`${this.BASE_URL}/createAccomodation/${idAgent}`,body,httpOptions);

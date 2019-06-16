@@ -1,0 +1,55 @@
+<div>
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
+</div>
+<div style="background-color: #24478f;text-align: center">
+  <p style="color: white;font-size:50px ">Soba</p>
+</div>
+
+<div style="margin-bottom:50px;margin-right: 30%;margin-left: 30%">
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label style="margin-top: 70px">Kapacitet:</label>
+      <input name="capacity" class="form-control margin" [formControl]="capacity">
+      <small class="form-text error" *ngIf="capacity.errors?.required && capacity.touched" style="color: red">
+        Kapacitet je obavezan!
+      </small>
+
+      <label style="margin-top:20px">Sprat:</label>
+      <input name="floor" class="form-control margin" [formControl]="floor">
+      <small class="form-text error" *ngIf="floor.errors?.required && floor.touched" style="color: red">
+        Spratnost je obavezna!
+      </small>
+
+        <label style="margin-top:20px">Balkon:</label>
+        <input name="hasBalcony" class="form-control margin" id="input-hasBalcony" type="checkbox"
+               [formControl]="hasBalcony">
+
+      <label style="margin-top:20px">Broj dana u kojem je moguce otkazati sobu:</label>
+      <input name="day" class="form-control margin" [formControl]="day">
+      <small class="form-text error" *ngIf="day.errors?.required && day.touched" style="color: red">
+        Obavezan unos polja!
+      </small>
+
+
+
+
+
+
+
+      <button class="btn btn-success" style="width: 100%;margin-top: 30px" (click)="confirmClick()"
+              [disabled]="!form.valid">
+        {{method_name}}
+      </button>
+      <button class="btn btn-success" style="width: 100% ; margin-top: 20px" (click)="exit()">ZATVORI</button>
+    </div>
+  </form>
+</div>

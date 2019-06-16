@@ -15,7 +15,20 @@
     <div style="display: inline-block" *ngFor="let a of item.additionalServices ">
       <p style="margin-right: 12px;color: #1a8cff;font-size: 20px">{{a.name}} </p>
     </div>
-
+    <div style="margin-bottom: 20px">
+    <button
+      style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 20px"
+      (click)="editAccomodation(item.id)">Izmeni
+    </button>
+    <button
+      style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 30px"
+      (click)="deleteAccomodation(item.id)">Obrisi
+    </button>
+      <button
+        style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 40px"
+        (click)="showAccomodation(item.id)">Sobe
+      </button>
+    </div>
   </div>
 </div>
 </div>

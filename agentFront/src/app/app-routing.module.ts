@@ -5,13 +5,18 @@ import {FormsModule} from '@angular/forms';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AddEditAccomodationComponent} from './add-edit-accomodation/add-edit-accomodation.component';
 import {LogInComponent} from './log-in/log-in.component';
+import {RoomComponent} from './room/room.component';
+import {AddEditRoomComponent} from './add-edit-room/add-edit-room.component';
 
 
 const routes: Routes = [
   {path: '', component: LogInComponent, pathMatch: 'full'},
   {path: 'log-in', component: LogInComponent},
   {path: 'welcomepage', component: WelcomepageComponent},
+  {path: 'welcomepage/room/:idA', component: RoomComponent},
+  {path: 'welcomepage/room/:idA/:mode', component: AddEditRoomComponent},
   {path: ':mode/accomodation', component: AddEditAccomodationComponent},
+
 
 
 ];

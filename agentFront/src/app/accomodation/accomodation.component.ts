@@ -25,7 +25,17 @@ export class AccomodationComponent implements OnInit{
 
   }
   addAccomodation(){
-    this.router.navigateByUrl('add/accomodation')
+    this.router.navigateByUrl('add/accomodation');
+  }
+
+  editAccomodation(id: any){
+
+  }
+  deleteAccomodation(id: any){
+
+  }
+  showAccomodation(idA: any){
+    this.router.navigateByUrl('welcomepage/room/' + idA);
   }
 
 

@@ -16,6 +16,9 @@ import {TypeAccomodationService} from './service/typeAccomodation.service';
 import {AgentService} from './service/agent.service';
 import {LogInComponent} from './log-in/log-in.component';
 import {CountryService} from './service/country.service';
+import {RoomComponent} from './room/room.component';
+import {RoomService} from './service/room.service';
+import {AddEditRoomComponent} from './add-edit-room/add-edit-room.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import {CountryService} from './service/country.service';
     AccomodationComponent,
     AddEditAccomodationComponent,
     LogInComponent,
+    RoomComponent,
+    AddEditRoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import {CountryService} from './service/country.service';
     TypeAccomodationService,
     AgentService,
     CountryService,
+    RoomService,
   ],
   bootstrap: [AppComponent]
 })

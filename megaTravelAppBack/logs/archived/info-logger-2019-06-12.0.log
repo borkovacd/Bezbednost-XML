@@ -1,3 +1,0 @@
-2019-06-12 20:35:53,737 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 5252 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack)
-2019-06-12 20:35:53,751 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-12 20:36:02,916 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 9.614 seconds (JVM running for 10.537)

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Room {
-	
+
 	@Id
 	private Long id;
 
@@ -23,6 +23,12 @@ public class Room {
 	@Column
 	private boolean hasBalcony;
 
+	// koliko dana pre moze da otkaze
+	@Column
+	private int day;
+
+	@Column
+	private boolean reserved = false;
 	@Column
 	private boolean active = false;
 
@@ -30,12 +36,14 @@ public class Room {
 
 	}
 
-	public Room(Long id, int capacity, int floor, boolean hasBalcony, boolean active) {
+	public Room(Long id, int capacity, int floor, boolean hasBalcony, int day, boolean reserved, boolean active) {
 		super();
 		this.id = id;
 		this.capacity = capacity;
 		this.floor = floor;
 		this.hasBalcony = hasBalcony;
+		this.day = day;
+		this.reserved = reserved;
 		this.active = active;
 	}
 
@@ -77,6 +85,22 @@ public class Room {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public boolean isReserved() {
+		return reserved;
+	}
+
+	public void setReserved(boolean reserved) {
+		this.reserved = reserved;
 	}
 
 }
