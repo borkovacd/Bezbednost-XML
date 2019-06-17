@@ -34,6 +34,7 @@ export  class RoomComponent implements OnInit{
 
   }
   priceList(id: any){
+    this.router.navigateByUrl('welcomepage/room/' + id + '/pricelist');
 
 }
 }
