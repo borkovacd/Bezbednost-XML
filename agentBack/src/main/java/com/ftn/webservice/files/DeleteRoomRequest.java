@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="roomId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,38 +38,40 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response",
-    "accomodationId"
+    "request",
+    "accomodationId",
+    "roomId"
 })
-@XmlRootElement(name = "RegisterAccomodationResponse")
-public class RegisterAccomodationResponse {
+@XmlRootElement(name = "DeleteRoomRequest")
+public class DeleteRoomRequest {
 
     @XmlElement(required = true)
-    protected String response;
+    protected String request;
     protected long accomodationId;
+    protected long roomId;
 
     /**
-     * Gets the value of the response property.
+     * Gets the value of the request property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getResponse() {
-        return response;
+    public String getRequest() {
+        return request;
     }
 
     /**
-     * Sets the value of the response property.
+     * Sets the value of the request property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setResponse(String value) {
-        this.response = value;
+    public void setRequest(String value) {
+        this.request = value;
     }
 
     /**
@@ -85,6 +88,22 @@ public class RegisterAccomodationResponse {
      */
     public void setAccomodationId(long value) {
         this.accomodationId = value;
+    }
+
+    /**
+     * Gets the value of the roomId property.
+     * 
+     */
+    public long getRoomId() {
+        return roomId;
+    }
+
+    /**
+     * Sets the value of the roomId property.
+     * 
+     */
+    public void setRoomId(long value) {
+        this.roomId = value;
     }
 
 }

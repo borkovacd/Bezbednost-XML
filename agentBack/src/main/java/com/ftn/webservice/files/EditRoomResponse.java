@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="editedRoom" type="{http://ftn.com/webservice}roomSoap"/&gt;
+ *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,15 +38,58 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response",
-    "accomodationId"
+    "accomodationId",
+    "editedRoom",
+    "response"
 })
-@XmlRootElement(name = "RegisterAccomodationResponse")
-public class RegisterAccomodationResponse {
+@XmlRootElement(name = "EditRoomResponse")
+public class EditRoomResponse {
 
+    protected long accomodationId;
+    @XmlElement(required = true)
+    protected RoomSoap editedRoom;
     @XmlElement(required = true)
     protected String response;
-    protected long accomodationId;
+
+    /**
+     * Gets the value of the accomodationId property.
+     * 
+     */
+    public long getAccomodationId() {
+        return accomodationId;
+    }
+
+    /**
+     * Sets the value of the accomodationId property.
+     * 
+     */
+    public void setAccomodationId(long value) {
+        this.accomodationId = value;
+    }
+
+    /**
+     * Gets the value of the editedRoom property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public RoomSoap getEditedRoom() {
+        return editedRoom;
+    }
+
+    /**
+     * Sets the value of the editedRoom property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RoomSoap }
+     *     
+     */
+    public void setEditedRoom(RoomSoap value) {
+        this.editedRoom = value;
+    }
 
     /**
      * Gets the value of the response property.
@@ -69,22 +113,6 @@ public class RegisterAccomodationResponse {
      */
     public void setResponse(String value) {
         this.response = value;
-    }
-
-    /**
-     * Gets the value of the accomodationId property.
-     * 
-     */
-    public long getAccomodationId() {
-        return accomodationId;
-    }
-
-    /**
-     * Sets the value of the accomodationId property.
-     * 
-     */
-    public void setAccomodationId(long value) {
-        this.accomodationId = value;
     }
 
 }

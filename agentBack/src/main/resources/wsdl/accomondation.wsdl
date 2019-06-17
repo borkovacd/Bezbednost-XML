@@ -23,6 +23,7 @@
     <xs:element name="DeleteAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
                 <xs:element name="deleteAccomodationId" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
@@ -32,6 +33,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="deletedAccomodationId" type="xs:long"/>
+                <xs:element name="response" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -39,6 +41,7 @@
     <xs:element name="EditAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
                 <xs:element name="editAccomodationId" type="xs:long"/>
                 <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
             </xs:sequence>
@@ -49,6 +52,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+                <xs:element name="response" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -262,6 +266,47 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="DeleteRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="deletedRoomId" type="xs:long"/>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="roomId" type="xs:long"/>
+                <xs:element name="editRoomData" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="editedRoom" type="tns:roomSoap"/>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -356,6 +401,10 @@
     <wsdl:part element="sch:GetAllCitiesResponse" name="GetAllCitiesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="EditRoomRequest">
+    <wsdl:part element="sch:EditRoomRequest" name="EditRoomRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAccomodationRoomsResponse">
     <wsdl:part element="sch:GetAccomodationRoomsResponse" name="GetAccomodationRoomsResponse">
     </wsdl:part>
@@ -378,6 +427,10 @@
   </wsdl:message>
   <wsdl:message name="GetAccomodationRoomsRequest">
     <wsdl:part element="sch:GetAccomodationRoomsRequest" name="GetAccomodationRoomsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteRoomResponse">
+    <wsdl:part element="sch:DeleteRoomResponse" name="DeleteRoomResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="EditAccomodationResponse">
@@ -424,6 +477,10 @@
     <wsdl:part element="sch:GetAccomodationResponse" name="GetAccomodationResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="EditRoomResponse">
+    <wsdl:part element="sch:EditRoomResponse" name="EditRoomResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="DeleteAccomodationRequest">
     <wsdl:part element="sch:DeleteAccomodationRequest" name="DeleteAccomodationRequest">
     </wsdl:part>
@@ -438,6 +495,10 @@
   </wsdl:message>
   <wsdl:message name="GetAllAgentsResponse">
     <wsdl:part element="sch:GetAllAgentsResponse" name="GetAllAgentsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteRoomRequest">
+    <wsdl:part element="sch:DeleteRoomRequest" name="DeleteRoomRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetRoomPricesRequest">
@@ -479,6 +540,12 @@
       <wsdl:output message="tns:GetAllCitiesResponse" name="GetAllCitiesResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EditRoom">
+      <wsdl:input message="tns:EditRoomRequest" name="EditRoomRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:EditRoomResponse" name="EditRoomResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAccomodationRooms">
       <wsdl:input message="tns:GetAccomodationRoomsRequest" name="GetAccomodationRoomsRequest">
     </wsdl:input>
@@ -507,6 +574,12 @@
       <wsdl:input message="tns:GetAccomodationRequest" name="GetAccomodationRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAccomodationResponse" name="GetAccomodationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <wsdl:input message="tns:DeleteRoomRequest" name="DeleteRoomRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:DeleteRoomResponse" name="DeleteRoomResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterRoom">
@@ -575,6 +648,15 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EditRoom">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="EditRoomRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EditRoomResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAccomodationRooms">
       <soap:operation soapAction=""/>
       <wsdl:input name="GetAccomodationRoomsRequest">
@@ -617,6 +699,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAccomodationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteRoomRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteRoomResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

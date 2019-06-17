@@ -126,47 +126,52 @@ public class AccomodationService {
 	public String delete(Long id) {
 		
 		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
+		String accommodationName = accomodationRepository.getOne(id).getName();
+		request.setRequest("Agent request: 'Delete accomodation '" + accommodationName + "'");
 		request.setDeleteAccomodationId(id);
 		
 		DeleteAccomodationResponse response = (DeleteAccomodationResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
 		
-		System.out.println("Odogovor : " + response.getDeletedAccomodationId());
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println(response.getResponse());
+		System.out.println("*****");
 		
 		Accomodation accomodation = accomodationRepository.findOneById(response.getDeletedAccomodationId());
 		accomodationRepository.delete(accomodation);
 		
-		// Ovde treba da se obrise sve sto je vezano za taj smestaj
-
-		return "Accomodation with id " + id + " successfully deleted!";
+		return "Success!";
 
 	}
 
 	public Accomodation edit(Long idAgent, Long id, AccomodationDTO accDTO) {
 		
 		EditAccomodationRequest request = new EditAccomodationRequest();
+		request.setRequest("Agent request: 'Edit data of accommodation with id " + id + ".");
 		request.setEditAccomodationId(id);
 		
 		AccomodationSoap a = new AccomodationSoap();
 
 		a.setName(accDTO.getName());
-		CitySoap city = new CitySoap();
-		city.setName(accDTO.getCity());
-		a.setCity(city);
+		CitySoap c = new CitySoap();
+		c.setName(accDTO.getCity());
+		a.setCity(c);
 		a.setAddress(accDTO.getAddress());
-		TypeAccomodationSoap typeAccomodation = new TypeAccomodationSoap();
-		typeAccomodation.setName(accDTO.getType());
-		a.setTypeAccomodation(typeAccomodation);
-		CategorySoap category = new CategorySoap();
-		category.setName(accDTO.getCategory());
-		a.setCategory(category);
+		TypeAccomodationSoap ta = new TypeAccomodationSoap();
+		ta.setName(accDTO.getType());
+		a.setTypeAccomodation(ta);
+		CategorySoap ca = new CategorySoap();
+		ca.setName(accDTO.getCategory());
+		a.setCategory(ca);
 		a.setDescription(accDTO.getDescription());
-		// a.setCapacity(accDTO.getCapacity());
 		a.setPic(accDTO.getPic());
-		AgentSoap agent = new AgentSoap();
-		//Zasto DTO nema polje za agenta?
-		//agent.setUsername(accDTO.getA);
-		//a.setAgent(value);
+		a.setAgent(idAgent);
+		for(int i=0; i<accDTO.getList().size(); i++) {
+			AdditionalServicesSoap ass = new AdditionalServicesSoap();
+			ass.setName(accDTO.getList().get(i));
+			a.getAdditionalServices().add(ass);
+		}
 		
 		request.setEditAccomodationData(a);
 		
@@ -174,10 +179,31 @@ public class AccomodationService {
 		EditAccomodationResponse response = (EditAccomodationResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
 		
-		Accomodation accomodation = accomodationRepository.findOneById(response.getEditedAccomodation().getId());
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println(response.getResponse());
+		System.out.println("*****");
 		
-		accomodation.setName(response.getEditedAccomodation().getName());
-		accomodation.setAddress(response.getEditedAccomodation().getAddress());
+		Accomodation accomodation = accomodationRepository.getOne(response.getEditedAccomodation().getId());
+		
+		accomodation.setId(response.getEditedAccomodation().getId());
+		accomodation.setName(a.getName());
+		City city = cityRepository.findByName(a.getCity().getName());
+		accomodation.setCity(city);
+		accomodation.setAddress(a.getAddress());
+		TypeAccomodation typeAccomodation = typeAccomodationRepository.findByName(a.getTypeAccomodation().getName());
+		accomodation.setTypeAccomodation(typeAccomodation);
+		Category category = categoryRepository.findByName(a.getCategory().getName());
+		accomodation.setCategory(category);
+		accomodation.setDescription(a.getDescription());
+		accomodation.setPic(a.getPic());
+		accomodation.setAgent(agentRepository.getOne(a.getAgent()));
+		List<AdditionalServices> additionalServices = new ArrayList<AdditionalServices>();
+		for(int i=0; i<a.getAdditionalServices().size(); i++) {
+			AdditionalServices additionalService = additionalServicesRepository.findByName(a.getAdditionalServices().get(i).getName());
+			additionalServices.add(additionalService);
+		}
+		accomodation.setAdditionalServices(additionalServices);
 		
 		accomodationRepository.save(accomodation);
 		

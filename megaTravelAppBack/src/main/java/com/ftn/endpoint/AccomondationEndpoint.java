@@ -37,6 +37,8 @@ import com.ftn.webservice.CreatePriceListRequest;
 import com.ftn.webservice.CreatePriceListResponse;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
+import com.ftn.webservice.DeleteRoomRequest;
+import com.ftn.webservice.DeleteRoomResponse;
 import com.ftn.webservice.EditAccomodationRequest;
 import com.ftn.webservice.EditAccomodationResponse;
 import com.ftn.webservice.GetAccomodationRequest;
@@ -148,6 +150,11 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public DeleteAccomodationResponse deleteAccomodation(@RequestPayload DeleteAccomodationRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
 		DeleteAccomodationResponse response = new DeleteAccomodationResponse();
 		
 		Long id = request.getDeleteAccomodationId();
@@ -155,6 +162,7 @@ public class AccomondationEndpoint {
 		Accomodation a = accomondationRepository.findOneById(id);
 		
 		response.setDeletedAccomodationId(a.getId());
+		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
 		
 		accomondationRepository.delete(a);
 		
@@ -165,19 +173,40 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public EditAccomodationResponse editAccomodation(@RequestPayload EditAccomodationRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+				
 		EditAccomodationResponse response = new EditAccomodationResponse();
 		
 		Long id = request.getEditAccomodationId();
-		AccomodationSoap newAccomodation = request.getEditAccomodationData();
+		AccomodationSoap a = request.getEditAccomodationData();
 		
-		Accomodation a = accomondationRepository.findOneById(id);
-		a.setName(newAccomodation.getName());
-		a.setAddress(newAccomodation.getAddress());
+		Accomodation accomodation = accomondationRepository.findOneById(id);
 		
-		accomondationRepository.save(a);
+		accomodation.setName(a.getName());
+		City city = cityRepository.findByName(a.getCity().getName());
+		accomodation.setCity(city);
+		accomodation.setAddress(a.getAddress());
+		TypeAccomodation typeAccomodation = typeAccomodationRepository.findByName(a.getTypeAccomodation().getName());
+		accomodation.setTypeAccomodation(typeAccomodation);
+		Category category = categoryRepository.findByName(a.getCategory().getName());
+		accomodation.setCategory(category);
+		accomodation.setDescription(a.getDescription());
+		accomodation.setPic(a.getPic());
+		accomodation.setAgent(agentRepository.getOne(a.getAgent()));
+		List<AdditionalServices> additionalServices = new ArrayList<AdditionalServices>();
+		for(int i=0; i<a.getAdditionalServices().size(); i++) {
+			AdditionalServices additionalService = additionalServicesRepository.findByName(a.getAdditionalServices().get(i).getName());
+			additionalServices.add(additionalService);
+		}
+		accomodation.setAdditionalServices(additionalServices);
+		
+		accomondationRepository.save(accomodation);
 	
-		newAccomodation.setId(id);
-		response.setEditedAccomodation(newAccomodation);
+		a.setId(id);
+		response.setEditedAccomodation(a);
 		
 		return response;
 	}
@@ -549,6 +578,39 @@ public class AccomondationEndpoint {
 		}
 		
 		response.setResponse("Head back response: 'Price list of requested room successfully sent!'");
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "DeleteRoomRequest")
+	@ResponsePayload
+	public DeleteRoomResponse deleteRoom(@RequestPayload DeleteRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		DeleteRoomResponse response = new DeleteRoomResponse();
+		
+		Long idAccomodation = request.getAccomodationId();
+		Long idRoom = request.getRoomId();
+		
+		Accomodation a = accomondationRepository.findOneById(idAccomodation);
+		List<Room> accommodationRooms = a.getRooms();
+		for(Room room : accommodationRooms) {
+			if(room.getId() == idRoom) {
+				accommodationRooms.remove(room);
+				roomRepository.delete(room);
+			}
+		}
+		
+		a.setRooms(accommodationRooms);
+		//accomodationRepository.save(a);
+		
+		response.setAccomodationId(idAccomodation);
+		response.setDeletedRoomId(idRoom);
+		response.setResponse("Room is successfully deleted!");
 		
 		return response;
 	}

@@ -12,6 +12,10 @@ import com.ftn.model.Room;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.DeleteAccomodationRequest;
+import com.ftn.webservice.files.DeleteAccomodationResponse;
+import com.ftn.webservice.files.DeleteRoomRequest;
+import com.ftn.webservice.files.DeleteRoomResponse;
 import com.ftn.webservice.files.GetAccomodationRoomsRequest;
 import com.ftn.webservice.files.GetAccomodationRoomsResponse;
 import com.ftn.webservice.files.RegisterRoomRequest;
@@ -108,5 +112,41 @@ public class RoomService {
 		
 
 		return (ArrayList<Room>) rooms;
+	}
+	
+	
+	//trebalo bi da radi (moguce da treba dodati updejt za  accomodationRepository ako ne radi)
+	//zakomentarisano dole
+	public String deleteRoom(Long idAccomodation, Long idRoom) {
+		
+		DeleteRoomRequest request = new DeleteRoomRequest();
+		String accommodationName = accomodationRepository.getOne(idAccomodation).getName();
+		request.setRequest("Agent request: 'Delete room in accomodation '" + accommodationName + "'.");
+		request.setAccomodationId(idAccomodation);
+		request.setRoomId(idRoom);
+		
+		DeleteRoomResponse response = (DeleteRoomResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println(response.getResponse());
+		System.out.println("*****");
+		
+		Accomodation accommodation = accomodationRepository.findOneById(response.getAccomodationId());
+		List<Room> accommodationRooms = accommodation.getRooms();
+		for(Room room : accommodationRooms) {
+			if(room.getId() == idRoom) {
+				accommodationRooms.remove(room);
+				roomRepository.delete(room);
+
+				
+			}
+		}
+		
+		accommodation.setRooms(accommodationRooms);
+		//accomodationRepository.save(accommodation);
+		
+		return "Success!";
 	}
 }

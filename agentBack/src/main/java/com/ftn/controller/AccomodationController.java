@@ -32,8 +32,8 @@ public class AccomodationController {
 		accomodationService.create(accDTO, idAgent);
 
 	}
-
-	// Treba da proverim
+	
+	//It should work :D
 	@DeleteMapping("/deleteAccomodation/{id}")
 	public ResponseEntity<String> deleteAccomodation(@PathVariable Long id) {
 

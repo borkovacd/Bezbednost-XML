@@ -8,8 +8,6 @@
 
 package com.ftn.webservice;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -27,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="deletedRoomId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="categoriesList" type="{http://ftn.com/webservice}categorySoap" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,16 +38,49 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response",
-    "categoriesList"
+    "accomodationId",
+    "deletedRoomId",
+    "response"
 })
-@XmlRootElement(name = "GetAllCategoriesResponse")
-public class GetAllCategoriesResponse {
+@XmlRootElement(name = "DeleteRoomResponse")
+public class DeleteRoomResponse {
 
+    protected long accomodationId;
+    protected long deletedRoomId;
     @XmlElement(required = true)
     protected String response;
-    @XmlElement(required = true)
-    protected List<CategorySoap> categoriesList;
+
+    /**
+     * Gets the value of the accomodationId property.
+     * 
+     */
+    public long getAccomodationId() {
+        return accomodationId;
+    }
+
+    /**
+     * Sets the value of the accomodationId property.
+     * 
+     */
+    public void setAccomodationId(long value) {
+        this.accomodationId = value;
+    }
+
+    /**
+     * Gets the value of the deletedRoomId property.
+     * 
+     */
+    public long getDeletedRoomId() {
+        return deletedRoomId;
+    }
+
+    /**
+     * Sets the value of the deletedRoomId property.
+     * 
+     */
+    public void setDeletedRoomId(long value) {
+        this.deletedRoomId = value;
+    }
 
     /**
      * Gets the value of the response property.
@@ -72,35 +104,6 @@ public class GetAllCategoriesResponse {
      */
     public void setResponse(String value) {
         this.response = value;
-    }
-
-    /**
-     * Gets the value of the categoriesList property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the categoriesList property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCategoriesList().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link CategorySoap }
-     * 
-     * 
-     */
-    public List<CategorySoap> getCategoriesList() {
-        if (categoriesList == null) {
-            categoriesList = new ArrayList<CategorySoap>();
-        }
-        return this.categoriesList;
     }
 
 }
