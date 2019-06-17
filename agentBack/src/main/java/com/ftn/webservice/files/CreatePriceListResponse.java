@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="countrieslist" type="{http://ftn.com/webservice}countrySoap" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="priceListWithId" type="{http://ftn.com/webservice}priceSoap" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -40,15 +40,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "response",
-    "countrieslist"
+    "priceListWithId"
 })
-@XmlRootElement(name = "GetAllCountriesResponse")
-public class GetAllCountriesResponse {
+@XmlRootElement(name = "CreatePriceListResponse")
+public class CreatePriceListResponse {
 
     @XmlElement(required = true)
     protected String response;
     @XmlElement(required = true)
-    protected List<CountrySoap> countrieslist;
+    protected List<PriceSoap> priceListWithId;
 
     /**
      * Gets the value of the response property.
@@ -75,32 +75,32 @@ public class GetAllCountriesResponse {
     }
 
     /**
-     * Gets the value of the countrieslist property.
+     * Gets the value of the priceListWithId property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the countrieslist property.
+     * This is why there is not a <CODE>set</CODE> method for the priceListWithId property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCountrieslist().add(newItem);
+     *    getPriceListWithId().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CountrySoap }
+     * {@link PriceSoap }
      * 
      * 
      */
-    public List<CountrySoap> getCountrieslist() {
-        if (countrieslist == null) {
-            countrieslist = new ArrayList<CountrySoap>();
+    public List<PriceSoap> getPriceListWithId() {
+        if (priceListWithId == null) {
+            priceListWithId = new ArrayList<PriceSoap>();
         }
-        return this.countrieslist;
+        return this.priceListWithId;
     }
 
 }

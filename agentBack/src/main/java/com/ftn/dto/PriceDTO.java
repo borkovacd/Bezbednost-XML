@@ -4,13 +4,13 @@ public class PriceDTO {
 
 	private String month;
 	
-	private String sum;
+	private Double sum;
 	
 	public PriceDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PriceDTO(String month, String sum) {
+	public PriceDTO(String month, Double sum) {
 		super();
 		this.month = month;
 		this.sum = sum;
@@ -24,11 +24,11 @@ public class PriceDTO {
 		this.month = month;
 	}
 
-	public String getSum() {
+	public Double getSum() {
 		return sum;
 	}
 
-	public void setSum(String sum) {
+	public void setSum(Double sum) {
 		this.sum = sum;
 	}
 	

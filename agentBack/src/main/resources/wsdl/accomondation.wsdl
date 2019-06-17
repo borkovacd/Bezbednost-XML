@@ -225,6 +225,25 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="CreatePriceListRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="priceList" type="tns:priceSoap"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreatePriceListResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="priceListWithId" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -287,6 +306,15 @@
             <xs:element name="active" type="xs:boolean"/>
             <xs:element name="day" type="xs:int"/>
             <xs:element name="reserved" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="priceSoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="month" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -354,12 +382,20 @@
     <wsdl:part element="sch:GetAllCountriesResponse" name="GetAllCountriesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="CreatePriceListRequest">
+    <wsdl:part element="sch:CreatePriceListRequest" name="CreatePriceListRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllAgentsRequest">
     <wsdl:part element="sch:GetAllAgentsRequest" name="GetAllAgentsRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllCountriesRequest">
     <wsdl:part element="sch:GetAllCountriesRequest" name="GetAllCountriesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreatePriceListResponse">
+    <wsdl:part element="sch:CreatePriceListResponse" name="CreatePriceListResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAccomodationResponse">
@@ -463,6 +499,12 @@
       <wsdl:input message="tns:GetAllCountriesRequest" name="GetAllCountriesRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllCountriesResponse" name="GetAllCountriesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePriceList">
+      <wsdl:input message="tns:CreatePriceListRequest" name="CreatePriceListRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:CreatePriceListResponse" name="CreatePriceListResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllAgents">
@@ -570,6 +612,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllCountriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePriceList">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreatePriceListRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreatePriceListResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

@@ -224,6 +224,25 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="CreatePriceListRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="priceList" maxOccurs="unbounded" type="tns:priceSoap"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreatePriceListResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="priceListWithId" maxOccurs="unbounded" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -286,6 +305,15 @@
             <xs:element name="active" type="xs:boolean"/>
             <xs:element name="day" type="xs:int"/>
             <xs:element name="reserved" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="priceSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="month" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
         </xs:sequence>
     </xs:complexType>
     

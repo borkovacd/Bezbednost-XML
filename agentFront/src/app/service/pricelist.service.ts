@@ -18,7 +18,7 @@ export class PricelistService{
 
     const body = JSON.stringify(object);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/createPricelist/` + id, body, {headers: headers});
+    return this.http.post(`${this.BASE_URL}/create-price-createPricelist/` + id, body, {headers: headers});
   }
 
   getPriceForRoom(idRoom: any): Observable<any> {

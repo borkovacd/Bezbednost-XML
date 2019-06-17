@@ -15,6 +15,7 @@ import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
+import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomondationRepository;
@@ -23,6 +24,7 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
+import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.webservice.AccomodationSoap;
@@ -31,6 +33,8 @@ import com.ftn.webservice.AgentSoap;
 import com.ftn.webservice.CategorySoap;
 import com.ftn.webservice.CitySoap;
 import com.ftn.webservice.CountrySoap;
+import com.ftn.webservice.CreatePriceListRequest;
+import com.ftn.webservice.CreatePriceListResponse;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
 import com.ftn.webservice.EditAccomodationRequest;
@@ -53,16 +57,13 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
+import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RegisterRoomRequest;
 import com.ftn.webservice.RegisterRoomResponse;
 import com.ftn.webservice.RoomSoap;
 import com.ftn.webservice.TypeAccomodationSoap;
-
-import net.bytebuddy.asm.Advice.This;
-
-
 
 
 //@Endpoint registers the class with Spring WS as a potential candidate for processing incoming SOAP messages.
@@ -78,11 +79,12 @@ public class AccomondationEndpoint {
 	private RoomRepository roomRepository;
 	private AgentRepository agentRepository;
 	private TypeAccomodationRepository typeAccomodationRepository;
+	private PriceRepository priceRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
-			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository) {
+			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
 		this.cityRepository = cityRepository;
@@ -91,6 +93,7 @@ public class AccomondationEndpoint {
 		this.roomRepository = roomRepository;
 		this.agentRepository = agentRepository;
 		this.typeAccomodationRepository = typeAccomodationRepository;
+		this.priceRepository = priceRepository;
 	}
 	
 	
@@ -471,6 +474,46 @@ public class AccomondationEndpoint {
 		
 		response.setRoomId(room.getId());
 		response.setResponse("Head back response: 'New room successfully added in accomodation '" + accomodationName + "'.");
+
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreatePriceListRequest")
+	@ResponsePayload
+	public CreatePriceListResponse getAccomondation(@RequestPayload CreatePriceListRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		CreatePriceListResponse response = new CreatePriceListResponse();
+		
+		Long roomId = request.getRoomId();
+		Room room = roomRepository.getOne(roomId);
+		
+		for(PriceSoap ps : request.getPriceList()) {
+			
+			Price price =  new Price();
+			price.setMonth(ps.getMonth());
+			price.setPrice(ps.getPrice());
+			price.setRoom(room);
+			
+			priceRepository.save(price);
+			
+			PriceSoap priceSoapWithId = new PriceSoap();
+			priceSoapWithId.setId(price.getId());
+			priceSoapWithId.setMonth(price.getMonth());
+			priceSoapWithId.setPrice(price.getPrice());
+			
+			response.getPriceListWithId().add(priceSoapWithId);
+
+		}
+		
+		room.setActive(true);
+		roomRepository.save(room); //mozda nepotrebno
+		
+		response.setResponse("Head back response: 'Price List is successfully created!'");
 
 		return response;
 	}
