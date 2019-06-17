@@ -38,8 +38,18 @@ export class AddEditRoomComponent implements  OnInit{
   }
   ngOnInit(){
     const mode = this.route.snapshot.params.mode;
+    const idR = this.route.snapshot.params.idR;
+    const idAccommodation = this.route.snapshot.params.idA;
+
+
     if (mode == 'edit') {
       this.method_name = 'IZMENI';
+      this.roomService.getOneRoom(idAccommodation, idR).subscribe(data => {
+        this.form.controls['capacity'].setValue(data.capacity);
+        this.form.controls['floor'].setValue(data.floor);
+        this.form.controls['hasBalcony'].setValue(data.hasBalcony);
+        this.form.controls['day'].setValue(data.day);
+      })
     } else if (mode == 'add') {
       this.method_name = 'DODAJ';
     }
@@ -66,6 +76,19 @@ export class AddEditRoomComponent implements  OnInit{
     })
   }
   editRoom(){
+    const idAccommodation = this.route.snapshot.params.idA;
+    const idR = this.route.snapshot.params.idR;
+
+    const room = new RoomModel(
+      this.capacity.value,
+      this.floor.value,
+      this.hasBalcony.value,
+      this.day.value
+    );
+    this.roomService.editRoom(room, idAccommodation, idR).subscribe(data => {
+      this.router.navigateByUrl('welcomepage/room/' + idAccommodation );
+
+    })
 
   }
   exit(){

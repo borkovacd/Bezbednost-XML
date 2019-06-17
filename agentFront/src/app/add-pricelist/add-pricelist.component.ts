@@ -86,7 +86,9 @@ export class AddPricelistComponent {
   }
   exit(){
     const idR = this.route.snapshot.params.idR;
-    this.router.navigateByUrl('welcomepage/room/' + idR + '/pricelist');
+    const idA = this.route.snapshot.params.idA;
+
+    this.router.navigateByUrl('welcomepage/room/' + idA + '/pricelist/' + idR);
 
   }
 }

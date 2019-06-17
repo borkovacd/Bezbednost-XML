@@ -24,9 +24,13 @@ export class PricelistComponent implements OnInit{
   }
   addPriceList(){
     const idR = this.route.snapshot.params.idR;
-    this.router.navigateByUrl('welcomepage/room/'+ idR + '/pricelist/add');
-  }
-  exit(){
+    const idA = this.route.snapshot.params.idA;
 
+    this.router.navigateByUrl('welcomepage/room/'+ idA + '/pricelist/add/' + idR );
   }
+  goBack(){
+    const idA = this.route.snapshot.params.idA;
+    this.router.navigateByUrl('welcomepage/room/'+ idA );
+  }
+
 }

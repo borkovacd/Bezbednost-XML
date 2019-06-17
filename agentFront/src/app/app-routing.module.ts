@@ -16,10 +16,10 @@ const routes: Routes = [
   {path: 'log-in', component: LogInComponent},
   {path: 'welcomepage', component: WelcomepageComponent},
   {path: 'welcomepage/room/:idA', component: RoomComponent},
-  {path: 'welcomepage/room/:idR/pricelist', component: PricelistComponent},
-  {path: 'welcomepage/room/:idR/pricelist/add', component: AddPricelistComponent},
-  {path: 'welcomepage/room/:idA/:mode', component: AddEditRoomComponent},
-  {path: ':mode/accomodation', component: AddEditAccomodationComponent},
+  {path: 'welcomepage/room/:idA/pricelist/:idR', component: PricelistComponent},
+  {path: 'welcomepage/room/:idA/pricelist/add/:idR', component: AddPricelistComponent},
+  {path: 'welcomepage/room/:idA/:mode/:idR', component: AddEditRoomComponent},
+  {path: ':mode/accomodation/:idA', component: AddEditAccomodationComponent},
 
 
 

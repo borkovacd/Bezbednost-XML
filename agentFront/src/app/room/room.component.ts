@@ -26,15 +26,43 @@ export  class RoomComponent implements OnInit{
   addRoom(){
     const idA = this.route.snapshot.params.idA;
 
-    this.router.navigateByUrl('welcomepage/room/' +  idA  + '/add' );
+    this.router.navigateByUrl('welcomepage/room/' +  idA  + '/add/');
   }
   editRoom(id: any){
+    const idAccomodation = this.route.snapshot.params.idA;
+
+    this.roomService.checkIfReservedRoom(id).subscribe(data => {
+      if(data == false){
+        this.router.navigateByUrl('welcomepage/room/' + idAccomodation + '/edit/' + id );
+      }else{
+        alert('Soba je rezervisana!');
+      }
+    })
   }
   deleteRoom(id: any){
+    const idAccomodation = this.route.snapshot.params.idA;
 
+    this.roomService.checkIfReservedRoom(id).subscribe(data => {
+      if (data == false) {
+        this.roomService.deleteRoom(id).subscribe(data => {
+          alert('Soba je uspesno obrisana');
+          this.router.navigateByUrl('welcomepage/room/' + idAccomodation);
+        })
+      } else {
+        alert('Soba je rezervisana!');
+
+      }
+
+    })
   }
   priceList(id: any){
-    this.router.navigateByUrl('welcomepage/room/' + id + '/pricelist');
+    const idA = this.route.snapshot.params.idA;
+
+    this.router.navigateByUrl('welcomepage/room/' + idA + '/pricelist/' + id );
 
 }
+  goBack(){
+    this.router.navigateByUrl('welcomepage' );
+
+  }
 }

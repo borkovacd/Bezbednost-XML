@@ -14,6 +14,9 @@
 </div>
 <div>
   <div>
+    <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="goBack()">Nazad</button>
+  </div>
+  <div>
     <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="addPriceList()">Dodaj cenovnik</button>
   </div>
 
@@ -25,7 +28,7 @@
     </tr>
     <tr *ngFor="let item of items; ">
       <td>{{item.month}}</td>
-      <td>{{item.sum}}</td>
+      <td>{{item.price}}</td>
     </tr>
 
   </table>
