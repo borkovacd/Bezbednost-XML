@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftn.dto.PriceListDTO;
+import com.ftn.model.Price;
 import com.ftn.service.PriceService;
 
 
 
 @RestController
 @RequestMapping(value = "/api/pricelist")
-public class PriceContorler {
+public class PriceController {
 	
 	@Autowired
 	private PriceService priceService;
@@ -32,10 +33,11 @@ public class PriceContorler {
 	}
 	
 	@GetMapping("/getPriceForRoom/{idRoom}")
-	public ResponseEntity<?> getPriceListForRoom(@PathVariable Long idRoom) {
-		//znaci ovde treba da vrati  cenovnik za tu sobu 
-		//znaci nesto kao PriceListDTO posto je to da prikaze u tabele cenu za sve mesece
-		return null;
+	public ResponseEntity<ArrayList<Price>> getPriceListForRoom(@PathVariable Long idRoom) {
+		
+		ArrayList<Price> prices = priceService.getAllPrices(idRoom);
+
+		return new ResponseEntity<>(prices, HttpStatus.OK);
 	}
 	
 	

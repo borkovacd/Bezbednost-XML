@@ -27,9 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="priceList" type="{http://ftn.com/webservice}priceSoap" maxOccurs="unbounded"/>
- *         &lt;element name="roomId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="priceslist" type="{http://ftn.com/webservice}priceSoap" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,56 +39,54 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request",
-    "priceList",
-    "roomId"
+    "response",
+    "priceslist"
 })
-@XmlRootElement(name = "CreatePriceListRequest")
-public class CreatePriceListRequest {
+@XmlRootElement(name = "GetRoomPricesResponse")
+public class GetRoomPricesResponse {
 
     @XmlElement(required = true)
-    protected String request;
+    protected String response;
     @XmlElement(required = true)
-    protected List<PriceSoap> priceList;
-    protected long roomId;
+    protected List<PriceSoap> priceslist;
 
     /**
-     * Gets the value of the request property.
+     * Gets the value of the response property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getRequest() {
-        return request;
+    public String getResponse() {
+        return response;
     }
 
     /**
-     * Sets the value of the request property.
+     * Sets the value of the response property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setRequest(String value) {
-        this.request = value;
+    public void setResponse(String value) {
+        this.response = value;
     }
 
     /**
-     * Gets the value of the priceList property.
+     * Gets the value of the priceslist property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the priceList property.
+     * This is why there is not a <CODE>set</CODE> method for the priceslist property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPriceList().add(newItem);
+     *    getPriceslist().add(newItem);
      * </pre>
      * 
      * 
@@ -99,27 +96,11 @@ public class CreatePriceListRequest {
      * 
      * 
      */
-    public List<PriceSoap> getPriceList() {
-        if (priceList == null) {
-            priceList = new ArrayList<PriceSoap>();
+    public List<PriceSoap> getPriceslist() {
+        if (priceslist == null) {
+            priceslist = new ArrayList<PriceSoap>();
         }
-        return this.priceList;
-    }
-
-    /**
-     * Gets the value of the roomId property.
-     * 
-     */
-    public long getRoomId() {
-        return roomId;
-    }
-
-    /**
-     * Sets the value of the roomId property.
-     * 
-     */
-    public void setRoomId(long value) {
-        this.roomId = value;
+        return this.priceslist;
     }
 
 }

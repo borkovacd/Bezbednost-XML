@@ -243,6 +243,24 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetRoomPricesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomPricesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="priceslist" maxOccurs="unbounded" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>

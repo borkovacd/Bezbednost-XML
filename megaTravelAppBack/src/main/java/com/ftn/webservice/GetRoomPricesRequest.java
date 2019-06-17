@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="roomId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,13 +37,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request"
+    "request",
+    "roomId"
 })
-@XmlRootElement(name = "GetAllAccomodationTypesRequest")
-public class GetAllAccomodationTypesRequest {
+@XmlRootElement(name = "GetRoomPricesRequest")
+public class GetRoomPricesRequest {
 
     @XmlElement(required = true)
     protected String request;
+    protected long roomId;
 
     /**
      * Gets the value of the request property.
@@ -66,6 +69,22 @@ public class GetAllAccomodationTypesRequest {
      */
     public void setRequest(String value) {
         this.request = value;
+    }
+
+    /**
+     * Gets the value of the roomId property.
+     * 
+     */
+    public long getRoomId() {
+        return roomId;
+    }
+
+    /**
+     * Sets the value of the roomId property.
+     * 
+     */
+    public void setRoomId(long value) {
+        this.roomId = value;
     }
 
 }

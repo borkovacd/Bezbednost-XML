@@ -57,6 +57,8 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
+import com.ftn.webservice.GetRoomPricesRequest;
+import com.ftn.webservice.GetRoomPricesResponse;
 import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
@@ -515,6 +517,39 @@ public class AccomondationEndpoint {
 		
 		response.setResponse("Head back response: 'Price List is successfully created!'");
 
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetRoomPricesRequest")
+	@ResponsePayload
+	public GetRoomPricesResponse getRoomPrices(@RequestPayload GetRoomPricesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetRoomPricesResponse response = new GetRoomPricesResponse();
+		
+		Room requestedRoom = roomRepository.getOne(request.getRoomId());
+	
+		for(int i = 0; i < priceRepository.findAll().size(); i++) {
+			
+			if(priceRepository.findAll().get(i).getRoom().getId() == request.getRoomId()) {
+				
+				PriceSoap ps = new PriceSoap();
+				ps.setId(priceRepository.findAll().get(i).getId());
+				ps.setMonth(priceRepository.findAll().get(i).getMonth());
+				ps.setPrice(priceRepository.findAll().get(i).getPrice());
+				
+				response.getPriceslist().add(ps);
+				
+			}
+			
+		}
+		
+		response.setResponse("Head back response: 'Price list of requested room successfully sent!'");
+		
 		return response;
 	}
 

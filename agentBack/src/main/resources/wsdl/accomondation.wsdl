@@ -244,6 +244,24 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetRoomPricesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomPricesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="priceslist" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -382,6 +400,10 @@
     <wsdl:part element="sch:GetAllCountriesResponse" name="GetAllCountriesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetRoomPricesResponse">
+    <wsdl:part element="sch:GetRoomPricesResponse" name="GetRoomPricesResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="CreatePriceListRequest">
     <wsdl:part element="sch:CreatePriceListRequest" name="CreatePriceListRequest">
     </wsdl:part>
@@ -416,6 +438,10 @@
   </wsdl:message>
   <wsdl:message name="GetAllAgentsResponse">
     <wsdl:part element="sch:GetAllAgentsResponse" name="GetAllAgentsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRoomPricesRequest">
+    <wsdl:part element="sch:GetRoomPricesRequest" name="GetRoomPricesRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllCategoriesRequest">
@@ -499,6 +525,12 @@
       <wsdl:input message="tns:GetAllCountriesRequest" name="GetAllCountriesRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllCountriesResponse" name="GetAllCountriesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomPrices">
+      <wsdl:input message="tns:GetRoomPricesRequest" name="GetRoomPricesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetRoomPricesResponse" name="GetRoomPricesResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CreatePriceList">
@@ -612,6 +644,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllCountriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomPrices">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetRoomPricesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetRoomPricesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
