@@ -513,7 +513,7 @@ public class AccomondationEndpoint {
 		}
 		
 		room.setActive(true);
-		roomRepository.save(room); //mozda nepotrebno
+		//roomRepository.save(room); //mozda nepotrebno
 		
 		response.setResponse("Head back response: 'Price List is successfully created!'");
 
