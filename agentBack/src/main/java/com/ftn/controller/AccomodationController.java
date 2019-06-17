@@ -33,7 +33,7 @@ public class AccomodationController {
 
 	}
 	
-	//It should work :D
+
 	@DeleteMapping("/deleteAccomodation/{id}")
 	public ResponseEntity<String> deleteAccomodation(@PathVariable Long id) {
 
@@ -41,7 +41,6 @@ public class AccomodationController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	// Treba da proverim
 	@PutMapping("/editAccomodation/{idAgent}/{id}")
 	public ResponseEntity<Accomodation> editAccomodation(@PathVariable Long idAgent, @PathVariable Long id,
 			@RequestBody AccomodationDTO accomodationDTO) {
@@ -70,11 +69,12 @@ public class AccomodationController {
 	}
 	@GetMapping("/checkIfReservedAccomodation/{id}")
 	public boolean checkIfReservedAccomodation(@PathVariable Long id) {
-		//u ovoj metodi ne proveri da li je psoalti smestaj auzet
-		//tj da li se nalazi u nekoj rezervaciji
-		//ako se ne nalazi vratiti false
-		boolean acc = false;
-		return acc;
+		
+		//Ako smestaj ne poseduje rezervisane sobe, taken je FALSE
+		//u suprotnom taken ima vrednost TRUE
+		boolean taken = accomodationService.checkIfAccommodationIsReserved(id);
+		
+		return taken;
 	}
 
 }

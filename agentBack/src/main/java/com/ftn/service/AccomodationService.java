@@ -273,6 +273,21 @@ public class AccomodationService {
 		
 		return accomodation;
 	}
+
+
+	public boolean checkIfAccommodationIsReserved(Long id) {
+		
+		boolean taken = false;
+		
+		Accomodation accomodation = accomodationRepository.getOne(id);
+		for(Room room : accomodation.getRooms()) {
+			if(room.isReserved() == true) {
+				taken = true;
+			}
+		}
+		
+		return taken;
+	}
 	
 
 

@@ -306,6 +306,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedRoomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedRoom" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>

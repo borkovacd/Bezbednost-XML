@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="deleteAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="returnedRoom" type="{http://ftn.com/webservice}roomSoap"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,54 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request",
-    "deleteAccomodationId"
+    "returnedRoom"
 })
-@XmlRootElement(name = "DeleteAccomodationRequest")
-public class DeleteAccomodationRequest {
+@XmlRootElement(name = "GetRoomResponse")
+public class GetRoomResponse {
 
     @XmlElement(required = true)
-    protected String request;
-    protected long deleteAccomodationId;
+    protected RoomSoap returnedRoom;
 
     /**
-     * Gets the value of the request property.
+     * Gets the value of the returnedRoom property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RoomSoap }
      *     
      */
-    public String getRequest() {
-        return request;
+    public RoomSoap getReturnedRoom() {
+        return returnedRoom;
     }
 
     /**
-     * Sets the value of the request property.
+     * Sets the value of the returnedRoom property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RoomSoap }
      *     
      */
-    public void setRequest(String value) {
-        this.request = value;
-    }
-
-    /**
-     * Gets the value of the deleteAccomodationId property.
-     * 
-     */
-    public long getDeleteAccomodationId() {
-        return deleteAccomodationId;
-    }
-
-    /**
-     * Sets the value of the deleteAccomodationId property.
-     * 
-     */
-    public void setDeleteAccomodationId(long value) {
-        this.deleteAccomodationId = value;
+    public void setReturnedRoom(RoomSoap value) {
+        this.returnedRoom = value;
     }
 
 }

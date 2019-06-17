@@ -10,7 +10,6 @@ package com.ftn.webservice.files;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="requestedRoomId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +35,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request"
+    "requestedRoomId"
 })
-@XmlRootElement(name = "GetAllCitiesRequest")
-public class GetAllCitiesRequest {
+@XmlRootElement(name = "GetRoomRequest")
+public class GetRoomRequest {
 
-    @XmlElement(required = true)
-    protected String request;
+    protected long requestedRoomId;
 
     /**
-     * Gets the value of the request property.
+     * Gets the value of the requestedRoomId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getRequest() {
-        return request;
+    public long getRequestedRoomId() {
+        return requestedRoomId;
     }
 
     /**
-     * Sets the value of the request property.
+     * Sets the value of the requestedRoomId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setRequest(String value) {
-        this.request = value;
+    public void setRequestedRoomId(long value) {
+        this.requestedRoomId = value;
     }
 
 }

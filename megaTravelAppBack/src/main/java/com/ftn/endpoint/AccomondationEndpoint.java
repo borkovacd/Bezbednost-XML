@@ -41,6 +41,8 @@ import com.ftn.webservice.DeleteRoomRequest;
 import com.ftn.webservice.DeleteRoomResponse;
 import com.ftn.webservice.EditAccomodationRequest;
 import com.ftn.webservice.EditAccomodationResponse;
+import com.ftn.webservice.EditRoomRequest;
+import com.ftn.webservice.EditRoomResponse;
 import com.ftn.webservice.GetAccomodationRequest;
 import com.ftn.webservice.GetAccomodationResponse;
 import com.ftn.webservice.GetAccomodationRoomsRequest;
@@ -61,6 +63,8 @@ import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
 import com.ftn.webservice.GetRoomPricesRequest;
 import com.ftn.webservice.GetRoomPricesResponse;
+import com.ftn.webservice.GetRoomRequest;
+import com.ftn.webservice.GetRoomResponse;
 import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
@@ -227,6 +231,23 @@ public class AccomondationEndpoint {
 		a.setId(requestedAccomodation.getId());
 		a.setName(requestedAccomodation.getName());
 		a.setAddress(requestedAccomodation.getAddress());
+		CitySoap c = new CitySoap();
+		c.setName(requestedAccomodation.getCity().getName());
+		a.setCity(c);
+		TypeAccomodationSoap ta = new TypeAccomodationSoap();
+		ta.setName(requestedAccomodation.getTypeAccomodation().getName());
+		a.setTypeAccomodation(ta);
+		CategorySoap ca = new CategorySoap();
+		ca.setName(requestedAccomodation.getCategory().getName());
+		a.setCategory(ca);
+		a.setDescription(requestedAccomodation.getDescription());
+		a.setPic(requestedAccomodation.getPic());
+		a.setAgent(requestedAccomodation.getAgent().getId());
+		for(int j=0; j<requestedAccomodation.getAdditionalServices().size(); j++) {
+			AdditionalServicesSoap ass = new AdditionalServicesSoap();
+			ass.setName(requestedAccomodation.getAdditionalServices().get(j).getName());
+			a.getAdditionalServices().add(ass);
+		}
 		
 		response.setReturnedAccomodation(a);
 		
@@ -610,10 +631,71 @@ public class AccomondationEndpoint {
 		
 		response.setAccomodationId(idAccomodation);
 		response.setDeletedRoomId(idRoom);
-		response.setResponse("Room is successfully deleted!");
+		response.setResponse("Head back response: 'Room is successfully deleted!'");
 		
 		return response;
 	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "EditRoomRequest")
+	@ResponsePayload
+	public EditRoomResponse editRoom(@RequestPayload EditRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+				
+		EditRoomResponse response = new EditRoomResponse();
+		
+		Long idAccomodation = request.getAccomodationId();
+		Long idRoom = request.getRoomId();
+		RoomSoap r = request.getEditRoomData();
+		
+		Room room = roomRepository.getOne(idRoom);
+		
+		room.setCapacity(r.getCapacity());
+		room.setFloor(r.getFloor());
+		room.setActive(r.isActive());
+		room.setHasBalcony(r.isHasBalcony());
+		room.setDay(r.getDay());
+		room.setReserved(r.isReserved());
+		
+		roomRepository.save(room);
+	
+		r.setId(idRoom);
+		response.setAccomodationId(idAccomodation);
+		response.setEditedRoom(r);
+		response.setResponse("Head back response: 'Room data is successfully edited!'");
+		
+		return response;
+	}
+	
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetRoomRequest")
+	@ResponsePayload
+	public GetRoomResponse getRoom(@RequestPayload GetRoomRequest request) {
+		
+		GetRoomResponse response = new GetRoomResponse();
+		
+		Long id = request.getRequestedRoomId();
+		
+		Room requestedRoom = roomRepository.findOneById(id);
+		
+		RoomSoap r = new RoomSoap();
+		r.setId(requestedRoom.getId());
+		r.setCapacity(requestedRoom.getCapacity());
+		r.setDay(requestedRoom.getDay());
+		r.setFloor(requestedRoom.getFloor());
+		r.setActive(requestedRoom.isActive());
+		r.setReserved(requestedRoom.isReserved());
+		r.setHasBalcony(requestedRoom.isHasBalcony());
+		
+		response.setReturnedRoom(r);
+		
+		return response;
+	}
+	
+	
 
 
 }

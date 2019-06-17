@@ -40,6 +40,6 @@ export  class RoomService{
   editRoom(object: RoomModel, idAccomodation: any, id: any): Observable<any> {
     const body = JSON.stringify(object);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`${this.BASE_URL}/editAccomodation/${idAccomodation}/${id}`, body, {headers: headers})
+    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}`, body, {headers: headers})
   }
 }

@@ -307,6 +307,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedRoomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedRoom" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -449,6 +465,10 @@
     <wsdl:part element="sch:GetAllAccomodationTypesResponse" name="GetAllAccomodationTypesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetRoomResponse">
+    <wsdl:part element="sch:GetRoomResponse" name="GetRoomResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCountriesResponse">
     <wsdl:part element="sch:GetAllCountriesResponse" name="GetAllCountriesResponse">
     </wsdl:part>
@@ -459,6 +479,10 @@
   </wsdl:message>
   <wsdl:message name="CreatePriceListRequest">
     <wsdl:part element="sch:CreatePriceListRequest" name="CreatePriceListRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRoomRequest">
+    <wsdl:part element="sch:GetRoomRequest" name="GetRoomRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllAgentsRequest">
@@ -594,6 +618,12 @@
       <wsdl:output message="tns:GetAllAccomodationTypesResponse" name="GetAllAccomodationTypesResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <wsdl:input message="tns:GetRoomRequest" name="GetRoomRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetRoomResponse" name="GetRoomResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllCountries">
       <wsdl:input message="tns:GetAllCountriesRequest" name="GetAllCountriesRequest">
     </wsdl:input>
@@ -726,6 +756,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllAccomodationTypesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetRoomRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetRoomResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

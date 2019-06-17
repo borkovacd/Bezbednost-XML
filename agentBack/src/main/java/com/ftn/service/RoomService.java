@@ -8,19 +8,36 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.dto.RoomDTO;
 import com.ftn.model.Accomodation;
+import com.ftn.model.AdditionalServices;
+import com.ftn.model.Category;
+import com.ftn.model.City;
 import com.ftn.model.Room;
+import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.AccomodationSoap;
+import com.ftn.webservice.files.AdditionalServicesSoap;
+import com.ftn.webservice.files.CategorySoap;
+import com.ftn.webservice.files.CitySoap;
 import com.ftn.webservice.files.DeleteAccomodationRequest;
 import com.ftn.webservice.files.DeleteAccomodationResponse;
 import com.ftn.webservice.files.DeleteRoomRequest;
 import com.ftn.webservice.files.DeleteRoomResponse;
+import com.ftn.webservice.files.EditAccomodationRequest;
+import com.ftn.webservice.files.EditAccomodationResponse;
+import com.ftn.webservice.files.EditRoomRequest;
+import com.ftn.webservice.files.EditRoomResponse;
+import com.ftn.webservice.files.GetAccomodationRequest;
+import com.ftn.webservice.files.GetAccomodationResponse;
 import com.ftn.webservice.files.GetAccomodationRoomsRequest;
 import com.ftn.webservice.files.GetAccomodationRoomsResponse;
+import com.ftn.webservice.files.GetRoomRequest;
+import com.ftn.webservice.files.GetRoomResponse;
 import com.ftn.webservice.files.RegisterRoomRequest;
 import com.ftn.webservice.files.RegisterRoomResponse;
 import com.ftn.webservice.files.RoomSoap;
+import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class RoomService {
@@ -148,5 +165,74 @@ public class RoomService {
 		//accomodationRepository.save(accommodation);
 		
 		return "Success!";
+	}
+
+	public boolean checkIfRoomIsReserved(Long id) {
+		
+		boolean taken = false;
+		
+		Room room = roomRepository.getOne(id);
+		if(room.isReserved() == true) {
+			taken = true;
+		} else {
+			taken = false;
+		}
+		
+		return taken;
+	}
+
+	public Room editRoom(Long idAccomodation, Long idRoom, RoomDTO roomDTO) {
+		
+		EditRoomRequest request = new EditRoomRequest();
+		request.setRequest("Agent request: 'Edit data of room with id " + idRoom + ".");
+		request.setAccomodationId(idAccomodation);
+		request.setRoomId(idRoom);
+		
+		RoomSoap r = new RoomSoap();
+
+	    r.setCapacity(roomDTO.getCapacity());
+		r.setActive(false);
+		r.setFloor(roomDTO.getFloor());
+		r.setReserved(false);
+		r.setDay(roomDTO.getDay());
+		r.setHasBalcony(roomDTO.isHasBalcony());
+		
+		request.setEditRoomData(r);
+
+		EditRoomResponse response = (EditRoomResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println(response.getResponse());
+		System.out.println("*****");
+		
+		Room room = roomRepository.getOne(response.getEditedRoom().getId());
+		
+		room.setId(response.getEditedRoom().getId());
+		room.setCapacity(response.getEditedRoom().getCapacity());
+		room.setFloor(response.getEditedRoom().getFloor());
+		room.setReserved(response.getEditedRoom().isReserved());
+		room.setDay(response.getEditedRoom().getDay());
+		room.setHasBalcony(response.getEditedRoom().isHasBalcony());
+		room.setActive(response.getEditedRoom().isActive());
+		
+		roomRepository.save(room);
+		
+		return room;
+	}
+
+	public Room getRoom(Long idRoom) {
+		
+		GetRoomRequest request = new GetRoomRequest();
+		request.setRequestedRoomId(idRoom);
+		
+		GetRoomResponse response = (GetRoomResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		
+		Room room = roomRepository.findOneById(response.getReturnedRoom().getId());
+		
+		return room;
 	}
 }

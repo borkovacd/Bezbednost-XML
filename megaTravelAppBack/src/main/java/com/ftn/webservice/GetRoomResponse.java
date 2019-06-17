@@ -10,6 +10,7 @@ package com.ftn.webservice;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="requestedAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="returnedRoom" type="{http://ftn.com/webservice}roomSoap"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,27 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "requestedAccomodationId"
+    "returnedRoom"
 })
-@XmlRootElement(name = "GetAccomodationRequest")
-public class GetAccomodationRequest {
+@XmlRootElement(name = "GetRoomResponse")
+public class GetRoomResponse {
 
-    protected long requestedAccomodationId;
+    @XmlElement(required = true)
+    protected RoomSoap returnedRoom;
 
     /**
-     * Gets the value of the requestedAccomodationId property.
+     * Gets the value of the returnedRoom property.
      * 
+     * @return
+     *     possible object is
+     *     {@link RoomSoap }
+     *     
      */
-    public long getRequestedAccomodationId() {
-        return requestedAccomodationId;
+    public RoomSoap getReturnedRoom() {
+        return returnedRoom;
     }
 
     /**
-     * Sets the value of the requestedAccomodationId property.
+     * Sets the value of the returnedRoom property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link RoomSoap }
+     *     
      */
-    public void setRequestedAccomodationId(long value) {
-        this.requestedAccomodationId = value;
+    public void setReturnedRoom(RoomSoap value) {
+        this.returnedRoom = value;
     }
 
 }

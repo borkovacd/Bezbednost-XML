@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="requestedAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="requestedRoomId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,27 +35,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "requestedAccomodationId"
+    "requestedRoomId"
 })
-@XmlRootElement(name = "GetAccomodationRequest")
-public class GetAccomodationRequest {
+@XmlRootElement(name = "GetRoomRequest")
+public class GetRoomRequest {
 
-    protected long requestedAccomodationId;
+    protected long requestedRoomId;
 
     /**
-     * Gets the value of the requestedAccomodationId property.
+     * Gets the value of the requestedRoomId property.
      * 
      */
-    public long getRequestedAccomodationId() {
-        return requestedAccomodationId;
+    public long getRequestedRoomId() {
+        return requestedRoomId;
     }
 
     /**
-     * Sets the value of the requestedAccomodationId property.
+     * Sets the value of the requestedRoomId property.
      * 
      */
-    public void setRequestedAccomodationId(long value) {
-        this.requestedAccomodationId = value;
+    public void setRequestedRoomId(long value) {
+        this.requestedRoomId = value;
     }
 
 }

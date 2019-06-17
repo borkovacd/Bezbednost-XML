@@ -42,11 +42,12 @@ public class RoomControler {
 	}
 	@GetMapping("/checkIfReservedRoom/{id}")
 	public boolean checkIfReservedRoom(@PathVariable Long id) {
-		//u ovoj metodi ne proveri da li je psoalta soba zauzet
-		//tj da li se nalazi u nekoj rezervaciji
-		//ako se ne nalazi vratiti false
-		boolean acc = false;
-		return acc;
+		
+		//Ako soba nije rezervisana, taken je FALSE
+		//u suprotnom taken ima vrednost TRUE
+		boolean taken = roomService.checkIfRoomIsReserved(id);
+				
+		return taken;
 	}
 	
 	@GetMapping("/getOneRoom/{idAccomodation}/{idRoom}")
@@ -54,17 +55,22 @@ public class RoomControler {
 		//treba da mi vrati bas tu sonu koju trazim
 		//znci nadjes bas tu sobu u tom smestaju posto moze u drugom smestaju isto biti ta soba 
 		//pa da bi znao koju sobu tacno da vrati
-		return null;
+
+		Room room = roomService.getRoom(idRoom);
+		if (room == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(room, HttpStatus.OK);
 	}
 	
 	@PutMapping("/editRoom/{idAccomodation}/{idRoom}")
 	public ResponseEntity<Room> editAccomodation(@PathVariable Long idAccomodation,@PathVariable Long idRoom,
 			@RequestBody RoomDTO roomDTO) {
-		//izmeniti sobu u bas tom smestaju
-		//kontam proveris da li je to bas taj smestaj i da li je to bas ta soba
-		return null;
-		
-		
+
+		Room room = roomService.editRoom(idAccomodation, idRoom, roomDTO);
+		return new ResponseEntity<>(room, HttpStatus.OK);
+
 	}
 	
 	@DeleteMapping("/deleteRoom/{idAccomodation}/{idRoom}")
