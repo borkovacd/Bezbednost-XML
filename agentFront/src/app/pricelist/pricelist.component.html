@@ -1,0 +1,38 @@
+<div>
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
+</div>
+<div style="background-color: #24478f;text-align: center">
+  <p style="color: white;font-size:50px ">Cenovnik za smestajnu jedinicu </p>
+</div>
+<div>
+  <div>
+    <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="goBack()">Nazad</button>
+  </div>
+  <div>
+    <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="addPriceList()">Dodaj cenovnik</button>
+  </div>
+
+  <table class="table offset-2 tables" style=" border: 1px solid black ;margin-top: 15px;margin-left: 5px">
+    <tr>
+      <th class="th-style">Mesec:</th>
+      <th class="th-style">Cena sobe u € :</th>
+
+    </tr>
+    <tr *ngFor="let item of items; ">
+      <td>{{item.month}}</td>
+      <td>{{item.price}}</td>
+    </tr>
+
+  </table>
+
+
+</div>
+

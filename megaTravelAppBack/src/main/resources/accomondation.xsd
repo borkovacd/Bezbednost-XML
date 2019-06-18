@@ -22,6 +22,7 @@
     <xs:element name="DeleteAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
                 <xs:element name="deleteAccomodationId" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
@@ -31,6 +32,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="deletedAccomodationId" type="xs:long"/>
+                <xs:element name="response" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -38,6 +40,7 @@
     <xs:element name="EditAccomodationRequest">
         <xs:complexType>
             <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
                 <xs:element name="editAccomodationId" type="xs:long"/>
                 <xs:element name="editAccomodationData" type="tns:accomodationSoap"/>
             </xs:sequence>
@@ -48,6 +51,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="editedAccomodation" type="tns:accomodationSoap"/>
+                <xs:element name="response" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -205,6 +209,119 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="RegisterRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+            	<xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="room" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RegisterRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CreatePriceListRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="priceList" maxOccurs="unbounded" type="tns:priceSoap"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreatePriceListResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="priceListWithId" maxOccurs="unbounded" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomPricesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomPricesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="priceslist" maxOccurs="unbounded" type="tns:priceSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="roomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeleteRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="deletedRoomId" type="xs:long"/>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+                <xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="roomId" type="xs:long"/>
+                <xs:element name="editRoomData" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EditRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="accomodationId" type="xs:long"/>
+                <xs:element name="editedRoom" type="tns:roomSoap"/>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestedRoomId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRoomResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnedRoom" type="tns:roomSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -265,6 +382,17 @@
             <xs:element name="floor" type="xs:int"/>
             <xs:element name="hasBalcony" type="xs:boolean"/>
             <xs:element name="active" type="xs:boolean"/>
+            <xs:element name="day" type="xs:int"/>
+            <xs:element name="reserved" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="priceSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="month" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
         </xs:sequence>
     </xs:complexType>
     

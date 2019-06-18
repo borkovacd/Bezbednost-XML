@@ -94,6 +94,22 @@ export class AddEditAccomodationComponent implements OnInit{
 
     if (mode == 'edit') {
       this.method_name = 'IZMENI';
+      const idA = this.route.snapshot.params.idA;
+
+      this.accService.getOneAccomodation(idA).subscribe(data => {
+        this.form.controls['name'].setValue(data.name);
+        this.form.controls['city'].setValue(data.city.name);
+        this.form.controls['address'].setValue(data.address);
+        this.form.controls['type'].setValue(data.typeAccomodation.name);
+        this.form.controls['category'].setValue(data.category.name);
+        this.form.controls['description'].setValue(data.description);
+        this.form.controls['pic'].setValue(data.pic);
+
+        for (var i = 0; i < data.additionalServices.length; i++) {
+          this.listAditionalService.push(data.additionalServices[i].name);
+          this.values += data.additionalServices[i].name + '    ';
+        }
+      })
     } else if (mode == 'add') {
       this.method_name = 'DODAJ';
     }
@@ -125,7 +141,23 @@ export class AddEditAccomodationComponent implements OnInit{
     })
   }
   editAccomodatin(){
+    const accomodation = new AccomodationModel(
+      this.name.value,
+      this.city.value,
+      this.address.value,
+      this.type.value,
+      this.category.value,
+      this.description.value,
+      this.pic.value,
+      this.listAditionalService,
 
+    );
+    this.idagent = localStorage.getItem('agentId');
+    const idA = this.route.snapshot.params.idA;
+    this.accService.editAccomodation(accomodation, this.idagent, idA).subscribe(data => {
+      this.router.navigateByUrl('/welcomepage' );
+
+    })
   }
   exit() {
 

@@ -1,0 +1,119 @@
+<div>
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
+</div>
+<div style="background-color: #24478f;text-align: center">
+  <p style="color: white;font-size:50px ">Cenovnik za smestajnu jedinicu </p>
+</div>
+<div style="margin-bottom:50px;margin-right: 30%;margin-left: 30%">
+
+
+  <div style="margin-bottom:50px;margin-right: 30%;margin-left: 30%">
+    <form [formGroup]="form">
+
+      <div class="form-group">
+
+    <label style="margin-top: 70px">Januar: (€)</label>
+        <input name="name" class="form-control margin" id="input-jan"
+               [formControl]="jan">
+        <small class="form-text error" *ngIf="jan.errors?.required && jan.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Februar: (€)</label>
+        <input name="name" class="form-control margin" id="input-feb"
+               [formControl]="feb">
+        <small class="form-text error" *ngIf="feb.errors?.required && feb.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Mart: (€)</label>
+        <input name="name" class="form-control margin" id="input-mar"
+               [formControl]="mar">
+        <small class="form-text error" *ngIf="mar.errors?.required && mar.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">April: (€)</label>
+        <input name="name" class="form-control margin" id="input-apr"
+               [formControl]="apr">
+        <small class="form-text error" *ngIf="apr.errors?.required && apr.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Maj: (€)</label>
+        <input name="name" class="form-control margin" id="input-may"
+               [formControl]="may">
+        <small class="form-text error" *ngIf="may.errors?.required && may.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Jun: (€)</label>
+        <input name="name" class="form-control margin" id="input-jun"
+               [formControl]="jun">
+        <small class="form-text error" *ngIf="jun.errors?.required && jun.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Jul: (€)</label>
+        <input name="name" class="form-control margin" id="input-jul"
+               [formControl]="jul">
+        <small class="form-text error" *ngIf="jul.errors?.required && jul.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Avgust: (€)</label>
+        <input name="name" class="form-control margin" id="input-aug"
+               [formControl]="aug">
+        <small class="form-text error" *ngIf="aug.errors?.required && aug.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Septembar: (€)</label>
+        <input name="name" class="form-control margin" id="input-sep"
+               [formControl]="sep">
+        <small class="form-text error" *ngIf="sep.errors?.required && sep.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Oktobar: (€)</label>
+        <input name="name" class="form-control margin" id="input-oct"
+               [formControl]="oct">
+        <small class="form-text error" *ngIf="oct.errors?.required && oct.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Novembar: (€)</label>
+        <input name="name" class="form-control margin" id="input-nov"
+               [formControl]="nov">
+        <small class="form-text error" *ngIf="nov.errors?.required && nov.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+        <label style="margin-top: 70px">Decembar: (€)</label>
+        <input name="name" class="form-control margin" id="input-dec"
+               [formControl]="dec">
+        <small class="form-text error" *ngIf="dec.errors?.required && dec.touched" style="color: red">
+          Unos je obavezan!
+        </small>
+
+
+
+        <button class="btn btn-success" style="width: 100%;margin-top: 30px"
+                [disabled]="!form.valid" (click)="addPriceList()">
+          DODAJ CENU
+        </button>
+        <button class="btn btn-success" style="width: 100% ; margin-top: 20px" (click)="exit()">ZATVORI</button>
+
+      </div>
+
+    </form>
+  </div>
+

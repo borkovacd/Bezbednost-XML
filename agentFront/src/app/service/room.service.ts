@@ -15,8 +15,31 @@ export  class RoomService{
 
   }
 
-  createRoom(object: RoomModel,idAccommodtion: any): Observable<any> {
+  createRoom(object: RoomModel,idAccomodation: any): Observable<any> {
     const body = JSON.stringify(object);
-    return this.http.post(`${this.BASE_URL}/createRoom/${idAccommodtion}`,body,httpOptions);
+    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}`,body,httpOptions);
+  }
+
+  getAllRoom(idAccomodation: any): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}`, httpOptions);
+  }
+
+  checkIfReservedRoom(id: any): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get(`${this.BASE_URL}/checkIfReservedRoom/${id}`, {headers: headers})
+  }
+  deleteRoom(id: any): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.delete(`${this.BASE_URL}/deleteRoom/` + id, {headers: headers});
+  }
+  getOneRoom(idA: any, idR: any): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get(`${this.BASE_URL}/getOneRoom/${idA}/${idR}`, {headers: headers})
+  }
+
+  editRoom(object: RoomModel, idAccomodation: any, id: any): Observable<any> {
+    const body = JSON.stringify(object);
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}`, body, {headers: headers})
   }
 }

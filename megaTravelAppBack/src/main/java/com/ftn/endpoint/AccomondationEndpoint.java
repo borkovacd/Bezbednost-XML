@@ -15,6 +15,7 @@ import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
+import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomondationRepository;
@@ -23,6 +24,7 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
+import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.webservice.AccomodationSoap;
@@ -31,10 +33,16 @@ import com.ftn.webservice.AgentSoap;
 import com.ftn.webservice.CategorySoap;
 import com.ftn.webservice.CitySoap;
 import com.ftn.webservice.CountrySoap;
+import com.ftn.webservice.CreatePriceListRequest;
+import com.ftn.webservice.CreatePriceListResponse;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
+import com.ftn.webservice.DeleteRoomRequest;
+import com.ftn.webservice.DeleteRoomResponse;
 import com.ftn.webservice.EditAccomodationRequest;
 import com.ftn.webservice.EditAccomodationResponse;
+import com.ftn.webservice.EditRoomRequest;
+import com.ftn.webservice.EditRoomResponse;
 import com.ftn.webservice.GetAccomodationRequest;
 import com.ftn.webservice.GetAccomodationResponse;
 import com.ftn.webservice.GetAccomodationRoomsRequest;
@@ -53,14 +61,17 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
+import com.ftn.webservice.GetRoomPricesRequest;
+import com.ftn.webservice.GetRoomPricesResponse;
+import com.ftn.webservice.GetRoomRequest;
+import com.ftn.webservice.GetRoomResponse;
+import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
+import com.ftn.webservice.RegisterRoomRequest;
+import com.ftn.webservice.RegisterRoomResponse;
 import com.ftn.webservice.RoomSoap;
 import com.ftn.webservice.TypeAccomodationSoap;
-
-import net.bytebuddy.asm.Advice.This;
-
-
 
 
 //@Endpoint registers the class with Spring WS as a potential candidate for processing incoming SOAP messages.
@@ -76,11 +87,12 @@ public class AccomondationEndpoint {
 	private RoomRepository roomRepository;
 	private AgentRepository agentRepository;
 	private TypeAccomodationRepository typeAccomodationRepository;
+	private PriceRepository priceRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
-			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository) {
+			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository) {
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
 		this.cityRepository = cityRepository;
@@ -89,6 +101,7 @@ public class AccomondationEndpoint {
 		this.roomRepository = roomRepository;
 		this.agentRepository = agentRepository;
 		this.typeAccomodationRepository = typeAccomodationRepository;
+		this.priceRepository = priceRepository;
 	}
 	
 	
@@ -141,6 +154,11 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public DeleteAccomodationResponse deleteAccomodation(@RequestPayload DeleteAccomodationRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
 		DeleteAccomodationResponse response = new DeleteAccomodationResponse();
 		
 		Long id = request.getDeleteAccomodationId();
@@ -148,6 +166,7 @@ public class AccomondationEndpoint {
 		Accomodation a = accomondationRepository.findOneById(id);
 		
 		response.setDeletedAccomodationId(a.getId());
+		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
 		
 		accomondationRepository.delete(a);
 		
@@ -158,19 +177,40 @@ public class AccomondationEndpoint {
 	@ResponsePayload
 	public EditAccomodationResponse editAccomodation(@RequestPayload EditAccomodationRequest request) {
 		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+				
 		EditAccomodationResponse response = new EditAccomodationResponse();
 		
 		Long id = request.getEditAccomodationId();
-		AccomodationSoap newAccomodation = request.getEditAccomodationData();
+		AccomodationSoap a = request.getEditAccomodationData();
 		
-		Accomodation a = accomondationRepository.findOneById(id);
-		a.setName(newAccomodation.getName());
-		a.setAddress(newAccomodation.getAddress());
+		Accomodation accomodation = accomondationRepository.findOneById(id);
 		
-		accomondationRepository.save(a);
+		accomodation.setName(a.getName());
+		City city = cityRepository.findByName(a.getCity().getName());
+		accomodation.setCity(city);
+		accomodation.setAddress(a.getAddress());
+		TypeAccomodation typeAccomodation = typeAccomodationRepository.findByName(a.getTypeAccomodation().getName());
+		accomodation.setTypeAccomodation(typeAccomodation);
+		Category category = categoryRepository.findByName(a.getCategory().getName());
+		accomodation.setCategory(category);
+		accomodation.setDescription(a.getDescription());
+		accomodation.setPic(a.getPic());
+		accomodation.setAgent(agentRepository.getOne(a.getAgent()));
+		List<AdditionalServices> additionalServices = new ArrayList<AdditionalServices>();
+		for(int i=0; i<a.getAdditionalServices().size(); i++) {
+			AdditionalServices additionalService = additionalServicesRepository.findByName(a.getAdditionalServices().get(i).getName());
+			additionalServices.add(additionalService);
+		}
+		accomodation.setAdditionalServices(additionalServices);
+		
+		accomondationRepository.save(accomodation);
 	
-		newAccomodation.setId(id);
-		response.setEditedAccomodation(newAccomodation);
+		a.setId(id);
+		response.setEditedAccomodation(a);
 		
 		return response;
 	}
@@ -191,6 +231,23 @@ public class AccomondationEndpoint {
 		a.setId(requestedAccomodation.getId());
 		a.setName(requestedAccomodation.getName());
 		a.setAddress(requestedAccomodation.getAddress());
+		CitySoap c = new CitySoap();
+		c.setName(requestedAccomodation.getCity().getName());
+		a.setCity(c);
+		TypeAccomodationSoap ta = new TypeAccomodationSoap();
+		ta.setName(requestedAccomodation.getTypeAccomodation().getName());
+		a.setTypeAccomodation(ta);
+		CategorySoap ca = new CategorySoap();
+		ca.setName(requestedAccomodation.getCategory().getName());
+		a.setCategory(ca);
+		a.setDescription(requestedAccomodation.getDescription());
+		a.setPic(requestedAccomodation.getPic());
+		a.setAgent(requestedAccomodation.getAgent().getId());
+		for(int j=0; j<requestedAccomodation.getAdditionalServices().size(); j++) {
+			AdditionalServicesSoap ass = new AdditionalServicesSoap();
+			ass.setName(requestedAccomodation.getAdditionalServices().get(j).getName());
+			a.getAdditionalServices().add(ass);
+		}
 		
 		response.setReturnedAccomodation(a);
 		
@@ -325,6 +382,8 @@ public class AccomondationEndpoint {
 			rs.setFloor(requestedAccomodation.getRooms().get(i).getFloor());
 			rs.setHasBalcony(requestedAccomodation.getRooms().get(i).isHasBalcony());
 			rs.setActive(requestedAccomodation.getRooms().get(i).isActive());
+			rs.setReserved(requestedAccomodation.getRooms().get(i).isReserved());
+			rs.setDay(requestedAccomodation.getRooms().get(i).getDay());
 			
 			response.getRoomslist().add(rs);
 			
@@ -434,6 +493,209 @@ public class AccomondationEndpoint {
 		
 		return response;
 	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "RegisterRoomRequest")
+	@ResponsePayload
+	public RegisterRoomResponse registerRoom(@RequestPayload RegisterRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		RegisterRoomResponse response = new RegisterRoomResponse();
+		
+		RoomSoap r = request.getRoom();
+		String accomodationName = accomondationRepository.getOne(request.getAccomodationId()).getName();
+		
+		Room room = new Room();
+		
+		room.setCapacity(r.getCapacity());
+		room.setFloor(r.getFloor());
+		room.setActive(r.isActive());
+		room.setHasBalcony(r.isHasBalcony());
+		room.setDay(r.getDay());
+		room.setReserved(r.isReserved());
+		
+		roomRepository.save(room);
+		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
+		List<Room> rooms = accomodation.getRooms();
+		rooms.add(room);
+		accomodation.setRooms(rooms);
+		accomondationRepository.save(accomodation);
+		
+		response.setRoomId(room.getId());
+		response.setResponse("Head back response: 'New room successfully added in accomodation '" + accomodationName + "'.");
+
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreatePriceListRequest")
+	@ResponsePayload
+	public CreatePriceListResponse getAccomondation(@RequestPayload CreatePriceListRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		CreatePriceListResponse response = new CreatePriceListResponse();
+		
+		Long roomId = request.getRoomId();
+		Room room = roomRepository.getOne(roomId);
+		
+		for(PriceSoap ps : request.getPriceList()) {
+			
+			Price price =  new Price();
+			price.setMonth(ps.getMonth());
+			price.setPrice(ps.getPrice());
+			price.setRoom(room);
+			
+			priceRepository.save(price);
+			
+			PriceSoap priceSoapWithId = new PriceSoap();
+			priceSoapWithId.setId(price.getId());
+			priceSoapWithId.setMonth(price.getMonth());
+			priceSoapWithId.setPrice(price.getPrice());
+			
+			response.getPriceListWithId().add(priceSoapWithId);
+
+		}
+		
+		room.setActive(true);
+		//roomRepository.save(room); //mozda nepotrebno
+		
+		response.setResponse("Head back response: 'Price List is successfully created!'");
+
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetRoomPricesRequest")
+	@ResponsePayload
+	public GetRoomPricesResponse getRoomPrices(@RequestPayload GetRoomPricesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetRoomPricesResponse response = new GetRoomPricesResponse();
+		
+		Room requestedRoom = roomRepository.getOne(request.getRoomId());
+	
+		for(int i = 0; i < priceRepository.findAll().size(); i++) {
+			
+			if(priceRepository.findAll().get(i).getRoom().getId() == request.getRoomId()) {
+				
+				PriceSoap ps = new PriceSoap();
+				ps.setId(priceRepository.findAll().get(i).getId());
+				ps.setMonth(priceRepository.findAll().get(i).getMonth());
+				ps.setPrice(priceRepository.findAll().get(i).getPrice());
+				
+				response.getPriceslist().add(ps);
+				
+			}
+			
+		}
+		
+		response.setResponse("Head back response: 'Price list of requested room successfully sent!'");
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "DeleteRoomRequest")
+	@ResponsePayload
+	public DeleteRoomResponse deleteRoom(@RequestPayload DeleteRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		DeleteRoomResponse response = new DeleteRoomResponse();
+		
+		Long idAccomodation = request.getAccomodationId();
+		Long idRoom = request.getRoomId();
+		
+		Accomodation a = accomondationRepository.findOneById(idAccomodation);
+		List<Room> accommodationRooms = a.getRooms();
+		for(Room room : accommodationRooms) {
+			if(room.getId() == idRoom) {
+				accommodationRooms.remove(room);
+				roomRepository.delete(room);
+			}
+		}
+		
+		a.setRooms(accommodationRooms);
+		//accomodationRepository.save(a);
+		
+		response.setAccomodationId(idAccomodation);
+		response.setDeletedRoomId(idRoom);
+		response.setResponse("Head back response: 'Room is successfully deleted!'");
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "EditRoomRequest")
+	@ResponsePayload
+	public EditRoomResponse editRoom(@RequestPayload EditRoomRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+				
+		EditRoomResponse response = new EditRoomResponse();
+		
+		Long idAccomodation = request.getAccomodationId();
+		Long idRoom = request.getRoomId();
+		RoomSoap r = request.getEditRoomData();
+		
+		Room room = roomRepository.getOne(idRoom);
+		
+		room.setCapacity(r.getCapacity());
+		room.setFloor(r.getFloor());
+		room.setActive(r.isActive());
+		room.setHasBalcony(r.isHasBalcony());
+		room.setDay(r.getDay());
+		room.setReserved(r.isReserved());
+		
+		roomRepository.save(room);
+	
+		r.setId(idRoom);
+		response.setAccomodationId(idAccomodation);
+		response.setEditedRoom(r);
+		response.setResponse("Head back response: 'Room data is successfully edited!'");
+		
+		return response;
+	}
+	
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetRoomRequest")
+	@ResponsePayload
+	public GetRoomResponse getRoom(@RequestPayload GetRoomRequest request) {
+		
+		GetRoomResponse response = new GetRoomResponse();
+		
+		Long id = request.getRequestedRoomId();
+		
+		Room requestedRoom = roomRepository.findOneById(id);
+		
+		RoomSoap r = new RoomSoap();
+		r.setId(requestedRoom.getId());
+		r.setCapacity(requestedRoom.getCapacity());
+		r.setDay(requestedRoom.getDay());
+		r.setFloor(requestedRoom.getFloor());
+		r.setActive(requestedRoom.isActive());
+		r.setReserved(requestedRoom.isReserved());
+		r.setHasBalcony(requestedRoom.isHasBalcony());
+		
+		response.setReturnedRoom(r);
+		
+		return response;
+	}
+	
+	
 
 
 }

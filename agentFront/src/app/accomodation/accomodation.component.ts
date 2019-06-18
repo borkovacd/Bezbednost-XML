@@ -25,13 +25,33 @@ export class AccomodationComponent implements OnInit{
 
   }
   addAccomodation(){
-    this.router.navigateByUrl('add/accomodation');
+    this.router.navigateByUrl('add/accomodation/');
   }
 
   editAccomodation(id: any){
+    this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
+      if(data == false){
+        this.router.navigateByUrl('edit/accomodation/' + id);
+      }else{
+        alert('Smestaj je rezervisan!');
+      }
+    })
+
+
 
   }
   deleteAccomodation(id: any){
+    this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
+      if(data == false){
+        this.accomodationService.deleteAccomodation(id).subscribe(data =>{
+          alert('Smestaj je uspesno obrisan!');
+          this.router.navigateByUrl('welcomepage');
+
+        })
+      }else{
+        alert('Smestaj je rezervisan!');
+      }
+    })
 
   }
   showAccomodation(idA: any){

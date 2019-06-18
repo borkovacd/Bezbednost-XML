@@ -27,13 +27,13 @@ public class AccomodationController {
 	private AccomodationService accomodationService;
 
 	@PostMapping("/createAccomodation/{idAgent}")
-	public void createAccomodation(@RequestBody AccomodationDTO accDTO,@PathVariable Long idAgent) {
+	public void createAccomodation(@RequestBody AccomodationDTO accDTO, @PathVariable Long idAgent) {
 
 		accomodationService.create(accDTO, idAgent);
 
 	}
+	
 
-	//Treba da proverim
 	@DeleteMapping("/deleteAccomodation/{id}")
 	public ResponseEntity<String> deleteAccomodation(@PathVariable Long id) {
 
@@ -41,7 +41,6 @@ public class AccomodationController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	//Treba da proverim
 	@PutMapping("/editAccomodation/{idAgent}/{id}")
 	public ResponseEntity<Accomodation> editAccomodation(@PathVariable Long idAgent, @PathVariable Long id,
 			@RequestBody AccomodationDTO accomodationDTO) {
@@ -58,10 +57,9 @@ public class AccomodationController {
 		return new ResponseEntity<>(accomodations, HttpStatus.OK);
 	}
 
-	//Treba da proverim
+	// Treba da proverim
 	@GetMapping("/getAccomodation/{id}")
 	public ResponseEntity<Accomodation> getAccomodation(@PathVariable Long id) {
-
 		Accomodation accomodation = accomodationService.getAccomodation(id);
 		if (accomodation == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,14 +67,14 @@ public class AccomodationController {
 
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
 	}
-	
-	//Nije zavrseno for now
-	@GetMapping("/getAccomodationRooms/{id}")
-	public ResponseEntity<?> getAccomodationRooms(@PathVariable Long id) {
-
-		ArrayList<Room> rooms = accomodationService.getAllAccomodationRooms(id);
-
-		return new ResponseEntity<>(rooms, HttpStatus.OK);
+	@GetMapping("/checkIfReservedAccomodation/{id}")
+	public boolean checkIfReservedAccomodation(@PathVariable Long id) {
+		
+		//Ako smestaj ne poseduje rezervisane sobe, taken je FALSE
+		//u suprotnom taken ima vrednost TRUE
+		boolean taken = accomodationService.checkIfAccommodationIsReserved(id);
+		
+		return taken;
 	}
 
 }
