@@ -165,6 +165,22 @@ public class AccomondationEndpoint {
 		
 		Accomodation a = accomondationRepository.findOneById(id);
 		
+		for(int i=0; i<a.getRooms().size(); i++) {
+			for(Price price : priceRepository.findAll()) {
+				if(price.getRoom().getId() == a.getRooms().get(i).getId()) {
+					priceRepository.delete(price);
+				}
+			}
+				
+			Long idRoom = a.getRooms().get(i).getId();
+			//a.getRooms().remove(i);
+			//accomodationRepository.save(a);
+			Room room = roomRepository.getOne(idRoom);
+			//System.out.println("ROOOOOOOOOOOOOOOOOOOOOOOOOM" + room.getCapacity());
+			//roomRepository.delete(room);
+			
+		}
+		
 		response.setDeletedAccomodationId(a.getId());
 		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
 		
@@ -563,7 +579,7 @@ public class AccomondationEndpoint {
 		}
 		
 		room.setActive(true);
-		//roomRepository.save(room); //mozda nepotrebno
+		roomRepository.save(room); 
 		
 		response.setResponse("Head back response: 'Price List is successfully created!'");
 
@@ -618,16 +634,23 @@ public class AccomondationEndpoint {
 		Long idRoom = request.getRoomId();
 		
 		Accomodation a = accomondationRepository.findOneById(idAccomodation);
-		List<Room> accommodationRooms = a.getRooms();
-		for(Room room : accommodationRooms) {
-			if(room.getId() == idRoom) {
-				accommodationRooms.remove(room);
+		for(int i=0; i<a.getRooms().size(); i++) {
+			if(a.getRooms().get(i).getId() == idRoom) {
+				for(Price price : priceRepository.findAll()) {
+					if(price.getRoom().getId() == idRoom) {
+						priceRepository.delete(price);
+					}
+				}
+				
+				a.getRooms().remove(i);
+				accomondationRepository.save(a);
+				Room room = roomRepository.getOne(idRoom);
 				roomRepository.delete(room);
+			
 			}
 		}
 		
-		a.setRooms(accommodationRooms);
-		//accomodationRepository.save(a);
+		
 		
 		response.setAccomodationId(idAccomodation);
 		response.setDeletedRoomId(idRoom);

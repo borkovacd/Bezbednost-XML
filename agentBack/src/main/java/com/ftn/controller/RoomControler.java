@@ -74,10 +74,10 @@ public class RoomControler {
 	}
 	
 	@DeleteMapping("/deleteRoom/{idAccomodation}/{idRoom}")
-	public ResponseEntity<String> deleteRoom(@PathVariable Long idAccomodation, @PathVariable Long idRoom) {
+	public boolean deleteRoom(@PathVariable Long idAccomodation, @PathVariable Long idRoom) {
 
-		String response = roomService.deleteRoom(idAccomodation, idRoom);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		boolean response = roomService.deleteRoom(idAccomodation, idRoom);
+		return response;
 	}
 
 }
