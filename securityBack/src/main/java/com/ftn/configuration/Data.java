@@ -88,6 +88,10 @@ public class Data implements ApplicationRunner {
 		String mainBackPath = parent + "\\securityBack\\files\\keystoreSecurity.p12";
 		
 		String authPath = parent + "\\auth-service\\authKeystore.p12";
+
+		String zuulPath = parent + "\\zuul-server\\zuulKeystore.p12";
+
+		String eurekaPath = parent + "\\eureka-server\\eurekaKeystore.p12";
 		 
 		System.out.println("Ovo je agent path: " + agentPath);
 		
@@ -412,7 +416,95 @@ public class Data implements ApplicationRunner {
 				System.out.println("nije prazan auth");
 			}
 		    
+		    if (keyStoreReader.getKeyStore(zuulPath).getCertificateChain("someString") == null ) {
+				System.out.println("prazan zuul");
+				
+				// kreirati sertifikat za agenta
+				
+				String str = "someString"; 
+				char[] password = str.toCharArray();
+				
+				//keyStoreAgent.load(agentPath, password);
+				
+				//
+				PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, str, str);
+				
+				//System.out.println("privatni kljuc je:" + privateKeyIssuer);
+				
+				ArrayList<Certificate> lanacSertifikata2 = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystoreSecurity.p12").getCertificateChain("someString")));
+				
+				PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
+				
+				SubjectData subjectData33 = generateSubjectData2Main(privateKeyIssuer, publicKey);
+				
+				IssuerData issuerData33 = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata2.get(0));
+				
+				//keyStoreWriter.loadKeyStore(agentPath, password);
+				
+				CertificateGenerator cg = new CertificateGenerator();
+				
+				// izgenerisi sertifikat za subject-a od issuer-a
+				X509Certificate cert = cg.generateCertificate(subjectData33, issuerData33);
+				
+				Certificate certificate = cert;
+				
+				String pass = "someString";
+				
+				keyStoreAgent.load(new FileInputStream(zuulPath), password);
+				
+				keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, "someString".toCharArray(), new Certificate[] {certificate});
+				
+				keyStoreAgent.store(new FileOutputStream(zuulPath), password);
+				
+				
+			} else {
+				System.out.println("nije prazan zuul");
+			}
 		    
+		    if (keyStoreReader.getKeyStore(eurekaPath).getCertificateChain("someString") == null ) {
+				System.out.println("prazan eureka");
+				
+				// kreirati sertifikat za agenta
+				
+				String str = "someString"; 
+				char[] password = str.toCharArray();
+				
+				//keyStoreAgent.load(agentPath, password);
+				
+				//
+				PrivateKey privateKeyIssuer = keyStoreReader.readPrivateKey("./files/keystoreSecurity.p12", str, str, str);
+				
+				//System.out.println("privatni kljuc je:" + privateKeyIssuer);
+				
+				ArrayList<Certificate> lanacSertifikata2 = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystoreSecurity.p12").getCertificateChain("someString")));
+				
+				PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
+				
+				SubjectData subjectData33 = generateSubjectData2Main(privateKeyIssuer, publicKey);
+				
+				IssuerData issuerData33 = generateIssuerData2(privateKeyIssuer, (X509Certificate) lanacSertifikata2.get(0));
+				
+				//keyStoreWriter.loadKeyStore(agentPath, password);
+				
+				CertificateGenerator cg = new CertificateGenerator();
+				
+				// izgenerisi sertifikat za subject-a od issuer-a
+				X509Certificate cert = cg.generateCertificate(subjectData33, issuerData33);
+				
+				Certificate certificate = cert;
+				
+				String pass = "someString";
+				
+				keyStoreAgent.load(new FileInputStream(eurekaPath), password);
+				
+				keyStoreAgent.setKeyEntry(pass, privateKeyIssuer, "someString".toCharArray(), new Certificate[] {certificate});
+				
+				keyStoreAgent.store(new FileOutputStream(eurekaPath), password);
+				
+				
+			} else {
+				System.out.println("nije prazan zuul");
+			}
 	}
 
 }

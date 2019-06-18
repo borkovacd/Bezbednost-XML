@@ -236,3 +236,17 @@
 2019-06-16 16:23:10,524 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GET_CA
 2019-06-16 16:23:10,545 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MegaTravelBoston@gmail.com CA 
 2019-06-16 16:23:10,541 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GET_ACA
+2019-06-16 18:08:35,152 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 4012 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack)
+2019-06-16 18:08:35,156 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-16 18:08:35,158 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-16 18:08:37,053 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-16 18:08:37,054 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-16 18:08:37,054 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-16 18:08:42,351 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 7.669 seconds (JVM running for 9.15)
+2019-06-16 18:10:29,912 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 6196 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack)
+2019-06-16 18:10:29,916 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-16 18:10:29,926 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-16 18:10:32,074 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-16 18:10:32,075 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-16 18:10:32,076 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-16 18:10:36,037 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 6.57 seconds (JVM running for 7.682)
