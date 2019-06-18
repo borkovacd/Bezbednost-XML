@@ -16,7 +16,7 @@ import com.ftn.micro2.model.AccomodationType;
 import com.ftn.micro2.service.AccomodationTypeService;
 
 @RestController
-@RequestMapping("/accType")
+@RequestMapping("/api/accomodation/accType")
 public class AccomodationTypeController 
 {
 	@Autowired

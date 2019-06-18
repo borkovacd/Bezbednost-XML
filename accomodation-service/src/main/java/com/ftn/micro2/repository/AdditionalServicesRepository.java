@@ -17,7 +17,7 @@ public interface AdditionalServicesRepository extends JpaRepository<AdditionalSe
 {
 	public AdditionalServices save(AdditionalServices addServ);
 	
-	public AdditionalServices findServiceByName(String name);
+	public AdditionalServices findAdditionalServicesByName(String name);
 	
 	public List<AdditionalServices> findAll();
 	

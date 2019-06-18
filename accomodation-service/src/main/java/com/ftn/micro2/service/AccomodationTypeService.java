@@ -17,7 +17,7 @@ public class AccomodationTypeService
 	
 	public AccomodationType findByName(AccomodationType acc)
 	{
-		return repository.findTypeByName(acc.getName());
+		return repository.findAccomodationTypeByName(acc.getName());
 	}
 	
 	public void save(AccomodationType acc)
@@ -34,7 +34,7 @@ public class AccomodationTypeService
 	// brisanje tipa smestaja iz liste
 	public List<AccomodationType> deleteByName(String name)
 	{	
-		AccomodationType accType = repository.findTypeByName(name);
+		AccomodationType accType = repository.findAccomodationTypeByName(name);
 		repository.delete(accType);
 		return repository.findAll();
 	}

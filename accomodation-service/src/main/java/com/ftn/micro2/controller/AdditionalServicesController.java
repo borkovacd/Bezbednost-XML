@@ -15,7 +15,7 @@ import com.ftn.micro2.model.AdditionalServices;
 import com.ftn.micro2.service.AdditionalServicesService;
 
 @RestController
-@RequestMapping("/addServ")
+@RequestMapping("/api/accomodation/addServ")
 public class AdditionalServicesController 
 {
 	@Autowired

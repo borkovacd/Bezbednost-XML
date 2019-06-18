@@ -17,7 +17,7 @@ public class AdditionalServicesService
 	
 	public AdditionalServices findByName(AdditionalServices add) 
 	{
-		 return repository.findServiceByName(add.getName());
+		 return repository.findAdditionalServicesByName(add.getName());
 	}
 	
 	public void save(AdditionalServices service) 
@@ -33,7 +33,7 @@ public class AdditionalServicesService
 	// vraca listu dodatnih servisa, nakon brisanja servisa sa prosledjenim Id-jem
 	public List<AdditionalServices> deleteByName(String name)
 	{
-		AdditionalServices addServ = repository.findServiceByName(name);
+		AdditionalServices addServ = repository.findAdditionalServicesByName(name);
 		repository.delete(addServ);
 		return repository.findAll();
 	}

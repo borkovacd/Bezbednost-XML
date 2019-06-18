@@ -16,7 +16,7 @@ public interface AccomodationTypeRepository extends JpaRepository<AccomodationTy
 {
 	public AccomodationType save(AccomodationType acc);
 	
-	public AccomodationType findTypeByName(String name);
+	public AccomodationType findAccomodationTypeByName(String name);
 	
 	public List<AccomodationType> findAll();
 	
