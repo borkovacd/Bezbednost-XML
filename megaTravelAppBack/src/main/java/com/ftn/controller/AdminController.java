@@ -64,6 +64,8 @@ public class AdminController {
 		
 	}
 	
+	
+	/*
 	@RequestMapping(value="/addAdditionalService",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public AdditionalServices addAdditionalService(@RequestBody AdditionalServiceDTO additionalServiceDto) 
 	{
@@ -74,6 +76,9 @@ public class AdminController {
 		return additionalServicesService.saveAdditionalService(addServ);
 	}
 	
+	*/
+	
+	
 	@RequestMapping(value="/addCategory",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addCategory(@RequestBody CategoryDTO categoryDto) 
 	{
@@ -83,6 +88,7 @@ public class AdminController {
 		categoryService.saveCategory(category);
 	}
 	
+	/*
 	@RequestMapping(value="/addTypeAccomodation",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addTypeAccomodation(@RequestBody TypeAccomodationDTO typeAccomodationDto) 
 	{
@@ -91,6 +97,7 @@ public class AdminController {
 	
 		typeAccomodationService.saveTypeAccomodation(typeAccomodation);
 	}
+	*/
 	
 	@RequestMapping(value="/activateUser/{username}", method = RequestMethod.GET)
 	public Client activateClient(@PathVariable String username) {
