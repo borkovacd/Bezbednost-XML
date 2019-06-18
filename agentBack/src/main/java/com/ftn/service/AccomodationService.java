@@ -11,6 +11,7 @@ import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
+import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
@@ -18,6 +19,8 @@ import com.ftn.repository.AdditionalServicesRepository;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
+import com.ftn.repository.PriceRepository;
+import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
@@ -54,6 +57,10 @@ public class AccomodationService {
 	private AdditionalServicesRepository additionalServicesRepository;
 	@Autowired
 	private AgentRepository agentRepository;
+	@Autowired
+	private PriceRepository priceRepository;
+	@Autowired
+	private RoomRepository roomRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -123,7 +130,7 @@ public class AccomodationService {
 	}
 
 
-	public String delete(Long id) {
+	public boolean delete(Long id) {
 		
 		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
 		String accommodationName = accomodationRepository.getOne(id).getName();
@@ -138,10 +145,30 @@ public class AccomodationService {
 		System.out.println(response.getResponse());
 		System.out.println("*****");
 		
-		Accomodation accomodation = accomodationRepository.findOneById(response.getDeletedAccomodationId());
-		accomodationRepository.delete(accomodation);
+		Accomodation a = accomodationRepository.findOneById(response.getDeletedAccomodationId());
 		
-		return "Success!";
+		for(int i=0; i<a.getRooms().size(); i++) {
+			for(Price price : priceRepository.findAll()) {
+				if(price.getRoom().getId() == a.getRooms().get(i).getId()) {
+					priceRepository.delete(price);
+				}
+			}
+				
+			Long idRoom = a.getRooms().get(i).getId();
+			//a.getRooms().remove(i);
+			//accomodationRepository.save(a);
+			Room room = roomRepository.getOne(idRoom);
+			//System.out.println("ROOOOOOOOOOOOOOOOOOOOOOOOOM" + room.getCapacity());
+			//roomRepository.delete(room);
+			
+		}
+		
+		response.setDeletedAccomodationId(a.getId());
+		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
+		
+		accomodationRepository.delete(a);
+		
+		return true;
 
 	}
 

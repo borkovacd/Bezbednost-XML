@@ -44,7 +44,7 @@ export  class RoomComponent implements OnInit{
 
     this.roomService.checkIfReservedRoom(id).subscribe(data => {
       if (data == false) {
-        this.roomService.deleteRoom(id).subscribe(data => {
+        this.roomService.deleteRoom(idAccomodation , id).subscribe(data => {
           alert('Soba je uspesno obrisana');
           this.router.navigateByUrl('welcomepage/room/' + idAccomodation);
         })

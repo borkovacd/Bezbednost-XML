@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'welcomepage', component: WelcomepageComponent},
   {path: 'welcomepage/room/:idA', component: RoomComponent},
   {path: 'welcomepage/room/:idA/pricelist/:idR', component: PricelistComponent},
-  {path: 'welcomepage/room/:idA/pricelist/add/:idR', component: AddPricelistComponent},
+  {path: 'welcomepage/room/:idA/pricelist/:mode/:idR', component: AddPricelistComponent},
   {path: 'welcomepage/room/:idA/:mode/:idR', component: AddEditRoomComponent},
   {path: ':mode/accomodation/:idA', component: AddEditAccomodationComponent},
 

@@ -28,9 +28,9 @@ export  class RoomService{
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get(`${this.BASE_URL}/checkIfReservedRoom/${id}`, {headers: headers})
   }
-  deleteRoom(id: any): Observable<any> {
+  deleteRoom(idA: any, idR: any): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.delete(`${this.BASE_URL}/deleteRoom/` + id, {headers: headers});
+    return this.http.delete(`${this.BASE_URL}/deleteRoom/${idA}/${idR}`, {headers: headers});
   }
   getOneRoom(idA: any, idR: any): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});

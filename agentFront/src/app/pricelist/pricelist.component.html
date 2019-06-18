@@ -17,13 +17,15 @@
     <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="goBack()">Nazad</button>
   </div>
   <div>
-    <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="addPriceList()">Dodaj cenovnik</button>
+    <button *ngIf="roomPrice == false" class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="addPriceList()">Dodaj cenovnik</button>
+
   </div>
 
   <table class="table offset-2 tables" style=" border: 1px solid black ;margin-top: 15px;margin-left: 5px">
     <tr>
       <th class="th-style">Mesec:</th>
       <th class="th-style">Cena sobe u € :</th>
+
 
     </tr>
     <tr *ngFor="let item of items; ">

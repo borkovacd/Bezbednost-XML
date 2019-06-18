@@ -70,7 +70,7 @@ public class PriceService {
 		}
 		
 		room.setActive(true);
-		//roomRepository.save(room); //mozda nepotrebno
+		roomRepository.save(room); 
 			
 	}
 

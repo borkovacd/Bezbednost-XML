@@ -11,9 +11,11 @@ import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
+import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
+import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
@@ -46,6 +48,8 @@ public class RoomService {
 	private RoomRepository roomRepository;
 	@Autowired
 	private AccomodationRepository accomodationRepository;
+	@Autowired
+	private PriceRepository priceRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -134,7 +138,7 @@ public class RoomService {
 	
 	//trebalo bi da radi (moguce da treba dodati updejt za  accomodationRepository ako ne radi)
 	//zakomentarisano dole
-	public String deleteRoom(Long idAccomodation, Long idRoom) {
+	public boolean deleteRoom(Long idAccomodation, Long idRoom) {
 		
 		DeleteRoomRequest request = new DeleteRoomRequest();
 		String accommodationName = accomodationRepository.getOne(idAccomodation).getName();
@@ -150,21 +154,24 @@ public class RoomService {
 		System.out.println(response.getResponse());
 		System.out.println("*****");
 		
-		Accomodation accommodation = accomodationRepository.findOneById(response.getAccomodationId());
-		List<Room> accommodationRooms = accommodation.getRooms();
-		for(Room room : accommodationRooms) {
-			if(room.getId() == idRoom) {
-				accommodationRooms.remove(room);
+		Accomodation a = accomodationRepository.findOneById(idAccomodation);
+		for(int i=0; i<a.getRooms().size(); i++) {
+			if(a.getRooms().get(i).getId() == idRoom) {
+				for(Price price : priceRepository.findAll()) {
+					if(price.getRoom().getId() == idRoom) {
+						priceRepository.delete(price);
+					}
+				}
+				a.getRooms().remove(i);
+				accomodationRepository.save(a);
+				Room room = roomRepository.getOne(idRoom);
 				roomRepository.delete(room);
-
-				
 			}
 		}
 		
-		accommodation.setRooms(accommodationRooms);
-		//accomodationRepository.save(accommodation);
 		
-		return "Success!";
+		
+		return true;
 	}
 
 	public boolean checkIfRoomIsReserved(Long id) {

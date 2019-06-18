@@ -1,5 +1,5 @@
 
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PriceModel} from '../model/price.model';
@@ -10,7 +10,7 @@ import {PricelistService} from '../service/pricelist.service';
   templateUrl: './add-pricelist.component.html'
 })
 
-export class AddPricelistComponent {
+export class AddPricelistComponent implements OnInit{
   lista = [];
 
   public form: FormGroup;
@@ -60,6 +60,14 @@ export class AddPricelistComponent {
     this.dec = this.form.controls['dec'];
 
   }
+  ngOnInit(){
+    const mode = this.route.snapshot.params.mode;
+    if (mode == 'edit') {
+
+    }else{
+
+    }
+  }
   addPriceList(){
 
     const  janp = new PriceModel('1', this.jan.value);
@@ -79,9 +87,11 @@ export class AddPricelistComponent {
 
     const object = new PriceListModel(this.lista);
     const idR = this.route.snapshot.params.idR;
+    const idA = this.route.snapshot.params.idA;
+
     this.priceService.createPriceList(object, idR).subscribe(dta => {
       console.log('ok');
-      this.router.navigateByUrl('welcomepage/room/' + idR + '/pricelist');
+      this.router.navigateByUrl('welcomepage/room/' + idA + '/pricelist/' + idR);
     })
   }
   exit(){

@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: zuul-server
+server:  
+  port: ${PORT:8762}
+  ssl:
+    enabled: true
+    key-store: zuul.p12
+    key-store-password: zuul
+    key-alias: zuul
+    
+#security:
+  #require-ssl: true
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+  client:
+    securePortEnabled: true
+    serviceUrl:
+      defaultZone: https://localhost:8761/eureka/ 
+zuul:
+  routes:
+     authservice:
+       serviceId: auth-service
+     accservice:
+       serviceId: accomodation-service
+  host:
+    socket-timeout-millis: 30000
+  sslHostnameValidationEnabled: false
+ribbon:
+  IsSecured: true
+  ConnectTimeout:  10000
+  ReadTimeout:  10000
+  eureka:
+    enabled: true
+  TrustStore: zuul.p12
+  TrustStorePassword : zuul
+  IsHostnameValidationRequired: false
