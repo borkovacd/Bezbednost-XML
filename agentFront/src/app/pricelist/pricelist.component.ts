@@ -44,4 +44,5 @@ export class PricelistComponent implements OnInit{
     this.router.navigateByUrl('welcomepage/room/'+ idA );
   }
 
+  
 }
