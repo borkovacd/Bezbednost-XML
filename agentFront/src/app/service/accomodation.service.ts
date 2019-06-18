@@ -39,7 +39,7 @@ export class AccomodationService {
   }
   deleteAccomodation(id: any): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.delete(`${this.BASE_URL}/deleteAccomodation/` + id, {headers: headers});
+    return this.http.delete(`${this.BASE_URL}/deleteAccomodation/${id}`, {headers: headers});
   }
 
 

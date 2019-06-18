@@ -30,6 +30,8 @@ export class WelcomepageComponent implements OnInit{
   }
   ngOnInit(){
 
+      this.accomodation = true;
+      this.communicate = false;
   }
   accomodationButton(){
     this.accomodation = true;

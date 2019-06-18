@@ -79,9 +79,11 @@ export class AddPricelistComponent {
 
     const object = new PriceListModel(this.lista);
     const idR = this.route.snapshot.params.idR;
+    const idA = this.route.snapshot.params.idA;
+
     this.priceService.createPriceList(object, idR).subscribe(dta => {
       console.log('ok');
-      this.router.navigateByUrl('welcomepage/room/' + idR + '/pricelist');
+      this.router.navigateByUrl('welcomepage/room/' + idA + '/pricelist/' + idR);
     })
   }
   exit(){

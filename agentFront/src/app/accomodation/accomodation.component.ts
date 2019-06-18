@@ -13,7 +13,7 @@ export class AccomodationComponent implements OnInit{
   idagent: any;
 
   constructor(protected router: Router,
-              private accomodationService: AccomodationService,){
+              private accomodationService: AccomodationService ){
 
   }
 
@@ -41,17 +41,17 @@ export class AccomodationComponent implements OnInit{
 
   }
   deleteAccomodation(id: any){
-    this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
-      if(data == false){
-        this.accomodationService.deleteAccomodation(id).subscribe(data =>{
-          alert('Smestaj je uspesno obrisan!');
-          this.router.navigateByUrl('welcomepage');
+   // this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
+     // if(data === false){
+        this.accomodationService.deleteAccomodation(id).subscribe(dd => {
+         this.items = this.items.filter(el => el.id != id);
+          //this.router.navigateByUrl('/welcomepage' );
 
         })
-      }else{
-        alert('Smestaj je rezervisan!');
-      }
-    })
+     // }else{
+       // alert('Smestaj je rezervisan!');
+     // }
+    //})
 
   }
   showAccomodation(idA: any){

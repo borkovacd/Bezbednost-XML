@@ -54,3 +54,24 @@
 2019-06-17 22:54:56,618 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-F3G1DCA with PID 15736 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\megaTravelAppBack)
 2019-06-17 22:54:56,636 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
 2019-06-17 22:55:29,430 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 33.302 seconds (JVM running for 34.028)
+2019-06-18 09:45:44,325 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 12628 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 09:45:44,339 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 09:46:34,577 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 51.834 seconds (JVM running for 55.569)
+2019-06-18 09:56:54,080 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 4424 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 09:56:54,090 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 09:57:18,801 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 26.536 seconds (JVM running for 29.678)
+2019-06-18 10:11:38,189 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 10600 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 10:11:38,219 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 10:11:58,306 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 21.761 seconds (JVM running for 24.561)
+2019-06-18 10:28:22,032 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 10428 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 10:28:22,043 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 10:28:43,559 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 23.27 seconds (JVM running for 26.532)
+2019-06-18 10:44:56,941 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 12488 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 10:44:56,953 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 10:45:24,254 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 29.112 seconds (JVM running for 32.02)
+2019-06-18 11:00:58,014 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 12648 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 11:00:58,029 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 11:01:37,831 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 43.158 seconds (JVM running for 48.085)
+2019-06-18 11:54:57,208 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on Probook450G2 with PID 12496 (D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack\target\classes started by Milan in D:\ILINKA\projekatBez3\Bezbednost-XML\megaTravelAppBack)
+2019-06-18 11:54:57,248 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-18 11:55:30,484 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 35.905 seconds (JVM running for 41.123)

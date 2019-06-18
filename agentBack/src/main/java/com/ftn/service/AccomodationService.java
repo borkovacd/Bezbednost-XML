@@ -123,7 +123,7 @@ public class AccomodationService {
 	}
 
 
-	public String delete(Long id) {
+	public boolean delete(Long id) {
 		
 		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
 		String accommodationName = accomodationRepository.getOne(id).getName();
@@ -141,7 +141,7 @@ public class AccomodationService {
 		Accomodation accomodation = accomodationRepository.findOneById(response.getDeletedAccomodationId());
 		accomodationRepository.delete(accomodation);
 		
-		return "Success!";
+		return true;
 
 	}
 
