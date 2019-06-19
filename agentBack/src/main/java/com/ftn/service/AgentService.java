@@ -31,6 +31,12 @@ public class AgentService {
 	private AdditionalServicesService additionalServicesService;
 	@Autowired
 	private CountryService countryService;
+	@Autowired
+	private RoomService roomService;
+	@Autowired
+	private AccomodationService accomodationService;
+	@Autowired
+	private PriceService priceService;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -85,6 +91,9 @@ public class AgentService {
 			typeAccomodationService.getAllTypes();
 			additionalServicesService.getAllAdditionalServices();
 			categoryService.getAllCategories();
+			accomodationService.getAllAccomodation(agent.getId());
+			//roomService.getAllRooms(idAccomodation)
+			//priceService.getAllPrices(idRoom)
 				
 			
 			

@@ -166,25 +166,33 @@ public class AccomondationEndpoint {
 		Accomodation a = accomondationRepository.findOneById(id);
 		
 		for(int i=0; i<a.getRooms().size(); i++) {
-			for(Price price : priceRepository.findAll()) {
-				if(price.getRoom().getId() == a.getRooms().get(i).getId()) {
-					priceRepository.delete(price);
-				}
-			}
-				
 			Long idRoom = a.getRooms().get(i).getId();
-			//a.getRooms().remove(i);
-			//accomodationRepository.save(a);
-			Room room = roomRepository.getOne(idRoom);
-			//System.out.println("ROOOOOOOOOOOOOOOOOOOOOOOOOM" + room.getCapacity());
-			//roomRepository.delete(room);
+			//System.out.println("DSOBASASADA" + a.getRooms().get(i).getId());
+			if(a.getRooms().get(i).getId() == idRoom) {
+				for(Price price : priceRepository.findAll()) {
+					if(price.getRoom().getId() == idRoom) {
+						priceRepository.delete(price);
+					}
+				}
+				
+				
+				a.getRooms().remove(i);
+				accomondationRepository.save(a);
+				Room room = roomRepository.getOne(idRoom);
+				roomRepository.delete(room);
 			
+			}
 		}
 		
+
 		response.setDeletedAccomodationId(a.getId());
 		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
 		
-		accomondationRepository.delete(a);
+		for(Accomodation accomodation : accomondationRepository.findAll()) {
+			if(accomodation.getId() == id) {
+				accomondationRepository.delete(accomodation);
+			}
+		}
 		
 		return response;
 	}

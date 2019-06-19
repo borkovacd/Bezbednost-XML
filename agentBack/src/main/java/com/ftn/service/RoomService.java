@@ -91,7 +91,7 @@ public class RoomService {
 		room.setReserved(r.isReserved());
 		
 		roomRepository.save(room);
-		Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
+		Accomodation accomodation = accomodationRepository.getOne(request.getAccomodationId());
 		List<Room> rooms = accomodation.getRooms();
 		rooms.add(room);
 		accomodation.setRooms(rooms);
@@ -162,10 +162,12 @@ public class RoomService {
 						priceRepository.delete(price);
 					}
 				}
+				
 				a.getRooms().remove(i);
 				accomodationRepository.save(a);
 				Room room = roomRepository.getOne(idRoom);
 				roomRepository.delete(room);
+			
 			}
 		}
 		

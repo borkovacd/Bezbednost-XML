@@ -23,7 +23,7 @@ insert into clients(id, city, email, first_name, last_name, password, status, us
 
 insert into country (id, name) values (15, "UK");
 
-insert into city (id, name,country_id) values (16, "London", 15);
+insert into city (id, name,country_id) values (16, "Novi Sad", 15);
 
 insert into category (id, name) values (17, "nekategorisan");
 insert into category (id, name) values (18, "jedna");
@@ -47,4 +47,7 @@ insert into additional_services (id, name) values (33, "Tv");
 insert into additional_services (id, name) values (34, "Minikuhinja/kuhinja");
 insert into additional_services (id, name) values (35, "Privatno kupatilo");
 insert into additional_services (id, name) values (36, "Otkazivanje");
+
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'no-photo', 13, 22, 16, 23);
+
 
