@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
+import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
+import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.GetAllAgentsRequest;
 import com.ftn.webservice.files.GetAllAgentsResponse;
@@ -20,6 +22,10 @@ public class AgentService {
 
 	@Autowired
 	private AgentRepository agentRepository;
+	@Autowired
+	private AccomodationRepository accomodationRepository;
+	@Autowired
+	private RoomRepository roomRepository;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -92,9 +98,14 @@ public class AgentService {
 			additionalServicesService.getAllAdditionalServices();
 			categoryService.getAllCategories();
 			accomodationService.getAllAccomodation(agent.getId());
-			//roomService.getAllRooms(idAccomodation)
-			//priceService.getAllPrices(idRoom)
-				
+			
+			for(int i=0; i<accomodationRepository.findAll().size(); i++) {
+				roomService.getAllRooms(accomodationRepository.findAll().get(i).getId());
+			}
+			
+			for(int i=0; i<roomRepository.findAll().size(); i++) {
+				priceService.getAllPrices(roomRepository.findAll().get(i).getId());
+			}				
 			
 			
 			return agent.getId();

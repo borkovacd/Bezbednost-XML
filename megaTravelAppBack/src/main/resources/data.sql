@@ -49,5 +49,42 @@ insert into additional_services (id, name) values (35, "Privatno kupatilo");
 insert into additional_services (id, name) values (36, "Otkazivanje");
 
 insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'no-photo', 13, 22, 16, 23);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Hotel Park', 'no-photo', 13, 22, 16, 23);
+
+insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (5, 0, 2, 90, 6, 1, 0);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (6, 1, 4, 90, 2, 1, 0);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (7, 0, 4, 90, 2, 1, 0);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (8, 1, 4, 90, 2, 1, 0);
+
+insert into accomodation_rooms (accomodation_id, rooms_id) values (1, 5);
+insert into accomodation_rooms (accomodation_id, rooms_id) values (1, 6);
+insert into accomodation_rooms (accomodation_id, rooms_id) values (2, 7);
+insert into accomodation_rooms (accomodation_id, rooms_id) values (2, 8);
+
+insert into price (id, month, price, room_id) values (1, 1, 25, 6);
+insert into price (id, month, price, room_id) values (2, 2, 25, 6);
+insert into price (id, month, price, room_id) values (3, 3, 25, 6);
+insert into price (id, month, price, room_id) values (4, 4, 30, 6);
+insert into price (id, month, price, room_id) values (5, 5, 30, 6);
+insert into price (id, month, price, room_id) values (6, 6, 30, 6);
+insert into price (id, month, price, room_id) values (7, 7, 45, 6);
+insert into price (id, month, price, room_id) values (8, 8, 45, 6);
+insert into price (id, month, price, room_id) values (9, 9, 45, 6);
+insert into price (id, month, price, room_id) values (10, 10, 20, 6);
+insert into price (id, month, price, room_id) values (11, 11, 20, 6);
+insert into price (id, month, price, room_id) values (12, 12, 20, 6);
+insert into price (id, month, price, room_id) values (21, 1, 20, 8);
+insert into price (id, month, price, room_id) values (22, 2, 28, 8);
+insert into price (id, month, price, room_id) values (23, 3, 29, 8);
+insert into price (id, month, price, room_id) values (24, 4, 30, 8);
+insert into price (id, month, price, room_id) values (25, 5, 30, 8);
+insert into price (id, month, price, room_id) values (26, 6, 30, 8);
+insert into price (id, month, price, room_id) values (27, 7, 33, 8);
+insert into price (id, month, price, room_id) values (28, 8, 30, 8);
+insert into price (id, month, price, room_id) values (29, 9, 34, 8);
+insert into price (id, month, price, room_id) values (30, 10, 30, 8);
+insert into price (id, month, price, room_id) values (31, 11, 35, 8);
+insert into price (id, month, price, room_id) values (32, 12, 50, 8);
+
 
 
