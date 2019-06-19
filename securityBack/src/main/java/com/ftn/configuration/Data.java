@@ -369,7 +369,7 @@ public class Data implements ApplicationRunner {
 				
 			    }
 			}
-		    
+		    /*
 		    
 		    if (keyStoreReader.getKeyStore(authPath).getCertificateChain("someString") == null ) {
 				System.out.println("prazan auth");
@@ -505,6 +505,7 @@ public class Data implements ApplicationRunner {
 			} else {
 				System.out.println("nije prazan zuul");
 			}
+			*/
 	}
 
 }

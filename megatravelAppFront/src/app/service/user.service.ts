@@ -4,8 +4,10 @@ import {Observable} from 'rxjs/Observable';
 import {LoginModel} from '../model/login.model';
 import {UserModel} from '../model/user.model';
 
+let token;
+token = localStorage.getItem('loggedUser');
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'}),
+  headers: new HttpHeaders({'Content-Type': 'application/json', 'token' : token}),
 };
 
 @Injectable()

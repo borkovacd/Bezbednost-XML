@@ -1,0 +1,15 @@
+2019-06-19 00:24:58,504 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-5] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-19 00:29:54,428 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-2] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getCertificates/%22eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTYwOTE0NjY2LCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJNZWdhVHJhdmVsTG9uZG9uQGdtYWlsLmNvbSJ9.YnmfEn_n2KMnxzI2A3fVNJjzw08-WI3vCGYs6zJIllBC3VxmWL5lPzhL9_suvh9V399qzHcCCABLZwT2DxWaJQ%22 from  adress0:0:0:0:0:0:0:1
+2019-06-19 00:29:54,587 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-5] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-19 00:33:11,174 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-8] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getCertificates/%22eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTYwOTE0NjY2LCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJNZWdhVHJhdmVsTG9uZG9uQGdtYWlsLmNvbSJ9.YnmfEn_n2KMnxzI2A3fVNJjzw08-WI3vCGYs6zJIllBC3VxmWL5lPzhL9_suvh9V399qzHcCCABLZwT2DxWaJQ%22 from  adress0:0:0:0:0:0:0:1
+2019-06-19 00:33:11,286 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-7] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-19 16:58:24,983 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-3] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/api/security/getAllCertificates from  adress0:0:0:0:0:0:0:1
+2019-06-19 16:58:25,129 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-5] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-19 19:43:03,748 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 19:43:08,242 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-9] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-19 19:43:21,575 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 19:45:33,006 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 20:48:03,887 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 20:51:41,437 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 20:54:51,869 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:1 LOG_FAIL 
+2019-06-19 20:55:46,106 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT user id:1 LOG_FAIL 

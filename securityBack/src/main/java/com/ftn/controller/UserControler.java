@@ -1,6 +1,9 @@
 package com.ftn.controller;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,8 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -26,15 +28,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.ftn.enums.NameRole;
 import com.ftn.model.User;
 import com.ftn.model.UserToken;
 import com.ftn.modelDTO.UserDTO;
+import com.ftn.repository.RoleRepository;
 import com.ftn.repository.UserRepository;
 import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.RoleService;
-
+import com.ftn.service.UserService;
 import com.ftn.service.UserServiceImpl;
 
 @RestController
@@ -45,7 +48,10 @@ public class UserControler {
 	private static final Logger log = LoggerFactory.getLogger(UserControler.class);
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private UserService userService;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private UserRepository userRep;
@@ -94,6 +100,7 @@ public class UserControler {
 			}
 
 			if (userDto.getPassword().equals(userDto.getRePassword())) {
+				
 				User u = new User();
 
 				u.setCity(userDto.getCity());
@@ -110,7 +117,7 @@ public class UserControler {
 
 				u.setPassword(passwordHashed);
 
-				u.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
+				u.setRoles(Collections.singleton(roleRepository.findByName(NameRole.ROLE_USER)));
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
@@ -147,21 +154,35 @@ public class UserControler {
 				try{
 				UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(),
 						user.getPassword());
+				
 				Authentication auth = authManager.authenticate(authReq);
+				
+				String email = authReq.getName();
+				
+				System.out.println("mejl je sledeci" + email);
+				
+				List<String> authorities = auth.getAuthorities().stream()
+	    				.map(GrantedAuthority::getAuthority)
+	    				.collect(Collectors.toList());
 
-				SecurityContext sc = SecurityContextHolder.getContext();
-				sc.setAuthentication(auth);
-				User user1 = (User) auth.getPrincipal();
-				System.out.println(user1.getEmail());
-				String token = tokenUtils.generateToken(user1.getEmail());
+				//SecurityContext sc = SecurityContextHolder.getContext();
+				//sc.setAuthentication(auth);
+				
+				String token = tokenUtils.generateToken(auth);
+				
+				User us = userService.findByEmail(email);
+				
+				//User user1 = (User) auth.getPrincipal();
+			//	System.out.println(user1.getEmail());
+				
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", userNew.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", userNew.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", us.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", us.getId(),req.getRemoteAddr());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
 					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
-
+					e.printStackTrace();
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
@@ -191,7 +212,8 @@ public class UserControler {
 		return response;
 	}
 	
-	//@PreAuthorize("hasRole('USER')") 
+	
+	@PreAuthorize("hasAuthority('CREATE_CERT')")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public void logOutUser() {
@@ -216,9 +238,9 @@ public class UserControler {
 	}
 	
 	@RequestMapping(value = "/loggedUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getLoggedUserEmail(@RequestBody String token) {
+	public void getLoggedUserEmail(@RequestBody String token) throws Exception {
 
-		String email = tokenUtils.getUsernameFromToken(token);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
 		User u = userService.findByEmail(email);
 		
 		System.out.println(email);

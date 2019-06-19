@@ -45,6 +45,8 @@ export class CeritifcatesComponent implements OnInit {
 
     this.data.getMyCert(localStorage.getItem('loggedUser')).subscribe(data => this.myCert = data)
 
+   // window.location.reload();
+
     this.visibleMessage=false;
 
   }

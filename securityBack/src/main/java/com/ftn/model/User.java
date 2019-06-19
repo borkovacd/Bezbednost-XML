@@ -1,33 +1,30 @@
 package com.ftn.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 @Entity(name="Users")
-public class User implements UserDetails, Serializable {
+@NamedEntityGraph(name = "User.Roles.Permissions", 
+attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "permissions"), 
+subgraphs = @NamedSubgraph(name = "permissions", attributeNodes = @NamedAttributeNode("permissions")))
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +40,7 @@ public class User implements UserDetails, Serializable {
 	private String username;
 	
 	@NotNull
-	@Size(min=8, max = 99)
+	@Size(min=8, max = 80)
 	@Column(name="Password")
 	private String password;
 
@@ -54,15 +51,25 @@ public class User implements UserDetails, Serializable {
 	@Column(name="City", nullable=false)
 	private String city;
 	
+	@Column(name = "Enabled")
+	private boolean enabled;
+	
+	@Column(name="Nonlocked")
+	private boolean nonLocked;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="users_roles", 
-	joinColumns=@JoinColumn(name="users_id", referencedColumnName="id"),
-	inverseJoinColumns = @JoinColumn(name="roles_id", referencedColumnName="id")) 
-	private Collection<Role> roles;
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+	private Set<Role> roles;
+
+	public User() {
+		this.enabled = false;
+	}
 
 
-	public void User(){
-		
+	public User(String email, String password, Set<Role> roles) {
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
 	}
 
 
@@ -136,52 +143,35 @@ public class User implements UserDetails, Serializable {
 	}
 
 
-	public Collection<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
 
-	public void setRoles(Collection<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-	System.out.println("usao u getAuthorityes");
-		
-
-		return this.roles;
-	
-	}
-
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-
-	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return enabled;
 	}
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
+	public boolean isNonLocked() {
+		return nonLocked;
+	}
+
+
+	public void setNonLocked(boolean nonLocked) {
+		this.nonLocked = nonLocked;
+	}
+
 
 
 	

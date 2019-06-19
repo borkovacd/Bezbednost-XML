@@ -7,8 +7,12 @@ import {CertificateModel} from '../model/certificate.model';
 import {CertificateBackModel} from '../model/certificateBack.model';
 import {getResponseURL} from '@angular/http/src/http_utils';
 
+
+
+let token;
+token = localStorage.getItem('loggedUser');
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'}),
+  headers: new HttpHeaders({'Content-Type': 'application/json', 'token': token }),
 };
 
 @Injectable()

@@ -28,6 +28,8 @@ zuul:
        serviceId: auth-service
      accservice:
        serviceId: accomodation-service
+     resservice:
+       serviceId: reservation-service
   host:
     socket-timeout-millis: 30000
   sslHostnameValidationEnabled: false

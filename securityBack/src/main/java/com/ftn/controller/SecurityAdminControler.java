@@ -5,7 +5,9 @@ import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.ftn.model.SubjectSoftware;
+import com.ftn.model.UserToken;
 import com.ftn.modelDTO.CertificateDTO;
 import com.ftn.repository.CertificateRepository;
 import com.ftn.repository.CommunicationRelationshipRepository;
@@ -81,15 +84,16 @@ public class SecurityAdminControler {
 	 * globalPass.toCharArray()); keyPairIssuer = generateKeyPair(); }
 	 */
 
+	@PreAuthorize("hasAuthority('CREATE_CERT')")
 	@RequestMapping(value = "/createCertificate/{token}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
-			throws KeyStoreException {
+			throws Exception {
 		log.debug("CRE_CA");
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
 		
 		token = token.substring(1,token.length()-1).toString();
 		
-		String email = tokenUtils.getUsernameFromToken(token);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
 		
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 
@@ -264,6 +268,7 @@ public class SecurityAdminControler {
 			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User {} CRE_ERR  ", email);
 
 		}
+		
 
 	}
 
@@ -298,13 +303,20 @@ public class SecurityAdminControler {
 	 * @return
 	 */
 
+	
 	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
 	public Integer checkCommunication(@PathVariable String string1, @PathVariable String string2) {
 		log.debug("CK_COMM");
 		
 		string1 = string1.substring(1, string1.length()-1).toString();
 		
-		String email = tokenUtils.getUsernameFromToken(string1);
+		String email = null;
+		try {
+			email = tokenUtils.getUserSecurity(string1).getUsername();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(email);
 		SubjectSoftware soft2 = ssService.getSoftware(string2);
@@ -398,6 +410,7 @@ public class SecurityAdminControler {
 
 	}
 
+	@PreAuthorize("hasAuthority('READ_SUB_SOFT')")
 	@RequestMapping(value = "/getSubjectSoftware", method = RequestMethod.GET)
 	public ArrayList<SubjectSoftware> getSubjectSoftware() {
 		log.debug("SS");
@@ -417,16 +430,18 @@ public class SecurityAdminControler {
 
 		return ssList2;
 	}
+	
 
+	@PreAuthorize("hasAuthority('READ_SUB_SOFT')")
 	@RequestMapping(value = "/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
-	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) {
+	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) throws Exception {
 		log.info("GET_SS");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		ssList = ssService.getSoftwares();
 		
 		String etwas = email.substring(1, email.length()-1).toString();
 		
-		String emailString = tokenUtils.getUsernameFromToken(etwas);
+		String emailString = tokenUtils.getUserSecurity(etwas).getUsername();
 		
 		SubjectSoftware soft1 = ssService.getSoftwareByEmail(emailString);
 
@@ -447,10 +462,9 @@ public class SecurityAdminControler {
 	}
 	
 	
-
-	// @PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('READ_CERT')")
 	@RequestMapping(value = "/getCertificates/{token}", method = RequestMethod.GET)
-	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) {
+	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) throws Exception {
 		
 		log.info("GET_CA");
 		System.out.println("Usao da ispise sertifikate");
@@ -458,7 +472,7 @@ public class SecurityAdminControler {
 		
 		token = token.substring(1,token.length()-1).toString();
 		
-		String email = tokenUtils.getUsernameFromToken(token);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
 
 		System.out.println("Dobio sam mejl: " + email);
 
@@ -487,7 +501,7 @@ public class SecurityAdminControler {
 
 	}
 
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAuthority('READ_ALLCERT')")
 	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
 	public ArrayList<CertificateModel> getAllCeritificates() {
 		
@@ -500,15 +514,16 @@ public class SecurityAdminControler {
 		return lanacSertifikata;
 
 	}
-	
+
+	@PreAuthorize("hasAuthority('READ_CERT')")
 	@RequestMapping(value = "/getMyCertificate/{token}", method = RequestMethod.GET)
-	public CertificateModel getMyCeritificate(@PathVariable String token) {
+	public CertificateModel getMyCeritificate(@PathVariable String token) throws Exception {
 		
 		log.info("GET_ACA");
 		
 		token = token.substring(1,token.length()-1).toString();
 		
-		String email = tokenUtils.getUsernameFromToken(token);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
 
 		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 		ArrayList<CertificateModel> lanacSertifikata2 = new ArrayList<CertificateModel>();
@@ -528,6 +543,7 @@ public class SecurityAdminControler {
 
 	}
 
+	@PreAuthorize("hasAuthority('REVOKE_CERT')")
 	@RequestMapping(value = "/revokeCertificate/{serialNumber}/{message}", method = RequestMethod.POST)
 	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message) {
 		System.out.println("Poruka koja je stigla " + message);

@@ -34,8 +34,7 @@ import com.ftn.repository.UserRepository;
 import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.RoleService;
-
-import com.ftn.service.UserServiceImpl;
+import com.ftn.service.UserService;
 
 @RestController
 @RequestMapping(value = "/api/user")
@@ -44,7 +43,7 @@ public class UserControler {
 	private static final Logger log = LoggerFactory.getLogger(UserControler.class);
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	@Autowired
 	private UserRepository userRep;
@@ -109,7 +108,7 @@ public class UserControler {
 
 				u.setPassword(passwordHashed);
 
-				u.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
+			//	u.setRoles(Arrays.asList(roleService.findByName("ROLE_USER")));
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
