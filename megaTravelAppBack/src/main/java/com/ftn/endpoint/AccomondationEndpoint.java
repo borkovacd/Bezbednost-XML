@@ -165,9 +165,12 @@ public class AccomondationEndpoint {
 		
 		Accomodation a = accomondationRepository.findOneById(id);
 		
+		List<Long> roomIdForDeleting = new ArrayList<Long>();
+		List<Integer> roomIndexForDeleting = new ArrayList<Integer>();
+		
 		for(int i=0; i<a.getRooms().size(); i++) {
 			Long idRoom = a.getRooms().get(i).getId();
-			//System.out.println("DSOBASASADA" + a.getRooms().get(i).getId());
+			roomIdForDeleting.add(idRoom);
 			if(a.getRooms().get(i).getId() == idRoom) {
 				for(Price price : priceRepository.findAll()) {
 					if(price.getRoom().getId() == idRoom) {
@@ -175,12 +178,14 @@ public class AccomondationEndpoint {
 					}
 				}
 				
-				
-				a.getRooms().remove(i);
-				accomondationRepository.save(a);
-				Room room = roomRepository.getOne(idRoom);
-				roomRepository.delete(room);
+				roomIndexForDeleting.add(i);
 			
+			}
+		}
+		
+		for(Room room : roomRepository.findAll()) {
+			if(roomIdForDeleting.contains(room.getId())) {
+				roomRepository.delete(room);
 			}
 		}
 		

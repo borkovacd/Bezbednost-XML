@@ -108,7 +108,10 @@ public class RoomService {
 		GetAccomodationRoomsResponse response = (GetAccomodationRoomsResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
 		
+		Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
+		
 		List<Room> rooms = new ArrayList<Room>();
+		List<Room> accRooms;
 		
 		//Response poruka sa glavnog back-a
 		System.out.println("*****");
@@ -128,16 +131,25 @@ public class RoomService {
 			
 			rooms.add(r);
 			roomRepository.save(r);
+			/*if(accomodation.getRooms() == null) {
+				accRooms = new ArrayList<Room>();
+				accRooms.add(r);
+				accomodation.setRooms(accRooms);
+			} else {
+				if(!accomodation.getRooms().contains(r)) {
+					accomodation.getRooms().add(r);
+				}
+			}*/
+			
+			
 			
 		}
 		
-
+		//accomodationRepository.save(accomodation);
 		return (ArrayList<Room>) rooms;
 	}
 	
 	
-	//trebalo bi da radi (moguce da treba dodati updejt za  accomodationRepository ako ne radi)
-	//zakomentarisano dole
 	public boolean deleteRoom(Long idAccomodation, Long idRoom) {
 		
 		DeleteRoomRequest request = new DeleteRoomRequest();

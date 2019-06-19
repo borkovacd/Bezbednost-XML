@@ -105,7 +105,7 @@ public class AgentService {
 			
 			for(int i=0; i<roomRepository.findAll().size(); i++) {
 				priceService.getAllPrices(roomRepository.findAll().get(i).getId());
-			}				
+			}	
 			
 			
 			return agent.getId();

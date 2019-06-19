@@ -145,25 +145,29 @@ public class AccomodationService {
 		System.out.println(response.getResponse());
 		System.out.println("*****");
 		
-		Accomodation a = accomodationRepository.findOneById(response.getDeletedAccomodationId());
+		Accomodation a = accomodationRepository.findOneById(id);
 		
-		List<Room> tempRooms = a.getRooms();
-		for(int i=0; i<tempRooms.size(); i++) {
-			Long idRoom = tempRooms.get(i).getId();
-			//System.out.println("DSOBASASADA" + tempRooms.get(i).getId());
-			if(tempRooms.get(i).getId() == idRoom) {
+		List<Long> roomIdForDeleting = new ArrayList<Long>();
+		List<Integer> roomIndexForDeleting = new ArrayList<Integer>();
+		
+		for(int i=0; i<a.getRooms().size(); i++) {
+			Long idRoom = a.getRooms().get(i).getId();
+			roomIdForDeleting.add(idRoom);
+			if(a.getRooms().get(i).getId() == idRoom) {
 				for(Price price : priceRepository.findAll()) {
 					if(price.getRoom().getId() == idRoom) {
 						priceRepository.delete(price);
 					}
 				}
 				
-				
-				a.getRooms().remove(i);
-				accomodationRepository.save(a);
-				Room room = roomRepository.getOne(idRoom);
-				roomRepository.delete(room);
+				roomIndexForDeleting.add(i);
 			
+			}
+		}
+		
+		for(Room room : roomRepository.findAll()) {
+			if(roomIdForDeleting.contains(room.getId())) {
+				roomRepository.delete(room);
 			}
 		}
 		
