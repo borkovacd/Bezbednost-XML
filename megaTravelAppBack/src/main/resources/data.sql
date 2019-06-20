@@ -51,15 +51,13 @@ insert into additional_services (id, name) values (36, "Otkazivanje");
 insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'no-photo', 13, 22, 16, 23);
 insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Hotel Park', 'no-photo', 13, 22, 16, 23);
 
-insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (5, 0, 2, 90, 6, 1, 0);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (6, 1, 4, 90, 2, 1, 0);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (7, 0, 4, 90, 2, 1, 0);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved) values (8, 1, 4, 90, 2, 1, 0);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 36);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 28);
 
-insert into accomodation_rooms (accomodation_id, rooms_id) values (1, 5);
-insert into accomodation_rooms (accomodation_id, rooms_id) values (1, 6);
-insert into accomodation_rooms (accomodation_id, rooms_id) values (2, 7);
-insert into accomodation_rooms (accomodation_id, rooms_id) values (2, 8);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (5, 0, 2, 90, 6, 1, 0, 1);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (6, 1, 4, 90, 2, 1, 0, 1);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (7, 0, 4, 90, 2, 1, 0, 2);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (8, 1, 4, 90, 2, 1, 0, 2);
 
 insert into price (id, month, price, room_id) values (1, 1, 25, 6);
 insert into price (id, month, price, room_id) values (2, 2, 25, 6);

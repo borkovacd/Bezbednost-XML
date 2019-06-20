@@ -25,7 +25,6 @@ import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
 import com.ftn.webservice.files.AdditionalServicesSoap;
-import com.ftn.webservice.files.AgentSoap;
 import com.ftn.webservice.files.CategorySoap;
 import com.ftn.webservice.files.CitySoap;
 import com.ftn.webservice.files.DeleteAccomodationRequest;
@@ -34,8 +33,6 @@ import com.ftn.webservice.files.EditAccomodationRequest;
 import com.ftn.webservice.files.EditAccomodationResponse;
 import com.ftn.webservice.files.GetAccomodationRequest;
 import com.ftn.webservice.files.GetAccomodationResponse;
-import com.ftn.webservice.files.GetAccomodationRoomsRequest;
-import com.ftn.webservice.files.GetAccomodationRoomsResponse;
 import com.ftn.webservice.files.GetAllAccomodationsRequest;
 import com.ftn.webservice.files.GetAllAccomodationsResponse;
 import com.ftn.webservice.files.RegisterAccomodationRequest;
@@ -147,29 +144,17 @@ public class AccomodationService {
 		
 		Accomodation a = accomodationRepository.findOneById(id);
 		
-		List<Long> roomIdForDeleting = new ArrayList<Long>();
-		List<Integer> roomIndexForDeleting = new ArrayList<Integer>();
-		
-		for(int i=0; i<a.getRooms().size(); i++) {
-			Long idRoom = a.getRooms().get(i).getId();
-			roomIdForDeleting.add(idRoom);
-			if(a.getRooms().get(i).getId() == idRoom) {
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == id) {
 				for(Price price : priceRepository.findAll()) {
-					if(price.getRoom().getId() == idRoom) {
+					if(price.getRoom().getId() == room.getId()) {
 						priceRepository.delete(price);
 					}
 				}
-				
-				roomIndexForDeleting.add(i);
-			
-			}
-		}
-		
-		for(Room room : roomRepository.findAll()) {
-			if(roomIdForDeleting.contains(room.getId())) {
 				roomRepository.delete(room);
 			}
 		}
+
 		
 		response.setDeletedAccomodationId(a.getId());
 		response.setResponse("Accommodation '" + a.getName() + "' is successfully deleted!");
@@ -318,10 +303,11 @@ public class AccomodationService {
 		
 		boolean taken = false;
 		
-		Accomodation accomodation = accomodationRepository.getOne(id);
-		for(Room room : accomodation.getRooms()) {
-			if(room.isReserved() == true) {
-				taken = true;
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == id) {
+				if(room.isReserved() == true) {
+					taken = true;
+				}
 			}
 		}
 		

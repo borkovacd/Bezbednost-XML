@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class Accomodation {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -46,9 +46,6 @@ public class Accomodation {
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
 
-	@OneToMany
-	private List<Room> rooms;
-
 	@OneToOne
 	private Agent agent;
 
@@ -58,7 +55,7 @@ public class Accomodation {
 
 	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
 			TypeAccomodation typeAccomodation, Category category, String description, String pic,
-			List<AdditionalServices> additionalServices, List<Room> rooms, Agent agent) {
+			List<AdditionalServices> additionalServices, Agent agent) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,7 +66,6 @@ public class Accomodation {
 		this.description = description;
 		this.pic = pic;
 		this.additionalServices = additionalServices;
-		this.rooms = rooms;
 		this.agent = agent;
 	}
 
@@ -153,12 +149,5 @@ public class Accomodation {
 		this.additionalServices = additionalServices;
 	}
 
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
 
 }
