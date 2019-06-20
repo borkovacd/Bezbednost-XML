@@ -1,9 +1,15 @@
-
+<div [hidden]="vis">
 <div class="btn-box">
   <button  class="btn" (click)="createCertificate()">Create Certificate</button>
   <button  class="btn" (click)="show()">Show Certificate</button>
   <button  class="btn" (click)="odjaviSe()">Odjavi se</button>
 
 </div>
+</div>
 
+<div [hidden]="!vis" style="text-align: center;">
+  <h2 style="text-align: center;">Nemate pristup</h2>
+  <br>
+  <button class="btn btn-primary" (click)="povratak()">Pocetna</button>
+</div>
 

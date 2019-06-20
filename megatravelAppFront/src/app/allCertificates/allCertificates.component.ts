@@ -18,6 +18,7 @@ export class AllCertificatesComponent implements OnInit {
   visibleMessage: boolean;
   public form: FormGroup;
   public message: AbstractControl;
+  vis: boolean = false;
 
   constructor(protected router: Router,
               private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
@@ -34,7 +35,15 @@ export class AllCertificatesComponent implements OnInit {
 
     // alert(this.user.email);
 
-    this.data.getAllCert().subscribe( data => this.certif = data);
+    this.data.getAllCert().subscribe( data =>
+
+
+      this.certif = data,
+
+      err => this.vis = true
+
+
+    );
     this.visibleMessage=false;
 
   }

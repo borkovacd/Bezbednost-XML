@@ -11,11 +11,22 @@ import {UserService} from "../service/user.service";
 
 export class HomeComponent implements  OnInit{
 
+  vis: boolean = false;
+
   constructor(protected router: Router,
               private userService: UserService){
 
   }
   ngOnInit() {
+
+    const log = localStorage.getItem('loggedUser');
+
+    if(log!=null){
+        this.vis=false;
+    } else {
+      this.vis=true;
+    }
+
   }
   createCertificate(){
     this.router.navigateByUrl('createCertificate');
@@ -32,5 +43,9 @@ export class HomeComponent implements  OnInit{
     // window.location.reload();
     this.router.navigateByUrl('');
 
+  }
+
+  povratak() {
+    this.router.navigateByUrl('');
   }
 }

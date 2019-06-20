@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit{
   public form: FormGroup;
   public email: AbstractControl;
   public password: AbstractControl;
+  vis: boolean = false;
 
   constructor(protected router: Router,
               private fb: FormBuilder,

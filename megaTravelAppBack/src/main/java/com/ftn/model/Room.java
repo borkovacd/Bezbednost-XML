@@ -7,13 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Room {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToOne
+	private Accomodation accomodation;
 
 	@Column
 	private int capacity;
@@ -37,15 +41,24 @@ public class Room {
 
 	}
 
-	public Room(Long id, int capacity, int floor, boolean hasBalcony, int day, boolean reserved, boolean active) {
+	public Room(Long id, Accomodation accomodation, int capacity, int floor, boolean hasBalcony, int day, boolean reserved, boolean active) {
 		super();
 		this.id = id;
+		this.accomodation = accomodation;
 		this.capacity = capacity;
 		this.floor = floor;
 		this.hasBalcony = hasBalcony;
 		this.day = day;
 		this.reserved = reserved;
 		this.active = active;
+	}
+
+	public Accomodation getAccomodation() {
+		return accomodation;
+	}
+
+	public void setAccomodation(Accomodation accomodation) {
+		this.accomodation = accomodation;
 	}
 
 	public Long getId() {

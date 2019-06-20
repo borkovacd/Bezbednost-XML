@@ -89,13 +89,10 @@ public class RoomService {
 		room.setFloor(r.getFloor());
 		room.setHasBalcony(r.isHasBalcony());
 		room.setReserved(r.isReserved());
+		Accomodation accomodation = accomodationRepository.getOne(request.getAccomodationId());
+		room.setAccomodation(accomodation);
 		
 		roomRepository.save(room);
-		Accomodation accomodation = accomodationRepository.getOne(request.getAccomodationId());
-		List<Room> rooms = accomodation.getRooms();
-		rooms.add(room);
-		accomodation.setRooms(rooms);
-		accomodationRepository.save(accomodation);
 		
 	}
 
@@ -107,6 +104,8 @@ public class RoomService {
 		
 		GetAccomodationRoomsResponse response = (GetAccomodationRoomsResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
 		
 		List<Room> rooms = new ArrayList<Room>();
 		
@@ -125,19 +124,17 @@ public class RoomService {
 			r.setActive(response.getRoomslist().get(i).isActive());
 			r.setDay(response.getRoomslist().get(i).getDay());
 			r.setReserved(response.getRoomslist().get(i).isReserved());
+			r.setAccomodation(accomodation);
 			
 			rooms.add(r);
 			roomRepository.save(r);
 			
 		}
 		
-
 		return (ArrayList<Room>) rooms;
 	}
 	
 	
-	//trebalo bi da radi (moguce da treba dodati updejt za  accomodationRepository ako ne radi)
-	//zakomentarisano dole
 	public boolean deleteRoom(Long idAccomodation, Long idRoom) {
 		
 		DeleteRoomRequest request = new DeleteRoomRequest();
@@ -154,24 +151,19 @@ public class RoomService {
 		System.out.println(response.getResponse());
 		System.out.println("*****");
 		
-		Accomodation a = accomodationRepository.findOneById(idAccomodation);
-		for(int i=0; i<a.getRooms().size(); i++) {
-			if(a.getRooms().get(i).getId() == idRoom) {
-				for(Price price : priceRepository.findAll()) {
-					if(price.getRoom().getId() == idRoom) {
-						priceRepository.delete(price);
-					}
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == idAccomodation) {
+				if(room.getId() == idRoom) {
+					for(Price price : priceRepository.findAll()) {
+						if(price.getRoom().getId() == room.getId()) {
+							priceRepository.delete(price);
+						}
+					}	
+					roomRepository.delete(room);
 				}
 				
-				a.getRooms().remove(i);
-				accomodationRepository.save(a);
-				Room room = roomRepository.getOne(idRoom);
-				roomRepository.delete(room);
-			
 			}
 		}
-		
-		
 		
 		return true;
 	}
@@ -225,6 +217,8 @@ public class RoomService {
 		room.setDay(response.getEditedRoom().getDay());
 		room.setHasBalcony(response.getEditedRoom().isHasBalcony());
 		room.setActive(response.getEditedRoom().isActive());
+		Accomodation accomodation = accomodationRepository.getOne(idAccomodation);
+		room.setAccomodation(accomodation);
 		
 		roomRepository.save(room);
 		

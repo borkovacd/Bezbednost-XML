@@ -1,3 +1,5 @@
+
+<div [hidden]="vis">
 <div class="container">
 <div *ngFor="let cert of certif" style="border: 2px solid grey; border-radius: 5px; padding: 10px; display: inline-block">
   <label>Serijski broj: {{cert.serialNumber}}</label><br>
@@ -19,4 +21,11 @@
     <button  *ngIf = "visibleMessage== true" class="btn btn-dark" (click)="potvrdiPovlacenje(cert.serialNumber)">Potvrdi</button>
   </form>
 </div>
+</div>
+</div>
+
+<div [hidden]="!vis">
+
+  <label>Ne mozete pristupiti</label>
+
 </div>

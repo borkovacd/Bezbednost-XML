@@ -16,7 +16,7 @@ import com.ftn.enums.ClientStatus;
 public class Client {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="FirstName", nullable=false)

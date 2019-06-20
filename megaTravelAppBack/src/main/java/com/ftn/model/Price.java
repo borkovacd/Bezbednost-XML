@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Price {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@ManyToOne
