@@ -9,11 +9,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AddAgentComponent } from './add-agent/add-agent.component';
+import {AddCategoryComponent} from './add-category/add-category.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListAgentComponent } from './list-agent/list-agent.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import {AdminService} from './service/admin.service';
+import {ListCategoryComponent} from './list-category/list-category.component';
+import {AccomodationService} from './service/accomodationService.service';
 
 
 @NgModule({
@@ -22,10 +25,12 @@ import {AdminService} from './service/admin.service';
     WelcomePageComponent,
     LoginComponent,
     AddAgentComponent,
+    AddCategoryComponent,
     HomeComponent,
     ProfileComponent,
     ListAgentComponent,
-    ListUserComponent
+    ListUserComponent,
+    ListCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import {AdminService} from './service/admin.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AdminService],
+  providers: [AdminService, AccomodationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,4 +16,8 @@ export class HomeComponent implements OnInit {
   agents() {
     this.router.navigateByUrl('/listAgents');
   }
+
+  categories() {
+    this.router.navigateByUrl('/listCategories');
+  }
 }
