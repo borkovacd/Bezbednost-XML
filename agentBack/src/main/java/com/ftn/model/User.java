@@ -6,10 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
-
 @Entity
-public class Client {
-	
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,7 +25,7 @@ public class Client {
 	
 	private String type;
 
-	public Client(String username, String password, String email, String type) {
+	public User(String username, String password, String email, String type) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -35,7 +33,7 @@ public class Client {
 		this.type=type;
 	}
 
-	public Client() {
+	public User() {
 	}
 
 	public Long getId() {

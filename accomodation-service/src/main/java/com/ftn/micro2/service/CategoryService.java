@@ -15,9 +15,9 @@ public class CategoryService
 	@Autowired
 	CategoryRepository repository ;
 	
-	public Category findByName(Category cat)
+	public Category findByName(String string)
 	{
-		return repository.findCategoryByName(cat.getName());
+		return repository.findCategoryByName(string);
 	}
 	
 	public void save(Category cat)

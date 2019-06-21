@@ -165,26 +165,13 @@ public class AccomondationEndpoint {
 		
 		Accomodation a = accomondationRepository.findOneById(id);
 		
-		List<Long> roomIdForDeleting = new ArrayList<Long>();
-		List<Integer> roomIndexForDeleting = new ArrayList<Integer>();
-		
-		for(int i=0; i<a.getRooms().size(); i++) {
-			Long idRoom = a.getRooms().get(i).getId();
-			roomIdForDeleting.add(idRoom);
-			if(a.getRooms().get(i).getId() == idRoom) {
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == id) {
 				for(Price price : priceRepository.findAll()) {
-					if(price.getRoom().getId() == idRoom) {
+					if(price.getRoom().getId() == room.getId()) {
 						priceRepository.delete(price);
 					}
 				}
-				
-				roomIndexForDeleting.add(i);
-			
-			}
-		}
-		
-		for(Room room : roomRepository.findAll()) {
-			if(roomIdForDeleting.contains(room.getId())) {
 				roomRepository.delete(room);
 			}
 		}
@@ -403,18 +390,21 @@ public class AccomondationEndpoint {
 		
 		System.out.println("Accomodation : " + requestedAccomodation.getName());
 	
-		for(int i = 0; i < requestedAccomodation.getRooms().size(); i++) {
+		for(int i = 0; i < roomRepository.findAll().size(); i++) {
 			
-			RoomSoap rs = new RoomSoap();
-			rs.setId(requestedAccomodation.getRooms().get(i).getId());
-			rs.setCapacity(requestedAccomodation.getRooms().get(i).getCapacity());
-			rs.setFloor(requestedAccomodation.getRooms().get(i).getFloor());
-			rs.setHasBalcony(requestedAccomodation.getRooms().get(i).isHasBalcony());
-			rs.setActive(requestedAccomodation.getRooms().get(i).isActive());
-			rs.setReserved(requestedAccomodation.getRooms().get(i).isReserved());
-			rs.setDay(requestedAccomodation.getRooms().get(i).getDay());
-			
-			response.getRoomslist().add(rs);
+			if(roomRepository.findAll().get(i).getAccomodation().getId() == request.getAccomodationId()) {
+				
+				RoomSoap rs = new RoomSoap();
+				rs.setId(roomRepository.findAll().get(i).getId());
+				rs.setCapacity(roomRepository.findAll().get(i).getCapacity());
+				rs.setFloor(roomRepository.findAll().get(i).getFloor());
+				rs.setHasBalcony(roomRepository.findAll().get(i).isHasBalcony());
+				rs.setActive(roomRepository.findAll().get(i).isActive());
+				rs.setReserved(roomRepository.findAll().get(i).isReserved());
+				rs.setDay(roomRepository.findAll().get(i).getDay());
+				
+				response.getRoomslist().add(rs);
+			}
 			
 		}
 		
@@ -545,13 +535,11 @@ public class AccomondationEndpoint {
 		room.setHasBalcony(r.isHasBalcony());
 		room.setDay(r.getDay());
 		room.setReserved(r.isReserved());
+		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
+		room.setAccomodation(accomodation);
 		
 		roomRepository.save(room);
-		Accomodation accomodation = accomondationRepository.getOne(request.getAccomodationId());
-		List<Room> rooms = accomodation.getRooms();
-		rooms.add(room);
-		accomodation.setRooms(rooms);
-		accomondationRepository.save(accomodation);
+		
 		
 		response.setRoomId(room.getId());
 		response.setResponse("Head back response: 'New room successfully added in accomodation '" + accomodationName + "'.");
@@ -561,7 +549,7 @@ public class AccomondationEndpoint {
 	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreatePriceListRequest")
 	@ResponsePayload
-	public CreatePriceListResponse getAccomondation(@RequestPayload CreatePriceListRequest request) {
+	public CreatePriceListResponse createPriceList(@RequestPayload CreatePriceListRequest request) {
 		
 		//Request poruka sa agentskog back-a
 		System.out.println("*****");
@@ -646,20 +634,17 @@ public class AccomondationEndpoint {
 		Long idAccomodation = request.getAccomodationId();
 		Long idRoom = request.getRoomId();
 		
-		Accomodation a = accomondationRepository.findOneById(idAccomodation);
-		for(int i=0; i<a.getRooms().size(); i++) {
-			if(a.getRooms().get(i).getId() == idRoom) {
-				for(Price price : priceRepository.findAll()) {
-					if(price.getRoom().getId() == idRoom) {
-						priceRepository.delete(price);
-					}
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == idAccomodation) {
+				if(room.getId() == idRoom) {
+					for(Price price : priceRepository.findAll()) {
+						if(price.getRoom().getId() == room.getId()) {
+							priceRepository.delete(price);
+						}
+					}	
+					roomRepository.delete(room);
 				}
 				
-				a.getRooms().remove(i);
-				accomondationRepository.save(a);
-				Room room = roomRepository.getOne(idRoom);
-				roomRepository.delete(room);
-			
 			}
 		}
 		
