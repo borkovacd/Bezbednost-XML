@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {CategoryModel} from '../model/Category.model';
+import {AccomodationTypeModel} from '../model/AccomodationType.model';
 import {AccomodationService} from '../service/accomodationService.service';
-import {AgentModel} from '../model/Agent.model';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  selector: 'app-add-accommodationType',
+  templateUrl: './add-accommodationType.component.html',
+  styleUrls: ['./add-accommodationType.component.css']
 })
-export class AddCategoryComponent implements OnInit {
+export class AddAccommodationTypeComponent implements OnInit {
 
   form: FormGroup;
   name: AbstractControl;
-  categories: CategoryModel[] = []
+  accommodationTypes: AccomodationTypeModel[] = []
   // newCategory: CategoryModel = new CategoryModel();
   // errorC: string ;
 
 
   constructor(protected router: Router, private fb: FormBuilder, private service: AccomodationService) {
 
-    this.service.getCategories().subscribe(
+    this.service.getAccomodationTypes().subscribe(
       data => {
-        this.categories = data;
+        this.accommodationTypes = data;
       }
     )
 
@@ -37,13 +36,13 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNewCategory() {
+  addNewAccommdationType() {
 
-    const category = new CategoryModel();
+    const accommodationType = new AccomodationTypeModel();
 
-    category.name = this.name.value;
+    accommodationType.name = this.name.value;
 
-    this.service.addNewCategory(category).subscribe( data =>
+    this.service.addNewAccomodationType(accommodationType).subscribe( data =>
       this.router.navigateByUrl('/home'));
 
     /*data => {
@@ -58,10 +57,10 @@ export class AddCategoryComponent implements OnInit {
     );*/
   }
 
-  removeCategory(cat: CategoryModel) {
-    this.service.removeCategory(cat).subscribe(
+  removeAccommodationType(accommodationType: AccomodationTypeModel) {
+    this.service.removeAccomodationType(accommodationType).subscribe(
       data => {
-        this.categories = data ;
+        this.accommodationTypes = data ;
       }
     );
   }

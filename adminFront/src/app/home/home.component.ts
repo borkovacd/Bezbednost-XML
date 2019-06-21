@@ -18,6 +18,14 @@ export class HomeComponent implements OnInit {
   }
 
   categories() {
-    this.router.navigateByUrl('/listCategories');
+    this.router.navigateByUrl('/addCategory');
+  }
+
+  additionalsServices() {
+    this.router.navigateByUrl('/addAdditionalService');
+  }
+
+  accommodationTypes() {
+    this.router.navigateByUrl('/addAccommodationTypes');
   }
 }

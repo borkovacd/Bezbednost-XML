@@ -1,29 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {CategoryModel} from '../model/Category.model';
+import {AdditionalServiceModel} from '../model/AdditionalService.model';
 import {AccomodationService} from '../service/accomodationService.service';
-import {AgentModel} from '../model/Agent.model';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  selector: 'app-add-additionalService',
+  templateUrl: './add-additionalService.component.html',
+  styleUrls: ['./add-additionalService.component.css']
 })
-export class AddCategoryComponent implements OnInit {
+export class AddAdditionalServiceComponent implements OnInit {
 
   form: FormGroup;
   name: AbstractControl;
-  categories: CategoryModel[] = []
-  // newCategory: CategoryModel = new CategoryModel();
-  // errorC: string ;
+  additionalServices: AdditionalServiceModel[] = []
 
 
   constructor(protected router: Router, private fb: FormBuilder, private service: AccomodationService) {
 
-    this.service.getCategories().subscribe(
+    this.service.getAdditionalServices().subscribe(
       data => {
-        this.categories = data;
+        this.additionalServices = data;
       }
     )
 
@@ -37,13 +34,13 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNewCategory() {
+  addNewAdditionalService() {
 
-    const category = new CategoryModel();
+    const additionalService = new AdditionalServiceModel();
 
-    category.name = this.name.value;
+    additionalService.name = this.name.value;
 
-    this.service.addNewCategory(category).subscribe( data =>
+    this.service.addNewAdditionalService(additionalService).subscribe( data =>
       this.router.navigateByUrl('/home'));
 
     /*data => {
@@ -58,10 +55,10 @@ export class AddCategoryComponent implements OnInit {
     );*/
   }
 
-  removeCategory(cat: CategoryModel) {
-    this.service.removeCategory(cat).subscribe(
+  removeAdditionalService(additionalService: AdditionalServiceModel) {
+    this.service.removeAdditionalService(additionalService).subscribe(
       data => {
-        this.categories = data ;
+        this.additionalServices = data ;
       }
     );
   }

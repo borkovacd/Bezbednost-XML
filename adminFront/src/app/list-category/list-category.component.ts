@@ -14,6 +14,6 @@ export class ListCategoryComponent implements OnInit {
   }
 
   newCategory() {
-    this.router.navigateByUrl('/addNewCategory');
+    this.router.navigateByUrl('/addCategory');
   }
 }

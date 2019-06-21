@@ -6,10 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "type_accomodation")
 public class AccomodationType 
 {
-	@Column
+	@Column(unique = true)
 	private String name;
 	
 	@Id

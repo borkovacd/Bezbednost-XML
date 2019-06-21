@@ -10,6 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AddAgentComponent } from './add-agent/add-agent.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
+import {AddAccommodationTypeComponent} from './add-accommodationType/add-accommodationType.component';
+import {AddAdditionalServiceComponent} from './add-additionalService/add-additionalService.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListAgentComponent } from './list-agent/list-agent.component';
@@ -26,6 +28,8 @@ import {AccomodationService} from './service/accomodationService.service';
     LoginComponent,
     AddAgentComponent,
     AddCategoryComponent,
+    AddAccommodationTypeComponent,
+    AddAdditionalServiceComponent,
     HomeComponent,
     ProfileComponent,
     ListAgentComponent,

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Category 
 {
-	@Column
+	@Column(unique = true)
 	private String name ;
 	
 	@Id
@@ -23,7 +23,6 @@ public class Category
 
 	public Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {

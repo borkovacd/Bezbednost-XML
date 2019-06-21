@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class AdditionalServices 
 {
-	@Column
+	@Column(unique = true)
 	private String name ;
 	
 	@Id
