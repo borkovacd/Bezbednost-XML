@@ -32,7 +32,7 @@ insert into agents(id, address, first_name, last_name, mbr, password, username) 
 
 insert into country (id, name) values (1, "UK");
 
-insert into city (id, name,country_id) values (1, "Novi Sad", 15);
+insert into city (id, name,country_id) values (1, "Novi Sad", 1);
 
 insert into category (id, name) values (1, "nekategorisan");
 insert into category (id, name) values (2, "jedna");

@@ -170,7 +170,7 @@
 	</plugin>
 	
 <!-- AUTO GENERATOR PLUGIN  FOR WEBSERVICE -->
-   
+<!-- 
  <plugin>
     <groupId>org.jvnet.jaxb2.maven2</groupId>
     <artifactId>maven-jaxb2-plugin</artifactId>
@@ -191,7 +191,7 @@
         </schemaIncludes>
     </configuration>
  </plugin>
-
+ --> 
 
 </plugins>
 </build>

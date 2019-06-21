@@ -459,12 +459,49 @@
     <xs:complexType name="userSoap">
         <xs:sequence>
        		<xs:element name="id" nillable="true" type="xs:long"/>
+       		<xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
             <xs:element name="username" type="xs:string"/>
             <xs:element name="password" type="xs:string"/>
             <xs:element name="email" type="xs:string"/>
-            <xs:element name="type" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="clientStatus" type="tns:clientStatus"/>
+            <xs:element name="enabled" type="xs:boolean"/>
+            <xs:element name="nonLocked" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" name="roles" type="tns:roleSoap"/>
         </xs:sequence>
     </xs:complexType>
+    
+    <xs:complexType name="roleSoap">
+        <xs:sequence>
+       		<xs:element name="id" nillable="true" type="xs:long"/>
+       		<xs:element name="name" type="tns:nameRole"/>
+       		<xs:element maxOccurs="unbounded" name="permissions" type="tns:permissionSoap"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="permissionSoap">
+        <xs:sequence>
+       		<xs:element name="id" nillable="true" type="xs:long"/>
+       		<xs:element name="name" type="xs:string"/>
+       	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType final="restriction" name="clientStatus">
+    	<xs:restriction base="xs:string">
+        	<xs:enumeration value="AKTIVAN"/>
+        	<xs:enumeration value="NEAKTIVAN"/>
+        	<xs:enumeration value="BLOKIRAN"/>
+        	<xs:enumeration value="UKLONJEN"/>
+    	</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType final="restriction" name="nameRole">
+    	<xs:restriction base="xs:string">
+        	<xs:enumeration value="ROLE_ADMIN"/>
+        	<xs:enumeration value="ROLE_USER"/>
+    	</xs:restriction>
+	</xs:simpleType>
     
     
     
