@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="Privileges")
+@Entity(name="Permissions")
 public class Permission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

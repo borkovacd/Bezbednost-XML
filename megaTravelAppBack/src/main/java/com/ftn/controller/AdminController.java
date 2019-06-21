@@ -58,6 +58,8 @@ public class AdminController {
 		String salt = BCrypt.gensalt();
 		String passwordHashed = BCrypt.hashpw(agentDto.getPassword(), salt);
 		
+		System.out.println(passwordHashed);
+		
 		agent.setPassword(passwordHashed);
 		
 		agentService.saveAgent(agent);

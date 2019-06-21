@@ -4,12 +4,17 @@ import java.security.NoSuchAlgorithmException;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.ftn.micro1.security.CheckTokenFilter;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.shared.transport.jersey.EurekaJerseyClientImpl.EurekaJerseyClientBuilder;
 
@@ -35,6 +40,28 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
     args.setEurekaJerseyClient(builder.build());
     return args;
 }
+
+
+	@Bean
+	public CheckTokenFilter authenticationFilter() throws Exception {
+	CheckTokenFilter authenticationFilter = new CheckTokenFilter();
+
+    authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+    return authenticationFilter;
+	}
+	
+	 @Bean
+	 @Override
+	 public AuthenticationManager authenticationManagerBean() throws Exception {
+	        return super.authenticationManagerBean();
+	 }
+	 
+	 @Bean
+	    public PasswordEncoder passwordEncoder() {
+	        return new BCryptPasswordEncoder();
+	    }
+	    
+
 	
 
 	@Override
@@ -47,7 +74,12 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.authorizeRequests()
 				.antMatchers("/test/**").permitAll().and()
 				
-				.csrf().disable();
+				
+				.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+				
+
+				
+		http		.csrf().disable();
 		
 	}
 	

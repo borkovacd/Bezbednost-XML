@@ -30,6 +30,7 @@ zuul:
        serviceId: accomodation-service
      resservice:
        serviceId: reservation-service
+  sensitiveHeaders:     
   host:
     socket-timeout-millis: 30000
   sslHostnameValidationEnabled: false

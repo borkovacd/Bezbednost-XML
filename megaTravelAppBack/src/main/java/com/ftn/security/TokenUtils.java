@@ -1,11 +1,19 @@
 package com.ftn.security;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
+
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,41 +30,65 @@ public class TokenUtils {
 	@Value("18000")
 	private Long expiration;
 
-	public String generateToken(String email) {
+	public String generateToken(Authentication auth) {
+		
+		UserSecurity userDetails = (UserSecurity) auth.getPrincipal();
+		
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("username", userDetails.getUsername());
+		claims.put("authorities", userDetails.getAuthorities().stream()
+			.map(GrantedAuthority::getAuthority)
+			.collect(Collectors.toList()));
+		
 		return Jwts.builder()
-				.setSubject(email)
+				.setClaims(claims)
+				.setSubject(userDetails.getId().toString())
 				.setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
 				.signWith(SignatureAlgorithm.HS512, SIGNING_KEY).compact();
 	}
+	
+	
 	
 	public long getExpiredIn() {
 		return expiration;
 	}
 	
-	private Claims getAllClaimsFromToken(String token) {
-		Claims claims = null;
+	public UserSecurity getUserSecurity(String jwt) throws Exception {
 		try {
-			claims = Jwts.parser()
-					.setSigningKey(SIGNING_KEY)
-					.parseClaimsJws(token)
-					.getBody();
+			Claims claims = getClaimsFromToken(jwt);
+			
+			return new UserSecurity(
+				Long.parseLong(getIdFromClaims(claims)), 
+				getUsernameFromClaims(claims), 
+				true,
+				getGrantedAuthoritiesFromClaims(claims),true
+			);
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("TOK_ERR");
-		}
-		return claims;
+			throw new Exception(e);
+		}		
 	}
-
-	public String getUsernameFromToken(String token) {
-		String username;
-		try {
-			final Claims claims = this.getAllClaimsFromToken(token);
-			username = claims.getSubject();
-		} catch (Exception e) {
-			username = null;
-			log.error("TOK_ERR");
-		}
-		return username;
+	
+	private Claims getClaimsFromToken(String authToken) throws Exception {
+		return Jwts.parser()
+			.setSigningKey(SIGNING_KEY)
+			.parseClaimsJws(authToken)
+			.getBody();
 	}
+	
+	private String getIdFromClaims(Claims claims) {
+		return claims.getSubject();		
+	}
+	
+	private String getUsernameFromClaims(Claims claims) {
+		return (String) claims.get("username");
+	}
+	
+	private List<GrantedAuthority> getGrantedAuthoritiesFromClaims(Claims claims) {
+		List<String> authorities = (List<String>) claims.get("authorities");			
+		return authorities.stream()
+			.map(SimpleGrantedAuthority::new)
+			.collect(Collectors.toList());
+	}
+	
 
 }

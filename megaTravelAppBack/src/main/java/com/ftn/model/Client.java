@@ -1,22 +1,34 @@
 package com.ftn.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.ftn.enums.ClientStatus;
 
 @Entity(name="Clients")
+@NamedEntityGraph(name = "Client.Roles.Permissions", 
+attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "permissions"), 
+subgraphs = @NamedSubgraph(name = "permissions", attributeNodes = @NamedAttributeNode("permissions")))
 public class Client {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="FirstName", nullable=false)
@@ -42,6 +54,10 @@ public class Client {
 	
 	@Enumerated(EnumType.STRING)
 	private ClientStatus status;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "clients_roles", joinColumns = @JoinColumn(name = "clients_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+	private Set<Role> roles;
 
 	
 	public Client() {
@@ -110,6 +126,14 @@ public class Client {
 
 	public void setStatus(ClientStatus status) {
 		this.status = status;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	

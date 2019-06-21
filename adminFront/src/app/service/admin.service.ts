@@ -2,18 +2,42 @@ import { Injectable } from '@angular/core';
 import {AgentModel} from '../model/Agent.model';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginModel} from '../model/login.model';
+
+let token;
+token = localStorage.getItem('loggedUser');
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json', 'token' : token}),
+};
 
 @Injectable()
 export class AdminService {
 
-  private BASE_URL = 'https://localhost:8443/api/admin';
+  private BASE_URL = 'https://localhost:8762/authservice';
 
   constructor(private http: HttpClient) { }
 
   addAgent(agent: AgentModel): Observable<any> {
     const data = JSON.stringify(agent);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( `${this.BASE_URL}/addAgent`, data, {headers: headers});
+    const  headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post( `${this.BASE_URL}/admin/addAgent`, data, httpOptions);
+  }
+
+  login(object: LoginModel): Observable<any> {
+    const body = JSON.stringify(object);
+    const  headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(`${this.BASE_URL}/user/login`, body, {headers: headers});
+  }
+
+  getAgents(): Observable<AgentModel[]> {
+    return this.http.get<AgentModel[]>(`${this.BASE_URL}/admin/agents`, httpOptions);
+  }
+
+  logout(): Observable<any> {
+    const a = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
+    return this.http.get(`${this.BASE_URL}/user/logout` , {headers: headers});
+
   }
 
 
