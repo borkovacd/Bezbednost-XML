@@ -770,10 +770,13 @@ public class AccomondationEndpoint {
 				r.setToDate(xcalToDate);
 				RoomSoap roomSoap = new RoomSoap();
 				roomSoap.setId(reservationRepository.findAll().get(i).getRoom().getId());
+				r.setRoom(roomSoap);
 				UserSoap userSoap = new UserSoap();
 				userSoap.setId(reservationRepository.findAll().get(i).getUser().getId());
+				r.setUser(userSoap);
 				AgentSoap agentSoap = new AgentSoap();
 				agentSoap.setId(reservationRepository.findAll().get(i).getAgent().getId());
+				r.setAgent(agentSoap);
 				r.setConfirmed(reservationRepository.findAll().get(i).isConfirmed());
 				
 				response.getReservationsList().add(r);
