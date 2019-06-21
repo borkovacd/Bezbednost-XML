@@ -32,7 +32,6 @@ import com.ftn.service.TypeAccomodationService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4201")
 @RequestMapping(value = "/api/agent")
-
 public class AgentController {
 	
 	@Autowired

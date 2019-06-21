@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Reservation {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private LocalDate fromDate;
