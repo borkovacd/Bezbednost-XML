@@ -84,8 +84,8 @@ insert into price (id, month, price, room_id) values (27, 7, 33, 4);
 insert into price (id, month, price, room_id) values (28, 8, 30, 4);
 insert into price (id, month, price, room_id) values (29, 9, 34, 4);
 insert into price (id, month, price, room_id) values (30, 10, 30, 4);
-insert into price (id, month, price, room_id) values (31, 11, 35, 8);
-insert into price (id, month, price, room_id) values (32, 12, 50, 8);
+insert into price (id, month, price, room_id) values (31, 11, 35, 4);
+insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 
 
 
