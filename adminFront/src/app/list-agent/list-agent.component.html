@@ -1,4 +1,19 @@
 <div class="container">
 
   <button class="btn btn-primary" (click)="newAgent()">Dodaj agenta</button>
+
+  <div>
+
+    <h2>Lista agenata u sistemu</h2>
+  <div class="jumbotron" *ngFor="let agent of agents" style="border: 2px solid grey; border-radius: 5px; padding: 10px; display: inline-block">
+    <label>Ime: {{agent.firstName}}</label><br>
+    <label>Prezime: {{agent.lastName}} </label><br>
+    <label>Adresa: {{agent.address}} </label><br>
+    <label>Korisnicko ime: {{agent.username}} </label><br>
+    <label>Poslovni maticni broj: {{agent.mbr}} </label><br>
+  </div>
+
+  </div>
+
+  <button class="btn btn-primary" (click)="back()">Nazad</button>
 </div>
