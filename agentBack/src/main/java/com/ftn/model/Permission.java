@@ -6,23 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity(name="Permissions")
 public class Permission {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="name")
+	@Column(name="Name")
 	private String name;
-
-	public Permission() {
-
-	}
-
-	public Permission(String name) {
-		this.name = name;
+	
+	public void Privilege(){
+		
 	}
 
 	public Long getId() {
@@ -40,5 +34,5 @@ public class Permission {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 }
