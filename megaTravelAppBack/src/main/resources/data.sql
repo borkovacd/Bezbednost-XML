@@ -3,8 +3,14 @@ insert into roles (id, name) values (2, "ROLE_USER");
 insert into roles (id, name) values (3, "ROLE_AGENT");
 
 insert into permissions (id, name) values (1, "ADD_AGENT");
+insert into permissions (id, name) values (2, "ADD_SERVICE");
+insert into permissions (id, name) values (3, "ADD_CAT");
+insert into permissions (id, name) values (4, "ADD_TYPE");
 
 insert into role_permissions (permission_id, role_id) values (1, 1);
+insert into role_permissions (permission_id, role_id) values (2, 1);
+insert into role_permissions (permission_id, role_id) values (3, 1);
+insert into role_permissions (permission_id, role_id) values (4, 1);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");

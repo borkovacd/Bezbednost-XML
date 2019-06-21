@@ -18,15 +18,14 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/listAgents');
   }
 
-<<<<<<< HEAD
   logOut() {
 
-    this.data.logout().subscribe( data => {
+    this.data.logout().subscribe(data => {
 
       localStorage.clear();
       this.router.navigateByUrl('');
     });
-=======
+  }
   categories() {
     this.router.navigateByUrl('/addCategory');
   }
@@ -37,6 +36,6 @@ export class HomeComponent implements OnInit {
 
   accommodationTypes() {
     this.router.navigateByUrl('/addAccommodationTypes');
->>>>>>> a8504a367d9da37e36c049e3e6cc9ceb2480da3d
+
   }
 }
