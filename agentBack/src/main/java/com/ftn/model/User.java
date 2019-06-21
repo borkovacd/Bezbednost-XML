@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.Size;
 @Entity
 public class User {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Size(min = 1, max = 20)

@@ -43,6 +43,10 @@ public class AgentService {
 	private AccomodationService accomodationService;
 	@Autowired
 	private PriceService priceService;
+	@Autowired 
+	private ReservationService reservationService;
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -99,6 +103,7 @@ public class AgentService {
 			categoryService.getAllCategories();
 			accomodationService.getAllAccomodation(agent.getId());
 			
+			
 			for(int i=0; i<accomodationRepository.findAll().size(); i++) {
 				roomService.getAllRooms(accomodationRepository.findAll().get(i).getId());
 			}
@@ -106,6 +111,9 @@ public class AgentService {
 			for(int i=0; i<roomRepository.findAll().size(); i++) {
 				priceService.getAllPrices(roomRepository.findAll().get(i).getId());
 			}	
+			
+			userService.getAllUsers();
+			reservationService.getAllReservations(agent.getId());	
 			
 			
 			return agent.getId();

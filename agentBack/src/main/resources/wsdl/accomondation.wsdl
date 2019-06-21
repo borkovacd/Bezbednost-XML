@@ -323,6 +323,41 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllReservationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllReservationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="reservationsList" type="tns:reservationSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllUsersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="userslist" type="tns:userSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -409,6 +444,28 @@
         </xs:sequence>
     </xs:complexType>
     
+    <xs:complexType name="reservationSoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+            <xs:element name="fromDate" type="xs:date"/>
+            <xs:element name="toDate" type="xs:date"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="user" type="tns:userSoap"/>
+            <xs:element name="agent" type="tns:agentSoap"/>
+            <xs:element name="confirmed" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="userSoap">
+        <xs:sequence>
+       		<xs:element name="id" nillable="true" type="xs:long"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
     
     
 </xs:schema>
@@ -431,6 +488,10 @@
   </wsdl:message>
   <wsdl:message name="GetAllAccomodationsResponse">
     <wsdl:part element="sch:GetAllAccomodationsResponse" name="GetAllAccomodationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllReservationsRequest">
+    <wsdl:part element="sch:GetAllReservationsRequest" name="GetAllReservationsRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllAdditionalServicesResponse">
@@ -549,12 +610,24 @@
     <wsdl:part element="sch:RegisterAccomodationResponse" name="RegisterAccomodationResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllUsersRequest">
+    <wsdl:part element="sch:GetAllUsersRequest" name="GetAllUsersRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCategoriesResponse">
     <wsdl:part element="sch:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllUsersResponse">
+    <wsdl:part element="sch:GetAllUsersResponse" name="GetAllUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllAccomodationTypesRequest">
     <wsdl:part element="sch:GetAllAccomodationTypesRequest" name="GetAllAccomodationTypesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllReservationsResponse">
+    <wsdl:part element="sch:GetAllReservationsResponse" name="GetAllReservationsResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
@@ -586,6 +659,12 @@
       <wsdl:input message="tns:GetAllAccomodationsRequest" name="GetAllAccomodationsRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllAccomodationsResponse" name="GetAllAccomodationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservations">
+      <wsdl:input message="tns:GetAllReservationsRequest" name="GetAllReservationsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllReservationsResponse" name="GetAllReservationsResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllAdditionalServices">
@@ -666,6 +745,12 @@
       <wsdl:output message="tns:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input message="tns:GetAllUsersRequest" name="GetAllUsersRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllUsersResponse" name="GetAllUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AccomondationPortSoap11" type="tns:AccomondationPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -711,6 +796,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllAccomodationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReservations">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllReservationsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllReservationsResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -828,6 +922,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllCategoriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllUsersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllUsersResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
