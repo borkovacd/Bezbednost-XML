@@ -19,7 +19,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
+//@Component
 public class TokenUtils {
 	
 	private static final Logger log = LoggerFactory.getLogger(TokenUtils.class);
