@@ -17,6 +17,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.ftn.enums.ClientStatus;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
@@ -800,10 +801,24 @@ public class AccomondationEndpoint {
 			
 			UserSoap us = new UserSoap();
 			us.setId(userRepository.findAll().get(i).getId());
+			us.setFirstName(userRepository.findAll().get(i).getFirstName());
+			us.setLastName(userRepository.findAll().get(i).getLastName());
 			us.setUsername(userRepository.findAll().get(i).getUsername());
 			us.setPassword(userRepository.findAll().get(i).getPassword());
 			us.setEmail(userRepository.findAll().get(i).getEmail());
-			//us.setType(userRepository.findAll().get(i).get;
+			us.setCity(userRepository.findAll().get(i).getCity());
+			ClientStatus clientStatus = userRepository.findAll().get(i).getStatus();
+			if(clientStatus.equals("AKTIVAN")) {
+				us.setClientStatus(com.ftn.webservice.ClientStatus.AKTIVAN);
+			} else if (clientStatus.equals("NEAKTIVAN")) {
+				us.setClientStatus(com.ftn.webservice.ClientStatus.NEAKTIVAN);
+			} else if (clientStatus.equals("BLOKIRAN")) {
+				us.setClientStatus(com.ftn.webservice.ClientStatus.BLOKIRAN); 
+			} else {
+				us.setClientStatus(com.ftn.webservice.ClientStatus.UKLONJEN);
+			}
+			us.setEnabled(userRepository.findAll().get(i).isEnabled());
+			us.setNonLocked(userRepository.findAll().get(i).isNonLocked());
 			
 			response.getUserslist().add(us);
 			

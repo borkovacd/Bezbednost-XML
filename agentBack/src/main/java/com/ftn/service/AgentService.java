@@ -112,8 +112,8 @@ public class AgentService {
 				priceService.getAllPrices(roomRepository.findAll().get(i).getId());
 			}	
 			
-			userService.getAllUsers();
-			reservationService.getAllReservations(agent.getId());	
+			//userService.getAllUsers();
+			//reservationService.getAllReservations(agent.getId());	
 			
 			
 			return agent.getId();

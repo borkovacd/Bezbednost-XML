@@ -11,6 +11,7 @@ import com.ftn.model.User;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.UserRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.ClientStatus;
 import com.ftn.webservice.files.GetAllAgentsRequest;
 import com.ftn.webservice.files.GetAllAgentsResponse;
 import com.ftn.webservice.files.GetAllUsersRequest;
@@ -44,10 +45,24 @@ public class UserService {
 			
 			User u = new User();
 			u.setId(response.getUserslist().get(i).getId());
+			u.setFirstName(response.getUserslist().get(i).getFirstName());
+			u.setLastName(response.getUserslist().get(i).getLastName());
 			u.setUsername(response.getUserslist().get(i).getUsername());
 			u.setPassword(response.getUserslist().get(i).getPassword());
 			u.setEmail(response.getUserslist().get(i).getEmail());
-			//u.setType(response.getUserslist().get(i).getType());
+			u.setCity(response.getUserslist().get(i).getCity());
+			ClientStatus clientStatus = response.getUserslist().get(i).getClientStatus();
+			if(clientStatus.equals("AKTIVAN")) {
+				u.setStatus(com.ftn.enums.ClientStatus.AKTIVAN);
+			} else if (clientStatus.equals("NEAKTIVAN")) {
+				u.setStatus(com.ftn.enums.ClientStatus.NEAKTIVAN);
+			} else if (clientStatus.equals("BLOKIRAN")) {
+				u.setStatus(com.ftn.enums.ClientStatus.BLOKIRAN); 
+			} else {
+				u.setStatus(com.ftn.enums.ClientStatus.UKLONJEN);
+			}
+			u.setEnabled(response.getUserslist().get(i).isEnabled());
+			u.setNonLocked(response.getUserslist().get(i).isNonLocked());
 			
 			userRepository.save(u);
 			users.add(u);
