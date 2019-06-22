@@ -1,41 +1,68 @@
 package com.ftn.micro3.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class User 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@Size(min = 1, max = 20)
-	@Column(unique = true, nullable = false)
+	
+	@Column(name="FirstName", nullable=false)
+	private String firstName;
+	
+	@Column(name="LastName", nullable=false)
+	private String lastName;
+	
+	@Column(name="Username")
 	private String username;
-
-	@Size(min = 3, max = 20)
-	@Column(nullable = false)
+	
+	@NotNull
+	@Size(min=8, max = 99)
+	@Column(name="Password")
 	private String password;
 
-	@Column(nullable = false)
+	@NotNull
+	@Column(name="Email", nullable=false)
 	private String email;
 	
-	private String type;
-
-	public User(String username, String password, String email, String type) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.type=type;
-	}
-
+	@Column(name="City", nullable=false)
+	private String city;
+	
+	/*
+	@Enumerated(EnumType.STRING)
+	private ClientStatus status;
+	*/
+	
+	
+	@Column(name = "Enabled")
+	private boolean enabled;
+	
+	@Column(name="Nonlocked")
+	private boolean nonLocked;
+	
+	/*
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+	private Set<Role> roles;
+	*/
+	
 	public User() {
+		
+		this.enabled=false;
+		
 	}
 
 	public Long getId() {
@@ -44,6 +71,22 @@ public class User
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -70,11 +113,49 @@ public class User
 		this.email = email;
 	}
 
-	public String getType() {
-		return type;
+	public String getCity() {
+		return city;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setCity(String city) {
+		this.city = city;
 	}
+
+	
+	/*
+	public ClientStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ClientStatus status) {
+		this.status = status;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	*/
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isNonLocked() {
+		return nonLocked;
+	}
+
+	public void setNonLocked(boolean nonLocked) {
+		this.nonLocked = nonLocked;
+	}
+
+	
+	
 }

@@ -10,34 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
+
 @Entity
 public class Reservation 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id ;
-	
-	@Column
-	private LocalDate fromDate ;
-	
-	@Column
-	private LocalDate toDate ;
-	
-	@OneToOne
-	private Room room ;
-	
-	@OneToOne
-	private User user ;
+	private Long id;
+
+	private LocalDate fromDate;
+
+	private LocalDate toDate;
 
 	@OneToOne
-	private Agent agent ;
-	
-	@Column
-	private boolean confirmed = false ;
+	private Room room;
+
+	@ManyToOne
+	// @JsonIgnore
+	private User user;
+
+	@OneToOne
+	// @JsonIgnore
+	private Agent agent;
+
+	private boolean confirmed = false;
 
 	public Reservation() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Reservation(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
@@ -107,7 +106,5 @@ public class Reservation
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-
-	
 	
 }

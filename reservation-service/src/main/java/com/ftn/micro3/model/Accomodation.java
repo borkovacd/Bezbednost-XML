@@ -45,8 +45,7 @@ public class Accomodation
 	private Agent agent;
 
 	public Accomodation() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Accomodation(Long id, @NotNull String name, City city, @NotNull String address,
@@ -129,6 +128,14 @@ public class Accomodation
 		this.pic = pic;
 	}
 
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
 	public List<AdditionalServices> getAdditionalServices() {
 		return additionalServices;
 	}
@@ -137,14 +144,5 @@ public class Accomodation
 		this.additionalServices = additionalServices;
 	}
 
-	public Agent getAgent() {
-		return agent;
-	}
 
-	public void setAgent(Agent agent) {
-		this.agent = agent;
-	}
-	
-	
-	
 }
