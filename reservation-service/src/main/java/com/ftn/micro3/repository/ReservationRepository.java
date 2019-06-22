@@ -13,8 +13,7 @@ import com.ftn.micro3.model.User;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long>
 {
-	List<Reservation> findByUser(Long id);
+	List<Reservation> findByUserId(Long id);
 	List<Reservation> findAll();
-	Room findOneById(Long id);
 	void deleteById(Long id);
 }

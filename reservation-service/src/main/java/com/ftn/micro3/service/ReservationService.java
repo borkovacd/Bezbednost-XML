@@ -1,6 +1,7 @@
 package com.ftn.micro3.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import com.ftn.micro3.model.Accomodation;
 import com.ftn.micro3.model.Reservation;
 import com.ftn.micro3.model.Room;
 import com.ftn.micro3.model.User;
+import com.ftn.micro3.repository.AccomodationRepository;
 import com.ftn.micro3.repository.ReservationRepository;
 import com.ftn.micro3.repository.RoomRepository;
 
@@ -23,10 +25,13 @@ public class ReservationService
 	@Autowired
 	RoomRepository roomRepository ;
 	
-	public List<Reservation> findReservationByUserId(Long id)
+	@Autowired
+	AccomodationRepository accomodationRepository ;
+	
+	public List<Reservation> findReservationsByUserId(Long id)
 	{
 		
-		return reservationRepository.findByUser(id);
+		return reservationRepository.findByUserId(id);
 	}
 	
 	public List<Reservation> getAll()
@@ -34,20 +39,34 @@ public class ReservationService
 		return reservationRepository.findAll();
 	}
 	
-	public List<Room> getAvailableRooms(Accomodation accomodation, LocalDate fromDate, LocalDate toDate)
+	public List<Room> searchFreeRooms(String city, String fromDate, String toDate, int numberOfPersons)
 	{
 		List<Room> allRooms = roomRepository.findAll();
 		List <Room> matchingRoomsAccomodation = new ArrayList<Room>() ;
 		List<Room> matchingRooms = new ArrayList<Room>();
+
+		String europeanDatePattern = "yyyy-MM-dd";
+		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+		LocalDate fromDateConverted = LocalDate.parse(fromDate, europeanDateFormatter);
+		LocalDate toDateConverted = LocalDate.parse(toDate, europeanDateFormatter);
+		
 		
 		// lista postojecih rezervacija
 		List<Reservation> reservations = reservationRepository.findAll();
 		
 		for (Room r : allRooms)
 		{
-			if (r.getAccomodation().getId().equals(accomodation.getId()))
+			if (r.getAccomodation().getCity().getName().equals(city))
 			{
 				matchingRoomsAccomodation.add(r);
+			}
+		}
+		
+		for (Room r : matchingRoomsAccomodation)
+		{
+			if (r.getCapacity() != numberOfPersons)
+			{
+				matchingRoomsAccomodation.remove(r);
 			}
 		}
 		
@@ -60,7 +79,7 @@ public class ReservationService
 				
 				// ukoliko je pocetni datum pre kraja rezervacije
 				// ukoliko je krajnji datum pre kraja rezervacije
-				if((res.getFromDate().compareTo(fromDate) >= 0 && res.getFromDate().compareTo(toDate) <= 0) || (res.getToDate().compareTo(fromDate) >= 0 && res.getToDate().compareTo(toDate) <= 0)) 
+				if((res.getFromDate().compareTo(fromDateConverted) >= 0 && res.getFromDate().compareTo(toDateConverted) <= 0) || (res.getToDate().compareTo(fromDateConverted) >= 0 && res.getToDate().compareTo(toDateConverted) <= 0)) 
 				{
 					matchingRoomsAccomodation.remove(res.getRoom());
 				}

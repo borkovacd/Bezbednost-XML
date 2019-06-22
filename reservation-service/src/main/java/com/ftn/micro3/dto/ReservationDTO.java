@@ -16,15 +16,15 @@ public class ReservationDTO
 
 	private Long id ;
 	
-	private LocalDate fromDate ;
+	private String fromDate ;
 	
-	private LocalDate toDate ;
+	private String toDate ;
 	
-	private Room room ;
+	private Long idRoom ;
 	
-	private User user ;
+	private Long idUser ;
 
-	private Agent agent ;
+	private Long idAgent ;
 	
 	private boolean confirmed = false ;
 
@@ -33,16 +33,13 @@ public class ReservationDTO
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReservationDTO(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
-			boolean confirmed) {
+	public ReservationDTO(String fromDate, String toDate, Long idRoom, Long idUser, Long idAgent) {
 		super();
-		this.id = id;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		this.room = room;
-		this.user = user;
-		this.agent = agent;
-		this.confirmed = confirmed;
+		this.idRoom = idRoom;
+		this.idUser = idUser;
+		this.idAgent = idAgent;
 	}
 
 	public Long getId() {
@@ -53,44 +50,44 @@ public class ReservationDTO
 		this.id = id;
 	}
 
-	public LocalDate getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(LocalDate fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public LocalDate getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(LocalDate toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 
-	public Room getRoom() {
-		return room;
+	public Long getIdRoom() {
+		return idRoom;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setIdRoom(Long idRoom) {
+		this.idRoom = idRoom;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getIdUser() {
+		return idUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 
-	public Agent getAgent() {
-		return agent;
+	public Long getIdAgent() {
+		return idAgent;
 	}
 
-	public void setAgent(Agent agent) {
-		this.agent = agent;
+	public void setIdAgent(Long idAgent) {
+		this.idAgent = idAgent;
 	}
 
 	public boolean isConfirmed() {
@@ -100,7 +97,7 @@ public class ReservationDTO
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-	
+
 	
 
 }

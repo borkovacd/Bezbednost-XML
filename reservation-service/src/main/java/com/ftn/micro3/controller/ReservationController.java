@@ -1,5 +1,7 @@
 package com.ftn.micro3.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.micro3.dto.BasicSearchDTO;
 import com.ftn.micro3.dto.ReservationDTO;
 import com.ftn.micro3.model.Reservation;
 import com.ftn.micro3.model.Room;
+import com.ftn.micro3.repository.AgentRepository;
 import com.ftn.micro3.repository.RoomRepository;
 import com.ftn.micro3.repository.UserRepository;
 import com.ftn.micro3.service.ReservationService;
@@ -34,6 +38,9 @@ public class ReservationController
 	@Autowired
 	UserRepository userRepository ;
 	
+	@Autowired
+	AgentRepository agentRepository ;
+	
 	@GetMapping("/getRoomById/{id}")
 	public ResponseEntity<Room> getRoomById(@PathVariable Long id)
 	{
@@ -49,9 +56,16 @@ public class ReservationController
 		}
 	}
 	
-	/*
-	public ResponseEntity<List<Room>> getFreeRooms(@PathVariable)
-	*/
+	// findOneByName
+	
+	@PostMapping("/searchFreeRooms")
+	public ResponseEntity<List<Room>> searchFreeRooms(@RequestBody BasicSearchDTO dto) {
+		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
+		if(rooms != null) {
+			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	
 	
 	@PostMapping("/createReservation")
@@ -59,15 +73,22 @@ public class ReservationController
 	{
 		Reservation newReservation = new Reservation();
 		
+		String europeanDatePattern = "yyyy-MM-dd";
+		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+		LocalDate fromDateConverted = LocalDate.parse(res.getFromDate(), europeanDateFormatter);
+		LocalDate toDateConverted = LocalDate.parse(res.getToDate(), europeanDateFormatter);
+		
+		
+		
 		if (res != null)
 		{
-			newReservation.setAgent(res.getAgent());
+			newReservation.setAgent(agentRepository.getOne(res.getIdAgent()));
 			newReservation.setConfirmed(false);
-			newReservation.setFromDate(res.getFromDate());
-			newReservation.setToDate(res.getToDate());
+			newReservation.setFromDate(fromDateConverted); 
+			newReservation.setToDate(toDateConverted); 
 			newReservation.setId(res.getId());
-			newReservation.setUser(res.getUser()); // userRepository.getOne(res.getId));
-			newReservation.setRoom(res.getRoom());  // roomRepository.getOne(res.getId))
+			newReservation.setUser(userRepository.getOne(res.getIdUser())); 
+			newReservation.setRoom(roomRepository.getOne(res.getIdRoom())); 
 		 
 			
 			reservationService.createReservation(newReservation);
@@ -85,7 +106,7 @@ public class ReservationController
 	public ResponseEntity<List<Reservation>> getReservationsByUser(@PathVariable Long id) 
 	{
 		
-		List <Reservation> reservationsById = reservationService.findReservationByUserId(id);
+		List <Reservation> reservationsById = reservationService.findReservationsByUserId(id);
 		List <Reservation> reservations = new ArrayList<>();
 		
 		if (reservationsById != null)
