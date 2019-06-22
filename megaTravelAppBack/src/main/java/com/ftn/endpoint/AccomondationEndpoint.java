@@ -836,14 +836,18 @@ public class AccomondationEndpoint {
 			us.setEmail(userRepository.findAll().get(i).getEmail());
 			us.setCity(userRepository.findAll().get(i).getCity());
 			ClientStatus clientStatus = userRepository.findAll().get(i).getStatus();
-			if(clientStatus.equals("AKTIVAN")) {
-				us.setClientStatus(com.ftn.webservice.ClientStatus.AKTIVAN);
-			} else if (clientStatus.equals("NEAKTIVAN")) {
-				us.setClientStatus(com.ftn.webservice.ClientStatus.NEAKTIVAN);
-			} else if (clientStatus.equals("BLOKIRAN")) {
-				us.setClientStatus(com.ftn.webservice.ClientStatus.BLOKIRAN); 
-			} else {
-				us.setClientStatus(com.ftn.webservice.ClientStatus.UKLONJEN);
+			if(clientStatus.equals(ClientStatus.AKTIVAN)) {
+				com.ftn.webservice.ClientStatus clientStatus2 = com.ftn.webservice.ClientStatus.AKTIVAN;
+				us.setClientStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.BLOKIRAN)) {
+				com.ftn.webservice.ClientStatus clientStatus2 = com.ftn.webservice.ClientStatus.BLOKIRAN;
+				us.setClientStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.NEAKTIVAN)) {
+				com.ftn.webservice.ClientStatus clientStatus2 = com.ftn.webservice.ClientStatus.NEAKTIVAN;
+				us.setClientStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.UKLONJEN)) {
+				com.ftn.webservice.ClientStatus clientStatus2 = com.ftn.webservice.ClientStatus.UKLONJEN;
+				us.setClientStatus(clientStatus2);
 			}
 			us.setEnabled(userRepository.findAll().get(i).isEnabled());
 			us.setNonLocked(userRepository.findAll().get(i).isNonLocked());
