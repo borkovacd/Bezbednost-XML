@@ -8,9 +8,10 @@ import {AppRoutingModule} from './аpp-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import {UiModule} from './ui/ui.module';
 import {RegistrationComponent} from './registration/registration.component';
 import {UserService} from './service/user.service';
+import {ReservationService} from './service/reservation.service';
+
 
 
 @NgModule({
@@ -20,18 +21,21 @@ import {UserService} from './service/user.service';
     LoginComponent,
     RegistrationComponent,
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UiModule,
 
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-   // UiModule
+
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    ReservationService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
