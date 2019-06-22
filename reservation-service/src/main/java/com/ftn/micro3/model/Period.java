@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class Period 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id ;
 	
 	@Size(min = 1, max = 20)

@@ -9,7 +9,7 @@ import {ReservationService} from '../service/reservation.service';
 })
 
 export class ReservationComponent implements  OnInit{
-  periods = [];
+  reservations = [];
 
   constructor(protected router: Router,
               public reservationService: ReservationService,){
@@ -18,7 +18,7 @@ export class ReservationComponent implements  OnInit{
   ngOnInit(){
     const idAgent = localStorage.getItem('agentId');
     this.reservationService.getAllReservation(idAgent).subscribe(data => {
-      this.periods = data;
+      this.reservations = data;
     })
   }
   confirmeReservation(id: any){

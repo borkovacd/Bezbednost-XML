@@ -358,6 +358,57 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllRolesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllRolesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="rolelist" type="tns:roleSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllPermissionsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllPermissionsResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="permissionslist" type="tns:permissionSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+     <xs:element name="ConfirmReservationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="reservationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ConfirmReservationResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -441,6 +492,7 @@
             <xs:element name="lastName" type="xs:string"/>
             <xs:element name="address" type="xs:string"/>
             <xs:element name="mbr" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" name="agentRoles" type="tns:roleSoap"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -500,6 +552,7 @@
     	<xs:restriction base="xs:string">
         	<xs:enumeration value="ROLE_ADMIN"/>
         	<xs:enumeration value="ROLE_USER"/>
+        	<xs:enumeration value="ROLE_AGENT"/>
     	</xs:restriction>
 	</xs:simpleType>
     
@@ -575,6 +628,10 @@
     <wsdl:part element="sch:GetRoomPricesResponse" name="GetRoomPricesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllPermissionsRequest">
+    <wsdl:part element="sch:GetAllPermissionsRequest" name="GetAllPermissionsRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="CreatePriceListRequest">
     <wsdl:part element="sch:CreatePriceListRequest" name="CreatePriceListRequest">
     </wsdl:part>
@@ -623,6 +680,10 @@
     <wsdl:part element="sch:DeleteRoomRequest" name="DeleteRoomRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllPermissionsResponse">
+    <wsdl:part element="sch:GetAllPermissionsResponse" name="GetAllPermissionsResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetRoomPricesRequest">
     <wsdl:part element="sch:GetRoomPricesRequest" name="GetRoomPricesRequest">
     </wsdl:part>
@@ -651,6 +712,10 @@
     <wsdl:part element="sch:GetAllUsersRequest" name="GetAllUsersRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="ConfirmReservationResponse">
+    <wsdl:part element="sch:ConfirmReservationResponse" name="ConfirmReservationResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCategoriesResponse">
     <wsdl:part element="sch:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
     </wsdl:part>
@@ -665,6 +730,18 @@
   </wsdl:message>
   <wsdl:message name="GetAllReservationsResponse">
     <wsdl:part element="sch:GetAllReservationsResponse" name="GetAllReservationsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllRolesRequest">
+    <wsdl:part element="sch:GetAllRolesRequest" name="GetAllRolesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllRolesResponse">
+    <wsdl:part element="sch:GetAllRolesResponse" name="GetAllRolesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfirmReservationRequest">
+    <wsdl:part element="sch:ConfirmReservationRequest" name="ConfirmReservationRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
@@ -752,6 +829,12 @@
       <wsdl:output message="tns:GetRoomPricesResponse" name="GetRoomPricesResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllPermissions">
+      <wsdl:input message="tns:GetAllPermissionsRequest" name="GetAllPermissionsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllPermissionsResponse" name="GetAllPermissionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreatePriceList">
       <wsdl:input message="tns:CreatePriceListRequest" name="CreatePriceListRequest">
     </wsdl:input>
@@ -786,6 +869,18 @@
       <wsdl:input message="tns:GetAllUsersRequest" name="GetAllUsersRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllUsersResponse" name="GetAllUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmReservation">
+      <wsdl:input message="tns:ConfirmReservationRequest" name="ConfirmReservationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ConfirmReservationResponse" name="ConfirmReservationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <wsdl:input message="tns:GetAllRolesRequest" name="GetAllRolesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllRolesResponse" name="GetAllRolesResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -917,6 +1012,15 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllPermissions">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllPermissionsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllPermissionsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreatePriceList">
       <soap:operation soapAction=""/>
       <wsdl:input name="CreatePriceListRequest">
@@ -968,6 +1072,24 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmReservation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ConfirmReservationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConfirmReservationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllRolesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllRolesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

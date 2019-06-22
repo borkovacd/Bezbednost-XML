@@ -1,13 +1,80 @@
 <!-- Large outline input -->
-<div class="md-form md-outline form-lg">
-  <label for="form-lg" class="pocetna_text">Gde idete?</label>
-  <input id="form-lg" class="form-control form-control-lg" type="text" mdbInput>
+<div >
+  <div style=" display: inline-block;margin-left: 29%;">
+    <h1 style="font-size: 50px;margin-left: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel</h1>
+  </div>
+
+  <div style=" display: inline-block;">
+    <h1 style="font-size: 50px;margin-bottom: 40px;color: #1a8cff">.com </h1>
+  </div>
+
+
 </div>
+<ul>
+  <li (click)="login()"><a>Uloguj se</a></li>
+  <li (click)="registration()"><a>Registruj se</a></li>
+  <li (click)="logOut()"><a>Odjavi se</a></li>
+</ul>
 
 <div>
-  <p></p>
-  <button mdbBtn class ="img-gradient img-gradient-overlay potvrdiButton" type="button" gradient="purple" rounded="true" mdbWavesEffect>Traži</button>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label >Grad:</label>
+      <input name="city" class="form-control margin" [formControl]="city">
+      <small class="form-text error" *ngIf="city.errors?.required && city.touched" style="color: red">
+        Naziv grada je obavezan!
+      </small>
+      <br/>
+      <label >Datum prijavljivanja:</label>
+        <input type="date" class="form-control margin" [formControl]="checkInDate" name="checkInDate" id="input-checkIn"
+               placeholder="Unesite datum dolaska">
+        <small class="form-text error" *ngIf="checkInDate.errors?.required && checkInDate.touched" style="color: red">
+          Ovo polje je obavezno za unos!
+        </small>
+      <br/>
+
+      <label >Datum odjavljivanja:</label>
+        <input type="date" class="form-control margin" [formControl]="checkOutDate" name="checkOutDate" id="input-checkOut"
+               placeholder="Unesite datum odlaska">
+        <small class="form-text error" *ngIf="checkOutDate.errors?.required && checkOutDate.touched" style="color: red">
+          Ovo polje je obavezno za unos!
+        </small>
+      <br/>
+        <label >Broj osoba:</label>
+        <input name="numberOfPersons" class="form-control margin" [formControl]="numberOfPersons">
+        <small class="form-text error" *ngIf="numberOfPersons.errors?.required && numberOfPersons.touched" style="color: red">
+          Broj osoba je obavezan!
+        </small>
+
+
+        <button class="btn btn-dark" (click)="serachRooms()" [disabled]="!form.valid"><i class="fa fa-search"></i></button>
+
+
+
+    </div>
+  </form>
 </div>
+
+<div
+  style="text-align: center; margin-left: 20%;margin-right: 20%">
+  <div *ngFor="let item of items"
+       style="text-align: center;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
+    <h1 style="margin-top: 20px">Soba</h1>
+    <p style="font-size: 20px">Kapacitet:  {{item.capacity}}</p>
+    <p style="font-size: 20px">Sprat:  {{item.floor}}</p>
+    <p style="font-size: 20px">Balkon: {{item.hasBalcony}}</p>
+    <p style="margin-bottom: 0%;font-size: 20px">Moguce otkazati:  {{item.day}} pre isteka rezervacije</p>
+
+    <div style="margin-bottom: 20px">
+      <button
+        style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 20px"
+        (click)="reservationRoom(item.id)">Rezervisi
+      </button>
+
+    </div>
+  </div>
+</div>
+
 
 
 

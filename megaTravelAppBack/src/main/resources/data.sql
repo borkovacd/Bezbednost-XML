@@ -35,6 +35,8 @@ insert into users_roles (users_id, roles_id) values (2,2);
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (5, "/", "MTAgent@gmail.com", 0, "SAgent", "/");
 insert into agents(id, address, first_name, last_name, mbr, password, username) values (1, "/", "Agent", "Agent", "2653225CD", "agent1", "agent1");
 
+insert into agents_roles (agents_id, roles_id) values (1,3);
+
 
 insert into country (id, name) values (1, "UK");
 
@@ -99,7 +101,7 @@ insert into price (id, month, price, room_id) values (30, 10, 30, 4);
 insert into price (id, month, price, room_id) values (31, 11, 35, 4);
 insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 
-insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id) values (10, 0, DATE '2019-05-20', DATE '2019-06-05', 13, 6, 14);
+insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id) values (1, 0, DATE '2019-05-20', DATE '2019-06-05', 1, 2, 2);
 
 
 

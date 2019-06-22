@@ -16,6 +16,7 @@ import com.ftn.webservice.files.GetAllAgentsRequest;
 import com.ftn.webservice.files.GetAllAgentsResponse;
 import com.ftn.webservice.files.GetAllUsersRequest;
 import com.ftn.webservice.files.GetAllUsersResponse;
+import com.ftn.webservice.files.NameRole;
 
 @Service
 public class UserService {
@@ -52,14 +53,18 @@ public class UserService {
 			u.setEmail(response.getUserslist().get(i).getEmail());
 			u.setCity(response.getUserslist().get(i).getCity());
 			ClientStatus clientStatus = response.getUserslist().get(i).getClientStatus();
-			if(clientStatus.equals("AKTIVAN")) {
-				u.setStatus(com.ftn.enums.ClientStatus.AKTIVAN);
-			} else if (clientStatus.equals("NEAKTIVAN")) {
-				u.setStatus(com.ftn.enums.ClientStatus.NEAKTIVAN);
-			} else if (clientStatus.equals("BLOKIRAN")) {
-				u.setStatus(com.ftn.enums.ClientStatus.BLOKIRAN); 
-			} else {
-				u.setStatus(com.ftn.enums.ClientStatus.UKLONJEN);
+			if(clientStatus.equals(ClientStatus.AKTIVAN)) {
+				com.ftn.enums.ClientStatus clientStatus2 = com.ftn.enums.ClientStatus.AKTIVAN;
+				u.setStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.BLOKIRAN)) {
+				com.ftn.enums.ClientStatus clientStatus2 = com.ftn.enums.ClientStatus.BLOKIRAN;
+				u.setStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.NEAKTIVAN)) {
+				com.ftn.enums.ClientStatus clientStatus2 = com.ftn.enums.ClientStatus.NEAKTIVAN;
+				u.setStatus(clientStatus2);
+			} else if (clientStatus.equals(ClientStatus.UKLONJEN)) {
+				com.ftn.enums.ClientStatus clientStatus2 = com.ftn.enums.ClientStatus.UKLONJEN;
+				u.setStatus(clientStatus2);
 			}
 			u.setEnabled(response.getUserslist().get(i).isEnabled());
 			u.setNonLocked(response.getUserslist().get(i).isNonLocked());
@@ -68,8 +73,7 @@ public class UserService {
 			users.add(u);
 			
 		}
-		
-
+	
 		return (ArrayList<User>) users;
 	}
 

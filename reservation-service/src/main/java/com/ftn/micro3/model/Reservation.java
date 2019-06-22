@@ -1,5 +1,8 @@
 package com.ftn.micro3.model;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,30 +10,45 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
+
 @Entity
 public class Reservation 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id ;
-	
+	private Long id;
+
+	private LocalDate fromDate;
+
+	private LocalDate toDate;
+
 	@OneToOne
-	private Period period ;
-	
+	private Room room;
+
 	@ManyToOne
-	private Client user ;
-	
-	private boolean confirmed = false ;
+	// @JsonIgnore
+	private User user;
+
+	@OneToOne
+	// @JsonIgnore
+	private Agent agent;
+
+	private boolean confirmed = false;
 
 	public Reservation() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public Reservation(Period period, Client user) {
+	public Reservation(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
+			boolean confirmed) {
 		super();
-		this.period = period;
+		this.id = id;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.room = room;
 		this.user = user;
+		this.agent = agent;
+		this.confirmed = confirmed;
 	}
 
 	public Long getId() {
@@ -41,20 +59,44 @@ public class Reservation
 		this.id = id;
 	}
 
-	public Period getPeriod() {
-		return period;
+	public LocalDate getFromDate() {
+		return fromDate;
 	}
 
-	public void setPeriod(Period period) {
-		this.period = period;
+	public void setFromDate(LocalDate fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public Client getUser() {
+	public LocalDate getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Client user) {
+	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
 
 	public boolean isConfirmed() {
@@ -64,6 +106,5 @@ public class Reservation
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-	
 	
 }
