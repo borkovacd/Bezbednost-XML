@@ -1,15 +1,20 @@
 package com.ftn.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
+import com.ftn.model.Permission;
+import com.ftn.model.Role;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
+import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.GetAllAgentsRequest;
@@ -26,6 +31,8 @@ public class AgentService {
 	private AccomodationRepository accomodationRepository;
 	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -47,11 +54,18 @@ public class AgentService {
 	private ReservationService reservationService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PermissionService permissionService;
+	@Autowired
+	private RoleService roleService;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
 	
 	public ArrayList<Agent> getAllAgents() {
+		
+		permissionService.getAllPermissions();
+		roleService.getAllRoles();
 		
 		GetAllAgentsRequest request = new GetAllAgentsRequest();
 		request.setRequest("Agent request: 'Get all existing agents'");
@@ -75,7 +89,17 @@ public class AgentService {
 			a.setFirstName(response.getAgentslist().get(i).getFirstName());
 			a.setLastName(response.getAgentslist().get(i).getLastName());
 			a.setAddress(response.getAgentslist().get(i).getAddress());
-			a.setMbr(response.getAgentslist().get(i).getMbr());
+			a.setMbr(response.getAgentslist().get(i).getMbr());	
+			
+			List<Role> roles = new ArrayList<Role>();
+			for(int j=0; j<response.getAgentslist().get(i).getAgentRoles().size(); j++) {
+				Long roleId = response.getAgentslist().get(i).getAgentRoles().get(j).getId();
+				Role role = roleRepository.getOne(roleId);
+				roles.add(role);
+			}
+			
+			Set<Role> setRoles = new HashSet<Role>(roles);
+			a.setRoles(setRoles);
 			
 			agentRepository.save(a);
 			agents.add(a);
@@ -114,6 +138,8 @@ public class AgentService {
 			
 			userService.getAllUsers();
 			reservationService.getAllReservations(agent.getId());	
+			//permissionService.getAllPermissions();
+			//roleService.getAllRoles();
 			
 			
 			return agent.getId();

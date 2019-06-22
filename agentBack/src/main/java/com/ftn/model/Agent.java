@@ -1,56 +1,55 @@
 package com.ftn.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-@Entity
+@Entity(name="Agents")
 public class Agent {
 	
 	@Id
 	private Long id;
-
+	
 	@NotNull
-	@Column
+	@Column(name="Username")
 	private String username;
 
 	@NotNull
-	@Column
+	@Column(name="Password")
 	private String password;
 
 	@NotNull
-	@Column
+	@Column(name="FirstName")
 	private String firstName;
 
 	@NotNull
-	@Column
+	@Column(name="LastName")
 	private String lastName;
 
 	@NotNull
-	@Column
+	@Column(name="Address")
 	private String address;
 
 	@NotNull
-	@Column
+	@Column(name="Mbr")
 	private String mbr;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "agents_roles", joinColumns = @JoinColumn(name = "agents_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+	private Set<Role> roles;
+
 
 	public Agent() {
 
-	}
-
-	public Agent(Long id, @NotNull String username, @NotNull String password, @NotNull String firstName,
-			@NotNull String lastName, @NotNull String address, @NotNull String mbr) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.mbr = mbr;
 	}
 
 	public Long getId() {
@@ -108,5 +107,15 @@ public class Agent {
 	public void setMbr(String mbr) {
 		this.mbr = mbr;
 	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	
+	
 
 }

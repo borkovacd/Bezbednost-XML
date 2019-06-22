@@ -108,6 +108,16 @@ public class Agent {
 	public void setMbr(String mbr) {
 		this.mbr = mbr;
 	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	
+	
 	
 	
 

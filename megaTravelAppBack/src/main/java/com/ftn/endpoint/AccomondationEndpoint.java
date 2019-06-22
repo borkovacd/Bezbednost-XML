@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -23,7 +25,9 @@ import com.ftn.model.AdditionalServices;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
+import com.ftn.model.Permission;
 import com.ftn.model.Price;
+import com.ftn.model.Role;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.model.User;
@@ -33,8 +37,10 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
+import com.ftn.repository.PermissionRepository;
 import com.ftn.repository.PriceRepository;
 import com.ftn.repository.ReservationRepository;
+import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.repository.UserRepository;
@@ -72,23 +78,30 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
+import com.ftn.webservice.GetAllPermissionsRequest;
+import com.ftn.webservice.GetAllPermissionsResponse;
 import com.ftn.webservice.GetAllReservationsRequest;
 import com.ftn.webservice.GetAllReservationsResponse;
+import com.ftn.webservice.GetAllRolesRequest;
+import com.ftn.webservice.GetAllRolesResponse;
 import com.ftn.webservice.GetAllUsersRequest;
 import com.ftn.webservice.GetAllUsersResponse;
 import com.ftn.webservice.GetRoomPricesRequest;
 import com.ftn.webservice.GetRoomPricesResponse;
 import com.ftn.webservice.GetRoomRequest;
 import com.ftn.webservice.GetRoomResponse;
+import com.ftn.webservice.PermissionSoap;
 import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RegisterRoomRequest;
 import com.ftn.webservice.RegisterRoomResponse;
 import com.ftn.webservice.ReservationSoap;
+import com.ftn.webservice.RoleSoap;
 import com.ftn.webservice.RoomSoap;
 import com.ftn.webservice.TypeAccomodationSoap;
 import com.ftn.webservice.UserSoap;
+import com.ftn.enums.NameRole;
 
 
 //@Endpoint registers the class with Spring WS as a potential candidate for processing incoming SOAP messages.
@@ -107,12 +120,14 @@ public class AccomondationEndpoint {
 	private PriceRepository priceRepository;
 	private ReservationRepository reservationRepository;
 	private UserRepository userRepository;
+	private PermissionRepository permissionRepository;
+	private RoleRepository roleRepository;
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
 			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository, 
-			ReservationRepository reservationRepository, UserRepository userRepository) {
+			ReservationRepository reservationRepository, UserRepository userRepository, PermissionRepository permissionRepository, RoleRepository roleRepository) {
 			
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
@@ -125,6 +140,8 @@ public class AccomondationEndpoint {
 		this.priceRepository = priceRepository;
 		this.reservationRepository = reservationRepository;
 		this.userRepository = userRepository;
+		this.permissionRepository = permissionRepository;
+		this.roleRepository = roleRepository;
 	}
 	
 	
@@ -455,6 +472,14 @@ public class AccomondationEndpoint {
 			as.setLastName(agentRepository.findAll().get(i).getLastName());
 			as.setAddress(agentRepository.findAll().get(i).getAddress());
 			as.setMbr(agentRepository.findAll().get(i).getMbr());
+			
+			Set<Role> roles = agentRepository.findAll().get(i).getRoles();
+			
+			roles.forEach((r) -> {
+				RoleSoap rs = new RoleSoap();
+				rs.setId(((Role) r).getId());  
+				as.getAgentRoles().add(rs);
+			});
 			
 			response.getAgentslist().add(as);
 			
@@ -824,6 +849,78 @@ public class AccomondationEndpoint {
 			us.setNonLocked(userRepository.findAll().get(i).isNonLocked());
 			
 			response.getUserslist().add(us);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllPermissionsRequest")
+	@ResponsePayload
+	public GetAllPermissionsResponse getAllPermissions(@RequestPayload GetAllPermissionsRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllPermissionsResponse response = new GetAllPermissionsResponse();
+	
+		
+		for(int i = 0; i < permissionRepository.findAll().size(); i++) {
+			
+			PermissionSoap ps = new PermissionSoap();
+			ps.setId(permissionRepository.findAll().get(i).getId());
+			ps.setName(permissionRepository.findAll().get(i).getName());
+			
+			response.getPermissionslist().add(ps);
+			
+		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllRolesRequest")
+	@ResponsePayload
+	public GetAllRolesResponse getAllRoles(@RequestPayload GetAllRolesRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllRolesResponse response = new GetAllRolesResponse();
+		response.setResponse("Head back response: 'Existing roles successfully sent!'");
+
+	
+		for(int i = 0; i < roleRepository.findAll().size(); i++) {
+			
+			RoleSoap rs = new RoleSoap();
+
+			rs.setId(roleRepository.findAll().get(i).getId());
+			
+			NameRole nameRole = roleRepository.findAll().get(i).getName();
+			if(nameRole.equals(NameRole.ROLE_ADMIN)) {
+				com.ftn.webservice.NameRole nameRole2 = com.ftn.webservice.NameRole.ROLE_ADMIN;
+				rs.setName(nameRole2);
+			} else if (nameRole.equals(NameRole.ROLE_AGENT)) {
+				com.ftn.webservice.NameRole nameRole2 = com.ftn.webservice.NameRole.ROLE_AGENT;
+				rs.setName(nameRole2);
+			} else {
+				com.ftn.webservice.NameRole nameRole2 = com.ftn.webservice.NameRole.ROLE_USER;
+				rs.setName(nameRole2);
+			}
+			
+			Set<Permission> permissions = roleRepository.findAll().get(i).getPermissions();
+			
+			permissions.forEach((p) -> {
+				PermissionSoap ps = new PermissionSoap();
+				ps.setName(((Permission) p).getName());  
+				rs.getPermissions().add(ps);
+			});
+
+			
+			response.getRolelist().add(rs);
 			
 		}
 		
