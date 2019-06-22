@@ -19,9 +19,9 @@
       </tr>
 
       <tr *ngFor="let r of reservations;">
-        <td>{{r.period.room.capacity}}</td>
-        <td>{{r.period.fromDate}}</td>
-        <td>{{r.period.toDate}}</td>
+        <td>{{r.room.capacity}}</td>
+        <td>{{r.fromDate}}</td>
+        <td>{{r.toDate}}</td>
         <td>{{r.user.username}}</td>
         <td style="text-align: center"><button style="border-radius: 12px;background-color: #1a8cff;color: white;" *ngIf="r.confirmed == false" (click)="confirmeReservation(r.id)" id="{{r.id}}">Potvrdi </button></td>
       </tr>
