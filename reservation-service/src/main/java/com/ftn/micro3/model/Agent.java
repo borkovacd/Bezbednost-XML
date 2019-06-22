@@ -36,8 +36,7 @@ public class Agent
 	private String mbr;
 
 	public Agent() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Agent(Long id, @NotNull String username, @NotNull String password, @NotNull String firstName,
@@ -107,7 +106,6 @@ public class Agent
 	public void setMbr(String mbr) {
 		this.mbr = mbr;
 	}
-	
-	
+
 
 }
