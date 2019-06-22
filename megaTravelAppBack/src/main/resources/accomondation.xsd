@@ -322,6 +322,41 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllReservationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllReservationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="reservationsList" maxOccurs="unbounded" type="tns:reservationSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllUsersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="userslist" maxOccurs="unbounded" type="tns:userSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -407,6 +442,65 @@
             <xs:element name="mbr" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+    
+    <xs:complexType name="reservationSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="fromDate" type="xs:date"/>
+            <xs:element name="toDate" type="xs:date"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="user" type="tns:userSoap"/>
+            <xs:element name="agent" type="tns:agentSoap"/>
+            <xs:element name="confirmed" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="userSoap">
+        <xs:sequence>
+       		<xs:element name="id" type="xs:long" nillable="true"/>
+       		<xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="clientStatus" type="tns:clientStatus"/>
+            <xs:element name="enabled" type="xs:boolean"/>
+            <xs:element name="nonLocked" type="xs:boolean"/>
+            <xs:element name="roles" maxOccurs="unbounded" type="tns:roleSoap"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="roleSoap">
+        <xs:sequence>
+       		<xs:element name="id" type="xs:long" nillable="true"/>
+       		<xs:element name="name" type="tns:nameRole"/>
+       		<xs:element name="permissions" maxOccurs="unbounded" type="tns:permissionSoap" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="permissionSoap">
+        <xs:sequence>
+       		<xs:element name="id" type="xs:long" nillable="true"/>
+       		<xs:element name="name" type="xs:string"/>
+       	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="clientStatus" final="restriction" >
+    	<xs:restriction base="xs:string">
+        	<xs:enumeration value="AKTIVAN" />
+        	<xs:enumeration value="NEAKTIVAN" />
+        	<xs:enumeration value="BLOKIRAN" />
+        	<xs:enumeration value="UKLONJEN" />
+    	</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="nameRole" final="restriction" >
+    	<xs:restriction base="xs:string">
+        	<xs:enumeration value="ROLE_ADMIN" />
+        	<xs:enumeration value="ROLE_USER" />
+    	</xs:restriction>
+	</xs:simpleType>
     
     
     

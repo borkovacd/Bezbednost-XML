@@ -1,0 +1,31 @@
+
+<div class=" offset-4 col-md-4" style="margin-top:60px;margin-top: 13%">
+
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label style="font-weight: bold">Email:</label>
+      <input name="email" class="form-control margin" id="input-email"
+             placeholder="Unesite email..." [formControl]="email">
+
+      <small class="form-text error" *ngIf="email.errors?.required && email.touched" style="color: red">
+        Email je obavezan!
+      </small>
+
+      <label style="margin-top: 15px;font-weight: bold">Lozinka:</label>
+      <input name="password" class="form-control margin" type="password" id="input-password"
+             placeholder="Unesite lozinku..." [formControl]="password">
+      <small class="form-text error" *ngIf="password.errors?.required && password.touched" style="color: red">
+        Lozinka je obavezana!
+      </small>
+
+
+      <button class="btn btn-primary" style="width: 100%;margin-top: 20px;margin-bottom: 15px"
+              (click)="logIn()" [disabled]="!form.valid">Log in
+      </button>
+
+      <button class="btn btn-primary" style="width: 100%;margin-bottom: 30px" (click)="exit()">Nazad</button>
+    </div>
+  </form>
+</div>
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AdminService} from '../service/admin.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(protected router: Router) { }
+  constructor(protected router: Router,private data: AdminService) { }
 
   ngOnInit() {
   }
@@ -17,7 +18,24 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/listAgents');
   }
 
+  logOut() {
+
+    this.data.logout().subscribe(data => {
+
+      localStorage.clear();
+      this.router.navigateByUrl('');
+    });
+  }
   categories() {
-    this.router.navigateByUrl('/listCategories');
+    this.router.navigateByUrl('/addCategory');
+  }
+
+  additionalsServices() {
+    this.router.navigateByUrl('/addAdditionalService');
+  }
+
+  accommodationTypes() {
+    this.router.navigateByUrl('/addAccommodationTypes');
+
   }
 }

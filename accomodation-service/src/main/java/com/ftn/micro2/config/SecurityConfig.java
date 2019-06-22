@@ -17,6 +17,15 @@ import com.netflix.discovery.shared.transport.jersey.EurekaJerseyClientImpl.Eure
 @EnableWebSecurity 	
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Bean
+    public CheckTokenFilter authenticationFilter() throws Exception {
+		CheckTokenFilter authenticationFilter = new CheckTokenFilter();
+
+        authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        return authenticationFilter;
+    }
+
 
 
 @Bean
@@ -44,7 +53,7 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
 				.authorizeRequests()
-				.antMatchers("/test/**").permitAll().and()
+				.antMatchers("/api/**").permitAll().and()
 				
 				.csrf().disable();
 		

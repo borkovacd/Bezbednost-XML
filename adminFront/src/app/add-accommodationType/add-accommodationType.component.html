@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="jumbotron">
+    <h1 style="text-align: center; margin-bottom: 30px">Tipovi smeštaja</h1>
+
+
+    <div  class="col-md-4" style="margin: 0 auto;">
+
+      <form [formGroup]="form">
+
+        <div class="form-group">
+
+          <label>Naziv</label>
+          <input class="form-control margin" placeholder="Unesite naziv..." [formControl]="name">
+          <br>
+
+          <button class="btn btn-primary" style="width: 100%; margin-bottom: 20px;" (click)="addNewAccommdationType()" [disabled]="!form.valid">Unesi</button><br>
+
+          <tbody *ngFor="let t of accommodationTypes">
+          <td>{{t.name}}</td>
+          <td><button class="btn btn-link" (click)="removeAccommodationType(t)">Delete</button></td>
+          </tbody>
+
+          <button class="btn btn-primary" style="width: 100%; margin-bottom: 20px;" (click)="removeAccommodationType()" [disabled]="!form.valid">Obrisi</button><br>
+          <button style="width: 100%; margin-bottom: 20px;" class="btn btn-primary">Nazad</button>
+
+
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>
+

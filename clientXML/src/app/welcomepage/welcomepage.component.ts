@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 })
 
 export  class WelcomepageComponent {
-  constructor(protected router: Router,) {
+  constructor(protected router: Router) {
 
   }
 

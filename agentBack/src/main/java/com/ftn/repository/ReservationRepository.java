@@ -11,5 +11,4 @@ import com.ftn.model.Reservation;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-	Reservation findOneByPeriod(Period period);
 }

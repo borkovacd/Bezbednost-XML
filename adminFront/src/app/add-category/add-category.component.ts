@@ -3,6 +3,7 @@ import {AbstractControl, Form, FormBuilder, FormGroup, Validators} from '@angula
 import {Router} from '@angular/router';
 import {CategoryModel} from '../model/Category.model';
 import {AccomodationService} from '../service/accomodationService.service';
+import {AgentModel} from '../model/Agent.model';
 
 @Component({
   selector: 'app-add-category',
@@ -14,8 +15,8 @@ export class AddCategoryComponent implements OnInit {
   form: FormGroup;
   name: AbstractControl;
   categories: CategoryModel[] = []
-  newCategory: CategoryModel = new CategoryModel();
-  errorC: string ;
+  // newCategory: CategoryModel = new CategoryModel();
+  // errorC: string ;
 
 
   constructor(protected router: Router, private fb: FormBuilder, private service: AccomodationService) {
@@ -38,8 +39,14 @@ export class AddCategoryComponent implements OnInit {
 
   addNewCategory() {
 
-    this.service.addNewCategory(this.newCategory).subscribe(
-      data => {
+    const category = new CategoryModel();
+
+    category.name = this.name.value;
+
+    this.service.addNewCategory(category).subscribe( data =>
+      this.router.navigateByUrl('/home'));
+
+    /*data => {
         this.categories = data;
         this.newCategory = new CategoryModel();
         this.errorC = '';
@@ -48,7 +55,7 @@ export class AddCategoryComponent implements OnInit {
       error => {
         this.errorC = 'Kategorija sa tim imenom vec postoji, pa se ne moze uneti!';
       }
-    );
+    );*/
   }
 
   removeCategory(cat: CategoryModel) {

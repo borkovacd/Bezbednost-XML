@@ -48,6 +48,7 @@ export  class RoomComponent implements OnInit{
           alert('Soba je uspesno obrisana');
           this.router.navigateByUrl('welcomepage/room/' + idAccomodation);
         })
+        location.reload();
       } else {
         alert('Soba je rezervisana!');
 

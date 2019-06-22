@@ -34,6 +34,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+        	<groupId>io.jsonwebtoken</groupId>
+        	<artifactId>jjwt</artifactId>
+        	<version>0.6.0</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		 <dependency>
@@ -161,7 +170,7 @@
 	</plugin>
 	
 <!-- AUTO GENERATOR PLUGIN  FOR WEBSERVICE -->
-<!--    
+<!-- 
  <plugin>
     <groupId>org.jvnet.jaxb2.maven2</groupId>
     <artifactId>maven-jaxb2-plugin</artifactId>
@@ -182,7 +191,7 @@
         </schemaIncludes>
     </configuration>
  </plugin>
--->
+ --> 
 
 </plugins>
 </build>
