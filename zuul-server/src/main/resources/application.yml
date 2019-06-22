@@ -26,8 +26,10 @@ zuul:
   routes:
      authservice:
        serviceId: auth-service
+       sensitiveHeaders: 
      accservice:
        serviceId: accomodation-service
+       sensitiveHeaders: 
      resservice:
        serviceId: reservation-service
   sensitiveHeaders:     

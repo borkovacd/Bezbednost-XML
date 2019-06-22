@@ -1,6 +1,8 @@
 package com.ftn.micro1.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -31,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.micro1.dto.UserDTO;
 import com.ftn.micro1.dto.UserLogin;
 import com.ftn.micro1.enums.NameRole;
+import com.ftn.micro1.model.Permission;
 import com.ftn.micro1.model.User;
 import com.ftn.micro1.model.UserToken;
 import com.ftn.micro1.repository.RoleRepository;
@@ -193,5 +197,37 @@ public class UserControler {
 		
 	}
 	
+	@RequestMapping(value = "/getUsername/{token}", method = RequestMethod.GET)
+	public String getUsername(@PathVariable String token) throws Exception {
+		
+		String username = tokenUtils.getUserSecurity(token).getUsername();
+			
+		return username;
+    	
+	}
+	
+	@RequestMapping(value = "/getPermissions/{token}", method = RequestMethod.GET)
+	public String getPermissions(@PathVariable String token) throws Exception {
+		
+		//List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+		
+		ArrayList<String> list = new ArrayList<String>();
+		
+		tokenUtils.getUserSecurity(token).getAuthorities().forEach(e -> {
+			
+			System.out.println(e.toString());
+			list.add(e.toString());
+ 
+		});
+
+		String d = "";
+		
+		for(int i=0; i<list.size(); i++) {
+			d = d + "," + list.get(i);
+		}
+		
+	    return d.substring(1).toString();
+		
+	}
 
 }

@@ -4,13 +4,19 @@ insert into roles (id, name) values (3, "ROLE_AGENT");
 
 insert into permissions (id, name) values (1, "ADD_AGENT");
 insert into permissions (id, name) values (2, "ADD_SERVICE");
-insert into permissions (id, name) values (3, "ADD_CAT");
-insert into permissions (id, name) values (4, "ADD_TYPE");
+insert into permissions (id, name) values (3, "REMOVE_SERVICE");
+insert into permissions (id, name) values (4, "ADD_CAT");
+insert into permissions (id, name) values (5, "REMOVE_CAT");
+insert into permissions (id, name) values (6, "ADD_TYPE");
+insert into permissions (id, name) values (7, "REMOVE_TYPE");
 
 insert into role_permissions (permission_id, role_id) values (1, 1);
 insert into role_permissions (permission_id, role_id) values (2, 1);
 insert into role_permissions (permission_id, role_id) values (3, 1);
 insert into role_permissions (permission_id, role_id) values (4, 1);
+insert into role_permissions (permission_id, role_id) values (5, 1);
+insert into role_permissions (permission_id, role_id) values (6, 1);
+insert into role_permissions (permission_id, role_id) values (7, 1);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");

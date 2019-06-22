@@ -1,5 +1,6 @@
 package com.ftn.micro2.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,6 @@ public class AdditionalServicesController
 	
 	
 	// METODA kojom se DODAJE novi Dodatni servis
-	@PreAuthorize("hasAuthority('ADD_SERVICE")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value="/addNewAdditionalService",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNewAdditionalService(@RequestBody AdditionalServices add)
 	{
@@ -49,7 +48,6 @@ public class AdditionalServicesController
 	}
 	
 	// METODA kojom se UKLANJA postojeci Dodatni servis
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "/removeAdditionalService", consumes = "application/json")
 	public ResponseEntity<List<AdditionalServices>> removeAdditionalService(@RequestBody AdditionalServices add)
 	{
@@ -68,9 +66,8 @@ public class AdditionalServicesController
 	}
 	
 	// METODA - lista svih dodatnih servisa
-	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping(value = "/getAdditionalServices")
-	public ResponseEntity<List<AdditionalServices>> getAdditionalServices()
+	@RequestMapping(value = "/getAdditionalServices",method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<AdditionalServices>> getAdditionalServices()
 	{
 		return new ResponseEntity<>(addServ.getAll(), HttpStatus.OK);
 	}
