@@ -1,46 +1,39 @@
-package com.ftn.micro3.model;
+package com.ftn.micro3.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
-public class Reservation 
+import com.ftn.micro3.model.Agent;
+import com.ftn.micro3.model.Room;
+import com.ftn.micro3.model.User;
+
+public class ReservationDTO 
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id ;
 	
-	@Column
 	private LocalDate fromDate ;
 	
-	@Column
 	private LocalDate toDate ;
 	
-	@OneToOne
 	private Room room ;
 	
-	@OneToOne
 	private User user ;
 
-	@OneToOne
 	private Agent agent ;
 	
-	@Column
 	private boolean confirmed = false ;
 
-	public Reservation() {
+	public ReservationDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reservation(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
+	public ReservationDTO(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
 			boolean confirmed) {
 		super();
 		this.id = id;
@@ -107,7 +100,7 @@ public class Reservation
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
+	
+	
 
-	
-	
 }
