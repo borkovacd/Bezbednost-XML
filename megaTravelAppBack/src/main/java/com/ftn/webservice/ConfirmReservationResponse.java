@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,54 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "request",
-    "accomodationId"
+    "response"
 })
-@XmlRootElement(name = "GetAccomodationRoomsRequest")
-public class GetAccomodationRoomsRequest {
+@XmlRootElement(name = "ConfirmReservationResponse")
+public class ConfirmReservationResponse {
 
     @XmlElement(required = true)
-    protected String request;
-    protected long accomodationId;
+    protected String response;
 
     /**
-     * Gets the value of the request property.
+     * Gets the value of the response property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getRequest() {
-        return request;
+    public String getResponse() {
+        return response;
     }
 
     /**
-     * Sets the value of the request property.
+     * Sets the value of the response property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setRequest(String value) {
-        this.request = value;
-    }
-
-    /**
-     * Gets the value of the accomodationId property.
-     * 
-     */
-    public long getAccomodationId() {
-        return accomodationId;
-    }
-
-    /**
-     * Sets the value of the accomodationId property.
-     * 
-     */
-    public void setAccomodationId(long value) {
-        this.accomodationId = value;
+    public void setResponse(String value) {
+        this.response = value;
     }
 
 }

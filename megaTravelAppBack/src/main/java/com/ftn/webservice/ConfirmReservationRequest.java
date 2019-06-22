@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="reservationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,14 +38,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "request",
-    "accomodationId"
+    "reservationId"
 })
-@XmlRootElement(name = "GetAccomodationRoomsRequest")
-public class GetAccomodationRoomsRequest {
+@XmlRootElement(name = "ConfirmReservationRequest")
+public class ConfirmReservationRequest {
 
     @XmlElement(required = true)
     protected String request;
-    protected long accomodationId;
+    protected long reservationId;
 
     /**
      * Gets the value of the request property.
@@ -72,19 +72,19 @@ public class GetAccomodationRoomsRequest {
     }
 
     /**
-     * Gets the value of the accomodationId property.
+     * Gets the value of the reservationId property.
      * 
      */
-    public long getAccomodationId() {
-        return accomodationId;
+    public long getReservationId() {
+        return reservationId;
     }
 
     /**
-     * Sets the value of the accomodationId property.
+     * Sets the value of the reservationId property.
      * 
      */
-    public void setAccomodationId(long value) {
-        this.accomodationId = value;
+    public void setReservationId(long value) {
+        this.reservationId = value;
     }
 
 }

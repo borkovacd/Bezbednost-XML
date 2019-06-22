@@ -20,10 +20,14 @@ import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.UserRepository;
 import com.ftn.soapclient.SOAPConnector;
+import com.ftn.webservice.files.ConfirmReservationRequest;
+import com.ftn.webservice.files.ConfirmReservationResponse;
 import com.ftn.webservice.files.GetAllAccomodationsRequest;
 import com.ftn.webservice.files.GetAllAccomodationsResponse;
 import com.ftn.webservice.files.GetAllReservationsRequest;
 import com.ftn.webservice.files.GetAllReservationsResponse;
+import com.ftn.webservice.files.GetRoomRequest;
+import com.ftn.webservice.files.GetRoomResponse;
 import com.ftn.webservice.files.RoomSoap;
 
 
@@ -87,10 +91,22 @@ public class ReservationService {
 
 	public void confirmReservation(Long idReservation) {
 		
+		ConfirmReservationRequest  request = new ConfirmReservationRequest();
+		request.setRequest("Agent request: 'Confirm reservation with id " + idReservation + ".");
+		request.setReservationId(idReservation);
+		
+		ConfirmReservationResponse response = (ConfirmReservationResponse) soapConnector
+				.callWebService("https://localhost:8443/ws/accomondation", request);
+		
+		//Response poruka sa glavnog back-a
+		System.out.println("*****");
+		System.out.println(response.getResponse());
+		System.out.println("*****");
+		
 		Reservation reservation = reservationRepository.getOne(idReservation);
 		reservation.setConfirmed(true);
 		
 		reservationRepository.save(reservation);
-		
+
 	}
 }

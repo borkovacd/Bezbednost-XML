@@ -392,6 +392,23 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+     <xs:element name="ConfirmReservationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="reservationId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ConfirmReservationResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -695,6 +712,10 @@
     <wsdl:part element="sch:GetAllUsersRequest" name="GetAllUsersRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="ConfirmReservationResponse">
+    <wsdl:part element="sch:ConfirmReservationResponse" name="ConfirmReservationResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCategoriesResponse">
     <wsdl:part element="sch:GetAllCategoriesResponse" name="GetAllCategoriesResponse">
     </wsdl:part>
@@ -717,6 +738,10 @@
   </wsdl:message>
   <wsdl:message name="GetAllRolesResponse">
     <wsdl:part element="sch:GetAllRolesResponse" name="GetAllRolesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfirmReservationRequest">
+    <wsdl:part element="sch:ConfirmReservationRequest" name="ConfirmReservationRequest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccomondationPort">
@@ -844,6 +869,12 @@
       <wsdl:input message="tns:GetAllUsersRequest" name="GetAllUsersRequest">
     </wsdl:input>
       <wsdl:output message="tns:GetAllUsersResponse" name="GetAllUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmReservation">
+      <wsdl:input message="tns:ConfirmReservationRequest" name="ConfirmReservationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ConfirmReservationResponse" name="ConfirmReservationResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllRoles">
@@ -1041,6 +1072,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetAllUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmReservation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ConfirmReservationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConfirmReservationResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

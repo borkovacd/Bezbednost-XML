@@ -27,6 +27,7 @@ import com.ftn.model.City;
 import com.ftn.model.Country;
 import com.ftn.model.Permission;
 import com.ftn.model.Price;
+import com.ftn.model.Reservation;
 import com.ftn.model.Role;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
@@ -49,6 +50,8 @@ import com.ftn.webservice.AdditionalServicesSoap;
 import com.ftn.webservice.AgentSoap;
 import com.ftn.webservice.CategorySoap;
 import com.ftn.webservice.CitySoap;
+import com.ftn.webservice.ConfirmReservationRequest;
+import com.ftn.webservice.ConfirmReservationResponse;
 import com.ftn.webservice.CountrySoap;
 import com.ftn.webservice.CreatePriceListRequest;
 import com.ftn.webservice.CreatePriceListResponse;
@@ -927,6 +930,27 @@ public class AccomondationEndpoint {
 			response.getRolelist().add(rs);
 			
 		}
+		
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "ConfirmReservationRequest")
+	@ResponsePayload
+	public ConfirmReservationResponse confirmReservation(@RequestPayload ConfirmReservationRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+				
+		ConfirmReservationResponse response = new ConfirmReservationResponse();
+		
+		Long idReservation= request.getReservationId();
+		Reservation reservation =  reservationRepository.getOne(idReservation);
+		reservation.setConfirmed(true);
+		reservationRepository.save(reservation);
+		
+		response.setResponse("Head back response: 'Reservation with id " + idReservation + " successfully confirmed!'");
 		
 		return response;
 	}
