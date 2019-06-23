@@ -11,6 +11,7 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ListAgentComponent} from './list-agent/list-agent.component';
 import {ListCategoryComponent} from './list-category/list-category.component';
+import {ListUserComponent} from './list-user/list-user.component';
 
 const routes: Routes = [
   {path: '', component: WelcomePageComponent, pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'addCategory', component : AddCategoryComponent},
   {path: 'addAdditionalService', component : AddAdditionalServiceComponent},
   {path: 'addAccommodationTypes', component : AddAccommodationTypeComponent},
-  {path: 'listCategories', component: ListCategoryComponent}
+  {path: 'listCategories', component: ListCategoryComponent},
+  {path: 'listUsers', component: ListUserComponent}
 ];
 
 @NgModule({

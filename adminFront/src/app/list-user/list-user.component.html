@@ -1,3 +1,18 @@
-<p>
-  list-user works!
-</p>
+<div class="container">
+
+  <h1>Korisnici</h1>
+
+  <div class="jumbotron" style="width: 500px" *ngFor="let user of users">
+
+    <label>Ime: {{user.firstName}}</label><br>
+    <label>Prezime: {{user.firstName}}</label><br>
+    <label>Korisnicko ime: {{user.username}}</label><br>
+    <label>Email: {{user.email}}</label><br>
+    <label>Status: {{user.status}}</label><br>
+    <button class="btn btn-primary" (click)="aktiviraj(user.email)">Aktiviraj</button>
+    <button class="btn btn-primary" (click)="ukloni(user.email)">Ukloni</button>
+    <button class="btn btn-primary" (click)="blokiraj(user.email)">Blokiraj</button>
+  
+  </div>
+
+</div>

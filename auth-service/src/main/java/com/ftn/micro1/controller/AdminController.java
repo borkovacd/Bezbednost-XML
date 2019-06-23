@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.micro1.model.Agent;
+import com.ftn.micro1.model.User;
 import com.ftn.micro1.repository.RoleRepository;
 import com.ftn.micro1.service.AgentService;
+import com.ftn.micro1.service.UserService;
+import com.ftn.micro1.enums.ClientStatus;
 import com.ftn.micro1.dto.AgentDTO;
 import com.ftn.micro1.enums.NameRole;
 
@@ -24,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	private AgentService agentService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private RoleRepository roleRepository;
@@ -64,5 +71,61 @@ public class AdminController {
 			return agentService.getAgents();
 		
 	}
+	
+	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@RequestMapping(value="/users",method = RequestMethod.GET)
+	public ArrayList<User> getUsers() {
+		
+
+			return userService.getUsers();
+		
+	}
+	
+
+	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@RequestMapping(value="/activateUser/{email}", method = RequestMethod.GET)
+	public User activateClient(@PathVariable String email) {
+	
+		User user = userService.findByEmail(email);
+		
+		user.setStatus(ClientStatus.AKTIVAN);
+		
+		userService.saveUser(user);
+		
+		return user;
+
+	}
+	
+
+	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@RequestMapping(value="/blockUser/{email}", method = RequestMethod.GET)
+	public User blockClient(@PathVariable String email) {
+	
+		User user = userService.findByEmail(email);
+		
+		user.setStatus(ClientStatus.BLOKIRAN);
+		
+		userService.saveUser(user);
+		
+		return user;
+
+	}
+	
+
+	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@RequestMapping(value="/removeUser/{email}", method = RequestMethod.GET)
+	public User removeUser(@PathVariable String email) {
+	
+		User user = userService.findByEmail(email);
+		
+		user.setStatus(ClientStatus.UKLONJEN);
+		
+		userService.saveUser(user);
+		
+		return user;
+
+	}
+	
+	
 
 }

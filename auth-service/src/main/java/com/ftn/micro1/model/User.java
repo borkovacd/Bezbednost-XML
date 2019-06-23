@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +21,8 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedSubgraph;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.ftn.micro1.enums.ClientStatus;
 
 @Entity(name="Users")
 @NamedEntityGraph(name = "User.Roles.Permissions", 
@@ -56,6 +60,9 @@ public class User {
 	
 	@Column(name="Nonlocked")
 	private boolean nonLocked;
+	
+	@Enumerated(EnumType.STRING)
+	private ClientStatus status;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
@@ -173,7 +180,17 @@ public class User {
 	}
 
 
+	public ClientStatus getStatus() {
+		return status;
+	}
 
+
+	public void setStatus(ClientStatus status) {
+		this.status = status;
+	}
+
+
+	
 	
 	
 	

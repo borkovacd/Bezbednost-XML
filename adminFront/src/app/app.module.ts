@@ -21,6 +21,7 @@ import {ListCategoryComponent} from './list-category/list-category.component';
 import {AccomodationService} from './service/accomodationService.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
