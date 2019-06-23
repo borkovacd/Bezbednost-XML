@@ -5,29 +5,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class AdditionalServices 
 {
-	@Column(unique = true)
+	@NotNull
+	@Column(unique = true)	
 	private String name ;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long additionalServiceId;
+	private long id;
 	
 	public AdditionalServices() 
 	{
 		
 	}
 	
-	
 
-	public AdditionalServices(String name) {
+	public AdditionalServices(Long id, @NotNull String name) {
 		super();
+		this.id = id;
 		this.name = name;
 	}
-
 
 
 	public String getName() {
@@ -39,13 +40,6 @@ public class AdditionalServices
 		this.name = name;
 	}
 
-	public long getAdditionalServiceId() {
-		return additionalServiceId;
-	}
-
-	public void setAdditionalServiceId(long additionalServiceId) {
-		this.additionalServiceId = additionalServiceId;
-	}
 
 
 }

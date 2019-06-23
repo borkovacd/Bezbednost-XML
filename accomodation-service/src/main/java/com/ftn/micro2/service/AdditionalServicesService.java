@@ -16,9 +16,9 @@ public class AdditionalServicesService
 	@Autowired
 	AdditionalServicesRepository repository;
 	
-	public AdditionalServices findByName(AdditionalServices add) 
+	public AdditionalServices findByName(String string) 
 	{
-		 return repository.findAdditionalServicesByName(add.getName());
+		 return repository.findAdditionalServicesByName(string);
 	}
 	
 	public void save(AdditionalServices service) 
@@ -27,8 +27,8 @@ public class AdditionalServicesService
 	}
 	
 	// lista svih dodatnih servisa
-	public ArrayList<AdditionalServices> getAll() {
-		return (ArrayList<AdditionalServices>) repository.findAll();
+	public List<AdditionalServices> getAll() {
+		return repository.findAll();
 	}
 	
 	// vraca listu dodatnih servisa, nakon brisanja servisa sa prosledjenim Id-jem
