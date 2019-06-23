@@ -71,7 +71,7 @@ export class AddEditAccomodationComponent implements OnInit{
 
 
   }
-  ngOnInit(){
+  ngOnInit() {
     const mode = this.route.snapshot.params.mode;
     this.countryService.getCountry().subscribe(data => {
 
@@ -135,7 +135,7 @@ export class AddEditAccomodationComponent implements OnInit{
 
     );
     this.idagent = localStorage.getItem('agentId');
-    this.accService.createAccomodation(accomodation,this.idagent).subscribe(data => {
+    this.accService.createAccomodation(accomodation).subscribe(data => {
       this.router.navigateByUrl('/welcomepage' );
 
     })
@@ -154,7 +154,7 @@ export class AddEditAccomodationComponent implements OnInit{
     );
     this.idagent = localStorage.getItem('agentId');
     const idA = this.route.snapshot.params.idA;
-    this.accService.editAccomodation(accomodation, this.idagent, idA).subscribe(data => {
+    this.accService.editAccomodation(accomodation, idA).subscribe(data => {
       this.router.navigateByUrl('/welcomepage' );
 
     })

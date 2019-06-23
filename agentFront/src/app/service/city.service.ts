@@ -16,7 +16,9 @@ export class CityService{
   }
 
   getCities(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllCities`, httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAllCities`, {headers: headers});
 
   }
 }

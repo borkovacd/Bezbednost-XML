@@ -1,5 +1,5 @@
 <div>
-<div>
+<div [hidden]="vis">
   <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"(click)="addAccomodation()">Dodaj smestaj</button>
 </div>
 
@@ -31,4 +31,9 @@
     </div>
   </div>
 </div>
+</div>
+
+<div [hidden]="!vis">
+
+    <h2>Nemate pristup listi smestaja</h2>
 </div>

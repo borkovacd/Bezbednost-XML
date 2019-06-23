@@ -1,4 +1,4 @@
-<div>
+<div [hidden]="vis">
 
   <div style="text-align: center;margin-top: 30px">
     <button class="btn btn-success" style="width: 40%;margin-top: 20px; font-size: 1.5em;margin-bottom: 30px"
@@ -29,5 +29,10 @@
 
     </table>
   </div>
+
+</div>
+<div [hidden]="!vis">
+
+  <h2>Nemate pristup rezervacijama</h2>
 
 </div>

@@ -29,20 +29,20 @@ export class WelcomepageComponent implements OnInit{
     this.messageToCentral = this.form.controls['messageToCentral'];
 
   }
-  ngOnInit(){
+  ngOnInit() {
 
       this.accomodation = true;
       this.communicate = false;
     this.reservations = false;
   }
-  accomodationButton(){
+  accomodationButton() {
     this.accomodation = true;
     this.communicate = false;
     this.reservations = false;
 
 
   }
-  message(){
+  message() {
 
   }
   reservation() {
@@ -51,12 +51,15 @@ export class WelcomepageComponent implements OnInit{
     this.reservations = true;
 
   }
-  logOut(){
-    this.router.navigateByUrl('');
+  logOut() {
+    this.data.logout().subscribe(data => {
 
+      localStorage.clear();
+      this.router.navigateByUrl('');
+    });
 
   }
-  communicateC(){
+  communicateC() {
     this.communicate = true;
     this.accomodation = false;
     this.reservations = false;

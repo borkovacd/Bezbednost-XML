@@ -23,6 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.ftn.security.CheckTokenFilter;
 import com.ftn.security.RestAuthenticationEntryPoint;
 import com.ftn.security.TokenUtils;
+import com.ftn.service.AgentService;
 import com.ftn.service.UserService;
 
 @Configuration
@@ -32,14 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-	/*
+	
 	@Autowired
-    private UserService userService;
+    private AgentService agentService;
 
 	@Override
 	 public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-            .userDetailsService(userService)
+            .userDetailsService(agentService)
             .passwordEncoder(passwordEncoder());
     }
 	
@@ -61,24 +62,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-*/
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-				// za neautorizovane zahteve posalji 401 gresku
-				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests()
-				.antMatchers("/api/**").permitAll();
-				
-				// .anyRequest().authenticated().and()
+		// za neautorizovane zahteve posalji 401 gresku
+		.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+		.authorizeRequests()
+		.antMatchers("/api/**").permitAll()
 
-				// .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-				
+		.anyRequest().authenticated().and()
 		
+		
+		.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
 		http	.csrf().disable();
 	}
 

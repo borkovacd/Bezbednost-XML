@@ -2,7 +2,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {RoomModel} from "../model/room.model";
+import {RoomModel} from '../model/room.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -15,31 +15,39 @@ export  class RoomService{
 
   }
 
-  createRoom(object: RoomModel,idAccomodation: any): Observable<any> {
+  createRoom(object: RoomModel, idAccomodation: any): Observable<any> {
     const body = JSON.stringify(object);
-    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}`,body,httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}`, body, {headers: headers});
   }
 
   getAllRoom(idAccomodation: any): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}`, httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}`, {headers: headers});
   }
 
   checkIfReservedRoom(id: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get(`${this.BASE_URL}/checkIfReservedRoom/${id}`, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/checkIfReservedRoom/${id}`, {headers: headers});
   }
   deleteRoom(idA: any, idR: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.delete(`${this.BASE_URL}/deleteRoom/${idA}/${idR}`, {headers: headers});
   }
   getOneRoom(idA: any, idR: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get(`${this.BASE_URL}/getOneRoom/${idA}/${idR}`, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getOneRoom/${idA}/${idR}`, {headers: headers});
   }
 
   editRoom(object: RoomModel, idAccomodation: any, id: any): Observable<any> {
     const body = JSON.stringify(object);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}`, body, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}`, body, {headers: headers});
   }
 }

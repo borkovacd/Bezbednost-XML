@@ -40,7 +40,7 @@ public class CheckTokenFilter extends UsernamePasswordAuthenticationFilter {
 		
 		if(token != null) {
 
-			token = token.substring(1,token.length()-1).toString();
+			//token = token.substring(1,token.length()-1).toString();
 			
 			List<SimpleGrantedAuthority> authorities = null;
 			try {

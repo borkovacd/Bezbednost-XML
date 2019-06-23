@@ -14,7 +14,9 @@ export class AdditionalServicesService {
   }
 
   getAdditionalService(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/allAditionalServices`, httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/allAditionalServices`,  {headers: headers});
   }
 
 }

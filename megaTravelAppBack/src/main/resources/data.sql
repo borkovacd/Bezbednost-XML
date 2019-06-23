@@ -2,6 +2,7 @@ insert into roles (id, name) values (1, "ROLE_ADMIN");
 insert into roles (id, name) values (2, "ROLE_USER");
 insert into roles (id, name) values (3, "ROLE_AGENT");
 
+/*Permisije za admine*/
 insert into permissions (id, name) values (1, "ADD_AGENT");
 insert into permissions (id, name) values (2, "ADD_SERVICE");
 insert into permissions (id, name) values (3, "REMOVE_SERVICE");
@@ -10,6 +11,26 @@ insert into permissions (id, name) values (5, "REMOVE_CAT");
 insert into permissions (id, name) values (6, "ADD_TYPE");
 insert into permissions (id, name) values (7, "REMOVE_TYPE");
 
+/*Permisije za agente*/
+insert into permissions (id, name) values (8, "ADD_ACC");
+insert into permissions (id, name) values (9, "EDIT_ACC");
+insert into permissions (id, name) values (10, "DEL_ACC");
+
+insert into permissions (id, name) values (11, "ADD_RES");
+
+insert into permissions (id, name) values (12, "READ_CAT");
+insert into permissions (id, name) values (13, "READ_SERV");
+insert into permissions (id, name) values (14, "READ_TYPE");
+insert into permissions (id, name) values (15, "READ_CITY");
+insert into permissions (id, name) values (16, "READ_COUNTRY");
+
+insert into permissions (id, name) values (17, "ADD_PRICE");
+
+insert into permissions (id, name) values (18, "ADD_ROOM");
+insert into permissions (id, name) values (19, "DEL_ROOM");
+insert into permissions (id, name) values (20, "EDIT_ROOM");
+
+/*Podela permisija*/
 insert into role_permissions (permission_id, role_id) values (1, 1);
 insert into role_permissions (permission_id, role_id) values (2, 1);
 insert into role_permissions (permission_id, role_id) values (3, 1);
@@ -17,6 +38,20 @@ insert into role_permissions (permission_id, role_id) values (4, 1);
 insert into role_permissions (permission_id, role_id) values (5, 1);
 insert into role_permissions (permission_id, role_id) values (6, 1);
 insert into role_permissions (permission_id, role_id) values (7, 1);
+
+insert into role_permissions (permission_id, role_id) values (8, 3);
+insert into role_permissions (permission_id, role_id) values (9, 3);
+insert into role_permissions (permission_id, role_id) values (10, 3);
+insert into role_permissions (permission_id, role_id) values (11, 3);
+insert into role_permissions (permission_id, role_id) values (12, 3);
+insert into role_permissions (permission_id, role_id) values (13, 3);
+insert into role_permissions (permission_id, role_id) values (14, 3);
+insert into role_permissions (permission_id, role_id) values (15, 3);
+insert into role_permissions (permission_id, role_id) values (16, 3);
+insert into role_permissions (permission_id, role_id) values (17, 3);
+insert into role_permissions (permission_id, role_id) values (18, 3);
+insert into role_permissions (permission_id, role_id) values (19, 3);
+insert into role_permissions (permission_id, role_id) values (20, 3);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");
@@ -32,8 +67,11 @@ insert into users(id, city, enabled, email, first_name, last_name, nonlocked, pa
 insert into users_roles (users_id, roles_id) values (1,1);
 insert into users_roles (users_id, roles_id) values (2,2);
 
+
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (5, "/", "MTAgent@gmail.com", 0, "SAgent", "/");
-insert into agents(id, address, enabled, first_name, last_name, mbr, nonlocked, password, username) values (1, "/", 1, "Agent", "Agent", "2653225CD", 1,  "agent1", "agent1");
+
+/*sifra agent1*/
+insert into agents(id, address, enabled, first_name, last_name, mbr, nonlocked, password, username) values (1, "/", 1, "Agent", "Agent", "2653225CD", 1,  "$2a$10$PWUtTOKyHFhDSRPyFzD3tu9n2xxgLz4khi9zyFElJVp9I2ANsKuyi", "agent1");
 
 insert into agents_roles (agents_id, roles_id) values (1,3);
 

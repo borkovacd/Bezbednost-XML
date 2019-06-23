@@ -40,7 +40,7 @@ export class LogInComponent implements OnInit {
       if(data == null){
         alert('Pogresna lozinka! Pokusajte ponovo.');
       }else{
-        localStorage.setItem('agentId', data);
+        localStorage.setItem('agentId', data.accessToken);
         this.router.navigateByUrl('/welcomepage');
 
       }

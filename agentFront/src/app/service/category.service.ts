@@ -13,7 +13,9 @@ export class CategoryService {
 
   }
   getCategory(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllCategories`, httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAllCategories`, {headers: headers});
 
   }
 }

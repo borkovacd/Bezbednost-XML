@@ -29,7 +29,7 @@ import com.ftn.webservice.files.GetAllUsersResponse;
 import com.ftn.webservice.files.NameRole;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -41,39 +41,6 @@ public class UserService implements UserDetailsService {
 	private SOAPConnector soapConnector;
 	
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Agent agent = agentRepository.findOneByUsername(username);
-	       
-        return getAgentSecurity(agent);
-	}
-	
-	private AgentSecurity getAgentSecurity(Agent agent) {
-		
-		Set<Role> roles = agent.getRoles();
-		
-		Set<String> perm = new HashSet<String>();
-		
-		for(Role r: roles) {
-			
-			for(Permission p: r.getPermissions()) {
-				
-				
-				perm.add(p.getName());
-			}
-		}
-		
-		List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
-		for(String s: perm) {
-		
-			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(s);
-			authorites.add(authority);
-			
-		}
-		
-		User u = new User();
-		return new AgentSecurity(agent.getId(), agent.getPassword(), agent.getUsername(), u.isEnabled(), authorites, u.isNonLocked());
-	}
 	
 	public ArrayList<User> getAllUsers() {
 		

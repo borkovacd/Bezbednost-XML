@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
+import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Price;
@@ -22,6 +23,7 @@ import com.ftn.repository.CityRepository;
 import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
 import com.ftn.webservice.files.AdditionalServicesSoap;
@@ -58,16 +60,24 @@ public class AccomodationService {
 	private PriceRepository priceRepository;
 	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
 
-	public Accomodation create(AccomodationDTO accDTO, Long idAgent) {
+	public Accomodation create(AccomodationDTO accDTO, String token) throws Exception {
 		
 		RegisterAccomodationRequest request = new RegisterAccomodationRequest();
 		request.setRequest("Agent request: 'Register new accomodation '" + accDTO.getName() + "'");
 
 		AccomodationSoap a = new AccomodationSoap();
+		
+		//token = token.substring(1,token.length()-1).toString();
+		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
 
 		a.setName(accDTO.getName());
 		CitySoap c = new CitySoap();
@@ -82,7 +92,7 @@ public class AccomodationService {
 		a.setCategory(ca);
 		a.setDescription(accDTO.getDescription());
 		a.setPic(accDTO.getPic());
-		a.setAgent(idAgent);
+		a.setAgent(ag.getId());
 		for(int i=0; i<accDTO.getList().size(); i++) {
 			AdditionalServicesSoap ass = new AdditionalServicesSoap();
 			ass.setName(accDTO.getList().get(i));
@@ -169,13 +179,19 @@ public class AccomodationService {
 
 	}
 
-	public Accomodation edit(Long idAgent, Long id, AccomodationDTO accDTO) {
+	public Accomodation edit(String token, Long id, AccomodationDTO accDTO) throws Exception {
 		
 		EditAccomodationRequest request = new EditAccomodationRequest();
 		request.setRequest("Agent request: 'Edit data of accommodation with id " + id + ".");
 		request.setEditAccomodationId(id);
 		
 		AccomodationSoap a = new AccomodationSoap();
+		
+	//	token = token.substring(1,token.length()-1).toString();
+		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
 
 		a.setName(accDTO.getName());
 		CitySoap c = new CitySoap();
@@ -190,7 +206,7 @@ public class AccomodationService {
 		a.setCategory(ca);
 		a.setDescription(accDTO.getDescription());
 		a.setPic(accDTO.getPic());
-		a.setAgent(idAgent);
+		a.setAgent(ag.getId());
 		for(int i=0; i<accDTO.getList().size(); i++) {
 			AdditionalServicesSoap ass = new AdditionalServicesSoap();
 			ass.setName(accDTO.getList().get(i));
@@ -235,12 +251,18 @@ public class AccomodationService {
 
 	}
 
-	public ArrayList<Accomodation> getAllAccomodation(Long idAgent) {
+	public ArrayList<Accomodation> getAllAccomodation(String token) throws Exception {
 		
 		GetAllAccomodationsRequest request = new GetAllAccomodationsRequest();
-		String agentUsername = agentRepository.getOne(idAgent).getUsername();
-		request.setRequest("Agent request: 'Return all accomodation added by agent '" + agentUsername + "'");
-		request.setAgentId(idAgent);
+		
+		//token = token.substring(1,token.length()-1).toString();
+		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		
+		request.setRequest("Agent request: 'Return all accomodation added by agent '" + usname + "'");
+		request.setAgentId(ag.getId());
 		
 		GetAllAccomodationsResponse response = (GetAllAccomodationsResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);
@@ -266,7 +288,7 @@ public class AccomodationService {
 			a.setCategory(categoryRepository.findByName(categoryName));
 			a.setDescription(response.getAccomodationsList().get(i).getDescription());
 			a.setPic(response.getAccomodationsList().get(i).getPic());
-			a.setAgent(agentRepository.getOne(idAgent));
+			a.setAgent(ag);
 			List<AdditionalServices> as = new ArrayList<AdditionalServices>();
 			for(int j=0; j<response.getAccomodationsList().get(i).getAdditionalServices().size(); j++) {
 				String additionalServiceName = response.getAccomodationsList().get(i).getAdditionalServices().get(j).getName();

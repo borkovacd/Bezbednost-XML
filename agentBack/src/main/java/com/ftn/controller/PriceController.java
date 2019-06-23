@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +27,15 @@ public class PriceController {
 	private PriceService priceService;
 	
 
+
+	@PreAuthorize("hasAuthority('ADD_PRICE')")
 	@PostMapping("/create-price-createPricelist/{idRoom}")
 	public void createPriceList(@RequestBody PriceListDTO priceListDTO, @PathVariable Long idRoom) {
 		
 		priceService.createPriceList(priceListDTO, idRoom);
 	}
 	
+	@PreAuthorize("hasAuthority('ADD_PRICE')")
 	@GetMapping("/getPriceForRoom/{idRoom}")
 	public ResponseEntity<ArrayList<Price>> getPriceListForRoom(@PathVariable Long idRoom) {
 		

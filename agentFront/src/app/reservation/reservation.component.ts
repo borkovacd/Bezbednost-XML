@@ -8,23 +8,32 @@ import {ReservationService} from '../service/reservation.service';
   templateUrl: './reservation.component.html',
 })
 
-export class ReservationComponent implements  OnInit{
+export class ReservationComponent implements  OnInit {
   reservations = [];
 
+  vis: boolean = false;
+
   constructor(protected router: Router,
-              public reservationService: ReservationService,){
+              public reservationService: ReservationService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
+
     const idAgent = localStorage.getItem('agentId');
-    this.reservationService.getAllReservation(idAgent).subscribe(data => {
-      this.reservations = data;
-    })
+
+    if(idAgent!=null) {
+      this.vis = false;
+      this.reservationService.getAllReservation(idAgent).subscribe(data => {
+        this.reservations = data;
+      });
+    } else {
+      this.vis = true;
+    }
   }
-  confirmeReservation(id: any){
+  confirmeReservation(id: any) {
   this.reservationService.confirmeReservation(id).subscribe(data => {
 
-  })
+  });
     location.reload();
   }
 }

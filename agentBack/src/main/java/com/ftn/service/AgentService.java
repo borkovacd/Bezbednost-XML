@@ -9,17 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.Permission;
 import com.ftn.model.Role;
+import com.ftn.model.User;
 import com.ftn.model.UserToken;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
+import com.ftn.security.AgentSecurity;
 import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.GetAllAgentsRequest;
@@ -28,7 +36,7 @@ import com.ftn.webservice.files.GetAllCitiesRequest;
 import com.ftn.webservice.files.GetAllCitiesResponse;
 
 @Service
-public class AgentService {
+public class AgentService implements UserDetailsService {
 
 	@Autowired
 	private AgentRepository agentRepository;
@@ -39,11 +47,11 @@ public class AgentService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	//@Autowired
-//	private AuthenticationManager authManager;
+	@Autowired
+	private AuthenticationManager authManager;
 	
-	//@Autowired
-	//TokenUtils tokenUtils;
+	@Autowired
+	TokenUtils tokenUtils;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -123,17 +131,34 @@ public class AgentService {
 		return (ArrayList<Agent>) agents;
 	}
 	
-	public Long loginAgent(AgentDTO agentDTO){
+	public UserToken loginAgent(AgentDTO agentDTO) throws Exception{
 		
 		
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
 		
+		System.out.println("username: " + agentDTO.getUsername());
+		System.out.println("lozinka: " + agentDTO.getPassword());
 		
 		if (agent == null) {
 			throw new IllegalArgumentException("Agent not found!");
 		}
 
-		if (agent.getPassword().equals(agentDTO.getPassword())) {
+		if (BCrypt.checkpw(agentDTO.getPassword(), agent.getPassword())) {
+			
+			System.out.println("jednake sifre");
+			
+			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(agentDTO.getUsername(),
+					agentDTO.getPassword());
+		
+			Authentication auth = authManager.authenticate(authReq);
+			
+			String username = authReq.getName();
+			
+			String token = tokenUtils.generateToken(auth);
+
+			long expiresIn = tokenUtils.getExpiredIn();
+			
+			Agent a = agentRepository.findOneByUsername(username);
 			
 			
 			//OVDE IDE SINHRONIZACIJA
@@ -142,7 +167,7 @@ public class AgentService {
 			typeAccomodationService.getAllTypes();
 			additionalServicesService.getAllAdditionalServices();
 			categoryService.getAllCategories();
-			accomodationService.getAllAccomodation(agent.getId());
+			accomodationService.getAllAccomodation(token);
 			
 			
 			for(int i=0; i<accomodationRepository.findAll().size(); i++) {
@@ -154,7 +179,7 @@ public class AgentService {
 			}	
 			
 			userService.getAllUsers();
-			reservationService.getAllReservations(agent.getId());	
+			reservationService.getAllReservations(token);	
 			//permissionService.getAllPermissions();
 			//roleService.getAllRoles();
 			
@@ -162,26 +187,48 @@ public class AgentService {
 			
 			// ovde ide deo za logovanje
 			
-			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(agentDTO.getUsername(),
-					agentDTO.getPassword());
-			
-		//	Authentication auth = authManager.authenticate(authReq);
-			
-		//	String username = authReq.getName();
-			
-		//	String token = tokenUtils.generateToken(auth);
-
-		//	long expiresIn = tokenUtils.getExpiredIn();
-			
-		//	Agent a = agentRepository.findOneByUsername(username);
-			
-			//return new UserToken(token, expiresIn);
-			return agent.getId();
+		
+			return new UserToken(token, expiresIn);
+			//return agent.getId();
 		}else{
 			return null;
 		}
 			
 		
+	}
+	
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Agent agent = agentRepository.findOneByUsername(username);
+	       
+        return getAgentSecurity(agent);
+	}
+	
+	private AgentSecurity getAgentSecurity(Agent agent) {
+		
+		Set<Role> roles = agent.getRoles();
+		
+		Set<String> perm = new HashSet<String>();
+		
+		for(Role r: roles) {
+			
+			for(Permission p: r.getPermissions()) {
+				
+				
+				perm.add(p.getName());
+			}
+		}
+		
+		List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
+		for(String s: perm) {
+		
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(s);
+			authorites.add(authority);
+			
+		}
+		
+		return new AgentSecurity(agent.getId(), agent.getPassword(), agent.getUsername(), agent.isEnabled(), authorites, agent.isNonLocked());
 	}
 
 }

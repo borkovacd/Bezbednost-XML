@@ -8,9 +8,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +40,6 @@ public class AgentController {
 	
 	@Autowired
 	private AgentService agentService;
-	
-	
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -73,7 +74,6 @@ public class AgentController {
     
 		return res.getBody();
 	
-	
 	}
 	
 	@GetMapping("/getAllAgents")
@@ -84,14 +84,23 @@ public class AgentController {
 		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 	}
 	
-	@RequestMapping("/log-in")
-	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
-		Long idagent = agentService.loginAgent(agentDTO);
-		if(idagent == null){
-			return new ResponseEntity<Long>(idagent, HttpStatus.NO_CONTENT);
+	@RequestMapping(value = "/log-in", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) throws Exception {
+		UserToken ut = agentService.loginAgent(agentDTO);
+		if(ut == null){
+			return new ResponseEntity<UserToken>(ut, HttpStatus.NO_CONTENT);
 		}
-			return new ResponseEntity<Long>(idagent, HttpStatus.OK);
+			return new ResponseEntity<UserToken>(ut, HttpStatus.OK);
 
+		
+	}
+	
+	@PreAuthorize("hasAuthority('ADD_ACC')")
+	@RequestMapping(value = "/log-out", method = RequestMethod.GET)
+	public void logOutUser() {
+
+		System.out.println("usao da birse");
+		SecurityContextHolder.clearContext();
 		
 	}
 	

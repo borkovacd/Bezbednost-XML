@@ -17,12 +17,15 @@ export class PricelistService{
   createPriceList(object: PriceListModel, id: any): Observable<any> {
 
     const body = JSON.stringify(object);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.post(`${this.BASE_URL}/create-price-createPricelist/` + id, body, {headers: headers});
   }
 
   getPriceForRoom(idRoom: any): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getPriceForRoom/${idRoom}`, httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getPriceForRoom/${idRoom}`,  {headers: headers});
   }
 
 

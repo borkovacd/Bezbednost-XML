@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +28,15 @@ public class RoomControler {
 	@Autowired
 	private RoomService roomService;
 
+
+	@PreAuthorize("hasAuthority('ADD_ROOM')")
 	@PostMapping("/createRoom/{idAccomodation}")
 	public void createAccomodation(@RequestBody RoomDTO roomDTO, @PathVariable Long idAccomodation) {
 
 		roomService.createRoom(roomDTO, idAccomodation);
 	}
 
+	@PreAuthorize("hasAuthority('EDIT_ROOM')")
 	@GetMapping("/getAllRooms/{idAccomodation}")
 	public ResponseEntity<ArrayList<Room>> getAllRooms(@PathVariable Long idAccomodation) {
 
@@ -40,6 +44,8 @@ public class RoomControler {
 
 		return new ResponseEntity<>(rooms, HttpStatus.OK);
 	}
+
+	@PreAuthorize("hasAuthority('EDIT_ROOM')")
 	@GetMapping("/checkIfReservedRoom/{id}")
 	public boolean checkIfReservedRoom(@PathVariable Long id) {
 		
@@ -50,6 +56,8 @@ public class RoomControler {
 		return taken;
 	}
 	
+
+	@PreAuthorize("hasAuthority('EDIT_ROOM')")
 	@GetMapping("/getOneRoom/{idAccomodation}/{idRoom}")
 	public ResponseEntity<Room> getOneRoom(@PathVariable Long idAccomodation,@PathVariable Long idRoom) {
 		//treba da mi vrati bas tu sonu koju trazim
@@ -63,7 +71,8 @@ public class RoomControler {
 
 		return new ResponseEntity<>(room, HttpStatus.OK);
 	}
-	
+
+	@PreAuthorize("hasAuthority('EDIT_ROOM')")
 	@PutMapping("/editRoom/{idAccomodation}/{idRoom}")
 	public ResponseEntity<Room> editAccomodation(@PathVariable Long idAccomodation,@PathVariable Long idRoom,
 			@RequestBody RoomDTO roomDTO) {
@@ -72,7 +81,8 @@ public class RoomControler {
 		return new ResponseEntity<>(room, HttpStatus.OK);
 
 	}
-	
+
+	@PreAuthorize("hasAuthority('DEL_ROOM')")
 	@DeleteMapping("/deleteRoom/{idAccomodation}/{idRoom}")
 	public boolean deleteRoom(@PathVariable Long idAccomodation, @PathVariable Long idRoom) {
 

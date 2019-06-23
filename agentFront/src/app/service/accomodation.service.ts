@@ -1,10 +1,10 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AccomodationModel} from "../model/accomodation.model";
+import {AccomodationModel} from '../model/accomodation.model';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'}),
+  headers: new HttpHeaders({'Content-Type': 'text/plain'}),
 };
 
 @Injectable()
@@ -13,32 +13,41 @@ export class AccomodationService {
   constructor(private http: HttpClient) {
 
   }
-  getAccomodation(idAgent: any): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/getAllAccomodations/${idAgent}`, httpOptions);
+  getAccomodation(): Observable<any> {
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAllAccomodations/${token}`, {headers: headers});
   }
 
 
-  createAccomodation(object: AccomodationModel,idAgent: any): Observable<any> {
+  createAccomodation(object: AccomodationModel): Observable<any> {
     const body = JSON.stringify(object);
-    return this.http.post(`${this.BASE_URL}/createAccomodation/${idAgent}`,body,httpOptions);
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.post(`${this.BASE_URL}/createAccomodation/${token}`, body, {headers: headers});
   }
+
   getOneAccomodation(id: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get(`${this.BASE_URL}/getAccomodation/${id}`, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAccomodation/${id}`, {headers: headers});
   }
 
   checkIfReservedAccomodation(id: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get(`${this.BASE_URL}/checkIfReservedAccomodation/${id}`, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/checkIfReservedAccomodation/${id}`, {headers: headers});
   }
 
-  editAccomodation(object: AccomodationModel, idAgent: any, id: any): Observable<any> {
+  editAccomodation(object: AccomodationModel, id: any): Observable<any> {
     const body = JSON.stringify(object);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`${this.BASE_URL}/editAccomodation/${idAgent}/${id}`, body, {headers: headers})
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.put(`${this.BASE_URL}/editAccomodation/${token}/${id}`, body, {headers: headers});
   }
   deleteAccomodation(id: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('agentId');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.delete(`${this.BASE_URL}/deleteAccomodation/${id}`, {headers: headers});
   }
 

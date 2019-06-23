@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,15 +26,18 @@ public class AccomodationController {
 
 	@Autowired
 	private AccomodationService accomodationService;
+	
+	
+	@PreAuthorize("hasAuthority('ADD_ACC')")
+	@PostMapping("/createAccomodation/{token}")
+	public void createAccomodation(@RequestBody AccomodationDTO accDTO, @PathVariable String token) throws Exception {
 
-	@PostMapping("/createAccomodation/{idAgent}")
-	public void createAccomodation(@RequestBody AccomodationDTO accDTO, @PathVariable Long idAgent) {
-
-		accomodationService.create(accDTO, idAgent);
+		accomodationService.create(accDTO, token);
 
 	}
 	
 
+	@PreAuthorize("hasAuthority('DEL_ACC')")
 	@DeleteMapping("/deleteAccomodation/{id}")
 	public boolean deleteAccomodation(@PathVariable Long id) {
 
@@ -41,23 +45,33 @@ public class AccomodationController {
 		return response;
 	}
 
-	@PutMapping("/editAccomodation/{idAgent}/{id}")
-	public ResponseEntity<Accomodation> editAccomodation(@PathVariable Long idAgent, @PathVariable Long id,
-			@RequestBody AccomodationDTO accomodationDTO) {
 
-		Accomodation accomodation = accomodationService.edit(idAgent, id, accomodationDTO);
+	@PreAuthorize("hasAuthority('EDIT_ACC')")
+	@PutMapping("/editAccomodation/{idAgent}/{id}")
+	public ResponseEntity<Accomodation> editAccomodation(@PathVariable String token, @PathVariable Long id,
+			@RequestBody AccomodationDTO accomodationDTO) throws Exception {
+
+		Accomodation accomodation = accomodationService.edit(token, id, accomodationDTO);
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
 
 	}
 
-	@GetMapping("/getAllAccomodations/{idAgent}")
-	public ResponseEntity<?> getAccomodations(@PathVariable Long idAgent) {
-		ArrayList<Accomodation> accomodations = accomodationService.getAllAccomodation(idAgent);
+
+	@PreAuthorize("hasAuthority('EDIT_ACC')")
+	@GetMapping("/getAllAccomodations/{token}")
+	public ResponseEntity<?> getAccomodations(@PathVariable String token) throws Exception {
+		
+		//token = token.substring(1,token.length()-1).toString();
+		
+		System.out.println("tokencic je: " + token);
+		ArrayList<Accomodation> accomodations = accomodationService.getAllAccomodation(token);
 
 		return new ResponseEntity<>(accomodations, HttpStatus.OK);
 	}
 
 	// Treba da proverim
+
+	@PreAuthorize("hasAuthority('EDIT_ACC')")
 	@GetMapping("/getAccomodation/{id}")
 	public ResponseEntity<Accomodation> getAccomodation(@PathVariable Long id) {
 		Accomodation accomodation = accomodationService.getAccomodation(id);
@@ -67,6 +81,8 @@ public class AccomodationController {
 
 		return new ResponseEntity<>(accomodation, HttpStatus.OK);
 	}
+
+	@PreAuthorize("hasAuthority('EDIT_ACC')")
 	@GetMapping("/checkIfReservedAccomodation/{id}")
 	public boolean checkIfReservedAccomodation(@PathVariable Long id) {
 		

@@ -19,6 +19,7 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.UserRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.ConfirmReservationRequest;
 import com.ftn.webservice.files.ConfirmReservationResponse;
@@ -42,16 +43,23 @@ public class ReservationService {
 	private RoomRepository roomRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
 
-	public List<Reservation> getAllReservations(Long idAgent) {
+	public List<Reservation> getAllReservations(String token) throws Exception {
+		
+		//token = token.substring(1,token.length()-1).toString();
+		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
 		
 		GetAllReservationsRequest request = new GetAllReservationsRequest();
-		String agentUsername = agentRepository.getOne(idAgent).getUsername();
-		request.setRequest("Agent request: 'Return all reservations by agent '" + agentUsername + "'");
-		request.setAgentId(idAgent);
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		request.setRequest("Agent request: 'Return all reservations by agent '" + usname + "'");
+		request.setAgentId(ag.getId());
 		
 		GetAllReservationsResponse response = (GetAllReservationsResponse) soapConnector
 				.callWebService("https://localhost:8443/ws/accomondation", request);

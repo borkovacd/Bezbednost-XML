@@ -1,7 +1,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AccomodationService} from "../service/accomodation.service";
+import {AccomodationService} from '../service/accomodation.service';
 
 @Component({
   selector: 'accomodation',
@@ -11,18 +11,25 @@ import {AccomodationService} from "../service/accomodation.service";
 export class AccomodationComponent implements OnInit{
   items = []
   idagent: any;
+  vis: boolean = false;
 
   constructor(protected router: Router,
               private accomodationService: AccomodationService ){
 
   }
 
-  ngOnInit(){
-    this.idagent = localStorage.getItem('agentId');
-    this.accomodationService.getAccomodation(this.idagent).subscribe(data => {
-      this.items = data;
-    })
+  ngOnInit() {
 
+    const log = localStorage.getItem('agentId');
+
+    if (log != null) {
+      this.vis = false;
+      this.accomodationService.getAccomodation().subscribe(data => {
+        this.items = data;
+      });
+    } else {
+      this.vis = true;
+    }
   }
   addAccomodation(){
     this.router.navigateByUrl('add/accomodation/');
