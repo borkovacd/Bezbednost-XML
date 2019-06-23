@@ -26,7 +26,7 @@ import com.ftn.micro3.repository.UserRepository;
 import com.ftn.micro3.service.ReservationService;
 
 @RestController
-@RequestMapping("api/reservations")
+@RequestMapping(value="api/reservations")
 public class ReservationController 
 {
 	@Autowired
@@ -41,7 +41,7 @@ public class ReservationController
 	@Autowired
 	AgentRepository agentRepository ;
 	
-	@GetMapping("/getRoomById/{id}")
+	@GetMapping(value="/getRoomById/{id}")
 	public ResponseEntity<Room> getRoomById(@PathVariable Long id)
 	{
 		Room oneRoom = reservationService.getOneRoom(id);
@@ -58,7 +58,7 @@ public class ReservationController
 	
 	// findOneByName
 	
-	@PostMapping("/searchFreeRooms")
+	@PostMapping(value="/searchFreeRooms")
 	public ResponseEntity<List<Room>> searchFreeRooms(@RequestBody BasicSearchDTO dto) {
 		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
 		if(rooms != null) {
@@ -68,7 +68,7 @@ public class ReservationController
 	}
 	
 	
-	@PostMapping("/createReservation")
+	@PostMapping(value="/createReservation")
 	public ResponseEntity<Reservation> createReservation(@RequestBody ReservationDTO res)
 	{
 		Reservation newReservation = new Reservation();
@@ -102,7 +102,7 @@ public class ReservationController
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@GetMapping("/getReservationsByUser/{id}")
+	@GetMapping(value="/getReservationsByUser/{id}")
 	public ResponseEntity<List<Reservation>> getReservationsByUser(@PathVariable Long id) 
 	{
 		
@@ -124,7 +124,7 @@ public class ReservationController
 		}
 	}
 	
-	@DeleteMapping("/deleteReservation/{id}")
+	@DeleteMapping(value="/deleteReservation/{id}")
 	public ResponseEntity<?> deleteReservation(@PathVariable Long id)
 	{
 		if (id != null) {

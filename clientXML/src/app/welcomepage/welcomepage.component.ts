@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ReservationService} from '../service/reservation.service';
-import {SearchModel} from "../model/search.model";
+import {SearchModel} from '../model/search.model';
+import {Room} from '../model/room.model';
 
 @Component ({
   templateUrl: './welcomepage.component.html',
@@ -10,7 +11,8 @@ import {SearchModel} from "../model/search.model";
 })
 
 export  class WelcomepageComponent {
-  items = []
+  
+  public items: Room[];
 
   public form: FormGroup;
   public city: AbstractControl;
@@ -61,12 +63,15 @@ export  class WelcomepageComponent {
       this.checkOutDate.value,
       this.numberOfPersons.value
     );
-    this.reservationService.searchFreeRooms(object).subscribe(data =>{
+
+    this.reservationService.searchFreeRooms(object).subscribe(data => {
         this.items = data;
-    })
+    });
 
   }
-  reservationRoom(){}
+  reservationRoom(id: number) {
+
+  }
 
 
 

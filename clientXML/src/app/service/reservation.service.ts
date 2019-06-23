@@ -9,7 +9,7 @@ const httpOptions = {
 
 @Injectable()
 export class ReservationService {
-  private BASE_URL = 'https://localhost:8089/api/reservations';
+  private BASE_URL = 'https://localhost:8762/resservice/api/reservations';
 
   constructor(private http: HttpClient) {
 

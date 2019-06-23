@@ -49,3 +49,8 @@
 2019-06-23 13:32:34,463 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOG
 2019-06-23 13:32:35,824 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SS
 2019-06-23 13:32:43,254 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] CRE_CA
+2019-06-23 19:51:16,286 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-23 19:51:18,066 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-23 19:51:18,067 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-23 19:51:18,067 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-23 19:51:21,138 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
