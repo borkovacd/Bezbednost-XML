@@ -7,6 +7,7 @@
   </div>
 
 
+
   <div style="margin-top: 30px;width: 45%;display: inline-block">
     <h3>Rezervacije korisnika:</h3>
     <table class="table tables" style=" border: 1px solid black ;">
@@ -24,6 +25,25 @@
         <td>{{r.toDate}}</td>
         <td>{{r.user.username}}</td>
         <td style="text-align: center"><button style="border-radius: 12px;background-color: #1a8cff;color: white;" *ngIf="r.confirmed == false" (click)="confirmeReservation(r.id)" id="{{r.id}}">Potvrdi </button></td>
+      </tr>
+
+
+    </table>
+  </div>
+
+  <div style="margin-top: 20px;width: 35%;display: inline-block;margin-left: 10%;margin-right: 30px">
+    <h3>Zauzeti termini:</h3>
+    <table class="table tables" style=" border: 1px solid black ;">
+      <tr>
+        <th class="th-style">Smestajna jedinica:</th>
+        <th class="th-style">Od:</th>
+        <th class="th-style">Do:</th>
+      </tr>
+
+      <tr *ngFor="let p of items;">
+        <td>{{p.accomodation.name}}</td>
+        <td>{{p.fromDate}}</td>
+        <td>{{p.toDate}}</td>
       </tr>
 
 

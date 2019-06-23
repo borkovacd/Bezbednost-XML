@@ -152,7 +152,7 @@ export class AddEditAccomodationComponent implements OnInit{
       this.listAditionalService,
 
     );
-    this.idagent = localStorage.getItem('agentId');
+
     const idA = this.route.snapshot.params.idA;
     this.accService.editAccomodation(accomodation, idA).subscribe(data => {
       this.router.navigateByUrl('/welcomepage' );

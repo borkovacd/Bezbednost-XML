@@ -47,7 +47,7 @@ public class AccomodationController {
 
 
 	@PreAuthorize("hasAuthority('EDIT_ACC')")
-	@PutMapping("/editAccomodation/{idAgent}/{id}")
+	@PutMapping("/editAccomodation/{token}/{id}")
 	public ResponseEntity<Accomodation> editAccomodation(@PathVariable String token, @PathVariable Long id,
 			@RequestBody AccomodationDTO accomodationDTO) throws Exception {
 
