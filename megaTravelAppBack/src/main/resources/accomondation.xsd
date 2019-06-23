@@ -491,6 +491,8 @@
             <xs:element name="lastName" type="xs:string"/>
             <xs:element name="address" type="xs:string"/>
             <xs:element name="mbr" type="xs:string"/>
+            <xs:element name="enabled" type="xs:boolean"/>
+            <xs:element name="nonLocked" type="xs:boolean"/>
             <xs:element name="agentRoles" maxOccurs="unbounded" type="tns:roleSoap"/>
         </xs:sequence>
     </xs:complexType>

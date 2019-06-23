@@ -475,6 +475,8 @@ public class AccomondationEndpoint {
 			as.setLastName(agentRepository.findAll().get(i).getLastName());
 			as.setAddress(agentRepository.findAll().get(i).getAddress());
 			as.setMbr(agentRepository.findAll().get(i).getMbr());
+			as.setEnabled(agentRepository.findAll().get(i).isEnabled());
+			as.setNonLocked(agentRepository.findAll().get(i).isNonLocked());
 			
 			Set<Role> roles = agentRepository.findAll().get(i).getRoles();
 			

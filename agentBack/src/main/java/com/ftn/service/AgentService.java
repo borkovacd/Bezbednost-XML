@@ -101,6 +101,8 @@ public class AgentService {
 			a.setLastName(response.getAgentslist().get(i).getLastName());
 			a.setAddress(response.getAgentslist().get(i).getAddress());
 			a.setMbr(response.getAgentslist().get(i).getMbr());	
+			a.setEnabled(response.getAgentslist().get(i).isEnabled());
+			a.setNonLocked(response.getAgentslist().get(i).isNonLocked());
 			
 			List<Role> roles = new ArrayList<Role>();
 			for(int j=0; j<response.getAgentslist().get(i).getAgentRoles().size(); j++) {
