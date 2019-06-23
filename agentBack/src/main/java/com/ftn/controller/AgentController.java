@@ -84,7 +84,7 @@ public class AgentController {
 	}
 	
 	
-	@PutMapping("/log-in")
+	@RequestMapping("/log-in")
 	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
 		Long idagent = agentService.loginAgent(agentDTO);
 		if(idagent == null){

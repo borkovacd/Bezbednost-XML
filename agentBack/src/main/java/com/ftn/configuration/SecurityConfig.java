@@ -14,11 +14,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.ftn.security.CheckTokenFilter;
 import com.ftn.security.RestAuthenticationEntryPoint;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.UserService;
@@ -30,8 +32,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+	/*
+	@Autowired
+    private UserService userService;
 
+	@Override
+	 public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+            .userDetailsService(userService)
+            .passwordEncoder(passwordEncoder());
+    }
 	
+	@Bean
+    public CheckTokenFilter authenticationFilter() throws Exception {
+		CheckTokenFilter authenticationFilter = new CheckTokenFilter();
+
+        authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        return authenticationFilter;
+    }
+
+	@Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -49,8 +80,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 				.authorizeRequests()
 				.antMatchers("/api/**").permitAll().and()
-
+				
 				.formLogin().and().exceptionHandling();
+				
+				//.anyRequest().authenticated().and()
+
+				//.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+				
 
 				// .antMatchers("/api/security/**").permitAll()
 				// .antMatchers("/api/security/**").hasAuthority("ADMIN")

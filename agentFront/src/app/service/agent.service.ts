@@ -3,8 +3,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {LogInModel} from '../model/logIn.model';
 
+const token = localStorage.getItem('agentId');
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'text/plain'}),
+  headers: new HttpHeaders({'Content-Type': 'text/plain', 'token': token}),
 };
 
 @Injectable()
@@ -21,7 +22,7 @@ export class AgentService {
   logIn(object: LogInModel): Observable<any> {
     const body = JSON.stringify(object);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`${this.BASE_URL}/log-in `, body, {headers: headers});
+    return this.http.put(`${this.BASE_URL}/log-in `, body, httpOptions);
   }
 
   getAllAgents(): Observable<any> {

@@ -23,7 +23,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint{
 	    public void commence(HttpServletRequest request,
 	                         HttpServletResponse response,
 	                         AuthenticationException authException) throws IOException {
-	     //   log.warn(LoggerUtils.getSMarker(),"SECURITY_EVENT Unauthorised access attempt to {} from  adress{}",request.getRequestURL(),request.getRemoteAddr());
+	        log.warn(LoggerUtils.getSMarker(),"SECURITY_EVENT Unauthorised access attempt to {} from  adress{}",request.getRequestURL(),request.getRemoteAddr());
 
 	        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
 	    }

@@ -60,6 +60,9 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.authorizeRequests()
 				.antMatchers("/api/**").permitAll().and()
 				
+				//.anyRequest().authenticated().and()
+				
+				
 				.csrf().disable();
 		
 	}

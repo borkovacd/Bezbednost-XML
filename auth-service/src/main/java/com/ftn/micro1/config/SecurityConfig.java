@@ -74,6 +74,8 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.authorizeRequests()
 				.antMatchers("/test/**").permitAll().and()
 				
+				//.anyRequest().authenticated().and()
+				
 				
 				.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 				

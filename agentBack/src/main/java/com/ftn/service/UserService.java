@@ -1,15 +1,25 @@
 package com.ftn.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ftn.model.Agent;
+import com.ftn.model.Permission;
+import com.ftn.model.Role;
 import com.ftn.model.User;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.UserRepository;
+import com.ftn.security.UserSecurity;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.ClientStatus;
 import com.ftn.webservice.files.GetAllAgentsRequest;
@@ -19,13 +29,47 @@ import com.ftn.webservice.files.GetAllUsersResponse;
 import com.ftn.webservice.files.NameRole;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
+	
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(username);
+	       
+        return getUserSecurity(user);
+	}
+	
+private UserSecurity getUserSecurity(User user) {
+		
+		Set<Role> roles = user.getRoles();
+		
+		Set<String> perm = new HashSet<String>();
+		
+		for(Role r: roles) {
+			
+			for(Permission p: r.getPermissions()) {
+				
+				
+				perm.add(p.getName());
+			}
+		}
+		
+		List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
+		for(String s: perm) {
+		
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(s);
+			authorites.add(authority);
+			
+		}
+		
+		return new UserSecurity(user.getId(), user.getPassword(), user.getEmail(), user.isEnabled(), authorites, user.isNonLocked());
+	}
 	
 	public ArrayList<User> getAllUsers() {
 		
@@ -76,5 +120,6 @@ public class UserService {
 	
 		return (ArrayList<User>) users;
 	}
+
 
 }

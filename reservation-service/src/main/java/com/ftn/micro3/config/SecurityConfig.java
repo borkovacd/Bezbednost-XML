@@ -44,7 +44,7 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
 				.authorizeRequests()
-				.antMatchers("/test/**").permitAll().and()
+				.antMatchers("/api/**").permitAll().and()
 				
 				.csrf().disable();
 		
