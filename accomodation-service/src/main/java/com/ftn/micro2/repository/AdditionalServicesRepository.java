@@ -23,12 +23,6 @@ public interface AdditionalServicesRepository extends JpaRepository<AdditionalSe
 	
 	public void deleteById(Long id) ;
 	
-	public List<AccomodationType> deleteByName(String name);
-	
-	/*
-	@Transactional
-	@Modifying
-	@Query("delete from AccomodationService where id = :id")
-	public void delete(@Param("id") long id);
-	*/
+	public void deleteByName(String name);
+
 }

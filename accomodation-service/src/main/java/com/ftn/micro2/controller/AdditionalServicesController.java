@@ -31,7 +31,7 @@ public class AdditionalServicesController
 	@RequestMapping(value="/addNewAdditionalService",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNewAdditionalService(@RequestBody AdditionalServices add)
 	{
-		AdditionalServices addService = addServ.findByName(add);
+		AdditionalServices addService = addServ.findByName(add.getName());
 		
 		// ukoliko servis sa tim imenom vec postoji, ne mozes ga sacuvati
 		if (addService != null)
@@ -51,7 +51,7 @@ public class AdditionalServicesController
 	@PostMapping(value = "/removeAdditionalService", consumes = "application/json")
 	public ResponseEntity<List<AdditionalServices>> removeAdditionalService(@RequestBody AdditionalServices add)
 	{
-		AdditionalServices addService = addServ.findByName(add);
+		AdditionalServices addService = addServ.findByName(add.getName());
 		
 		// ukoliko servis sa tim imenom ne postoji, ne mozes ga obrisati
 		if (addService == null)
@@ -67,7 +67,7 @@ public class AdditionalServicesController
 	
 	// METODA - lista svih dodatnih servisa
 	@RequestMapping(value = "/getAdditionalServices",method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<AdditionalServices>> getAdditionalServices()
+	public ResponseEntity<List<AdditionalServices>> getAdditionalServices()
 	{
 		return new ResponseEntity<>(addServ.getAll(), HttpStatus.OK);
 	}

@@ -1,0 +1,40 @@
+server:  
+  port: ${PORT:8086}
+  ssl:
+    enabled: true
+    key-store: client.p12
+    key-store-password: client
+    key-alias: client
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+  client:
+    securePortEnabled: true
+    serviceUrl:
+      defaultZone: https://localhost:8761/eureka/ 
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/megaTravelAppBack?useSSL=false&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+    initialization-mode: always
+    dbcp:
+      test-while-idle: true
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+auth:
+  app:
+    jwtSecret: jwtAuthSecretKey
+    jwtExpiration: 864000
