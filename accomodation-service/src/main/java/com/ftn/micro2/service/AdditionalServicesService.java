@@ -1,5 +1,6 @@
 package com.ftn.micro2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class AdditionalServicesService
 	}
 	
 	// lista svih dodatnih servisa
-	public List<AdditionalServices> getAll() {
-		return repository.findAll();
+	public ArrayList<AdditionalServices> getAll() {
+		return (ArrayList<AdditionalServices>) repository.findAll();
 	}
 	
 	// vraca listu dodatnih servisa, nakon brisanja servisa sa prosledjenim Id-jem

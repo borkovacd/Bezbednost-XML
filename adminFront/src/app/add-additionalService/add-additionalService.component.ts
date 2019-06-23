@@ -64,5 +64,7 @@ export class AddAdditionalServiceComponent implements OnInit {
   }
 
 
-
+  back() {
+    this.router.navigateByUrl('/home');
+  }
 }

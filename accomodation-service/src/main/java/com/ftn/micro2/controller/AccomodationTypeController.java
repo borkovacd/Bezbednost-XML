@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class AccomodationTypeController
 	AccomodationTypeService service ;
 	
 	// dodaje novi tip smestaja
-	@CrossOrigin(origins = "http://localhost:4200")
+	@PreAuthorize("hasAuthority('ADD_TYPE')")
 	@RequestMapping(value="/addNewAccomodationType",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNewAccomodationType(@RequestBody AccomodationType acc)
 	{
@@ -43,7 +44,7 @@ public class AccomodationTypeController
 	}
 	
 	// brise postojeci tip smestaja
-	@CrossOrigin(origins = "http://localhost:4200")
+	@PreAuthorize("hasAuthority('REMOVE_TYPE')")
 	@PostMapping(value = "/removeAccomodationType", consumes = "application/json")
 	public ResponseEntity<List<AccomodationType>> removeAccType(@RequestBody AccomodationType acc)
 	{
@@ -57,7 +58,7 @@ public class AccomodationTypeController
 		}
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@PreAuthorize("hasAuthority('ADD_TYPE')")
 	@GetMapping(value = "/getAccomodationTypes")
 	public ResponseEntity<List<AccomodationType>> getServices()
 	{

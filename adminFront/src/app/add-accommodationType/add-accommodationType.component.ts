@@ -66,5 +66,7 @@ export class AddAccommodationTypeComponent implements OnInit {
   }
 
 
-
+  back() {
+    this.router.navigateByUrl('/home');
+  }
 }

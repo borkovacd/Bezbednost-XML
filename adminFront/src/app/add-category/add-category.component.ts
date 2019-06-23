@@ -67,5 +67,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
 
-
+  back() {
+    this.router.navigateByUrl('/home');
+  }
 }
