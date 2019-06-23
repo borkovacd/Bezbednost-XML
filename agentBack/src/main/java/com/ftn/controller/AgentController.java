@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.City;
+import com.ftn.model.UserToken;
 import com.ftn.service.AdditionalServicesService;
 import com.ftn.service.AgentService;
 import com.ftn.service.CategoryService;
@@ -83,7 +84,6 @@ public class AgentController {
 		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 	}
 	
-	
 	@RequestMapping("/log-in")
 	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
 		Long idagent = agentService.loginAgent(agentDTO);
@@ -94,4 +94,17 @@ public class AgentController {
 
 		
 	}
+	
+	/*
+	@RequestMapping("/log-in")
+	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) {
+		UserToken ut = agentService.loginAgent(agentDTO);
+		if(ut == null){
+			return new ResponseEntity<UserToken>(ut, HttpStatus.NO_CONTENT);
+		}
+			return new ResponseEntity<UserToken>(ut, HttpStatus.OK);
+
+		
+	}
+	*/
 }

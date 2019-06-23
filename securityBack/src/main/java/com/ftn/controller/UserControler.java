@@ -137,34 +137,30 @@ public class UserControler {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> logIn(@RequestBody User user, HttpServletRequest req) {
+	public ResponseEntity<?> logIn(@RequestBody UserDTO userDTO, HttpServletRequest req) {
 		log.debug("LOG");
 
-		boolean response = userService.logIn(user);
+		boolean response = userService.logIn(userDTO);
 
 
 		if (response == true) {
 			// ako korisnik postoji u bazi
 
-			User userNew = userService.findByEmail(user.getEmail());
+			User userNew = userService.findByEmail(userDTO.getEmail());
 
 			// proveravam da li se password podudara sa onim u bazi
-			if (BCrypt.checkpw(user.getPassword(), userNew.getPassword())) {
+			if (BCrypt.checkpw(userDTO.getPassword(), userNew.getPassword())) {
 
 				try{
-				UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getEmail(),
-						user.getPassword());
+				UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(userDTO.getEmail(),
+						userDTO.getPassword());
 				
 				Authentication auth = authManager.authenticate(authReq);
 				
 				String email = authReq.getName();
 				
 				System.out.println("mejl je sledeci" + email);
-				
-				List<String> authorities = auth.getAuthorities().stream()
-	    				.map(GrantedAuthority::getAuthority)
-	    				.collect(Collectors.toList());
-
+			
 				//SecurityContext sc = SecurityContextHolder.getContext();
 				//sc.setAuthentication(auth);
 				
@@ -196,7 +192,7 @@ public class UserControler {
 			}
 		} else {
 			log.error("LOG_ERR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", user.getId());
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL "/*, user.getId()*/);
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);

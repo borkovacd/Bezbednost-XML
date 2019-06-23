@@ -44,6 +44,12 @@ public class Agent {
 	@Column(name="Mbr")
 	private String mbr;
 	
+	@Column(name = "Enabled")
+	private boolean enabled;
+	
+	@Column(name="Nonlocked")
+	private boolean nonLocked;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "agents_roles", joinColumns = @JoinColumn(name = "agents_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
 	private Set<Role> roles;
@@ -115,6 +121,22 @@ public class Agent {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isNonLocked() {
+		return nonLocked;
+	}
+
+	public void setNonLocked(boolean nonLocked) {
+		this.nonLocked = nonLocked;
 	}
 	
 	

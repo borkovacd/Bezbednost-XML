@@ -18,7 +18,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
+//@Component
 public class TokenUtils {
 	
 	private static final Logger log = LoggerFactory.getLogger(TokenUtils.class);
@@ -31,7 +31,7 @@ public class TokenUtils {
 
 	public String generateToken(Authentication auth) {
 		
-		UserSecurity userDetails = (UserSecurity) auth.getPrincipal();
+		AgentSecurity userDetails = (AgentSecurity) auth.getPrincipal();
 		
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("username", userDetails.getUsername());
@@ -52,11 +52,11 @@ public class TokenUtils {
 		return expiration;
 	}
 	
-	public UserSecurity getUserSecurity(String jwt) throws Exception {
+	public AgentSecurity getUserSecurity(String jwt) throws Exception {
 		try {
 			Claims claims = getClaimsFromToken(jwt);
 			
-			return new UserSecurity(
+			return new AgentSecurity(
 				Long.parseLong(getIdFromClaims(claims)), 
 				getUsernameFromClaims(claims), 
 				true,

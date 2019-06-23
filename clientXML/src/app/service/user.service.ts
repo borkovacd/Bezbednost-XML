@@ -27,7 +27,7 @@ export class UserService {
   login(object: LoginModel): Observable<any> {
     const body = JSON.stringify(object);
     const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/login`, body, {headers: headers});
+    return this.http.post(`${this.BASE_URL}/login`, body, httpOptions);
   }
 
   getLoggedUser() {

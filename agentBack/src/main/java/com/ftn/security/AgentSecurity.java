@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserSecurity implements UserDetails {
+public class AgentSecurity implements UserDetails {
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class UserSecurity implements UserDetails {
 	private boolean nonLocked;
 	private Collection<? extends GrantedAuthority> autorities;
 	
-	public UserSecurity(Long id, String password, String username, boolean enabled, Collection<? extends GrantedAuthority> autorities, boolean locked) {
+	public AgentSecurity(Long id, String password, String username, boolean enabled, Collection<? extends GrantedAuthority> autorities, boolean locked) {
 		this.id = id;
 		this.password = password;
 		this.username = username;
@@ -28,7 +28,7 @@ public class UserSecurity implements UserDetails {
 		this.nonLocked = locked;
 	}
 	
-	public UserSecurity(Long id, String username, boolean enabled, Collection<? extends GrantedAuthority> autorities, boolean locked) {
+	public AgentSecurity(Long id, String username, boolean enabled, Collection<? extends GrantedAuthority> autorities, boolean locked) {
 		this(id, null, username, enabled, autorities, locked);
 	}
 	

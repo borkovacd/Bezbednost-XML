@@ -85,7 +85,7 @@ public class Data implements ApplicationRunner {
 		
 		String agentPath = parent + "\\agentBack\\keystoreAgent.p12";
 		
-		String mainBackPath = parent + "\\securityBack\\files\\keystoreSecurity.p12";
+		String mainBackPath = parent + "\\megaTravelAppBack\\keystore.p12";
 		
 		String authPath = parent + "\\auth-service\\authKeystore.p12";
 
@@ -287,7 +287,7 @@ public class Data implements ApplicationRunner {
 				
 				//System.out.println("privatni kljuc je:" + privateKeyIssuer);
 				
-				ArrayList<Certificate> lanacSertifikata2 = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore("./files/keystoreSecurity.p12").getCertificateChain("someString")));
+				ArrayList<Certificate> lanacSertifikata2 = new ArrayList<Certificate>(Arrays.asList(keyStoreReader.getKeyStore(mainBackPath).getCertificateChain("someString")));
 				
 				PublicKey publicKey = lanacSertifikata.get(0).getPublicKey(); 
 				

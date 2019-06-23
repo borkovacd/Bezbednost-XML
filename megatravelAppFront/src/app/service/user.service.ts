@@ -34,7 +34,7 @@ export class UserService {
     // return JSON.parse(localStorage.getItem('loggedUser'));
     const body = JSON.stringify(localStorage.getItem('loggedUser'));
     const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/loggedUser`, body, {headers: headers});
+    return this.http.post(`${this.BASE_URL}/loggedUser`, body, httpOptions);
 
   }
 

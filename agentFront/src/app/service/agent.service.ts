@@ -22,7 +22,7 @@ export class AgentService {
   logIn(object: LogInModel): Observable<any> {
     const body = JSON.stringify(object);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(`${this.BASE_URL}/log-in `, body, httpOptions);
+    return this.http.put(`${this.BASE_URL}/log-in `, body, {headers: headers});
   }
 
   getAllAgents(): Observable<any> {

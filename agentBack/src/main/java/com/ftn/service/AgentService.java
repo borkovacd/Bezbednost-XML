@@ -6,16 +6,21 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.Permission;
 import com.ftn.model.Role;
+import com.ftn.model.UserToken;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.GetAllAgentsRequest;
 import com.ftn.webservice.files.GetAllAgentsResponse;
@@ -33,6 +38,12 @@ public class AgentService {
 	private RoomRepository roomRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	//@Autowired
+//	private AuthenticationManager authManager;
+	
+	//@Autowired
+	//TokenUtils tokenUtils;
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -111,7 +122,11 @@ public class AgentService {
 	}
 	
 	public Long loginAgent(AgentDTO agentDTO){
+		
+		
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
+		
+		
 		if (agent == null) {
 			throw new IllegalArgumentException("Agent not found!");
 		}
@@ -142,6 +157,23 @@ public class AgentService {
 			//roleService.getAllRoles();
 			
 			
+			
+			// ovde ide deo za logovanje
+			
+			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(agentDTO.getUsername(),
+					agentDTO.getPassword());
+			
+		//	Authentication auth = authManager.authenticate(authReq);
+			
+		//	String username = authReq.getName();
+			
+		//	String token = tokenUtils.generateToken(auth);
+
+		//	long expiresIn = tokenUtils.getExpiredIn();
+			
+		//	Agent a = agentRepository.findOneByUsername(username);
+			
+			//return new UserToken(token, expiresIn);
 			return agent.getId();
 		}else{
 			return null;

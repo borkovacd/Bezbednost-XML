@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import com.ftn.model.Permission;
 import com.ftn.model.Role;
 import com.ftn.model.User;
+import com.ftn.modelDTO.UserDTO;
 import com.ftn.repository.UserRepository;
 import com.ftn.security.UserSecurity;
 
@@ -88,15 +89,11 @@ public class UserService implements UserDetailsService  {
 	}
 	
 	*/
-	public boolean logIn(User user){
+	public boolean logIn(UserDTO user){
 		
 		ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
 		for(User u : list){
 			if(u.getEmail().equals(user.getEmail())){
-				if(u.getPassword().equals(user.getPassword()))
-					for(Role r : u.getRoles()) {
-						System.out.println(r.getName());
-					}
 					return true;
 			}
 		}

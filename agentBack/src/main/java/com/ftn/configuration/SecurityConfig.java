@@ -61,44 +61,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
-	*/
+*/
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		// final TokenAuthenticationFilter tokenFilter = new
-		// TokenAuthenticationFilter();
-		// http.addFilterBefore(tokenFilter, BasicAuthenticationFilter.class);
-
 		http
-
-				
-
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
 				// za neautorizovane zahteve posalji 401 gresku
 				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 				.authorizeRequests()
-				.antMatchers("/api/**").permitAll().and()
+				.antMatchers("/api/**").permitAll();
 				
-				.formLogin().and().exceptionHandling();
+				// .anyRequest().authenticated().and()
+
+				// .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 				
-				//.anyRequest().authenticated().and()
-
-				//.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-				
-
-				// .antMatchers("/api/security/**").permitAll()
-				// .antMatchers("/api/security/**").hasAuthority("ADMIN")
-				// .antMatchers("/api/security/**").hasRole("ADMIN")
-
-				// .addFilterBefore(new CustomFilter(),
-				// BasicAuthenticationFilter.class);
-
-				// .addFilterBefore(new TokenAutheticationFilter(tokenUtils,
-				// jwtUserDetailsService), BasicAuthenticationFilter.class);
-
-		        http.csrf().disable();
+		
+		http	.csrf().disable();
 	}
 
 	@Bean

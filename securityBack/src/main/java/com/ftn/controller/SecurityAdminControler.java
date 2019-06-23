@@ -96,6 +96,9 @@ public class SecurityAdminControler {
 		String email = tokenUtils.getUserSecurity(token).getUsername();
 		
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
+		
+		System.out.println(iss.getEmail());
+		
 
 		// Izdavalac sertifikata mora imati sertifikat!
 		if (iss.isHasCert() == true) 
@@ -122,7 +125,7 @@ public class SecurityAdminControler {
 																	// certificatePass123456789
 			String alias = "alias1";
 			
-			if (iss.getId() == 4)
+			if (iss.getId() == 1)
 			{
 				System.out.println("Izdavalac je Root!");
 				issuerPass = "someString" ;

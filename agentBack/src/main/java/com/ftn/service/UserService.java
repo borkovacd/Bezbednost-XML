@@ -19,7 +19,7 @@ import com.ftn.model.Role;
 import com.ftn.model.User;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.UserRepository;
-import com.ftn.security.UserSecurity;
+import com.ftn.security.AgentSecurity;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.ClientStatus;
 import com.ftn.webservice.files.GetAllAgentsRequest;
@@ -35,19 +35,22 @@ public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
 	
 	@Autowired
+	private AgentRepository agentRepository;
+	
+	@Autowired
 	private SOAPConnector soapConnector;
 	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(username);
+		Agent agent = agentRepository.findOneByUsername(username);
 	       
-        return getUserSecurity(user);
+        return getAgentSecurity(agent);
 	}
 	
-private UserSecurity getUserSecurity(User user) {
+	private AgentSecurity getAgentSecurity(Agent agent) {
 		
-		Set<Role> roles = user.getRoles();
+		Set<Role> roles = agent.getRoles();
 		
 		Set<String> perm = new HashSet<String>();
 		
@@ -68,7 +71,8 @@ private UserSecurity getUserSecurity(User user) {
 			
 		}
 		
-		return new UserSecurity(user.getId(), user.getPassword(), user.getEmail(), user.isEnabled(), authorites, user.isNonLocked());
+		User u = new User();
+		return new AgentSecurity(agent.getId(), agent.getPassword(), agent.getUsername(), u.isEnabled(), authorites, u.isNonLocked());
 	}
 	
 	public ArrayList<User> getAllUsers() {

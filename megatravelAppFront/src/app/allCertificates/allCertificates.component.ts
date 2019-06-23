@@ -21,7 +21,7 @@ export class AllCertificatesComponent implements OnInit {
   vis: boolean = false;
 
   constructor(protected router: Router,
-              private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
+              private fb: FormBuilder, private data: SecurityService, private  userService: UserService) {
     this.form = this.fb.group({
       'message': ['', Validators.compose([Validators.required])],
     });
