@@ -45,6 +45,8 @@ public class ReservationService
 		List <Room> matchingRoomsAccomodation = new ArrayList<Room>() ;
 		List<Room> matchingRooms = new ArrayList<Room>();
 
+		
+		System.out.println("city je " + city);
 		String europeanDatePattern = "yyyy-MM-dd";
 		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
 		LocalDate fromDateConverted = LocalDate.parse(fromDate, europeanDateFormatter);
@@ -54,25 +56,31 @@ public class ReservationService
 		// lista postojecih rezervacija
 		List<Reservation> reservations = reservationRepository.findAll();
 		
+		System.out.println("Soba ima: " + allRooms.size());
+		
 		for (Room r : allRooms)
 		{
+			System.out.println("usao u for");
 			if (r.getAccomodation().getCity().getName().equals(city))
 			{
+				System.out.println("nasao da su jednaki");
 				matchingRoomsAccomodation.add(r);
 			}
 		}
+		
+		List<Room> matchingRoomsAccomodationCopy = new ArrayList<Room>(matchingRoomsAccomodation);
 		
 		for (Room r : matchingRoomsAccomodation)
 		{
 			if (r.getCapacity() != numberOfPersons)
 			{
-				matchingRoomsAccomodation.remove(r);
+				matchingRoomsAccomodationCopy.remove(r);
 			}
 		}
 		
 		for (Reservation res : reservations) // prolazak kroz sve rezervacije
 		{
-			if (matchingRoomsAccomodation.contains(res.getRoom())) // ukoliko se soba iz rezervacije nalazi medju odgovarajucim sobama po smestaju
+			if (matchingRoomsAccomodationCopy.contains(res.getRoom())) // ukoliko se soba iz rezervacije nalazi medju odgovarajucim sobama po smestaju
 			{
 				// ukoliko su pocetni datumi jednaki, ili je prosledjen pocetni veci od onog na rezervaciji
 				// ukoliko je pocetni datum rezervacije pre krajnjeg datuma rezervacije
@@ -81,14 +89,14 @@ public class ReservationService
 				// ukoliko je krajnji datum pre kraja rezervacije
 				if((res.getFromDate().compareTo(fromDateConverted) >= 0 && res.getFromDate().compareTo(toDateConverted) <= 0) || (res.getToDate().compareTo(fromDateConverted) >= 0 && res.getToDate().compareTo(toDateConverted) <= 0)) 
 				{
-					matchingRoomsAccomodation.remove(res.getRoom());
+					matchingRoomsAccomodationCopy.remove(res.getRoom());
 				}
 			}
 			
 		
 		}
 		
-		return matchingRoomsAccomodation;
+		return matchingRoomsAccomodationCopy;
 	}
 	
 	public Room getOneRoom(Long id)

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -19,17 +20,17 @@ public class Accomodation
 	@Column
 	private String name;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private City city;
 
 	@NotNull
 	@Column
 	private String address;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private TypeAccomodation typeAccomodation;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private Category category;
 
 	@Column
@@ -38,7 +39,7 @@ public class Accomodation
 	@Column
 	private String pic;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<AdditionalServices> additionalServices;
 
 	@OneToOne
