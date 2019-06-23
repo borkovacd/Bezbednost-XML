@@ -1,3 +1,5 @@
+import {Room} from './room.model';
+
 export class AdvancedSearchModel{
   constructor(public tipHotel: boolean,
               public tipApartman: boolean,
@@ -18,5 +20,6 @@ export class AdvancedSearchModel{
               public tv: boolean,
               public miniKuhinja: boolean,
               public kupatilo: boolean,
-              public bespaltnoOtkazivanje: boolean, ){}
+              public bespaltnoOtkazivanje: boolean,
+              public rooms : Room[]){}
 }

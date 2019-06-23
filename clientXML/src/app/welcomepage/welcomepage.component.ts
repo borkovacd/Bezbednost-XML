@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ReservationService} from '../service/reservation.service';
-import {SearchModel} from "../model/search.model";
 import {v} from '@angular/core/src/render3';
 import {AdvancedSearchModel} from '../model/advancedSearch.model';
+import {SearchModel} from '../model/search.model';
+import {Room} from '../model/room.model';
+
 
 @Component ({
   templateUrl: './welcomepage.component.html',
@@ -14,8 +16,9 @@ import {AdvancedSearchModel} from '../model/advancedSearch.model';
 export  class WelcomepageComponent {
 
   advancedSearch = false;
-  items = []
 
+  
+  public items: Room[];
   public form: FormGroup;
   public advancedSearchform: FormGroup;
   public tipHotel: AbstractControl;
@@ -105,7 +108,7 @@ export  class WelcomepageComponent {
 
   ngOnInit() {
 
-    this.advancedSearch = true;
+    this.advancedSearch = false;
   }
 
   login(){
@@ -133,13 +136,17 @@ export  class WelcomepageComponent {
       this.checkOutDate.value,
       this.numberOfPersons.value
     );
-    this.reservationService.searchFreeRooms(object).subscribe(data =>{
+
+    this.reservationService.searchFreeRooms(object).subscribe(data => {
         this.items = data;
-    })
+    });
+
+    this.advancedSearch = true;
 
   }
+  reservationRoom(id: number) {
 
-  reservationRoom(){}
+  }
 
 
   advancedSearchRooms() {
@@ -165,7 +172,12 @@ export  class WelcomepageComponent {
       this.miniKuhinja.value,
       this.kupatilo.value,
       this.besplatnoOtkazivanje.value,
+      this.items
     );
+
+    this.reservationService.advancedSearchFreeRooms(object).subscribe(data => {
+      this.items = data;
+    });
 
   }
 }

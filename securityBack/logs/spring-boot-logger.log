@@ -111,3 +111,11 @@
 2019-06-23 13:32:45,241 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GET_CA
 2019-06-23 13:32:45,253 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GET_ACA
 2019-06-23 13:32:45,258 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-23 19:51:16,280 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-9D5EIMP with PID 5568 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\securityBack)
+2019-06-23 19:51:16,286 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-23 19:51:16,288 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-23 19:51:18,066 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-23 19:51:18,067 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-23 19:51:18,067 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-23 19:51:21,138 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-23 19:51:22,803 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 7.063 seconds (JVM running for 8.205)
