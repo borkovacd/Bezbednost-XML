@@ -75,6 +75,137 @@
   </div>
 </div>
 
+<div *ngIf="advancedSearch == true">
+  <label><br/><b><i>Napredna pretraga</i></b></label>
+  <form [formGroup]="advancedSearchform">
+
+    <div class="form-group">
+      <div>
+        <div>
+          <label>Tip smeštaja:</label>
+        </div>
+        <div style=" display: inline-block;margin-left: 0%;">
+          <label>Hotel</label>
+          <input name="hotel" class="form-control margin" id="input-hotel" type="checkbox"
+             [formControl]="tipHotel">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Bad & breakfast</label>
+          <input name="hotel" class="form-control margin" id="input-badAndBreakfast" type="checkbox"
+             [formControl]="tipBadAndBreakfast">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Apartman</label>
+          <input name="hotel" class="form-control margin" id="input-apartman" type="checkbox"
+             [formControl]="tipApartman">
+        </div>
+      </div>
+      <div>
+        <div>
+          <label><br/>Kategorija smeštaja:</label>
+        </div>
+        <div style=" display: inline-block;margin-left: 0%;">
+          <label>1 zvezdica</label>
+          <input name="kategorija1" class="form-control margin" id="input-kategorija1" type="checkbox"
+                 [formControl]="kategorija1">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>2 zvezdice</label>
+          <input name="kategorija2" class="form-control margin" id="input-kategorija2" type="checkbox"
+                 [formControl]="kategorija2">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>3 zvezdice</label>
+          <input name="kategorija3" class="form-control margin" id="input-kategorija3" type="checkbox"
+                 [formControl]="kategorija3">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>4 zvezdice</label>
+          <input name="kategorija4" class="form-control margin" id="input-kategorija4" type="checkbox"
+                 [formControl]="kategorija4">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>5 zvezdica</label>
+          <input name="kategorija5" class="form-control margin" id="input-kategorija5" type="checkbox"
+                 [formControl]="kategorija5">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Nekategorisan</label>
+          <input name="nekategorisan" class="form-control margin" id="input-nekategorisan" type="checkbox"
+                 [formControl]="nekategorisan">
+        </div>
+      </div>
+      <div>
+        <div>
+          <label><br/>Dodatne usluge:</label>
+        </div>
+        <div style=" display: inline-block;margin-left: 0%;">
+          <label>Parking</label>
+          <input name="parking" class="form-control margin" id="input-parking" type="checkbox"
+                 [formControl]="parking">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>WiFi</label>
+          <input name="wifi" class="form-control margin" id="input-wifi" type="checkbox"
+                 [formControl]="wifi">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Doručak</label>
+          <input name="dorucak" class="form-control margin" id="input-dorucak" type="checkbox"
+                 [formControl]="dorucak">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Polu pansion</label>
+          <input name="poluPansion" class="form-control margin" id="input-poluPansion" type="checkbox"
+                 [formControl]="poluPansion">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Pansion</label>
+          <input name="pansion" class="form-control margin" id="input-pansion" type="checkbox"
+                 [formControl]="pansion">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>All inclusive</label>
+          <input name="allInclusive" class="form-control margin" id="input-allInclusive" type="checkbox"
+                 [formControl]="allInclusive">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Pet friendly</label>
+          <input name="petFriendly" class="form-control margin" id="input-petFriendly" type="checkbox"
+                 [formControl]="petFriendly">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>TV</label>
+          <input name="tv" class="form-control margin" id="input-tv" type="checkbox"
+                 [formControl]="tv">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Mini kuhinja</label>
+          <input name="miniKuhinja" class="form-control margin" id="input-miniKuhinja" type="checkbox"
+                 [formControl]="miniKuhinja">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Privatno kupatilo</label>
+          <input name="kupatilo" class="form-control margin" id="input-kupatilo" type="checkbox"
+                 [formControl]="kupatilo">
+        </div>
+        <div style=" display: inline-block;margin-left: 10%;">
+          <label>Besplatno otkazivanje</label>
+          <input name="besplatnoOtkazivanje" class="form-control margin" id="input-besplatnoOtkazivanje" type="checkbox"
+                 [formControl]="besplatnoOtkazivanje">
+        </div>
+
+      </div>
+      <button class="btn btn-dark" (click)="advancedSearchRooms()"><i class="fa fa-search"></i></button>
+
+
+
+    </div>
+  </form>
+</div>
+
+
+
 
 
 
