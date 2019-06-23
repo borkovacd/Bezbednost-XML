@@ -38,6 +38,12 @@ export class AddReservationComponent implements OnInit{
     const idAgent = localStorage.getItem('agentId');
   }
   search(){
+    if ( this.checkInDate.value > this.checkOutDate.value ) {
+      alert('Molimo ponovo unesite datum dolaska i odlaska.');
+      this.checkInDate.reset();
+      this.checkOutDate.reset();
+      return;
+    }
     const object = new SearchRoomModel(
       this.checkInDate.value,
       this.checkOutDate.value
