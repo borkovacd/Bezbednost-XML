@@ -9,12 +9,14 @@ import {RoomComponent} from './room/room.component';
 import {AddEditRoomComponent} from './add-edit-room/add-edit-room.component';
 import {PricelistComponent} from './pricelist/pricelist.component';
 import {AddPricelistComponent} from './add-pricelist/add-pricelist.component';
+import {AddReservationComponent} from './add-reservation/add-reservation.component';
 
 
 const routes: Routes = [
   {path: '', component: LogInComponent, pathMatch: 'full'},
   {path: 'log-in', component: LogInComponent},
   {path: 'welcomepage', component: WelcomepageComponent},
+  {path: 'welcomepage/reservation/add', component: AddReservationComponent},
   {path: 'welcomepage/room/:idA', component: RoomComponent},
   {path: 'welcomepage/room/:idA/pricelist/:idR', component: PricelistComponent},
   {path: 'welcomepage/room/:idA/pricelist/:mode/:idR', component: AddPricelistComponent},

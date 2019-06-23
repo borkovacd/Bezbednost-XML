@@ -24,6 +24,8 @@ import {AddPricelistComponent} from './add-pricelist/add-pricelist.component';
 import {PricelistService} from './service/pricelist.service';
 import {ReservationComponent} from './reservation/reservation.component';
 import {ReservationService} from './service/reservation.service';
+import {AddReservationComponent} from './add-reservation/add-reservation.component';
+import {ReservationAgentService} from './service/reservationAgent.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import {ReservationService} from './service/reservation.service';
     PricelistComponent,
     AddPricelistComponent,
     ReservationComponent,
+    AddReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import {ReservationService} from './service/reservation.service';
     RoomService,
     PricelistService,
     ReservationService,
+    ReservationAgentService,
   ],
   bootstrap: [AppComponent]
 })
