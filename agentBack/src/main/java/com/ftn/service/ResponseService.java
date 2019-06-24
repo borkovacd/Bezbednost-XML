@@ -67,6 +67,8 @@ public class ResponseService {
 			Agent sender = agentRepository.getOne(response.getResponsesList().get(i).getSender().getId());
 			r.setSender(sender);
 			r.setText(response.getResponsesList().get(i).getText());
+			Message message = messageRepository.getOne(response.getResponsesList().get(i).getMessage().getId());
+			r.setMessage(message);
 
 			responseRepository.save(r);
 			responses.add(r);

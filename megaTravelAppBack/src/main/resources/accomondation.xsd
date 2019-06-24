@@ -482,6 +482,28 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="CreateAnswerRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+            	<xs:element name="agentId" type="xs:long"/>
+            	<xs:element name="userId" type="xs:long"/>
+            	<xs:element name="messageId" type="xs:long"/>
+            	<xs:element name="text" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateAnswerResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="messageId" type="xs:long"/>
+                <xs:element name="responseMessage" type="tns:responseSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -639,6 +661,7 @@
         	<xs:element name="id" type="xs:long" nillable="true"/>
         	<xs:element name="sender" type="tns:agentSoap"/>
         	<xs:element name="recipient" type="tns:userSoap"/>
+        	<xs:element name="message" type="tns:messageSoap"/>
             <xs:element name="text" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>

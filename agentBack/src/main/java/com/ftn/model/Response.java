@@ -21,18 +21,23 @@ public class Response implements Serializable {
 
 	@OneToOne
 	private User recipient;
+	
+	@OneToOne
+	private Message message;
+	
 
 	private String text;
 
 	public Response() {
 	}
 
-	public Response(Long id, Agent sender, User recipient, String text) {
+	public Response(Long id, Agent sender, User recipient, String text, Message message) {
 		super();
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
 		this.text = text;
+		this.message = message;
 	}
 
 	public Long getId() {
@@ -66,5 +71,15 @@ public class Response implements Serializable {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public Message getMessage() {
+		return message;
+	}
+
+	public void setMessage(Message message) {
+		this.message = message;
+	}
+	
+	
 
 }

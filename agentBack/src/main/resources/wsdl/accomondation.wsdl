@@ -483,6 +483,28 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="CreateAnswerRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+            	<xs:element name="agentId" type="xs:long"/>
+            	<xs:element name="userId" type="xs:long"/>
+            	<xs:element name="messageId" type="xs:long"/>
+            	<xs:element name="text" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateAnswerResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="messageId" type="xs:long"/>
+                <xs:element name="responseMessage" type="tns:responseSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -640,6 +662,7 @@
         	<xs:element name="id" nillable="true" type="xs:long"/>
         	<xs:element name="sender" type="tns:agentSoap"/>
         	<xs:element name="recipient" type="tns:userSoap"/>
+        	<xs:element name="message" type="tns:messageSoap"/>
             <xs:element name="text" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -713,6 +736,10 @@
     <wsdl:part element="sch:CreatePriceListRequest" name="CreatePriceListRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="CreateAnswerRequest">
+    <wsdl:part element="sch:CreateAnswerRequest" name="CreateAnswerRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCountriesRequest">
     <wsdl:part element="sch:GetAllCountriesRequest" name="GetAllCountriesRequest">
     </wsdl:part>
@@ -775,6 +802,10 @@
   </wsdl:message>
   <wsdl:message name="GetAllReservationsRequest">
     <wsdl:part element="sch:GetAllReservationsRequest" name="GetAllReservationsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateAnswerResponse">
+    <wsdl:part element="sch:CreateAnswerResponse" name="CreateAnswerResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAccomodationRequest">
@@ -940,6 +971,12 @@
       <wsdl:input message="tns:CreatePriceListRequest" name="CreatePriceListRequest">
     </wsdl:input>
       <wsdl:output message="tns:CreatePriceListResponse" name="CreatePriceListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAnswer">
+      <wsdl:input message="tns:CreateAnswerRequest" name="CreateAnswerRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:CreateAnswerResponse" name="CreateAnswerResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllCountries">
@@ -1134,6 +1171,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="CreatePriceListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAnswer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateAnswerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateAnswerResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
