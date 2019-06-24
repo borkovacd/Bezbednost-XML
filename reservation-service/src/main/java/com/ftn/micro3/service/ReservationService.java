@@ -44,6 +44,74 @@ public class ReservationService
 		return reservationRepository.findAll();
 	}
 	
+	public List<Room> advancedSearchFreeRooms(boolean tipHotel, boolean tipApartman, boolean tipBadAndBreakfast, boolean kategorija1, boolean kategorija2, boolean kategorija3, boolean kategorija4, boolean kategorija5, boolean nekategorisan, boolean parking, boolean wifi, boolean dorucak, boolean poluPansion, boolean pansion, boolean allInclusive, boolean petFriendly, boolean tv, boolean miniKuhinja, boolean kupatilo, boolean bespaltnoOtkazivanje, List<Room> rooms)
+	{
+		List<Room> allRooms = new ArrayList<Room>(rooms);
+		List<Room> typeMatchingRooms =  new ArrayList<Room>();
+		
+		// TypeAccomodation
+		for (Room r : allRooms)
+		{
+			
+			if (r.getAccomodation().getTypeAccomodation().getName() == "hotel" && tipHotel == true)
+			{
+				typeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getTypeAccomodation().getName() == "apartman" && tipApartman == true)
+			{
+				typeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getTypeAccomodation().getName() == "bad&breakfast" && tipBadAndBreakfast == true)
+			{
+				typeMatchingRooms.add(r);
+			}
+			if (tipHotel == false && tipApartman == false && tipBadAndBreakfast == false)
+			{
+				typeMatchingRooms.add(r);
+			}
+		}
+		
+		List<Room> categoryTypeMatchingRooms = new ArrayList<Room>();
+		
+		// Category	
+		for (Room r : typeMatchingRooms)
+		{
+			if (r.getAccomodation().getCategory().getName() == "jedna" && kategorija1 == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getCategory().getName() == "dve" && kategorija2 == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getCategory().getName() == "tri" && kategorija3 == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getCategory().getName() == "cetri" && kategorija4 == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getCategory().getName() == "pet" && kategorija5 == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (r.getAccomodation().getCategory().getName() == "nekategorisan" && nekategorisan == true)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+			if (kategorija1 == false && kategorija2 == false && kategorija3 == false && kategorija4 == false && kategorija5 == false && nekategorisan == false)
+			{
+				categoryTypeMatchingRooms.add(r);
+			}
+		}
+		
+		List<Room> additionalCatTypeMatching = new ArrayList<Room>();
+	
+		return additionalCatTypeMatching ;
+	
+	}
+	
 	public List<Room> searchFreeRooms(String city, String fromDate, String toDate, int numberOfPersons)
 	{
 		List<Room> allRooms = roomRepository.findAll();
