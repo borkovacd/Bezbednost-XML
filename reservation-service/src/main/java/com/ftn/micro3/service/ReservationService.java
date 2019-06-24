@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.micro3.model.Accomodation;
 import com.ftn.micro3.model.Reservation;
+import com.ftn.micro3.model.ReservationAgent;
 import com.ftn.micro3.model.Room;
 import com.ftn.micro3.model.User;
 import com.ftn.micro3.repository.AccomodationRepository;
+import com.ftn.micro3.repository.ReservationAgentRepository;
 import com.ftn.micro3.repository.ReservationRepository;
 import com.ftn.micro3.repository.RoomRepository;
 
@@ -27,6 +29,9 @@ public class ReservationService
 	
 	@Autowired
 	AccomodationRepository accomodationRepository ;
+	
+	@Autowired
+	ReservationAgentRepository reservationAgentRepository ;
 	
 	public List<Reservation> findReservationsByUserId(Long id)
 	{
@@ -55,6 +60,7 @@ public class ReservationService
 		
 		// lista postojecih rezervacija
 		List<Reservation> reservations = reservationRepository.findAll();
+		List<ReservationAgent> reservationsAgent = reservationAgentRepository.findAll();
 		
 		System.out.println("Soba ima: " + allRooms.size());
 		
@@ -87,16 +93,34 @@ public class ReservationService
 				
 				// ukoliko je pocetni datum pre kraja rezervacije
 				// ukoliko je krajnji datum pre kraja rezervacije
-				if((res.getFromDate().compareTo(fromDateConverted) >= 0 && res.getFromDate().compareTo(toDateConverted) <= 0) || (res.getToDate().compareTo(fromDateConverted) >= 0 && res.getToDate().compareTo(toDateConverted) <= 0)) 
+				if((res.getFromDate().compareTo(fromDateConverted) >= 0 && res.getFromDate().compareTo(toDateConverted) <= 0 && res.isConfirmed() == true) || (res.getToDate().compareTo(fromDateConverted) >= 0 && res.getToDate().compareTo(toDateConverted) <= 0 && res.isConfirmed() == false)) 
 				{
 					matchingRoomsAccomodationCopy.remove(res.getRoom());
 				}
-			}
+			}		
 			
-		
 		}
 		
-		return matchingRoomsAccomodationCopy;
+		List<Room> matchingRoomsAccomodationFinal = new ArrayList<Room>(matchingRoomsAccomodationCopy);
+
+		for (ReservationAgent resAgent : reservationsAgent) // prolazak kroz sve rezervacije agenta
+		{
+			if (matchingRoomsAccomodationFinal.contains(resAgent.getRoom())) // ukoliko se soba iz agentove rezervacije nalazi medju odgovarajucim sobama po smestaju
+			{
+				// ukoliko su pocetni datumi jednaki, ili je prosledjen pocetni veci od onog na rezervaciji
+				// ukoliko je pocetni datum rezervacije pre krajnjeg datuma rezervacije
+				
+				// ukoliko je pocetni datum pre kraja rezervacije
+				// ukoliko je krajnji datum pre kraja rezervacije
+				if((resAgent.getFromDate().compareTo(fromDateConverted) >= 0 && resAgent.getFromDate().compareTo(toDateConverted) <= 0) || (resAgent.getToDate().compareTo(fromDateConverted) >= 0 && resAgent.getToDate().compareTo(toDateConverted) <= 0)) 
+				{
+					matchingRoomsAccomodationFinal.remove(resAgent.getRoom());
+				}
+			}		
+			
+		}
+		
+		return matchingRoomsAccomodationFinal;
 	}
 	
 	public Room getOneRoom(Long id)
