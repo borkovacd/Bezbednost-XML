@@ -6,6 +6,7 @@ import {v} from '@angular/core/src/render3';
 import {AdvancedSearchModel} from '../model/advancedSearch.model';
 import {SearchModel} from '../model/search.model';
 import {Room} from '../model/room.model';
+import {ReservationModel} from '../model/reservation.model';
 
 
 @Component ({
@@ -17,7 +18,9 @@ export  class WelcomepageComponent {
 
   advancedSearch = false;
 
-  
+
+  public fromDate: any;
+  public toDate: any;
   public items: Room[];
   public form: FormGroup;
   public advancedSearchform: FormGroup;
@@ -130,6 +133,9 @@ export  class WelcomepageComponent {
       return;
     }
 
+    this.fromDate = this.checkInDate.value;
+    this.toDate = this.checkOutDate.value;
+
     const object = new SearchModel(
       this.city.value,
       this.checkInDate.value,
@@ -144,8 +150,18 @@ export  class WelcomepageComponent {
     this.advancedSearch = true;
 
   }
-  reservationRoom(id: number) {
+  reservationRoom(item: number) {
 
+    const resDto = new ReservationModel();
+
+    resDto.idRoom = item;
+    resDto.fromDate = this.fromDate;
+    resDto.toDate = this.toDate;
+    resDto.confirmed = false;
+
+    this.reservationService.makeRes(resDto).subscribe( data => {
+      this.router.navigateByUrl('/home');
+    });
   }
 
 

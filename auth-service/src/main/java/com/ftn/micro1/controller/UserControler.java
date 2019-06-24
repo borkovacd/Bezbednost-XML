@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.micro1.dto.UserDTO;
 import com.ftn.micro1.dto.UserLogin;
+import com.ftn.micro1.enums.ClientStatus;
 import com.ftn.micro1.enums.NameRole;
 import com.ftn.micro1.model.Permission;
 import com.ftn.micro1.model.User;
@@ -117,6 +118,15 @@ public class UserControler {
 			// ako korisnik postoji u bazi
 
 			User userNew = userService.findByEmail(userDTO.getEmail());
+			
+			if (userNew.getStatus().equals(ClientStatus.NEAKTIVAN)) {
+				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
+			} 
+			
+			if (userNew.getStatus().equals(ClientStatus.UKLONJEN)) {
+				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
+				
+			}
 			
 			System.out.println("pass" + userDTO.getPassword());
 
