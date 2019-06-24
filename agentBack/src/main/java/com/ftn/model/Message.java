@@ -22,8 +22,9 @@ public class Message implements Serializable {
 	@OneToOne
 	private Agent recipient;
 
-	@OneToOne
+	/*@OneToOne
 	private Response response;
+	*/
 
 	private String text;
 
@@ -31,12 +32,12 @@ public class Message implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Message(Long id, User sender, Agent recipient, Response response, String text) {
+	public Message(Long id, User sender, Agent recipient, String text) {
 		super();
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
-		this.response = response;
+		//this.response = response;
 		this.text = text;
 	}
 
@@ -64,13 +65,13 @@ public class Message implements Serializable {
 		this.recipient = recipient;
 	}
 
-	public Response getResponse() {
+	/*public Response getResponse() {
 		return response;
 	}
 
 	public void setResponse(Response response) {
 		this.response = response;
-	}
+	}*/
 
 	public String getText() {
 		return text;

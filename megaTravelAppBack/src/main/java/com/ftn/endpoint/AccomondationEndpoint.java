@@ -22,13 +22,16 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import com.ftn.enums.ClientStatus;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
+import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Country;
+import com.ftn.model.Message;
 import com.ftn.model.Permission;
 import com.ftn.model.Price;
 import com.ftn.model.Reservation;
 import com.ftn.model.ReservationAgent;
+import com.ftn.model.Response;
 import com.ftn.model.Role;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
@@ -57,6 +60,8 @@ import com.ftn.webservice.CitySoap;
 import com.ftn.webservice.ConfirmReservationRequest;
 import com.ftn.webservice.ConfirmReservationResponse;
 import com.ftn.webservice.CountrySoap;
+import com.ftn.webservice.CreateAnswerRequest;
+import com.ftn.webservice.CreateAnswerResponse;
 import com.ftn.webservice.CreatePriceListRequest;
 import com.ftn.webservice.CreatePriceListResponse;
 import com.ftn.webservice.CreateReservationAgentRequest;
@@ -179,7 +184,7 @@ public class AccomondationEndpoint {
 	//The @ResponsePayload annotation makes Spring WS map the returned value to the response payload.
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "RegisterAccomodationRequest")
 	@ResponsePayload
-	public RegisterAccomodationResponse getAccomondation(@RequestPayload RegisterAccomodationRequest request) {
+	public RegisterAccomodationResponse registerAccomondation(@RequestPayload RegisterAccomodationRequest request) {
 		
 		//Request poruka sa agentskog back-a
 		System.out.println("*****");
@@ -1080,9 +1085,11 @@ public class AccomondationEndpoint {
 				AgentSoap agentSoap = new AgentSoap();
 				agentSoap.setId(messageRepository.findAll().get(i).getRecipient().getId());
 				m.setRecipient(agentSoap);
-				ResponseSoap responseSoap = new ResponseSoap();
-				responseSoap.setId(messageRepository.findAll().get(i).getResponse().getId());
-				m.setResponse(responseSoap);
+				/*ResponseSoap responseSoap = new ResponseSoap();
+				if(responseRepository.getOne(messageRepository.findAll().get(i).getResponse().getId()) != null) {
+					responseSoap.setId(messageRepository.findAll().get(i).getResponse().getId());
+					m.setResponse(responseSoap);
+				}*/
 				m.setText(messageRepository.findAll().get(i).getText());
 				
 				response.getMessagesList().add(m);
@@ -1120,6 +1127,9 @@ public class AccomondationEndpoint {
 				agentSoap.setId(responseRepository.findAll().get(i).getSender().getId());
 				r.setSender(agentSoap);
 				r.setText(responseRepository.findAll().get(i).getText());
+				MessageSoap messageSoap = new MessageSoap();
+				messageSoap.setId(responseRepository.findAll().get(i).getMessage().getId());
+				r.setMessage(messageSoap);
 				
 				response.getResponsesList().add(r);
 				
@@ -1127,6 +1137,49 @@ public class AccomondationEndpoint {
 		}
 		return response;
 	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateAnswerRequest")
+	@ResponsePayload
+	public CreateAnswerResponse createAnswer(@RequestPayload CreateAnswerRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		CreateAnswerResponse response = new CreateAnswerResponse();
+		
+		Response responseMessage = new Response();
+		responseMessage.setText(request.getText());
+		User recipient = userRepository.getOne(request.getUserId());
+		responseMessage.setRecipient(recipient);
+		Agent sender = agentRepository.getOne(request.getAgentId());
+		responseMessage.setSender(sender);
+		Message message = messageRepository.getOne(request.getMessageId());
+		responseMessage.setMessage(message);
+		
+		responseRepository.save(responseMessage);
+		
+		ResponseSoap rs = new ResponseSoap();
+		rs.setId(responseMessage.getId());
+		rs.setText(responseMessage.getText());
+		UserSoap userSoap = new UserSoap();
+		userSoap.setId(recipient.getId());
+		rs.setRecipient(userSoap);
+		AgentSoap agentSoap = new AgentSoap();
+		agentSoap.setId(sender.getId());
+		rs.setSender(agentSoap);
+		MessageSoap messageSoap = new MessageSoap();
+		messageSoap.setId(message.getId());
+		rs.setMessage(messageSoap);
+		
+		response.setResponseMessage(rs);
+		response.setMessageId(message.getId());
+
+		return response;
+	}
+	
+	
 	
 	
 

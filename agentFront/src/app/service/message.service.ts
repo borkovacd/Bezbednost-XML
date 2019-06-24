@@ -23,8 +23,10 @@ export  class MessageService {
 
 
   answerToClient(object: AnswerModel): Observable<any> {
+    const token = localStorage.getItem('agentId');
     const body = JSON.stringify(object);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/createAnswer`, body,{headers: headers})
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.post(`${this.BASE_URL}/createAnswer/${token}`, body,{headers: headers})
   }
+
 }

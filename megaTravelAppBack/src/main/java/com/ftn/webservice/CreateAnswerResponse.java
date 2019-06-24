@@ -8,8 +8,6 @@
 
 package com.ftn.webservice;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,7 +26,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="countrieslist" type="{http://ftn.com/webservice}countrySoap" maxOccurs="unbounded"/>
+ *         &lt;element name="messageId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="responseMessage" type="{http://ftn.com/webservice}responseSoap"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,15 +39,17 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "response",
-    "countrieslist"
+    "messageId",
+    "responseMessage"
 })
-@XmlRootElement(name = "GetAllCountriesResponse")
-public class GetAllCountriesResponse {
+@XmlRootElement(name = "CreateAnswerResponse")
+public class CreateAnswerResponse {
 
     @XmlElement(required = true)
     protected String response;
+    protected long messageId;
     @XmlElement(required = true)
-    protected List<CountrySoap> countrieslist;
+    protected ResponseSoap responseMessage;
 
     /**
      * Gets the value of the response property.
@@ -75,32 +76,43 @@ public class GetAllCountriesResponse {
     }
 
     /**
-     * Gets the value of the countrieslist property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the countrieslist property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCountrieslist().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link CountrySoap }
-     * 
+     * Gets the value of the messageId property.
      * 
      */
-    public List<CountrySoap> getCountrieslist() {
-        if (countrieslist == null) {
-            countrieslist = new ArrayList<CountrySoap>();
-        }
-        return this.countrieslist;
+    public long getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Sets the value of the messageId property.
+     * 
+     */
+    public void setMessageId(long value) {
+        this.messageId = value;
+    }
+
+    /**
+     * Gets the value of the responseMessage property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ResponseSoap }
+     *     
+     */
+    public ResponseSoap getResponseMessage() {
+        return responseMessage;
+    }
+
+    /**
+     * Sets the value of the responseMessage property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ResponseSoap }
+     *     
+     */
+    public void setResponseMessage(ResponseSoap value) {
+        this.responseMessage = value;
     }
 
 }

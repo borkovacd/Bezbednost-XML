@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="deletedAccomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
  *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="messageId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="responseMessage" type="{http://ftn.com/webservice}responseSoap"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,31 +38,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "deletedAccomodationId",
-    "response"
+    "response",
+    "messageId",
+    "responseMessage"
 })
-@XmlRootElement(name = "DeleteAccomodationResponse")
-public class DeleteAccomodationResponse {
+@XmlRootElement(name = "CreateAnswerResponse")
+public class CreateAnswerResponse {
 
-    protected long deletedAccomodationId;
     @XmlElement(required = true)
     protected String response;
-
-    /**
-     * Gets the value of the deletedAccomodationId property.
-     * 
-     */
-    public long getDeletedAccomodationId() {
-        return deletedAccomodationId;
-    }
-
-    /**
-     * Sets the value of the deletedAccomodationId property.
-     * 
-     */
-    public void setDeletedAccomodationId(long value) {
-        this.deletedAccomodationId = value;
-    }
+    protected long messageId;
+    @XmlElement(required = true)
+    protected ResponseSoap responseMessage;
 
     /**
      * Gets the value of the response property.
@@ -85,6 +73,46 @@ public class DeleteAccomodationResponse {
      */
     public void setResponse(String value) {
         this.response = value;
+    }
+
+    /**
+     * Gets the value of the messageId property.
+     * 
+     */
+    public long getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Sets the value of the messageId property.
+     * 
+     */
+    public void setMessageId(long value) {
+        this.messageId = value;
+    }
+
+    /**
+     * Gets the value of the responseMessage property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ResponseSoap }
+     *     
+     */
+    public ResponseSoap getResponseMessage() {
+        return responseMessage;
+    }
+
+    /**
+     * Sets the value of the responseMessage property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ResponseSoap }
+     *     
+     */
+    public void setResponseMessage(ResponseSoap value) {
+        this.responseMessage = value;
     }
 
 }

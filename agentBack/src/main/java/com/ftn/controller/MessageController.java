@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.dto.AnswerDTO;
 import com.ftn.model.Message;
 import com.ftn.service.MessageService;
+import com.ftn.service.ResponseService;
 
 
 
@@ -22,6 +23,7 @@ import com.ftn.service.MessageService;
 @RestController
 @RequestMapping(value = "/api/message")
 public class MessageController {
+	
 	@Autowired
 	private MessageService messageService;
 
@@ -34,22 +36,10 @@ public class MessageController {
 
 	}
 	
-	@PostMapping("/createAnswer")
-	public void createAnswer(@RequestBody AnswerDTO answerDTO) {
-		//ovde ti u answerDTO stize token to ti je agent koga tako dobijes
-		//trbea da vratis odgovor u klasi RESPONSE
-		//token tj agent je sender
-		//recipient = idUser znaci onaj koji prima poruku
-		//text ti je text tj odgovor koji agent salje klijentu
+	@PostMapping("/createAnswer/{token}")
+	public void createAnswer(@RequestBody AnswerDTO answerDTO, @PathVariable String token) throws Exception {
 		
-		
-		Long idMessage = Long.parseLong(answerDTO.getIdMessage());
-		//ovaj idMessage ti treba da pronadjes tu poruku u bazi i setujes njen response
-		//znaci prvo pravis objekat kalse Response to vracas korisniku 
-		//a u modelu Message imas objekat response koji setujes 
-		
-		Long idUser = Long.parseLong(answerDTO.getReceipient());
-
+		messageService.createAnswer(answerDTO, token);
 
 	}
 

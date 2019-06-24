@@ -27,6 +27,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="agentId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="messageId" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,14 +41,21 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "request",
-    "agentId"
+    "agentId",
+    "userId",
+    "messageId",
+    "text"
 })
-@XmlRootElement(name = "GetAllReservationsRequest")
-public class GetAllReservationsRequest {
+@XmlRootElement(name = "CreateAnswerRequest")
+public class CreateAnswerRequest {
 
     @XmlElement(required = true)
     protected String request;
     protected long agentId;
+    protected long userId;
+    protected long messageId;
+    @XmlElement(required = true)
+    protected String text;
 
     /**
      * Gets the value of the request property.
@@ -85,6 +95,62 @@ public class GetAllReservationsRequest {
      */
     public void setAgentId(long value) {
         this.agentId = value;
+    }
+
+    /**
+     * Gets the value of the userId property.
+     * 
+     */
+    public long getUserId() {
+        return userId;
+    }
+
+    /**
+     * Sets the value of the userId property.
+     * 
+     */
+    public void setUserId(long value) {
+        this.userId = value;
+    }
+
+    /**
+     * Gets the value of the messageId property.
+     * 
+     */
+    public long getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Sets the value of the messageId property.
+     * 
+     */
+    public void setMessageId(long value) {
+        this.messageId = value;
+    }
+
+    /**
+     * Gets the value of the text property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Sets the value of the text property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setText(String value) {
+        this.text = value;
     }
 
 }

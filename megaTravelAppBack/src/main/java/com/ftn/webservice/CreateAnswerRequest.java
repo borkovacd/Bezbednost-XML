@@ -26,9 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="accomodationId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="roomId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="editRoomData" type="{http://ftn.com/webservice}roomSoap"/>
+ *         &lt;element name="agentId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="messageId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,19 +41,21 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "request",
-    "accomodationId",
-    "roomId",
-    "editRoomData"
+    "agentId",
+    "userId",
+    "messageId",
+    "text"
 })
-@XmlRootElement(name = "EditRoomRequest")
-public class EditRoomRequest {
+@XmlRootElement(name = "CreateAnswerRequest")
+public class CreateAnswerRequest {
 
     @XmlElement(required = true)
     protected String request;
-    protected long accomodationId;
-    protected long roomId;
+    protected long agentId;
+    protected long userId;
+    protected long messageId;
     @XmlElement(required = true)
-    protected RoomSoap editRoomData;
+    protected String text;
 
     /**
      * Gets the value of the request property.
@@ -79,59 +82,75 @@ public class EditRoomRequest {
     }
 
     /**
-     * Gets the value of the accomodationId property.
+     * Gets the value of the agentId property.
      * 
      */
-    public long getAccomodationId() {
-        return accomodationId;
+    public long getAgentId() {
+        return agentId;
     }
 
     /**
-     * Sets the value of the accomodationId property.
+     * Sets the value of the agentId property.
      * 
      */
-    public void setAccomodationId(long value) {
-        this.accomodationId = value;
+    public void setAgentId(long value) {
+        this.agentId = value;
     }
 
     /**
-     * Gets the value of the roomId property.
+     * Gets the value of the userId property.
      * 
      */
-    public long getRoomId() {
-        return roomId;
+    public long getUserId() {
+        return userId;
     }
 
     /**
-     * Sets the value of the roomId property.
+     * Sets the value of the userId property.
      * 
      */
-    public void setRoomId(long value) {
-        this.roomId = value;
+    public void setUserId(long value) {
+        this.userId = value;
     }
 
     /**
-     * Gets the value of the editRoomData property.
+     * Gets the value of the messageId property.
+     * 
+     */
+    public long getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Sets the value of the messageId property.
+     * 
+     */
+    public void setMessageId(long value) {
+        this.messageId = value;
+    }
+
+    /**
+     * Gets the value of the text property.
      * 
      * @return
      *     possible object is
-     *     {@link RoomSoap }
+     *     {@link String }
      *     
      */
-    public RoomSoap getEditRoomData() {
-        return editRoomData;
+    public String getText() {
+        return text;
     }
 
     /**
-     * Sets the value of the editRoomData property.
+     * Sets the value of the text property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RoomSoap }
+     *     {@link String }
      *     
      */
-    public void setEditRoomData(RoomSoap value) {
-        this.editRoomData = value;
+    public void setText(String value) {
+        this.text = value;
     }
 
 }
