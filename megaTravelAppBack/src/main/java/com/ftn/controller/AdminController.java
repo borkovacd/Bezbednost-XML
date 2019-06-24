@@ -79,17 +79,7 @@ public class AdminController {
 	}
 	
 	*/
-	
-	
-	@RequestMapping(value="/addCategory",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addCategory(@RequestBody CategoryDTO categoryDto) 
-	{
-		Category category = new Category();
-		category.setName(categoryDto.getName());
-	
-		categoryService.saveCategory(category);
-	}
-	
+
 	/*
 	@RequestMapping(value="/addTypeAccomodation",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void addTypeAccomodation(@RequestBody TypeAccomodationDTO typeAccomodationDto) 

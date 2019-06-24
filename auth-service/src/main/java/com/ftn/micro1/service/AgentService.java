@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.micro1.model.Agent;
+import com.ftn.micro1.model.User;
 import com.ftn.micro1.repository.AgentRepository;
 
 @Service
@@ -23,5 +24,7 @@ public class AgentService {
 
 			return (ArrayList<Agent>) agentRepository.findAll();
 	}
+
+	
 
 }

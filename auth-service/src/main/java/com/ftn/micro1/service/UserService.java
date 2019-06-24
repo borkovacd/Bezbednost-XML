@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ftn.micro1.dto.UserDTO;
+import com.ftn.micro1.enums.NameRole;
 import com.ftn.micro1.model.Permission;
 import com.ftn.micro1.model.Role;
 import com.ftn.micro1.model.User;
@@ -39,6 +40,12 @@ public class UserService implements UserDetailsService  {
 	       
         return getUserSecurity(user);
 		
+	}
+	
+	public ArrayList<User> getUsers() {
+		
+		
+		return  (ArrayList<User>) userRepository.findAll();
 	}
 	
 	private UserSecurity getUserSecurity(User user) {

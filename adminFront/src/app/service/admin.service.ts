@@ -3,6 +3,7 @@ import {AgentModel} from '../model/Agent.model';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginModel} from '../model/login.model';
+import {UserModel} from '../model/user.model';
 
 let token;
 token = localStorage.getItem('loggedUser');
@@ -40,5 +41,29 @@ export class AdminService {
 
   }
 
+
+  getUsers(): Observable<UserModel[]> {
+    const a = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
+    return this.http.get<UserModel[]>(`${this.BASE_URL}/admin/users` , {headers: headers});
+  }
+
+  activate(email: string) {
+    const a = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
+    return this.http.get(`${this.BASE_URL}/admin/activateUser/${email}`, {headers: headers});
+  }
+
+  remove(email: string){
+    const a = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
+    return this.http.get(`${this.BASE_URL}/admin/removeUser/${email}`, {headers: headers});
+  }
+
+  block(email: string){
+    const a = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
+    return this.http.get(`${this.BASE_URL}/admin/blockUser/${email}`, {headers: headers});
+  }
 
 }

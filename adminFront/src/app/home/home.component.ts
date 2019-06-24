@@ -38,4 +38,8 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/addAccommodationTypes');
 
   }
+
+  users() {
+    this.router.navigateByUrl('listUsers');
+  }
 }

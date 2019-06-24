@@ -5,11 +5,8 @@ import { AccomodationTypeModel } from '../model/AccomodationType.model';
 import {CategoryModel} from '../model/Category.model';
 import {Observable} from 'rxjs/Observable';
 
-let token;
-token = localStorage.getItem('loggedUser');
-//alert(token);
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json', 'token' : token}),
+  headers: new HttpHeaders({'Content-Type': 'application/json'}),
 };
 
 @Injectable()
@@ -24,43 +21,58 @@ export class AccomodationService {
 
   addNewAdditionalService(additionalService: AdditionalServiceModel) {
     const data = JSON.stringify(additionalService);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( `${this.BASE_URL}/addNewAdditionalService`, data, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post( `${this.BASE_URL}/addNewAdditionalService`, data, {headers: headers});
   }
 
   removeAdditionalService(service: AdditionalServiceModel) {
-    return this.http.post<AdditionalServiceModel[]>(`${this.BASE_URL}/removeAdditionalService`, service, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post<AdditionalServiceModel[]>(`${this.BASE_URL}/removeAdditionalService`, service, {headers: headers});
   }
 
   getAdditionalServices() {
-    return this.http.get<AdditionalServiceModel[]>(`${this.BASE_URL}/getAdditionalServices`, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.get<AdditionalServiceModel[]>(`${this.BASE_URL}/getAdditionalServices`, {headers: headers});
   }
 
   addNewAccomodationType(accommodationType: AccomodationTypeModel) {
     const data = JSON.stringify(accommodationType);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( `${this.BASE_URL_2}/addNewAccomodationType`, data, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post( `${this.BASE_URL_2}/addNewAccomodationType`, data, {headers: headers});
   }
 
   removeAccomodationType(type: AccomodationTypeModel) {
-    return this.http.post<AccomodationTypeModel[]>(`${this.BASE_URL_2}/removeAccomodationType`, type, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post<AccomodationTypeModel[]>(`${this.BASE_URL_2}/removeAccomodationType`, type, {headers: headers});
   }
 
   getAccomodationTypes() {
-    return this.http.get<AccomodationTypeModel[]>(`${this.BASE_URL_2}/getAccomodationTypes`, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.get<AccomodationTypeModel[]>(`${this.BASE_URL_2}/getAccomodationTypes`, {headers: headers});
   }
 
   addNewCategory(category: CategoryModel): Observable<any> {
     const data = JSON.stringify(category);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( `${this.BASE_URL_3}/addNewCategory`, data, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post( `${this.BASE_URL_3}/addNewCategory`, data, {headers: headers});
   }
 
   removeCategory(type: CategoryModel) {
-    return this.http.post<CategoryModel[]>(`${this.BASE_URL_3}/removeCategory`, type, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.post<CategoryModel[]>(`${this.BASE_URL_3}/removeCategory`, type, {headers: headers});
   }
 
   getCategories() {
-    return this.http.get<CategoryModel[]>(`${this.BASE_URL_3}/getCategories`, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token' : token});
+    return this.http.get<CategoryModel[]>(`${this.BASE_URL_3}/getCategories`, {headers: headers});
   }
 }
