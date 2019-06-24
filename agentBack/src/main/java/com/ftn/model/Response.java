@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class Response implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@OneToOne

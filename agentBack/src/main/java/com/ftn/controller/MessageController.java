@@ -26,11 +26,10 @@ public class MessageController {
 	private MessageService messageService;
 
 	@GetMapping("/getAllMessages/{token}")
-	public ResponseEntity<List<Message>> getAllMessages(@PathVariable String token) {
-		//sa fronta ti stize token iz kog treba da dobijes agenta 
-		//to vidi kako je ivana radila u controllerima
-		//treba da za tog agnta vratis listu njegovih poruka
-		List<Message> message = null;
+	public ResponseEntity<List<Message>> getAllMessages(@PathVariable String token) throws Exception {
+		
+		List<Message> message = messageService.getAllMessages(token);
+		
 		return new ResponseEntity<>(message, HttpStatus.OK);
 
 	}

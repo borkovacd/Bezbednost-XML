@@ -54,7 +54,7 @@ public class ReservationAgentController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping("/createReservation/{idRoom}/token")
+	@PostMapping("/createReservation/{idRoom}/{token}")
 	public void createReservation(@RequestBody ReservationDTO reservationDTO,@PathVariable Long idRoom,@PathVariable String token) throws Exception {
 		
 		reservationAgentService.createReservation(reservationDTO, idRoom, token);

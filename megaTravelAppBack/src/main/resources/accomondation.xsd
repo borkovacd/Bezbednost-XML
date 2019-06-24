@@ -446,6 +446,42 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllMessagesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllMessagesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="messagesList" maxOccurs="unbounded" type="tns:messageSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllResponsesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllResponsesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="responsesList" maxOccurs="unbounded" type="tns:responseSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -585,6 +621,25 @@
             <xs:element name="toDate" type="xs:date"/>
             <xs:element name="room" type="tns:roomSoap"/>
             <xs:element name="agent" type="tns:agentSoap"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="messageSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+        	<xs:element name="sender" type="tns:userSoap"/>
+        	<xs:element name="recipient" type="tns:agentSoap"/>
+            <xs:element name="response" type="tns:responseSoap"/>
+            <xs:element name="text" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="responseSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+        	<xs:element name="sender" type="tns:agentSoap"/>
+        	<xs:element name="recipient" type="tns:userSoap"/>
+            <xs:element name="text" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     

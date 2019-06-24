@@ -39,10 +39,12 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
+import com.ftn.repository.MessageRepository;
 import com.ftn.repository.PermissionRepository;
 import com.ftn.repository.PriceRepository;
 import com.ftn.repository.ReservationAgentRepository;
 import com.ftn.repository.ReservationRepository;
+import com.ftn.repository.ResponseRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
@@ -85,12 +87,16 @@ import com.ftn.webservice.GetAllCitiesRequest;
 import com.ftn.webservice.GetAllCitiesResponse;
 import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
+import com.ftn.webservice.GetAllMessagesRequest;
+import com.ftn.webservice.GetAllMessagesResponse;
 import com.ftn.webservice.GetAllPermissionsRequest;
 import com.ftn.webservice.GetAllPermissionsResponse;
 import com.ftn.webservice.GetAllReservationsAgentRequest;
 import com.ftn.webservice.GetAllReservationsAgentResponse;
 import com.ftn.webservice.GetAllReservationsRequest;
 import com.ftn.webservice.GetAllReservationsResponse;
+import com.ftn.webservice.GetAllResponsesRequest;
+import com.ftn.webservice.GetAllResponsesResponse;
 import com.ftn.webservice.GetAllRolesRequest;
 import com.ftn.webservice.GetAllRolesResponse;
 import com.ftn.webservice.GetAllUsersRequest;
@@ -99,6 +105,7 @@ import com.ftn.webservice.GetRoomPricesRequest;
 import com.ftn.webservice.GetRoomPricesResponse;
 import com.ftn.webservice.GetRoomRequest;
 import com.ftn.webservice.GetRoomResponse;
+import com.ftn.webservice.MessageSoap;
 import com.ftn.webservice.PermissionSoap;
 import com.ftn.webservice.PriceSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
@@ -107,6 +114,7 @@ import com.ftn.webservice.RegisterRoomRequest;
 import com.ftn.webservice.RegisterRoomResponse;
 import com.ftn.webservice.ReservationAgentSoap;
 import com.ftn.webservice.ReservationSoap;
+import com.ftn.webservice.ResponseSoap;
 import com.ftn.webservice.RoleSoap;
 import com.ftn.webservice.RoomSoap;
 import com.ftn.webservice.TypeAccomodationSoap;
@@ -133,6 +141,8 @@ public class AccomondationEndpoint {
 	private PermissionRepository permissionRepository;
 	private RoleRepository roleRepository;
 	private ReservationAgentRepository reservationAgentRepository;
+	private MessageRepository messageRepository;
+	private ResponseRepository responseRepository;
 	
 	
 	@Autowired
@@ -140,7 +150,8 @@ public class AccomondationEndpoint {
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
 			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository, 
 			ReservationRepository reservationRepository, UserRepository userRepository, PermissionRepository permissionRepository, 
-			RoleRepository roleRepository, ReservationAgentRepository reservationAgentRepository) {
+			RoleRepository roleRepository, ReservationAgentRepository reservationAgentRepository, MessageRepository messageRepository,
+			ResponseRepository responseRepository) {
 			
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
@@ -156,6 +167,8 @@ public class AccomondationEndpoint {
 		this.permissionRepository = permissionRepository;
 		this.roleRepository = roleRepository;
 		this.reservationAgentRepository = reservationAgentRepository;
+		this.messageRepository = messageRepository;
+		this.responseRepository = responseRepository;
 	}
 	
 	
@@ -1039,6 +1052,81 @@ public class AccomondationEndpoint {
 
 			return response;
 		}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllMessagesRequest")
+	@ResponsePayload
+	public GetAllMessagesResponse getAllMessages(@RequestPayload GetAllMessagesRequest request) throws DatatypeConfigurationException {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllMessagesResponse response = new GetAllMessagesResponse();
+		String agentUsername = agentRepository.getOne(request.getAgentId()).getUsername();
+		response.setResponse("Head back response: 'Messages by agent " + agentUsername + " successfully sent");
+
+	
+		for(int i = 0; i < messageRepository.findAll().size(); i++) {
+			
+			if(messageRepository.findAll().get(i).getRecipient().getId() == request.getAgentId()) {
+				
+				MessageSoap m = new MessageSoap();
+
+				m.setId(messageRepository.findAll().get(i).getId());
+				UserSoap userSoap = new UserSoap();
+				userSoap.setId(messageRepository.findAll().get(i).getSender().getId());
+				m.setSender(userSoap);
+				AgentSoap agentSoap = new AgentSoap();
+				agentSoap.setId(messageRepository.findAll().get(i).getRecipient().getId());
+				m.setRecipient(agentSoap);
+				ResponseSoap responseSoap = new ResponseSoap();
+				responseSoap.setId(messageRepository.findAll().get(i).getResponse().getId());
+				m.setResponse(responseSoap);
+				m.setText(messageRepository.findAll().get(i).getText());
+				
+				response.getMessagesList().add(m);
+				
+			}	
+		}
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllResponsesRequest")
+	@ResponsePayload
+	public GetAllResponsesResponse getAllResponses(@RequestPayload GetAllResponsesRequest request) throws DatatypeConfigurationException {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllResponsesResponse response = new GetAllResponsesResponse();
+		String agentUsername = agentRepository.getOne(request.getAgentId()).getUsername();
+		response.setResponse("Head back response: 'Responses for agent " + agentUsername + " successfully sent");
+
+	
+		for(int i = 0; i < responseRepository.findAll().size(); i++) {
+			
+			if(responseRepository.findAll().get(i).getSender().getId() == request.getAgentId()) {
+				
+				ResponseSoap r = new ResponseSoap();
+
+				r.setId(responseRepository.findAll().get(i).getId());
+				UserSoap userSoap = new UserSoap();
+				userSoap.setId(responseRepository.findAll().get(i).getRecipient().getId());
+				r.setRecipient(userSoap);
+				AgentSoap agentSoap = new AgentSoap();
+				agentSoap.setId(responseRepository.findAll().get(i).getSender().getId());
+				r.setSender(agentSoap);
+				r.setText(responseRepository.findAll().get(i).getText());
+				
+				response.getResponsesList().add(r);
+				
+			}	
+		}
+		return response;
+	}
 	
 	
 

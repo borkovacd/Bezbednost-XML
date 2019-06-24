@@ -447,6 +447,42 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllMessagesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllMessagesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="messagesList" type="tns:messageSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllResponsesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllResponsesResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="responsesList" type="tns:responseSoap"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -589,6 +625,25 @@
         </xs:sequence>
     </xs:complexType>
     
+    <xs:complexType name="messageSoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+        	<xs:element name="sender" type="tns:userSoap"/>
+        	<xs:element name="recipient" type="tns:agentSoap"/>
+            <xs:element name="response" type="tns:responseSoap"/>
+            <xs:element name="text" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="responseSoap">
+        <xs:sequence>
+        	<xs:element name="id" nillable="true" type="xs:long"/>
+        	<xs:element name="sender" type="tns:agentSoap"/>
+        	<xs:element name="recipient" type="tns:userSoap"/>
+            <xs:element name="text" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
     <xs:simpleType final="restriction" name="clientStatus">
     	<xs:restriction base="xs:string">
         	<xs:enumeration value="AKTIVAN"/>
@@ -612,6 +667,10 @@
   </wsdl:types>
   <wsdl:message name="EditRoomRequest">
     <wsdl:part element="sch:EditRoomRequest" name="EditRoomRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllMessagesResponse">
+    <wsdl:part element="sch:GetAllMessagesResponse" name="GetAllMessagesResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAccomodationRoomsResponse">
@@ -706,6 +765,10 @@
     <wsdl:part element="sch:CreateReservationAgentRequest" name="CreateReservationAgentRequest">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllMessagesRequest">
+    <wsdl:part element="sch:GetAllMessagesRequest" name="GetAllMessagesRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetAllCitiesResponse">
     <wsdl:part element="sch:GetAllCitiesResponse" name="GetAllCitiesResponse">
     </wsdl:part>
@@ -738,8 +801,16 @@
     <wsdl:part element="sch:GetAllCountriesResponse" name="GetAllCountriesResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllResponsesRequest">
+    <wsdl:part element="sch:GetAllResponsesRequest" name="GetAllResponsesRequest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="GetRoomPricesResponse">
     <wsdl:part element="sch:GetRoomPricesResponse" name="GetRoomPricesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllResponsesResponse">
+    <wsdl:part element="sch:GetAllResponsesResponse" name="GetAllResponsesResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetRoomRequest">
@@ -815,6 +886,12 @@
       <wsdl:input message="tns:EditRoomRequest" name="EditRoomRequest">
     </wsdl:input>
       <wsdl:output message="tns:EditRoomResponse" name="EditRoomResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMessages">
+      <wsdl:input message="tns:GetAllMessagesRequest" name="GetAllMessagesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllMessagesResponse" name="GetAllMessagesResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAccomodationRooms">
@@ -931,6 +1008,12 @@
       <wsdl:output message="tns:GetRoomResponse" name="GetRoomResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllResponses">
+      <wsdl:input message="tns:GetAllResponsesRequest" name="GetAllResponsesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllResponsesResponse" name="GetAllResponsesResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRoomPrices">
       <wsdl:input message="tns:GetRoomPricesRequest" name="GetRoomPricesRequest">
     </wsdl:input>
@@ -970,6 +1053,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="EditRoomResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMessages">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllMessagesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllMessagesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -1141,6 +1233,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="GetRoomResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllResponses">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllResponsesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllResponsesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
