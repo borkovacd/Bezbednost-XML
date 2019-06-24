@@ -28,8 +28,8 @@ public class ReservationAgentController {
 
 	@GetMapping("/getAllReservationsAgent/{token}")
 	public ResponseEntity<List<ReservationAgent>> getAllReservations(@PathVariable String token) throws Exception {
-		//ovde trebad a se vrate sve rezervacije koje je AGENT napravio
-		List<ReservationAgent> reservations = null;
+		
+		List<ReservationAgent> reservations = reservationAgentService.getAllReservations(token);
 
 		return new ResponseEntity<>(reservations, HttpStatus.OK);
 
@@ -37,28 +37,28 @@ public class ReservationAgentController {
 
 	@PostMapping("/searchRoom/{token}")
 	public ResponseEntity<List<Room>> searchRoom(@RequestBody SearchRoomDTO searchRoomDTO,@PathVariable String token) {
-		//ovde ti saljem datum od i do u vidu stringa 
+		
+		
 		String europeanDatePattern = "yyyy-MM-dd";
 		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
 		LocalDate d1 = LocalDate.parse(searchRoomDTO.getCheckInDate(), europeanDateFormatter);
 		LocalDate d2 = LocalDate.parse(searchRoomDTO.getCheckOutDate(), europeanDateFormatter);
-		//ovde sam konvertovala string u datum local date
+		
 		//sad treba da se iz tabele rezervacija proveri koja je soba slobodna u datom periodu
 		//i lista tih slobodnih soba treba da se vrati
-		List<Room> room = null;
-		return new ResponseEntity<>(room, HttpStatus.OK);
+		
+		List<Room> rooms = reservationAgentService.searchFreeRooms(d1, d2);
+		if(rooms != null) {
+			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/createReservation/{idRoom}/token")
-	public void createReservation(@RequestBody ReservationDTO reservationDTO,@PathVariable Long idRoom,@PathVariable String token) {
-		String europeanDatePattern = "yyyy-MM-dd";
-		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
-		LocalDate d1 = LocalDate.parse(reservationDTO.getCheckInDate(), europeanDateFormatter);
-		LocalDate d2 = LocalDate.parse(reservationDTO.getCheckOutDate(), europeanDateFormatter);
-	    //ovde sam i kreirala datum znaci samo treba da ubacis u reservationagent model
-		//iz tokena preuzmi id
-		//pogledaj kako je to ivana radila u servicima
-		//i upises rezervaciju
+	public void createReservation(@RequestBody ReservationDTO reservationDTO,@PathVariable Long idRoom,@PathVariable String token) throws Exception {
+		
+		reservationAgentService.createReservation(reservationDTO, idRoom, token);
+
 	}
 
 }

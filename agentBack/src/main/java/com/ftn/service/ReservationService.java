@@ -80,7 +80,6 @@ public class ReservationService {
 			XMLGregorianCalendar toDate = response.getReservationsList().get(i).getToDate();
 			r.setToDate(toDate.toGregorianCalendar().toZonedDateTime().toLocalDate());
 			Room room = roomRepository.getOne(response.getReservationsList().get(i).getRoom().getId());
-			System.out.println("ROOM ID : " + room.getId());
 			r.setRoom(room);
 			User user = userRepository.getOne(response.getReservationsList().get(i).getUser().getId());
 			r.setUser(user);

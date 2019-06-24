@@ -28,6 +28,7 @@ import com.ftn.model.Country;
 import com.ftn.model.Permission;
 import com.ftn.model.Price;
 import com.ftn.model.Reservation;
+import com.ftn.model.ReservationAgent;
 import com.ftn.model.Role;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
@@ -40,6 +41,7 @@ import com.ftn.repository.CityRepository;
 import com.ftn.repository.CountryRepository;
 import com.ftn.repository.PermissionRepository;
 import com.ftn.repository.PriceRepository;
+import com.ftn.repository.ReservationAgentRepository;
 import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoleRepository;
 import com.ftn.repository.RoomRepository;
@@ -55,6 +57,8 @@ import com.ftn.webservice.ConfirmReservationResponse;
 import com.ftn.webservice.CountrySoap;
 import com.ftn.webservice.CreatePriceListRequest;
 import com.ftn.webservice.CreatePriceListResponse;
+import com.ftn.webservice.CreateReservationAgentRequest;
+import com.ftn.webservice.CreateReservationAgentResponse;
 import com.ftn.webservice.DeleteAccomodationRequest;
 import com.ftn.webservice.DeleteAccomodationResponse;
 import com.ftn.webservice.DeleteRoomRequest;
@@ -83,6 +87,8 @@ import com.ftn.webservice.GetAllCountriesRequest;
 import com.ftn.webservice.GetAllCountriesResponse;
 import com.ftn.webservice.GetAllPermissionsRequest;
 import com.ftn.webservice.GetAllPermissionsResponse;
+import com.ftn.webservice.GetAllReservationsAgentRequest;
+import com.ftn.webservice.GetAllReservationsAgentResponse;
 import com.ftn.webservice.GetAllReservationsRequest;
 import com.ftn.webservice.GetAllReservationsResponse;
 import com.ftn.webservice.GetAllRolesRequest;
@@ -99,6 +105,7 @@ import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RegisterRoomRequest;
 import com.ftn.webservice.RegisterRoomResponse;
+import com.ftn.webservice.ReservationAgentSoap;
 import com.ftn.webservice.ReservationSoap;
 import com.ftn.webservice.RoleSoap;
 import com.ftn.webservice.RoomSoap;
@@ -125,12 +132,15 @@ public class AccomondationEndpoint {
 	private UserRepository userRepository;
 	private PermissionRepository permissionRepository;
 	private RoleRepository roleRepository;
+	private ReservationAgentRepository reservationAgentRepository;
+	
 	
 	@Autowired
 	public AccomondationEndpoint(AccomondationRepository accomondationRepository, AdditionalServicesRepository additionalServicesRepository, 
 			CityRepository cityRepository, CategoryRepository categoryRepository, CountryRepository countryRepository, RoomRepository roomRepository, 
 			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository, 
-			ReservationRepository reservationRepository, UserRepository userRepository, PermissionRepository permissionRepository, RoleRepository roleRepository) {
+			ReservationRepository reservationRepository, UserRepository userRepository, PermissionRepository permissionRepository, 
+			RoleRepository roleRepository, ReservationAgentRepository reservationAgentRepository) {
 			
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
@@ -145,6 +155,7 @@ public class AccomondationEndpoint {
 		this.userRepository = userRepository;
 		this.permissionRepository = permissionRepository;
 		this.roleRepository = roleRepository;
+		this.reservationAgentRepository = reservationAgentRepository;
 	}
 	
 	
@@ -956,6 +967,78 @@ public class AccomondationEndpoint {
 		
 		return response;
 	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllReservationsAgentRequest")
+	@ResponsePayload
+	public GetAllReservationsAgentResponse getAllReservationsAgent(@RequestPayload GetAllReservationsAgentRequest request) throws DatatypeConfigurationException {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllReservationsAgentResponse response = new GetAllReservationsAgentResponse();
+		String agentUsername = agentRepository.getOne(request.getAgentId()).getUsername();
+		response.setResponse("Head back response: 'Agent reservations by agent " + agentUsername + " successfully sent");
+
+	
+		for(int i = 0; i < reservationAgentRepository.findAll().size(); i++) {
+			
+			if(reservationAgentRepository.findAll().get(i).getAgent().getId() == request.getAgentId()) {
+				
+				ReservationAgentSoap r = new ReservationAgentSoap();
+
+				r.setId(reservationAgentRepository.findAll().get(i).getId());
+				LocalDate fromDate = reservationAgentRepository.findAll().get(i).getFromDate();
+				GregorianCalendar gcalFromDate = GregorianCalendar.from(fromDate.atStartOfDay(ZoneId.systemDefault()));
+				XMLGregorianCalendar xcalFromDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcalFromDate);
+				r.setFromDate(xcalFromDate);
+				LocalDate toDate = reservationAgentRepository.findAll().get(i).getToDate();
+				GregorianCalendar gcalToDate = GregorianCalendar.from(toDate.atStartOfDay(ZoneId.systemDefault()));
+				XMLGregorianCalendar xcalToDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcalToDate);
+				r.setToDate(xcalToDate);
+				RoomSoap roomSoap = new RoomSoap();
+				roomSoap.setId(reservationAgentRepository.findAll().get(i).getRoom().getId());
+				r.setRoom(roomSoap);
+				AgentSoap agentSoap = new AgentSoap();
+				agentSoap.setId(reservationAgentRepository.findAll().get(i).getAgent().getId());
+				r.setAgent(agentSoap);
+				
+				response.getReservationsList().add(r);
+			}
+		}
+		return response;
+	}
+	
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateReservationAgentRequest")
+	@ResponsePayload
+	public CreateReservationAgentResponse createReservationAgent(@RequestPayload CreateReservationAgentRequest request) {
+			
+			//Request poruka sa agentskog back-a
+			System.out.println("*****");
+			System.out.println(request.getRequest());
+			System.out.println("*****");
+			
+			CreateReservationAgentResponse response = new CreateReservationAgentResponse();
+			
+			ReservationAgentSoap r = request.getReservationAgent();
+			
+			ReservationAgent reservationAgent = new ReservationAgent();
+			
+			XMLGregorianCalendar fromDate = r.getFromDate();
+			reservationAgent.setFromDate(fromDate.toGregorianCalendar().toZonedDateTime().toLocalDate());
+			XMLGregorianCalendar toDate = r.getToDate();
+			reservationAgent.setToDate(toDate.toGregorianCalendar().toZonedDateTime().toLocalDate());
+			reservationAgent.setRoom(roomRepository.getOne(request.getRoomId()));
+			reservationAgent.setAgent(agentRepository.getOne(request.getAgentId()));
+			
+			reservationAgentRepository.save(reservationAgent);
+			
+			response.setReservationAgentId(reservationAgent.getId());
+
+			return response;
+		}
 	
 	
 

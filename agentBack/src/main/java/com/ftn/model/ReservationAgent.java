@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class ReservationAgent {
+	
 	@Id
 	private Long id;
 

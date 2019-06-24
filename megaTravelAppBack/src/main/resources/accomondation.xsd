@@ -408,6 +408,44 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="GetAllReservationsAgentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="xs:string"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetAllReservationsAgentResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="reservationsList" maxOccurs="unbounded" type="tns:reservationAgentSoap" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CreateReservationAgentRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="request" type="xs:string"/>
+            	<xs:element name="reservationAgent" type="tns:reservationAgentSoap"/>
+                <xs:element name="roomId" type="xs:long"/>
+                <xs:element name="agentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateReservationAgentResponse">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="response" type="xs:string"/>
+                <xs:element name="reservationAgentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="accomodationSoap">
         <xs:sequence>
@@ -538,6 +576,16 @@
        		<xs:element name="id" type="xs:long" nillable="true"/>
        		<xs:element name="name" type="xs:string"/>
        	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="reservationAgentSoap">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long" nillable="true"/>
+            <xs:element name="fromDate" type="xs:date"/>
+            <xs:element name="toDate" type="xs:date"/>
+            <xs:element name="room" type="tns:roomSoap"/>
+            <xs:element name="agent" type="tns:agentSoap"/>
+        </xs:sequence>
     </xs:complexType>
     
     <xs:simpleType name="clientStatus" final="restriction" >

@@ -138,7 +138,8 @@ insert into price (id, month, price, room_id) values (30, 10, 30, 4);
 insert into price (id, month, price, room_id) values (31, 11, 35, 4);
 insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 
-insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id) values (1, 0, DATE '2019-05-20', DATE '2019-06-05', 1, 2, 2);
+insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id) values (1, 0, DATE '2019-05-20', DATE '2019-05-27', 1, 2, 2);
+insert into reservation_agent (id, from_date, to_date, agent_id, room_id) values (1, DATE '2019-06-20', DATE '2019-06-27', 1, 4);
 
 
 

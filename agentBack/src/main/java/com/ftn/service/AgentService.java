@@ -71,6 +71,8 @@ public class AgentService implements UserDetailsService {
 	private PriceService priceService;
 	@Autowired 
 	private ReservationService reservationService;
+	@Autowired 
+	private ReservationAgentService reservationAgentService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -180,11 +182,8 @@ public class AgentService implements UserDetailsService {
 			
 			userService.getAllUsers();
 			reservationService.getAllReservations(token);	
-			//permissionService.getAllPermissions();
-			//roleService.getAllRoles();
-			
-			
-			
+			reservationAgentService.getAllReservations(token);
+
 			// ovde ide deo za logovanje
 			
 		
