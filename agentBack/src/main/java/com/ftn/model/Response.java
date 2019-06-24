@@ -9,28 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table
-
-public class Response implements Serializable{
-
+public class Response implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-		
+
 	@OneToOne
 	private Agent sender;
-	
+
 	@OneToOne
 	private User recipient;
-	
+
 	private String text;
 
-	
 	public Response() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Response(Long id, Agent sender, User recipient, String text) {
@@ -72,11 +67,5 @@ public class Response implements Serializable{
 	public void setText(String text) {
 		this.text = text;
 	}
-
-	
-	
-	
-	
-	
 
 }

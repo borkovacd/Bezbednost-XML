@@ -12,7 +12,7 @@
 
 <ul>
   <li (click)="accomodationButton()"><a>Smestaj</a></li>
-  <li (click)="message()"><a>Poruke</a></li>
+  <li (click)="messages()"><a>Poruke</a></li>
   <li (click)="reservation()"><a>Rezervacije</a></li>
   <li (click)="communicateC()"><a>Komunikacija</a></li>
   <li (click)="logOut()"><a>Odjavi se</a></li>
@@ -31,4 +31,8 @@
 
 <div *ngIf="reservations == true">
   <reservations></reservations>
+</div>
+
+<div *ngIf="message == true">
+  <messagess></messagess>
 </div>

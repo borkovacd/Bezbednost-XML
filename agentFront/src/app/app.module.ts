@@ -26,6 +26,8 @@ import {ReservationComponent} from './reservation/reservation.component';
 import {ReservationService} from './service/reservation.service';
 import {AddReservationComponent} from './add-reservation/add-reservation.component';
 import {ReservationAgentService} from './service/reservationAgent.service';
+import {MessageComponent} from './message/message.component';
+import {MessageService} from './service/message.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {ReservationAgentService} from './service/reservationAgent.service';
     AddPricelistComponent,
     ReservationComponent,
     AddReservationComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import {ReservationAgentService} from './service/reservationAgent.service';
     PricelistService,
     ReservationService,
     ReservationAgentService,
+    MessageService,
   ],
   bootstrap: [AppComponent]
 })

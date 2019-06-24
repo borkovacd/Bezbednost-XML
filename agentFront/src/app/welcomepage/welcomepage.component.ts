@@ -17,6 +17,7 @@ export class WelcomepageComponent implements OnInit{
   accomodation = false;
   communicate = false;
   reservations = false;
+  message = false;
 
   public form: FormGroup;
   public messageToCentral: AbstractControl;
@@ -34,23 +35,33 @@ export class WelcomepageComponent implements OnInit{
       this.accomodation = true;
       this.communicate = false;
     this.reservations = false;
+    this.message = false;
   }
   accomodationButton() {
     this.accomodation = true;
     this.communicate = false;
     this.reservations = false;
+    this.message = false;
+
 
 
   }
-  message() {
 
-  }
   reservation() {
     this.accomodation = false;
     this.communicate = false;
     this.reservations = true;
+    this.message = false;
+
 
   }
+  messages(){
+    this.accomodation = false;
+    this.communicate = false;
+    this.reservations = false;
+    this.message = true;
+  }
+
   logOut() {
     this.data.logout().subscribe(data => {
 
