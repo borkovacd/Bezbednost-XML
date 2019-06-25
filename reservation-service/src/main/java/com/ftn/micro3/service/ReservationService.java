@@ -1,13 +1,21 @@
 package com.ftn.micro3.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.ftn.micro3.dto.ReservationDTO;
 import com.ftn.micro3.model.Accomodation;
 import com.ftn.micro3.model.Reservation;
 import com.ftn.micro3.model.ReservationAgent;
@@ -37,11 +45,18 @@ public class ReservationService
 	@Autowired
 	ReservationAgentRepository reservationAgentRepository ;
 	
+	
 	public List<Reservation> findReservationsByUserId(Long id)
 	{
 		
 		return reservationRepository.findByUserId(id);
 	}
+	
+	public String getUser() {
+		String tmp = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		return tmp;
+	}
+	
 	
 	public List<Reservation> getAll()
 	{
@@ -205,10 +220,68 @@ public class ReservationService
 		return reservationRepository.save(reservation);
 	}
 	
+	public boolean cancelAccepted(Long id) throws ParseException
+	{
+		Reservation res = reservationRepository.findOneById(id);
+		
+		// Danasnji datum
+		Date today = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+        String strToday = dateFormat.format(today);  // danasnji datum je oblika: 2019-46-25
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+        // PARSIRAN
+		Date parsedDateToday = formatter.parse(strToday);
+		
+		String europeanDatePattern = "yyyy-MM-dd";
+		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+		
+		LocalDate dateTodayLocal = LocalDate.parse(strToday, europeanDateFormatter);
+       
+		
+        // Datum polaska
+        LocalDate startDateLocal = res.getFromDate();
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-mm-dd");  
+        String strStart = dateFormat2.format(startDateLocal); 
+        
+        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+        
+        // PARSIRAN
+        Date parsedDateStart = formatter.parse(strStart);
+        
+        // nastavak
+        
+        Month a = dateTodayLocal.getMonth();
+        System.out.println("Ovo je mesec " + a.getValue());
+        
+        long todayDateTime = parsedDateToday.getTime();
+	    long startDateTime = parsedDateStart.getTime();
+	    long milPerDay = 1000*60*60*24; 
+	    
+	    int numOfDays = (int) ((startDateTime - todayDateTime) / milPerDay); // 
+	    System.out.println("Dana odabranih: " + numOfDays);
+	    
+	    if (res.getRoom().getDay() >= numOfDays)
+	    {
+	    	return true ;
+	    }
+	    else
+	    {
+	    	return false ;
+	    }
+       
+	}
+	
 
 	public void deleteReservation(Long id)
 	{
 		reservationRepository.deleteById(id);
+	}
+	
+	public void cancelReservation(long idReservation) 
+	{
+		reservationRepository.deleteById(idReservation);
 	}
 
 
