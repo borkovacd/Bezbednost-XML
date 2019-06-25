@@ -68,10 +68,11 @@
     <p style="margin-bottom: 0%;font-size: 20px">Moguce otkazati:  {{item.day}} dana pre isteka rezervacije</p>
 
     <div style="margin-bottom: 20px">
-      <button
+      <button [hidden]="vis"
         style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 20px"
         (click)="reservationRoom(item)">Rezervisi
       </button>
+      <h4 [hidden]="!vis">Za rezervaciju neophodno je da se ulogujete</h4>
 
     </div>
   </div>

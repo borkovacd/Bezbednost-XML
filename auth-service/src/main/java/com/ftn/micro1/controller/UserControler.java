@@ -38,6 +38,7 @@ import com.ftn.micro1.enums.NameRole;
 import com.ftn.micro1.model.Permission;
 import com.ftn.micro1.model.User;
 import com.ftn.micro1.model.UserToken;
+import com.ftn.micro1.repository.PermissionRepository;
 import com.ftn.micro1.repository.RoleRepository;
 import com.ftn.micro1.repository.UserRepository;
 import com.ftn.micro1.security.LoggerUtils;
@@ -59,6 +60,9 @@ public class UserControler {
 
 	@Autowired
 	private UserRepository userRep;
+	
+	@Autowired
+	private PermissionRepository permissionRepository;
 
 	@Autowired
 	private AuthenticationManager authManager;
@@ -89,6 +93,7 @@ public class UserControler {
 				u.setEnabled(true);
 
 				u.setRoles(Collections.singleton(roleRepository.findByName(NameRole.ROLE_USER)));
+				
 
 				String pass = u.getPassword();
 

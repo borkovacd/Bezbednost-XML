@@ -19,6 +19,7 @@ export  class WelcomepageComponent {
 
   advancedSearch = false;
 
+  public vis: boolean = false;
 
   public fromDate: any;
   public toDate: any;
@@ -112,6 +113,12 @@ export  class WelcomepageComponent {
   ngOnInit() {
 
     this.advancedSearch = false;
+
+    if (localStorage.getItem('loggedUser') == null) {
+      this.vis = true;
+    } else {
+      this.vis = false;
+    }
   }
 
 
