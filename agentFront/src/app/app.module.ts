@@ -28,6 +28,7 @@ import {AddReservationComponent} from './add-reservation/add-reservation.compone
 import {ReservationAgentService} from './service/reservationAgent.service';
 import {MessageComponent} from './message/message.component';
 import {MessageService} from './service/message.service';
+import {ResponseService} from './service/response.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {MessageService} from './service/message.service';
     ReservationService,
     ReservationAgentService,
     MessageService,
+    ResponseService,
   ],
   bootstrap: [AppComponent]
 })

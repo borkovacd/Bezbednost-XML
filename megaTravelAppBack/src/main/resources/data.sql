@@ -32,6 +32,7 @@ insert into permissions (id, name) values (20, "EDIT_ROOM");
 
 /*Permisije za usere*/
 insert into permissions (id, name) values (21, "RESERVE");
+insert into permissions (id, name) values (22, "DEL_RES");
 
 /*Podela permisija*/
 insert into role_permissions (permission_id, role_id) values (1, 1);
@@ -57,6 +58,7 @@ insert into role_permissions (permission_id, role_id) values (19, 3);
 insert into role_permissions (permission_id, role_id) values (20, 3);
 
 insert into role_permissions (permission_id, role_id) values (21, 2);
+insert into role_permissions (permission_id, role_id) values (22, 2);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");
@@ -80,9 +82,11 @@ insert into agents(id, address, enabled, first_name, last_name, mbr, nonlocked, 
 
 insert into agents_roles (agents_id, roles_id) values (1,3);
 
-insert into country (id, name) values (1, "UK");
+insert into country (id, name) values (1, "Srbija");
+insert into country (id, name) values (2, "Italija");
 
 insert into city (id, name,country_id) values (1, "Novi Sad", 1);
+insert into city (id, name,country_id) values (2, "Milano", 2);
 
 insert into category (id, name) values (1, "nekategorisan");
 insert into category (id, name) values (2, "jedna");
@@ -92,7 +96,7 @@ insert into category (id, name) values (5, "cetri");
 insert into category (id, name) values (6, "pet");
 
 insert into type_accomodation (id, name) values (1, "hotel");
-insert into type_accomodation (id, name) values (2, "bad&breakfast");
+insert into type_accomodation (id, name) values (2, "bed&breakfast");
 insert into type_accomodation (id, name) values (3, "apartman");
 
 insert into additional_services (id, name) values (1, "Parking");
@@ -108,15 +112,34 @@ insert into additional_services (id, name) values (10, "Privatno kupatilo");
 insert into additional_services (id, name) values (11, "Otkazivanje");
 
 insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'no-photo', 1, 6, 1, 1);
-insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Hotel Park', 'no-photo', 1, 6, 1, 1);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Hotel Park', 'no-photo', 1, 5, 1, 1);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (3, 'Milano street 53', 'Best hotel', 'Hotel Milano', 'no-photo', 1, 6, 2, 3);
+
 
 insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 11);
 insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 3);
+
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (2, 9);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (2, 11);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (2, 2);
+
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 1);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 2);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 5);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 6);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 7);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 8);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 10);
+insert into accomodation_additional_services(accomodation_id, additional_services_id) values (3, 11);
 
 insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (1, 0, 2, 3, 6, 1, 0, 1);
 insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (2, 1, 4, 3, 2, 1, 0, 1);
 insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (3, 0, 4, 3, 2, 1, 0, 2);
 insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (4, 1, 4, 3, 2, 1, 0, 2);
+
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (5, 1, 4, 3, 2, 1, 0, 3);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (6, 1, 3, 3, 3, 1, 0, 3);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (7, 1, 5, 3, 4, 0, 0, 3);
 
 insert into price (id, month, price, room_id) values (1, 1, 25, 2);
 insert into price (id, month, price, room_id) values (2, 2, 25, 2);
@@ -143,11 +166,53 @@ insert into price (id, month, price, room_id) values (30, 10, 30, 4);
 insert into price (id, month, price, room_id) values (31, 11, 35, 4);
 insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 
+
+insert into price (id, month, price, room_id) values (33, 1, 20, 5);
+insert into price (id, month, price, room_id) values (34, 2, 28, 5);
+insert into price (id, month, price, room_id) values (35, 3, 40, 5);
+insert into price (id, month, price, room_id) values (36, 4, 30, 5);
+insert into price (id, month, price, room_id) values (37, 5, 30, 5);
+insert into price (id, month, price, room_id) values (38, 6, 30, 5);
+insert into price (id, month, price, room_id) values (39, 7, 40, 5);
+insert into price (id, month, price, room_id) values (40, 8, 40, 5);
+insert into price (id, month, price, room_id) values (41, 9, 50, 5);
+insert into price (id, month, price, room_id) values (42, 10, 30, 5);
+insert into price (id, month, price, room_id) values (43, 11, 35, 5);
+insert into price (id, month, price, room_id) values (44, 12, 50, 5);
+
+insert into price (id, month, price, room_id) values (45, 1, 20, 6);
+insert into price (id, month, price, room_id) values (46, 2, 15, 6);
+insert into price (id, month, price, room_id) values (47, 3, 45, 6);
+insert into price (id, month, price, room_id) values (48, 4, 30, 6);
+insert into price (id, month, price, room_id) values (49, 5, 45, 6);
+insert into price (id, month, price, room_id) values (50, 6, 30, 6);
+insert into price (id, month, price, room_id) values (51, 7, 40, 6);
+insert into price (id, month, price, room_id) values (52, 8, 35, 6);
+insert into price (id, month, price, room_id) values (53, 9, 50, 6);
+insert into price (id, month, price, room_id) values (54, 10, 25, 6);
+insert into price (id, month, price, room_id) values (55, 11, 20, 6);
+insert into price (id, month, price, room_id) values (56, 12, 50, 6);
+
+insert into price (id, month, price, room_id) values (57, 1, 30, 7);
+insert into price (id, month, price, room_id) values (58, 2, 15, 7);
+insert into price (id, month, price, room_id) values (59, 3, 30, 7);
+insert into price (id, month, price, room_id) values (60, 4, 30, 7);
+insert into price (id, month, price, room_id) values (61, 5, 50, 7);
+insert into price (id, month, price, room_id) values (62, 6, 30, 7);
+insert into price (id, month, price, room_id) values (63, 7, 25, 7);
+insert into price (id, month, price, room_id) values (64, 8, 45, 7);
+insert into price (id, month, price, room_id) values (65, 9, 35, 7);
+insert into price (id, month, price, room_id) values (66, 10, 25, 7);
+insert into price (id, month, price, room_id) values (67, 11, 25, 7);
+insert into price (id, month, price, room_id) values (68, 12, 40, 7);
+
+
 insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id, price) values (1, 0, DATE '2019-05-20', DATE '2019-05-27', 1, 2, 2, 150);
 insert into reservation_agent (id, from_date, to_date, agent_id, room_id) values (1, DATE '2019-06-20', DATE '2019-06-27', 1, 4);
 
-/*insert into response (id, text, recipient_id, sender_id) values (1, "Hej useru", 2, 1);*/
+
 insert into message (id, text, recipient_id, sender_id) values (1, "Hej agente", 1, 2);
+insert into response (id, text,message_id, recipient_id, sender_id) values (1, "Hej useru",1, 2, 1);
 
 
 

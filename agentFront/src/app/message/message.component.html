@@ -4,17 +4,15 @@
 <div>
   <div *ngFor="let m of messages"
        style="margin-left: 15%;margin-right: 15%; text-align: left;margin-bottom: 20px ;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
-    <p style="margin-top: 10px;margin-left: 15px">Od korisnika: {{m.sender.username}} </p>
+    <h2 style="text-align: center;margin-top: 30px">Poruke na koje treba odgovoriti</h2>
+
+    <p style="margin-top: 10px;margin-left: 15px">Od: {{m.sender.username}} </p>
     <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;height: 100px" disabled="true">{{m.text}}</textarea>
 
-    <div *ngIf="m.response != null">
-      <p style="margin-top: 10px;margin-left: 10%">Odgovor:</p>
-      <textarea style=" margin-top: 15px;width: 87%;margin-left: 10%;margin-right: 3%;height: 100px" disabled="true">{{m.response.text}}</textarea>
-    </div>
 
-    <div style="text-align: right;margin-right: 3%" *ngIf="m.response == null">
-      <button class="btn btn-success"
-        style="margin-top: 15px;text-align: center;margin-bottom: 15px;border-radius: 12px;height: 45px;width: 100px"
+    <div style="text-align: right;margin-right: 3%">
+      <button
+        style="margin-top: 15px;text-align: center;margin-bottom: 15px;border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 100px"
         (click)="answerMessage(m.sender.id , m.sender.username,m.id)">
         Odgovori
       </button>
@@ -33,8 +31,8 @@
         <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;margin-top: 20px;height: 100px"
                   class="form-control margin " [formControl]="text"></textarea>
         <div style="text-align: right;margin-right: 3%">
-          <button class="btn btn-success" (click)="sendAnswer()"
-                  style="margin-top: 15px;margin-bottom: 15px;text-align: center;border-radius: 12px;height: 45px">
+          <button (click)="sendAnswer()"
+                  style="margin-top: 15px;margin-bottom: 15px;text-align: center;border-radius: 12px;background-color: #1a8cff;color: white;height: 45px">
             Posalji odgovor
           </button>
         </div>
@@ -43,3 +41,31 @@
     </form>
   </div>
 </div>
+
+<br/>
+
+
+<div>
+  <div *ngFor="let r of responses"
+       style="margin-left: 15%;margin-right: 15%; text-align: left;margin-bottom: 20px ;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
+
+    <h2 style="text-align: center;margin-top: 30px">Odgovorene poruke</h2>
+    <br/>
+    <p style="margin-top: 10px;margin-left: 15px">Od korisnika: {{r.message.sender.username}} </p>
+    <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;height: 100px" disabled="true">{{r.message.text}}</textarea>
+
+    <div >
+      <p style="margin-top: 10px;margin-left: 10%">Odgovor:</p>
+      <textarea style=" margin-top: 15px;width: 87%;margin-left: 10%;margin-right: 3%;height: 100px" disabled="true">{{r.text}}</textarea>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+

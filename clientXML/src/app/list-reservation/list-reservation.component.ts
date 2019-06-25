@@ -22,7 +22,9 @@ export class ListReservationComponent implements OnInit {
   }
 
   cancelRes(id: number) {
-    
+    this.data.cancelRes(id).subscribe(data => {
+      window.location.reload();
+    });
   }
 
   back() {

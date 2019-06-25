@@ -171,7 +171,7 @@ export  class WelcomepageComponent {
     resDto.idAgent = item.accomodation.agent.id;
 
     this.reservationService.makeRes(resDto).subscribe( data => {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('myReservations');
     });
   }
 

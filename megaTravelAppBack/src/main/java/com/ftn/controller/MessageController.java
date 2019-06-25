@@ -37,6 +37,7 @@ public class MessageController
 	@GetMapping("/getAllMessages/{token}")
 	public ResponseEntity<List<Message>> getAllMessages(@PathVariable String token) throws Exception
 	{	
+		token = token.substring(1, token.length()-1);
 		
 		String email = tokenUtils.getUserSecurity(token).getUsername();
 		User u = userService.findByEmail(email);
@@ -53,10 +54,15 @@ public class MessageController
 
 	}
 	
-	@GetMapping("/getAllResponsesFromAgent/{id}")
-	public ResponseEntity<List<Response>> getAllResponsesFromAgent(@PathVariable Long id)
+	@GetMapping("/getAllResponsesFromAgent/{token}")
+	public ResponseEntity<List<Response>> getAllResponsesFromAgent(@PathVariable String token) throws Exception
 	{	
-		List<Response> responses = responseService.getAllResponsesFromAgent(id);
+		token = token.substring(1, token.length()-1);
+		
+		String email = tokenUtils.getUserSecurity(token).getUsername();
+		User u = userService.findByEmail(email);
+		
+		List<Response> responses = responseService.getAllResponsesFromAgent(u.getId());
 		if (responses != null) 
 		{
 			return new ResponseEntity<>(responses, HttpStatus.OK);
