@@ -12,6 +12,7 @@ export class MessageComponent implements OnInit {
 
   empty = false;
 
+  responses = [];
   messages = [];
 
   public form: FormGroup;
@@ -29,7 +30,14 @@ export class MessageComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.empty = true;
+    this.empty = false;
+
+    this.messageService.getAllResponses().subscribe(data => {
+      this.responses = data;
+      if (this.responses.length === 0) {
+        this.empty = true;
+      }
+    })
 
     /*this.messageService.getAllMessages().subscribe(data => {
       this.messages = data;

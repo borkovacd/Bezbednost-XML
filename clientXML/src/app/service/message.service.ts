@@ -9,7 +9,7 @@ const httpOptions = {
 };
 @Injectable()
 export  class MessageService {
-  private BASE_URL = 'https://localhost:8099/api/message';
+  private BASE_URL = 'https://localhost:8443/api/message';
 
   constructor(private http: HttpClient) {
 
@@ -19,6 +19,12 @@ export  class MessageService {
     const token = localStorage.getItem('loggedUser');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.get(`${this.BASE_URL}/getAllMessages/${token}`, {headers: headers});
+  }
+
+  getAllResponses(): Observable<any> {
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAllResponsesFromAgent/${token}`, {headers: headers});
   }
 
 
