@@ -141,8 +141,12 @@ public class ReservationService
 			System.out.println("usao u for");
 			if (r.getAccomodation().getCity().getName().equals(city))
 			{
+				
+				
 				System.out.println("nasao da su jednaki");
+				if(r.isActive()==true) {
 				matchingRoomsAccomodation.add(r);
+				}
 			}
 		}
 		

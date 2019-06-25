@@ -191,13 +191,17 @@ public class ReservationController
 			System.out.println(us.getId());
 			
 			if( (long) r.getUser().getId() == (long) us.getId()) {
-				ress.add(r);
+				
+				if(r.isConfirmed()==true) {
+						ress.add(r);
+				}
 			}
 		}
 		
 		return new ResponseEntity<List<Reservation>>(ress, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('DEL_RES')")
 	@DeleteMapping(value="/deleteReservation/{id}")
 	public ResponseEntity<?> deleteReservation(@PathVariable Long id)
 	{
