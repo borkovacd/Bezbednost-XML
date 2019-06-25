@@ -47,3 +47,23 @@
 2019-06-25 13:55:14,366 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
 2019-06-25 13:55:14,366 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
 2019-06-25 13:55:51,107 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 39.49 seconds (JVM running for 40.203)
+2019-06-25 14:44:12,461 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 15772 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack)
+2019-06-25 14:44:12,465 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-25 14:44:12,467 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-25 14:44:14,429 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:44:14,430 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:44:14,430 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-25 14:44:21,518 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 9.543 seconds (JVM running for 10.652)
+2019-06-25 14:50:49,923 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 7872 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack)
+2019-06-25 14:50:49,927 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-25 14:50:49,931 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-25 14:50:52,697 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:50:52,697 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:50:52,697 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-25 14:51:28,661 INFO org.springframework.boot.StartupInfoLogger [main] Starting MegaTravelApp on DESKTOP-9D5EIMP with PID 17496 (D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack\target\classes started by Marin in D:\Marin\BezbednostTrenutni\Bezbednost-XML\megaTravelAppBack)
+2019-06-25 14:51:28,665 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-25 14:51:28,667 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-25 14:51:30,814 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:51:30,815 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-25 14:51:30,815 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-25 14:51:41,453 INFO org.springframework.boot.StartupInfoLogger [main] Started MegaTravelApp in 13.263 seconds (JVM running for 14.231)

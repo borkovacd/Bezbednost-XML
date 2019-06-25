@@ -42,4 +42,10 @@ export class ReservationService {
     return this.http.get<ReservationBackModel[]>(`${this.BASE_URL}/getReservationsByUser/${token}`, {headers: headers});
   }
 
+  cancelRes(id: number): Observable<any> {
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.delete(`${this.BASE_URL}/deleteReservation/${id}`,  {headers: headers});
+  }
+
 }
