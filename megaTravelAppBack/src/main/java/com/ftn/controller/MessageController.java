@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.service.MessageService;
 import com.ftn.service.ResponseService;
+import com.ftn.service.UserService;
 import com.ftn.model.Message;
-import com.ftn.model.Response; 
+import com.ftn.model.Response;
+import com.ftn.model.User;
+import com.ftn.repository.UserRepository;
+import com.ftn.security.TokenUtils; 
 
 @RestController
 @RequestMapping(value = "/api/message")
@@ -21,15 +25,23 @@ public class MessageController
 {
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private ResponseService responseService;
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
-	private ResponseService responseService ;
+	TokenUtils tokenUtils;
 	
 
-	@GetMapping("/getAllMessages/{id}")
-	public ResponseEntity<List<Message>> getAllMessages(@PathVariable Long id)
+	@GetMapping("/getAllMessages/{token}")
+	public ResponseEntity<List<Message>> getAllMessages(@PathVariable String token) throws Exception
 	{	
-		List<Message> messages = messageService.getAllMessages(id);
+		
+		String email = tokenUtils.getUserSecurity(token).getUsername();
+		User u = userService.findByEmail(email);
+		
+		List<Message> messages = messageService.getAllMessages(u.getId());
 		if (messages != null) 
 		{
 			return new ResponseEntity<>(messages, HttpStatus.OK);

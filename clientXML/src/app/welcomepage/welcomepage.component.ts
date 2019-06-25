@@ -122,7 +122,9 @@ export  class WelcomepageComponent {
   }
   logOut(){
     this.router.navigateByUrl('');
-
+  }
+  messages(){
+    this.router.navigateByUrl('messages');
   }
   serachRooms(){
 

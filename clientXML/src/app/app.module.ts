@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import {MessageComponent} from './messages/message.component';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AppRoutingModule} from './аpp-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {UserService} from './service/user.service';
 import {ReservationService} from './service/reservation.service';
+import {MessageService} from './service/message.service';
 
 
 
@@ -18,6 +20,7 @@ import {ReservationService} from './service/reservation.service';
   declarations: [
     AppComponent,
     WelcomepageComponent,
+    MessageComponent,
     LoginComponent,
     RegistrationComponent,
 
@@ -35,6 +38,7 @@ import {ReservationService} from './service/reservation.service';
   providers: [
     UserService,
     ReservationService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
