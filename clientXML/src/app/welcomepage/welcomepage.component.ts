@@ -7,6 +7,7 @@ import {AdvancedSearchModel} from '../model/advancedSearch.model';
 import {SearchModel} from '../model/search.model';
 import {Room} from '../model/room.model';
 import {ReservationModel} from '../model/reservation.model';
+import {UserService} from '../service/user.service';
 
 
 @Component ({
@@ -52,7 +53,7 @@ export  class WelcomepageComponent {
   constructor(protected router: Router,
               public fb: FormBuilder,
               private route: ActivatedRoute,
-              private reservationService: ReservationService,) {
+              private reservationService: ReservationService, private userService: UserService) {
     this.form = this.fb.group({
       'city': ['', Validators.compose([Validators.required])],
       'checkInDate': ['', Validators.compose([Validators.required])],
@@ -114,14 +115,17 @@ export  class WelcomepageComponent {
     this.advancedSearch = false;
   }
 
-  login(){
+  login() {
     this.router.navigateByUrl('login');
   }
-  registration(){
+  registration() {
     this.router.navigateByUrl('registration');
   }
-  logOut(){
-    this.router.navigateByUrl('');
+  logOut() {
+    this.userService.logout().subscribe(data => {
+
+      this.router.navigateByUrl('');
+    });
 
   }
   serachRooms(){
@@ -150,17 +154,18 @@ export  class WelcomepageComponent {
     this.advancedSearch = true;
 
   }
-  reservationRoom(item: number) {
+  reservationRoom(item: Room) {
 
     const resDto = new ReservationModel();
 
-    resDto.idRoom = item;
+    resDto.idRoom = item.id;
     resDto.fromDate = this.fromDate;
     resDto.toDate = this.toDate;
     resDto.confirmed = false;
+    resDto.idAgent = item.accomodation.agent.id;
 
     this.reservationService.makeRes(resDto).subscribe( data => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('');
     });
   }
 
@@ -195,5 +200,9 @@ export  class WelcomepageComponent {
       this.items = data;
     });
 
+  }
+
+  myRes() {
+    this.router.navigateByUrl('/myReservations');
   }
 }

@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h2>Moje rezervacije</h2> <button class="btn btn-primary" (click)="back()">Nazad</button>
+
+
+  <div style="width:600px;" class="jumbotron" *ngFor="let res of reservations; let i = index">
+
+    <h3>Rezervacija br. {{i+1}}</h3>    <br>
+
+    <label><b>Smestaj</b></label><br>
+    <label>Naziv: {{res.room.accomodation.name}}</label><br>
+    <label>Adresa: {{res.room.accomodation.address}} , {{res.room.accomodation.city.name}},
+      {{res.room.accomodation.city.country.name}}</label><br><br>
+
+    <label><b>Vreme rezervacije: </b></label><br>
+    <label>Od: {{res.fromDate}}</label><br>
+    <label>Do: {{res.toDate}}</label><br><br>
+
+    <label><b>Soba</b></label><br>
+    <label>Balkon: {{res.room.hasBalcony}}</label><br>
+    <label>Sprat: {{res.room.floor}}</label><br>
+    <label>Cena: {{res.price}}</label><br>
+    <label>Kapacitet: {{res.room.capacity}}</label><br><br>
+    <label>Otkazivanje do {{res.room.day}} dana pre isteka rezervacije</label>
+    <br><br>
+
+    <button class="btn btn-primary" (click)="cancelRes(res.id)">Otkazi</button>
+
+  </div>
+
+
+</div>

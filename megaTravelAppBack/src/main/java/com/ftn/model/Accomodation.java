@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Accomodation {
 	@Column
 	private String name;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private City city;
 
 	@NotNull
@@ -43,10 +44,10 @@ public class Accomodation {
 	@Column
 	private String pic;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<AdditionalServices> additionalServices;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Agent agent;
 
 	public Accomodation() {

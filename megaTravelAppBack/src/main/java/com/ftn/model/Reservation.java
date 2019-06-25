@@ -2,7 +2,9 @@ package com.ftn.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,21 +19,27 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column
 	private LocalDate fromDate;
 
+	@Column
 	private LocalDate toDate;
 
 	@OneToOne
 	private Room room;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private User user;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private Agent agent;
+	
+	@Column(name="Price")
+	private double price;
 
+	@Column(name="Confirmed")
 	private boolean confirmed = false;
 
 	public Reservation() {
@@ -39,7 +47,7 @@ public class Reservation {
 	}
 
 	public Reservation(Long id, LocalDate fromDate, LocalDate toDate, Room room, User user, Agent agent,
-			boolean confirmed) {
+			boolean confirmed, float price) {
 		super();
 		this.id = id;
 		this.fromDate = fromDate;
@@ -48,6 +56,7 @@ public class Reservation {
 		this.user = user;
 		this.agent = agent;
 		this.confirmed = confirmed;
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -105,5 +114,15 @@ public class Reservation {
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	
 
 }

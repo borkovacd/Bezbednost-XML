@@ -73,18 +73,19 @@ export class LoginComponent implements OnInit{
       this.accountService.login(object).subscribe(user => {
         if (user.accessToken == null) {
           alert('Ne postoji korisnik sa unetim kredencijalima!');
-          return
+          return;
         }
 
-        localStorage.setItem('loggedUser', JSON.stringify(user.accessToken));
-        console.log(localStorage);
-        if (this.email.value === 'MTRoot@gmail.com')
-          this.router.navigateByUrl('home');
-        else {
-          this.router.navigateByUrl('home');
-        }
 
-      });
+          localStorage.setItem('loggedUser', JSON.stringify(user.accessToken));
+          console.log(localStorage);
+
+          this.router.navigateByUrl('');
+
+      },
+        error => alert(error.error)
+        );
+
 
     } else {
       alert(message);

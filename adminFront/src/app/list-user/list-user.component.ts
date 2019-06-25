@@ -42,4 +42,8 @@ export class ListUserComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  back() {
+    this.router.navigateByUrl('/home');
+  }
 }

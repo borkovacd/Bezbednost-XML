@@ -13,6 +13,7 @@
 <ul>
   <li (click)="login()"><a>Uloguj se</a></li>
   <li (click)="registration()"><a>Registruj se</a></li>
+  <li (click)="myRes()"><a>Moje rezervacije</a></li>
   <li (click)="logOut()"><a>Odjavi se</a></li>
 </ul>
 
@@ -63,12 +64,12 @@
     <p style="font-size: 20px">Kapacitet:  {{item.capacity}}</p>
     <p style="font-size: 20px">Sprat:  {{item.floor}}</p>
     <p style="font-size: 20px">Balkon: {{item.hasBalcony}}</p>
-    <p style="margin-bottom: 0%;font-size: 20px">Moguce otkazati:  {{item.day}} pre isteka rezervacije</p>
+    <p style="margin-bottom: 0%;font-size: 20px">Moguce otkazati:  {{item.day}} dana pre isteka rezervacije</p>
 
     <div style="margin-bottom: 20px">
       <button
         style="border-radius: 12px;background-color: #1a8cff;color: white;height: 45px;width: 110px;font-size: 20px;margin-right: 20px"
-        (click)="reservationRoom(item.id)">Rezervisi
+        (click)="reservationRoom(item)">Rezervisi
       </button>
 
     </div>

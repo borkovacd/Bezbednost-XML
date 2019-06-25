@@ -30,6 +30,9 @@ insert into permissions (id, name) values (18, "ADD_ROOM");
 insert into permissions (id, name) values (19, "DEL_ROOM");
 insert into permissions (id, name) values (20, "EDIT_ROOM");
 
+/*Permisije za usere*/
+insert into permissions (id, name) values (21, "RESERVE");
+
 /*Podela permisija*/
 insert into role_permissions (permission_id, role_id) values (1, 1);
 insert into role_permissions (permission_id, role_id) values (2, 1);
@@ -53,6 +56,8 @@ insert into role_permissions (permission_id, role_id) values (18, 3);
 insert into role_permissions (permission_id, role_id) values (19, 3);
 insert into role_permissions (permission_id, role_id) values (20, 3);
 
+insert into role_permissions (permission_id, role_id) values (21, 2);
+
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (3, "HongKong", "MegaTravelHongKong@gmail.com", 0, "S2", "USA");
@@ -62,11 +67,11 @@ insert into subject_softwares (id, city, email, has_certificate, software_id, st
 insert into users(id, city, enabled, email, first_name, last_name, nonlocked, password, status, username) values (1, "Beograd", 1, "admin@gmail.com", "Admin", "Admin", 1,"$2a$10$frbAPhjTDwVWCON6KKn8OOdmruQpC5RooLU2cOh0UI0LFvOyxGt7y", "AKTIVAN", "admin");
 
 /*sifra mina*/
-insert into users(id, city, enabled, email, first_name, last_name, nonlocked, password, status, username) values (2, "Novi Sad", 1, "mina@gmail.com", "Mina", "Minic", 1,"$2a$10$AfH8lUe2h3ZAIIITiCOwtuQVZrDXgbiQ99YF5R0lZy70/AqzfPTle", "NEAKTIVAN", "mina");
+insert into users(id, city, enabled, email, first_name, last_name, nonlocked, password, status, username) values (2, "Novi Sad", 1, "mina@gmail.com", "Mina", "Minic", 1,"$2a$10$AfH8lUe2h3ZAIIITiCOwtuQVZrDXgbiQ99YF5R0lZy70/AqzfPTle", "AKTIVAN", "mina");
+
 
 insert into users_roles (users_id, roles_id) values (1,1);
 insert into users_roles (users_id, roles_id) values (2,2);
-
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (5, "/", "MTAgent@gmail.com", 0, "SAgent", "/");
 
@@ -108,10 +113,10 @@ insert into accomodation (id, address, description, name, pic, agent_id, categor
 insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 11);
 insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 3);
 
-insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (1, 0, 2, 90, 6, 1, 0, 1);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (2, 1, 4, 90, 2, 1, 0, 1);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (3, 0, 4, 90, 2, 1, 0, 2);
-insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (4, 1, 4, 90, 2, 1, 0, 2);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (1, 0, 2, 3, 6, 1, 0, 1);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (2, 1, 4, 3, 2, 1, 0, 1);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (3, 0, 4, 3, 2, 1, 0, 2);
+insert into room (id, active, capacity, day, floor, has_balcony, reserved, accomodation_id) values (4, 1, 4, 3, 2, 1, 0, 2);
 
 insert into price (id, month, price, room_id) values (1, 1, 25, 2);
 insert into price (id, month, price, room_id) values (2, 2, 25, 2);
@@ -138,7 +143,7 @@ insert into price (id, month, price, room_id) values (30, 10, 30, 4);
 insert into price (id, month, price, room_id) values (31, 11, 35, 4);
 insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 
-insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id) values (1, 0, DATE '2019-05-20', DATE '2019-05-27', 1, 2, 2);
+insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id, price) values (1, 0, DATE '2019-05-20', DATE '2019-05-27', 1, 2, 2, 150);
 insert into reservation_agent (id, from_date, to_date, agent_id, room_id) values (1, DATE '2019-06-20', DATE '2019-06-27', 1, 4);
 
 insert into response (id, text, recipient_id, sender_id) values (1, "Hej useru", 2, 1);

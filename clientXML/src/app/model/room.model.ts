@@ -1,3 +1,5 @@
+import {AccomodationModel} from './accomodation.model';
+
 export class Room {
 
   public id: number;
@@ -7,5 +9,6 @@ export class Room {
   public day: number;
   public reserved: number;
   public active: boolean;
+  public accomodation: AccomodationModel;
 
 }

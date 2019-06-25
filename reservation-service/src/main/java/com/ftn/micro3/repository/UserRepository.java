@@ -9,5 +9,8 @@ import com.ftn.micro3.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>
 {
+	
 	User findOneById(Long id);
+	User findOneByEmail(String email);
+	
 }

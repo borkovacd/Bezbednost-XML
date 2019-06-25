@@ -27,7 +27,7 @@ export class UserService {
   login(object: LoginModel): Observable<any> {
     const body = JSON.stringify(object);
     const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/login`, body, httpOptions);
+    return this.http.post(`${this.BASE_URL}/login`, body, {headers: headers});
   }
 
   getLoggedUser() {
@@ -44,7 +44,7 @@ export class UserService {
 
   logout(): Observable<any> {
     localStorage.clear();
-    return this.http.get('https://localhost:8092/api/user/logout' , httpOptions);
+    return this.http.get('https://localhost:8762/authservice/user/logout' , httpOptions);
 
   }
 }

@@ -5,5 +5,7 @@ export class ReservationModel {
   public toDate: string;
   public idRoom: number;
   public confirmed: boolean;
+  public token: string;
+  public idAgent: number;
 
 }

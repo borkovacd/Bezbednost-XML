@@ -124,7 +124,7 @@ public class UserControler {
 			} 
 			
 			if (userNew.getStatus().equals(ClientStatus.UKLONJEN)) {
-				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
+				return new ResponseEntity<String>("Vas nalog ne postoji", HttpStatus.NOT_FOUND);
 				
 			}
 			

@@ -1,13 +1,17 @@
 package com.ftn.micro3.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +20,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.micro3.config.TokenUtils;
 import com.ftn.micro3.dto.BasicSearchDTO;
 import com.ftn.micro3.dto.ReservationDTO;
+import com.ftn.micro3.model.Price;
 import com.ftn.micro3.model.Reservation;
 import com.ftn.micro3.model.Room;
+import com.ftn.micro3.model.User;
 import com.ftn.micro3.repository.AgentRepository;
+import com.ftn.micro3.repository.PriceRepository;
+import com.ftn.micro3.repository.ReservationRepository;
 import com.ftn.micro3.repository.RoomRepository;
 import com.ftn.micro3.repository.UserRepository;
 import com.ftn.micro3.service.ReservationService;
@@ -33,6 +42,9 @@ public class ReservationController
 	ReservationService reservationService ;
 	
 	@Autowired
+	ReservationRepository reservationRepository;
+	
+	@Autowired
 	RoomRepository roomRepository ;
 	
 	@Autowired
@@ -40,6 +52,12 @@ public class ReservationController
 	
 	@Autowired
 	AgentRepository agentRepository ;
+	
+	@Autowired
+	PriceRepository priceRepository ;
+	
+	@Autowired
+	TokenUtils tokenUtils;
 	
 	@GetMapping(value="/getRoomById/{id}")
 	public ResponseEntity<Room> getRoomById(@PathVariable Long id)
@@ -67,33 +85,74 @@ public class ReservationController
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	
+	@PreAuthorize("hasAuthority('RESERVE')")
 	@PostMapping(value="/createReservation")
-	public ResponseEntity<Reservation> createReservation(@RequestBody ReservationDTO res)
+	public ResponseEntity<Reservation> createReservation(@RequestBody ReservationDTO res) throws Exception
+	
 	{
+		
+		System.out.println(res.getToken());
+		
+		String token = res.getToken().substring(1, res.getToken().length()-1);
+		
+		String username = tokenUtils.getUserSecurity(token).getUsername();
+		
 		Reservation newReservation = new Reservation();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date parsedDate1 = formatter.parse(res.getFromDate());
+		Date parsedDate2 = formatter.parse(res.getToDate());
+		
 		
 		String europeanDatePattern = "yyyy-MM-dd";
 		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
 		LocalDate fromDateConverted = LocalDate.parse(res.getFromDate(), europeanDateFormatter);
 		LocalDate toDateConverted = LocalDate.parse(res.getToDate(), europeanDateFormatter);
 		
+		Month a = fromDateConverted.getMonth();
 		
+		System.out.println("Ovo je mesec " + a.getValue());
+		
+	//	Date date1 = fromDateConverted.get;
+	//	Date toDateConv = Date.parse(res.getToDate(), europeanDateFormatter);
+		
+		long startDateTime = parsedDate1.getTime();
+	    long endDateTime = parsedDate2.getTime();
+	    long milPerDay = 1000*60*60*24; 
+
+	    int numOfDays = (int) ((endDateTime - startDateTime) / milPerDay); // 
+		System.out.println("Dana odabranih: " + numOfDays);
+		
+		Room r = roomRepository.findOneById(res.getIdRoom());
+		
+		ArrayList<Price> pr = priceRepository.findByRoom(r);
+
+		double price = 0;
+		for(Price p: pr) {
+			if (Integer.parseInt(p.getMonth()) == a.getValue()) {
+				price = p.getPrice();
+				break;
+			}
+		}
+		
+		System.out.println("Ukupna cena: " + price*numOfDays);
 		
 		if (res != null)
 		{
-			newReservation.setAgent(agentRepository.getOne(res.getIdAgent()));
+			newReservation.setAgent(agentRepository.findOneById(res.getIdAgent()));
 			newReservation.setConfirmed(false);
 			newReservation.setFromDate(fromDateConverted); 
 			newReservation.setToDate(toDateConverted); 
 			newReservation.setId(res.getId());
-			newReservation.setUser(userRepository.getOne(res.getIdUser())); 
-			newReservation.setRoom(roomRepository.getOne(res.getIdRoom())); 
+			newReservation.setUser(userRepository.findOneByEmail(username)); 
+			newReservation.setRoom(r); 
+			newReservation.setPrice(price*numOfDays);
 		 
 			
-			reservationService.createReservation(newReservation);
+			Reservation newRes = reservationService.createReservation(newReservation);
 			
-			return new ResponseEntity<Reservation>(newReservation, HttpStatus.OK);
+			return new ResponseEntity<Reservation>(newRes, HttpStatus.OK);
 			
 			
 		}
@@ -102,26 +161,41 @@ public class ReservationController
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@GetMapping(value="/getReservationsByUser/{id}")
-	public ResponseEntity<List<Reservation>> getReservationsByUser(@PathVariable Long id) 
+	@PreAuthorize("hasAuthority('RESERVE')")
+	@GetMapping(value="/getReservationsByUser/{token}")
+	public ResponseEntity<List<Reservation>> getReservationsByUser(@PathVariable String token) throws Exception 
 	{
 		
-		List <Reservation> reservationsById = reservationService.findReservationsByUserId(id);
-		List <Reservation> reservations = new ArrayList<>();
+		System.out.println("taj token: " + token);
+		token = token.substring(1, token.length()-1);
 		
-		if (reservationsById != null)
-		{
-			for (Reservation r :  reservationsById) {
-				reservations.add(r);
-			}
+		String username = tokenUtils.getUserSecurity(token).getUsername();
+		
+		System.out.println("Username je: " + username);
+		
+		User us = userRepository.findOneByEmail(username);
+		
+		List <Reservation> reservations = reservationRepository.findAll();
+		
+		List <Reservation> ress = new ArrayList<Reservation>();
+		
+		System.out.println("Ukupno ima res: " + reservations.size());
+		
+		for(Reservation r: reservations) {
 			
-			return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
+			if(r.getUser() == null) {
+				System.out.println("User je null");
+			}
+
+			System.out.println(r.getUser().getId());
+			System.out.println(us.getId());
+			
+			if( (long) r.getUser().getId() == (long) us.getId()) {
+				ress.add(r);
+			}
 		}
 		
-		else 
-		{
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<List<Reservation>>(ress, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="/deleteReservation/{id}")

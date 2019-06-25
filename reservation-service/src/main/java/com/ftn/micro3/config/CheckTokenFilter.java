@@ -43,7 +43,7 @@ public class CheckTokenFilter extends UsernamePasswordAuthenticationFilter {
 		RestTemplate restTemplate = new RestTemplate();
 	    
 		String token = httpRequest.getHeader("token");
-		System.out.println("ovo je token acc " + token);
+		System.out.println("ovo je token res " + token);
 		
 		if(token != null) {
 

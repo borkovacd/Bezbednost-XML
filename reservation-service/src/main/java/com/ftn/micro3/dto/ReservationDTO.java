@@ -22,7 +22,7 @@ public class ReservationDTO
 	
 	private Long idRoom ;
 	
-	private Long idUser ;
+	private String token;
 
 	private Long idAgent ;
 	
@@ -33,12 +33,12 @@ public class ReservationDTO
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReservationDTO(String fromDate, String toDate, Long idRoom, Long idUser, Long idAgent) {
+	public ReservationDTO(String fromDate, String toDate, Long idRoom, String token, Long idAgent) {
 		super();
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.idRoom = idRoom;
-		this.idUser = idUser;
+		this.token = token;
 		this.idAgent = idAgent;
 	}
 
@@ -74,12 +74,12 @@ public class ReservationDTO
 		this.idRoom = idRoom;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public String getToken() {
+		return token;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public Long getIdAgent() {

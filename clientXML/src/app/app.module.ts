@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {UserService} from './service/user.service';
 import {ReservationService} from './service/reservation.service';
+import { ListReservationComponent } from './list-reservation/list-reservation.component';
 
 
 
@@ -20,6 +21,7 @@ import {ReservationService} from './service/reservation.service';
     WelcomepageComponent,
     LoginComponent,
     RegistrationComponent,
+    ListReservationComponent,
 
 
   ],

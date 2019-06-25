@@ -14,6 +14,7 @@ import com.ftn.micro3.model.ReservationAgent;
 import com.ftn.micro3.model.Room;
 import com.ftn.micro3.model.User;
 import com.ftn.micro3.repository.AccomodationRepository;
+import com.ftn.micro3.repository.PriceRepository;
 import com.ftn.micro3.repository.ReservationAgentRepository;
 import com.ftn.micro3.repository.ReservationRepository;
 import com.ftn.micro3.repository.RoomRepository;
@@ -26,6 +27,9 @@ public class ReservationService
 	
 	@Autowired
 	RoomRepository roomRepository ;
+	
+	@Autowired
+	PriceRepository priceRepository;
 	
 	@Autowired
 	AccomodationRepository accomodationRepository ;

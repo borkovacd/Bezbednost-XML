@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {SearchModel} from '../model/search.model';
 import {AdvancedSearchModel} from '../model/advancedSearch.model';
 import {ReservationModel} from '../model/reservation.model';
+import {ReservationBackModel} from '../model/reservationBack.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -28,10 +29,16 @@ export class ReservationService {
   }
 
   makeRes(resDto: ReservationModel) {
-    const body = JSON.stringify(resDto);
     const token = localStorage.getItem('loggedUser');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    resDto.token = token;
+    const body = JSON.stringify(resDto);
     return this.http.post(`${this.BASE_URL}/createReservation`, body, {headers: headers});
   }
 
+  getMyRes(): Observable<ReservationBackModel[]> {
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get<ReservationBackModel[]>(`${this.BASE_URL}/getReservationsByUser/${token}`, {headers: headers});
+  }
 }
