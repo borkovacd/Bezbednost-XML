@@ -60,7 +60,7 @@ export  class WelcomepageComponent {
       'checkOutDate': ['', Validators.compose([Validators.required])],
       'numberOfPersons': ['', Validators.compose([Validators.required])],
     }),
-    this.advancedSearchform = this.fb.group({
+      this.advancedSearchform = this.fb.group({
         'tipHotel': [''],
         'tipApartman': [''],
         'tipBadAndBreakfast': [''],
@@ -81,7 +81,7 @@ export  class WelcomepageComponent {
         'tv': [''],
         'petFriendly': [''],
         'besplatnoOtkazivanje': [''],
-    })
+      })
     this.city = this.form.controls['city'];
     this.checkInDate = this.form.controls['checkInDate'];
     this.checkOutDate = this.form.controls['checkOutDate'];
@@ -109,24 +109,30 @@ export  class WelcomepageComponent {
   }
 
 
-
   ngOnInit() {
 
     this.advancedSearch = false;
   }
 
+
   login() {
     this.router.navigateByUrl('login');
   }
+
   registration() {
     this.router.navigateByUrl('registration');
   }
+
   logOut() {
     this.userService.logout().subscribe(data => {
-
+      localStorage.clear();
       this.router.navigateByUrl('');
     });
 
+  }
+
+  messages(){
+    this.router.navigateByUrl('messages');
   }
   serachRooms(){
 

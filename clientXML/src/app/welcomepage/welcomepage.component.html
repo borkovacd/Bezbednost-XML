@@ -15,6 +15,7 @@
   <li (click)="registration()"><a>Registruj se</a></li>
   <li (click)="myRes()"><a>Moje rezervacije</a></li>
   <li (click)="logOut()"><a>Odjavi se</a></li>
+  <li (click)="messages()"><a>Poruke</a></li>
 </ul>
 
 <div>
@@ -91,7 +92,7 @@
              [formControl]="tipHotel">
         </div>
         <div style=" display: inline-block;margin-left: 10%;">
-          <label>Bad & breakfast</label>
+          <label>Bed & breakfast</label>
           <input name="hotel" class="form-control margin" id="input-badAndBreakfast" type="checkbox"
              [formControl]="tipBadAndBreakfast">
         </div>

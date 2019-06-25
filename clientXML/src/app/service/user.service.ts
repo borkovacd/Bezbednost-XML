@@ -43,7 +43,7 @@ export class UserService {
   }
 
   logout(): Observable<any> {
-    localStorage.clear();
+
     return this.http.get('https://localhost:8762/authservice/user/logout' , httpOptions);
 
   }
