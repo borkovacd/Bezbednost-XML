@@ -1,5 +1,6 @@
 package com.ftn.micro3.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
@@ -212,5 +213,29 @@ public class ReservationController
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
+	}
+	
+	@PostMapping(value="/cancelRes/{id}", consumes="application/json")
+	public ResponseEntity<?> cancelRes(@PathVariable Long id) throws ParseException
+	{	
+		/*
+		if (reservationService.cancelAccepted(id) == true)
+		{
+			reservationService.cancelReservation(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		*/
+		
+		
+		if (id != null) {
+			reservationService.cancelReservation(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }
