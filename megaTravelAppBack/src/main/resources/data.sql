@@ -146,8 +146,8 @@ insert into price (id, month, price, room_id) values (32, 12, 50, 4);
 insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, user_id, price) values (1, 0, DATE '2019-05-20', DATE '2019-05-27', 1, 2, 2, 150);
 insert into reservation_agent (id, from_date, to_date, agent_id, room_id) values (1, DATE '2019-06-20', DATE '2019-06-27', 1, 4);
 
-/*insert into response (id, text, recipient_id, sender_id) values (1, "Hej useru", 2, 1);*/
 insert into message (id, text, recipient_id, sender_id) values (1, "Hej agente", 1, 2);
+insert into response (id, text,message_id, recipient_id, sender_id) values (1, "Hej useru",1, 2, 1);
 
 
 
