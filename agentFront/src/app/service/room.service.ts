@@ -19,13 +19,13 @@ export  class RoomService{
     const body = JSON.stringify(object);
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}`, body, {headers: headers});
+    return this.http.post(`${this.BASE_URL}/createRoom/${idAccomodation}/${token}`, body, {headers: headers});
   }
 
   getAllRoom(idAccomodation: any): Observable<any> {
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}`, {headers: headers});
+    return this.http.get(`${this.BASE_URL}/getAllRooms/${idAccomodation}/${token}`, {headers: headers});
   }
 
   checkIfReservedRoom(id: any): Observable<any> {
@@ -36,18 +36,18 @@ export  class RoomService{
   deleteRoom(idA: any, idR: any): Observable<any> {
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.delete(`${this.BASE_URL}/deleteRoom/${idA}/${idR}`, {headers: headers});
+    return this.http.delete(`${this.BASE_URL}/deleteRoom/${idA}/${idR}/${token}`, {headers: headers});
   }
   getOneRoom(idA: any, idR: any): Observable<any> {
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/getOneRoom/${idA}/${idR}`, {headers: headers});
+    return this.http.get(`${this.BASE_URL}/getOneRoom/${idA}/${idR}/${token}`, {headers: headers});
   }
 
   editRoom(object: RoomModel, idAccomodation: any, id: any): Observable<any> {
     const body = JSON.stringify(object);
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}`, body, {headers: headers});
+    return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}/${token}`, body, {headers: headers});
   }
 }

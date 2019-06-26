@@ -10,6 +10,8 @@ import java.util.List;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,8 @@ import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class ReservationAgentService {
-	
+	private static final Logger log = LoggerFactory.getLogger(ReservationAgentService.class);
+
 	@Autowired
 	private ReservationAgentRepository reservationAgentRepository;
 	@Autowired
@@ -68,6 +71,8 @@ public class ReservationAgentService {
 		GetAllReservationsAgentRequest request = new GetAllReservationsAgentRequest();
 		
 		Agent ag = agentRepository.findOneByUsername(username);
+		log.info("User id: "+ ag.getId()+" GETARES");
+
 		request.setRequest("Agent request: 'Return all agent reservations by agent '" + username + "'");
 		request.setAgentId(ag.getId());
 		
@@ -96,6 +101,8 @@ public class ReservationAgentService {
 
 			reservationAgentRepository.save(r);
 			reservations.add(r);
+			log.info("User id: "+ ag.getId()+" GETARESSUCCESS");
+
 			
 		}
 		
@@ -109,7 +116,8 @@ public class ReservationAgentService {
 		
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		Agent agent = agentRepository.findOneByUsername(username);
-		
+		log.info("User id: "+ agent.getId()+" CREARESAGENT");
+
 		request.setRequest("Agent request: 'Create new agent reservation by agent '" + username + "'");
 		request.setAgentId(agent.getId());
 		request.setRoomId(idRoom);
@@ -157,12 +165,14 @@ public class ReservationAgentService {
 		reservationAgent.setAgent(agentRepository.getOne(agent.getId()));
 		
 		reservationAgentRepository.save(reservationAgent);
-		
+		log.info("User id: "+ agent.getId()+" CREARESAGENTSUCCESS");
+
 		
 	}
 
 	public List<Room> searchFreeRooms(LocalDate d1, LocalDate d2) {
-		
+		log.debug("SEARROOM");
+
 		List<Room> allRooms = roomRepository.findAll();
 
 		List<Reservation> reservations = reservationRepository.findAll();

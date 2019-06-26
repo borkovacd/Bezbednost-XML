@@ -2,6 +2,8 @@ package com.ftn.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import com.ftn.service.ResponseService;
 @RestController
 @RequestMapping(value = "/api/response")
 public class ResponseController {
+	private static final Logger log = LoggerFactory.getLogger(ResponseController.class);
+
 	@Autowired
 	private ResponseService responseService;
 	

@@ -3,6 +3,8 @@ package com.ftn.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ import com.ftn.webservice.files.GetAllResponsesResponse;
 
 @Service
 public class ResponseService {
+	private static final Logger log = LoggerFactory.getLogger(ResponseService.class);
+
 	
 	@Autowired
 	private MessageRepository messageRepository;
@@ -45,6 +49,8 @@ public class ResponseService {
 		GetAllResponsesRequest request = new GetAllResponsesRequest();
 		
 		Agent agent = agentRepository.findOneByUsername(username);
+		log.info("User id: "+ agent.getId()+" GETALLRESPON");
+
 		request.setRequest("Agent request: 'Return all responses for agent '" + username + "'");
 		request.setAgentId(agent.getId());
 		
@@ -73,7 +79,10 @@ public class ResponseService {
 			responseRepository.save(r);
 			responses.add(r);
 			
+			
 		}
+		log.info("User id: "+ agent.getId()+" GETALLRESPONSUCCESS");
+
 		
 
 		return (ArrayList<Response>) responses;

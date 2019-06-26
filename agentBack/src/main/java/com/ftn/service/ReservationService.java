@@ -6,9 +6,12 @@ import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.controller.ReservationController;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
 import com.ftn.model.Agent;
@@ -34,6 +37,8 @@ import com.ftn.webservice.files.RoomSoap;
 
 @Service
 public class ReservationService {
+	private static final Logger log = LoggerFactory.getLogger(ReservationService.class);
+
 	
 	@Autowired
 	private ReservationRepository reservationRepository;
@@ -58,6 +63,8 @@ public class ReservationService {
 		GetAllReservationsRequest request = new GetAllReservationsRequest();
 		
 		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ ag.getId()+" GETALLRES");
+
 		request.setRequest("Agent request: 'Return all reservations by agent '" + usname + "'");
 		request.setAgentId(ag.getId());
 		
@@ -92,6 +99,7 @@ public class ReservationService {
 			
 		}
 		
+		log.info("User id: "+ ag.getId()+" GETALLRESSUCCESS");
 
 		return (ArrayList<Reservation>) reservations;
 	}

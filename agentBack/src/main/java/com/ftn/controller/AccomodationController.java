@@ -2,6 +2,11 @@ package com.ftn.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.model.Accomodation;
-import com.ftn.model.Room;
 import com.ftn.service.AccomodationService;
 
 @RestController
@@ -38,10 +42,10 @@ public class AccomodationController {
 	
 
 	@PreAuthorize("hasAuthority('DEL_ACC')")
-	@DeleteMapping("/deleteAccomodation/{id}")
-	public boolean deleteAccomodation(@PathVariable Long id) {
-
-		boolean response = accomodationService.delete(id);
+	@DeleteMapping("/deleteAccomodation/{id}/{token}")
+	public boolean deleteAccomodation(@PathVariable Long id,@PathVariable String token) throws Exception {
+	
+		boolean response = accomodationService.delete(id,token);
 		return response;
 	}
 
