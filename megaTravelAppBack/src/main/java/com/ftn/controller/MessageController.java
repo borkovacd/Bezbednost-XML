@@ -19,9 +19,13 @@ import com.ftn.service.UserService;
 import com.ftn.model.Agent;
 import com.ftn.model.City;
 import com.ftn.model.Message;
+import com.ftn.model.Reservation;
 import com.ftn.model.Response;
 import com.ftn.model.User;
 import com.ftn.modelDTO.MessageDTO;
+import com.ftn.repository.AgentRepository;
+import com.ftn.repository.ReservationRepository;
+import com.ftn.repository.ResponseRepository;
 import com.ftn.repository.UserRepository;
 import com.ftn.security.TokenUtils; 
 
@@ -40,6 +44,16 @@ public class MessageController
 	
 	@Autowired
 	private UserRepository userRepository ;
+		
+	@Autowired
+	private AgentRepository agentRepository ;
+	
+	@Autowired
+	private ReservationRepository reservationRepository ;
+	
+	@Autowired
+	private ResponseRepository responseRepository ;
+	
 	
 	@Autowired
 	TokenUtils tokenUtils;
@@ -55,9 +69,36 @@ public class MessageController
 		User u = userService.findByEmail(email);
 		
 		List<Message> messages = messageService.getAllMessages(u.getId());
-		if (messages != null) 
+		List<Message> goodMessages = new ArrayList<Message>();
+		
+		List<Message> unansweredMessages = new ArrayList<Message>();
+		boolean unanswered = true;
+		
+		for(Message message : messages) 
 		{
-			return new ResponseEntity<>(messages, HttpStatus.OK);
+			for(Response responseMessage : responseRepository.findAll()) 
+			{
+				if(responseMessage.getMessage().getId() == message.getId()) 
+				{
+					unanswered = false;
+				}
+			}
+			
+			
+			if(unanswered == true) 
+			{
+				unansweredMessages.add(message);
+			}
+			
+			else 
+			{
+				unanswered = true;
+			}
+		}
+			
+		if (unansweredMessages != null) 
+		{
+			return new ResponseEntity<List<Message>>(unansweredMessages, HttpStatus.OK);
 		}
 		else 
 		{
@@ -92,7 +133,7 @@ public class MessageController
 	//preko tokena preuzimas usera koji salje poruku
 	//i to je to sto ti tre
 	@PostMapping("/createMessage/{token}")
-	public void createAnswer(@RequestBody MessageDTO messageDTO, @PathVariable String token) throws Exception 
+	public void createMessage(@RequestBody MessageDTO messageDTO, @PathVariable String token) throws Exception 
 	{
 		
 		token = token.substring(1, token.length()-1);
@@ -100,6 +141,9 @@ public class MessageController
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
 		User user = userRepository.findOneByUsername(username);
+		
+		Agent agent = agentRepository.findOneByUsername(messageDTO.getIdRecipient());
+			
 		if ((messageService.canSendMessage(user.getId())) == true) // trenutni korisnik se nalazi u tabeli rezervacija
 		{
 			messageService.createMessage(messageDTO, token);
@@ -118,13 +162,14 @@ public class MessageController
 		User user = userRepository.findOneByUsername(username);
 		
 		//metoda treba da vraca true kada korisnik ima neku prethodno kreiranu rezervaciju
-		boolean hasReservation = false;
+		boolean hasReservation = messageService.canSendMessage(user.getId());
 				
 		return hasReservation;
 	}
 	
 	@GetMapping("/getAppropriateAgents/{token}") 
-	public ResponseEntity<List<Agent>> getAppropriateAgents(@PathVariable String token) throws Exception {
+	public ResponseEntity<List<Agent>> getAppropriateAgents(@PathVariable String token) throws Exception 
+	{
 		
 		token = token.substring(1, token.length()-1);
 		
@@ -132,9 +177,28 @@ public class MessageController
 		User user = userRepository.findOneByUsername(username);
 		
 		//treba da vratis sve agente kojima user moze da prosledi poruke
-		ArrayList<Agent> agents = null;
+		ArrayList<Agent> agents = new ArrayList<Agent>();
 		
-		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
+		List<Reservation> reservations = reservationRepository.findByUserId(user.getId()); // vraca sve rezervacije tog usera
+		
+		if (reservations.size() == 0) // taj korisnik nema rezervacija, pa nema ni agenata
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		else
+		{
+			for (Reservation r: reservations) // prolazi kroz sve rezervacije i iz svake rezervacije pokupi agenta
+			{
+				if (!agents.contains(r.getAgent())) // ukoliko je taj agent vec dodat u listu (jedan User vise puta rezervisao kod istog agenta)
+				{
+					agents.add(r.getAgent());
+				}
+				
+			}
+			
+			return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
+		}
+		
 	} 
 	
 	

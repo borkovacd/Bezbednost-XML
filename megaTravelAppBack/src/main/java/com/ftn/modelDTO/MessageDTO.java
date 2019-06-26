@@ -4,12 +4,10 @@ import javax.persistence.Id;
 
 public class MessageDTO 
 {
-	@Id
-	private Long idMessage;
 	
 	private String sender; // od klase USER
 
-	private Long idRecipient; // od klase AGENT
+	private String idRecipient; // od klase AGENT
 
 	private String text;
 
@@ -18,22 +16,14 @@ public class MessageDTO
 		// TODO Auto-generated constructor stub
 	}
 
-	public MessageDTO(Long idMessage, String sender, Long idRecipient, String text) {
+	public MessageDTO(String sender, String idRecipient, String text) {
 		super();
-		this.idMessage = idMessage;
 		this.sender = sender;
 		this.idRecipient = idRecipient;
 		this.text = text;
 	}
 
 
-	public Long getIdMessage() {
-		return idMessage;
-	}
-
-	public void setIdMessage(Long idMessage) {
-		this.idMessage = idMessage;
-	}
 
 	public String getSender() {
 		return sender;
@@ -45,11 +35,11 @@ public class MessageDTO
 
 
 
-	public Long getIdRecipient() {
+	public String getIdRecipient() {
 		return idRecipient;
 	}
 
-	public void setIdRecipient(Long idRecipient) {
+	public void setIdRecipient(String idRecipient) {
 		this.idRecipient = idRecipient;
 	}
 

@@ -10,4 +10,5 @@ import com.ftn.model.User;
 public interface AgentRepository extends JpaRepository<Agent, Long> 
 {
 	Agent findOneById(Long id);
+	Agent findOneByUsername(String username);
 }

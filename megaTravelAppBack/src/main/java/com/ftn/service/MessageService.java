@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.model.Agent;
 import com.ftn.model.Message;
+import com.ftn.model.Reservation;
 import com.ftn.model.Response;
 import com.ftn.model.User;
 import com.ftn.modelDTO.MessageDTO;
@@ -45,13 +46,15 @@ public class MessageService
 	// Korisnik moze da salje poruku agentu jedino ukoliko vec ima kreiranu rezervaciju
 	public boolean canSendMessage(Long idUser)
 	{
-		if (reservationRepository.findByUserId(idUser) != null) // u tabeli rezervacija je pronasao User-a sa tim Id-jem
-		{
-			return true ;
-		}	
-		else
+		List<Reservation> reservations = reservationRepository.findByUserId(idUser);
+		
+		if (reservations.size() == 0) // ukoliko nije pronasao nijednu rezervaciju za prosledjen idUser-a
 		{
 			return false ;
+		}
+		else // postoji makar jedna rezervacija u listi rezervacija koju je taj User napravio
+		{
+			return true ;
 		}
 	}
 	
@@ -60,11 +63,10 @@ public class MessageService
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
 		User user = userRepository.findOneByUsername(username);
-		Agent agent = agentRepository.findOneById(messageDTO.getIdRecipient());
+		Agent agent = agentRepository.findOneByUsername(messageDTO.getIdRecipient());
 		
 		Message message = new Message();
-		
-		message.setId(messageDTO.getIdMessage());
+
 		message.setSender(user);
 		message.setRecipient(agent);
 		message.setText(messageDTO.getText());
