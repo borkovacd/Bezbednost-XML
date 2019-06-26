@@ -8,6 +8,7 @@ import com.ftn.model.Reservation;
 
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-
+public interface ReservationRepository extends JpaRepository<Reservation, Long> 
+{
+	Reservation findByUserId(Long id);
 }
