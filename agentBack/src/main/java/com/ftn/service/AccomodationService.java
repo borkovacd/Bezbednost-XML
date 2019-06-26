@@ -16,6 +16,8 @@ import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Price;
+import com.ftn.model.Reservation;
+import com.ftn.model.ReservationAgent;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.model.User;
@@ -25,6 +27,8 @@ import com.ftn.repository.AgentRepository;
 import com.ftn.repository.CategoryRepository;
 import com.ftn.repository.CityRepository;
 import com.ftn.repository.PriceRepository;
+import com.ftn.repository.ReservationAgentRepository;
+import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
 import com.ftn.repository.UserRepository;
@@ -52,6 +56,10 @@ public class AccomodationService {
 
 	@Autowired
 	private AccomodationRepository accomodationRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
+	@Autowired
+	private ReservationAgentRepository reservationAgentRepository;
 	@Autowired
 	private CityRepository cityRepository;
 	@Autowired
@@ -346,13 +354,30 @@ public class AccomodationService {
 		//fali token
 		boolean taken = false;
 		
+		List<Reservation> reservations = reservationRepository.findAll();
+		List<ReservationAgent> reservationsAgent = reservationAgentRepository.findAll();
+		
+		
 		for(Room room : roomRepository.findAll()) {
 			if(room.getAccomodation().getId() == id) {
-				if(room.isReserved() == true) {
-					taken = true;
+				for(Reservation reservation : reservations) {
+					if(reservation.getRoom().getId() == room.getId()) {
+							taken = true;
+					}
 				}
 			}
 		}
+		
+		for(Room room : roomRepository.findAll()) {
+			if(room.getAccomodation().getId() == id) {
+				for(ReservationAgent reservationAgent : reservationsAgent) {
+					if(reservationAgent.getRoom().getId() == room.getId()) {
+							taken = true;
+					}
+				}
+			}
+		}
+		
 		
 		return taken;
 	}

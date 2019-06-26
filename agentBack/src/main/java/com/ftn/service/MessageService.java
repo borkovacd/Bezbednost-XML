@@ -61,8 +61,6 @@ public class MessageService {
 
 	public List<Message> getAllMessages(String token) throws Exception {
 		
-		//responseService.getAllResponses(token);
-		
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
 		GetAllMessagesRequest request = new GetAllMessagesRequest();
@@ -91,10 +89,6 @@ public class MessageService {
 			m.setSender(sender);
 			Agent recipient = agentRepository.getOne(response.getMessagesList().get(i).getRecipient().getId());
 			m.setRecipient(recipient);
-			/*if(responseRepository.getOne(response.getMessagesList().get(i).getResponse().getId()) != null) {
-				Response responseMessage = responseRepository.getOne(response.getMessagesList().get(i).getResponse().getId());
-				m.setResponse(responseMessage);
-			}*/
 			m.setText(response.getMessagesList().get(i).getText());
 
 			messageRepository.save(m);
@@ -104,8 +98,25 @@ public class MessageService {
 			
 		}
 		
+		responseService.getAllResponses(token);
+		
+		List<Message> unansweredMessages = new ArrayList<Message>();
+		boolean unanswered = true;
+		for(Message message : messages) {
+			for(Response responseMessage : responseRepository.findAll()) {
+				if(responseMessage.getMessage().getId() == message.getId()) {
+					unanswered = false;
+				}
+			}
+			if(unanswered == true) {
+				unansweredMessages.add(message);
+			} else {
+				unanswered = true;
+			}
+		}
+		
 
-		return (ArrayList<Message>) messages;
+		return (ArrayList<Message>) unansweredMessages;
 	}
 
 	public void createAnswer(AnswerDTO answerDTO, String token) throws Exception {

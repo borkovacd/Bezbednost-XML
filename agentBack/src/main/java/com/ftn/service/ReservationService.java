@@ -92,6 +92,7 @@ public class ReservationService {
 			r.setUser(user);
 			Agent agent = agentRepository.getOne(response.getReservationsList().get(i).getAgent().getId());
 			r.setAgent(agent);
+			r.setPrice(response.getReservationsList().get(i).getPrice());
 			r.setConfirmed(response.getReservationsList().get(i).isConfirmed());
 
 			reservationRepository.save(r);

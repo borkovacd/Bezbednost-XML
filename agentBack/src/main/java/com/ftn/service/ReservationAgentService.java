@@ -177,33 +177,26 @@ public class ReservationAgentService {
 
 		List<Reservation> reservations = reservationRepository.findAll();
 		List<ReservationAgent> reservationsAgent = reservationAgentRepository.findAll();
-		//System.out.println("Soba ima: " + allRooms.size());
 		
-		for (Reservation res : reservations) // prolazak kroz sve rezervacije
+		for (Reservation res : reservations) 
 		{
-			if (allRooms.contains(res.getRoom())) // ukoliko se soba iz rezervacije nalazi medju odgovarajucim sobama po smestaju
-			{
-				// ukoliko su pocetni datumi jednaki, ili je prosledjen pocetni veci od onog na rezervaciji
-				// ukoliko je pocetni datum rezervacije pre krajnjeg datuma rezervacije
-				
-				// ukoliko je pocetni datum pre kraja rezervacije
-				// ukoliko je krajnji datum pre kraja rezervacije
-				if((res.getFromDate().compareTo(d1) >= 0 && res.getFromDate().compareTo(d2) <= 0) || (res.getToDate().compareTo(d1) >= 0 && res.getToDate().compareTo(d2) <= 0)) 
+			if(res.isConfirmed() == true) {
+				if (allRooms.contains(res.getRoom()))
 				{
-					allRooms.remove(res.getRoom());
+				
+					if((res.getFromDate().compareTo(d1) >= 0 && res.getFromDate().compareTo(d2) <= 0) || (res.getToDate().compareTo(d1) >= 0 && res.getToDate().compareTo(d2) <= 0)) 
+					{
+						allRooms.remove(res.getRoom());
+					}
 				}
 			}
 		}
 		
-		for (ReservationAgent res : reservationsAgent) // prolazak kroz sve rezervacije
+		for (ReservationAgent res : reservationsAgent) 
 		{
-			if (allRooms.contains(res.getRoom())) // ukoliko se soba iz rezervacije nalazi medju odgovarajucim sobama po smestaju
+			if (allRooms.contains(res.getRoom()))
 			{
-				// ukoliko su pocetni datumi jednaki, ili je prosledjen pocetni veci od onog na rezervaciji
-				// ukoliko je pocetni datum rezervacije pre krajnjeg datuma rezervacije
-				
-				// ukoliko je pocetni datum pre kraja rezervacije
-				// ukoliko je krajnji datum pre kraja rezervacije
+			
 				if((res.getFromDate().compareTo(d1) >= 0 && res.getFromDate().compareTo(d2) <= 0) || (res.getToDate().compareTo(d1) >= 0 && res.getToDate().compareTo(d2) <= 0)) 
 				{
 					allRooms.remove(res.getRoom());

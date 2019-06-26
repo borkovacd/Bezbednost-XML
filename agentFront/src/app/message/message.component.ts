@@ -39,13 +39,18 @@ export class MessageComponent implements OnInit{
   }
   ngOnInit(){
     this.empty = false;
-    this.responseService.getAllResponses().subscribe(data => {
-      this.responses = data;
-    })
 
     this.messageService.getAllMessages().subscribe(data => {
       this.messages = data;
+
+      this.responseService.getAllResponses().subscribe(data => {
+        this.responses = data;
+      })
     })
+
+
+
+
 
   }
 

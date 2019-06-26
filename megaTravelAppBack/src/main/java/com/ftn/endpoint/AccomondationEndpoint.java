@@ -836,6 +836,7 @@ public class AccomondationEndpoint {
 				AgentSoap agentSoap = new AgentSoap();
 				agentSoap.setId(reservationRepository.findAll().get(i).getAgent().getId());
 				r.setAgent(agentSoap);
+				r.setPrice(reservationRepository.findAll().get(i).getPrice());
 				r.setConfirmed(reservationRepository.findAll().get(i).isConfirmed());
 				
 				response.getReservationsList().add(r);
@@ -1085,11 +1086,6 @@ public class AccomondationEndpoint {
 				AgentSoap agentSoap = new AgentSoap();
 				agentSoap.setId(messageRepository.findAll().get(i).getRecipient().getId());
 				m.setRecipient(agentSoap);
-				/*ResponseSoap responseSoap = new ResponseSoap();
-				if(responseRepository.getOne(messageRepository.findAll().get(i).getResponse().getId()) != null) {
-					responseSoap.setId(messageRepository.findAll().get(i).getResponse().getId());
-					m.setResponse(responseSoap);
-				}*/
 				m.setText(messageRepository.findAll().get(i).getText());
 				
 				response.getMessagesList().add(m);

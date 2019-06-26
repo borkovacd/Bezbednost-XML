@@ -15,11 +15,15 @@ import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Price;
+import com.ftn.model.Reservation;
+import com.ftn.model.ReservationAgent;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.PriceRepository;
+import com.ftn.repository.ReservationAgentRepository;
+import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
@@ -52,6 +56,10 @@ public class RoomService {
 
 	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
+	@Autowired
+	private ReservationAgentRepository reservationAgentRepository;
 	@Autowired
 	private AccomodationRepository accomodationRepository;
 	@Autowired
@@ -197,12 +205,20 @@ public class RoomService {
 	public boolean checkIfRoomIsReserved(Long id) {
 		
 		boolean taken = false;
+	
+		List<Reservation> reservations = reservationRepository.findAll();
+		List<ReservationAgent> reservationsAgent = reservationAgentRepository.findAll();
 		
-		Room room = roomRepository.getOne(id);
-		if(room.isReserved() == true) {
-			taken = true;
-		} else {
-			taken = false;
+		for(Reservation reservation : reservations) {
+			if(reservation.getRoom().getId() == id) {
+				taken = true;
+			}
+		}
+		
+		for(ReservationAgent reservationAgent : reservationsAgent) {
+			if(reservationAgent.getRoom().getId() == id) {
+				taken = true;
+			}
 		}
 		
 		return taken;

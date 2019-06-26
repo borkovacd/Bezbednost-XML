@@ -602,6 +602,7 @@
             <xs:element name="room" type="tns:roomSoap"/>
             <xs:element name="user" type="tns:userSoap"/>
             <xs:element name="agent" type="tns:agentSoap"/>
+            <xs:element name="price" type="xs:double"/>
             <xs:element name="confirmed" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
