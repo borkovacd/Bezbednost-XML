@@ -132,8 +132,7 @@ export  class WelcomepageComponent {
 
   logOut() {
     this.userService.logout().subscribe(data => {
-      localStorage.clear();
-      this.router.navigateByUrl('');
+      window.location.reload();
     });
 
   }

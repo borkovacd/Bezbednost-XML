@@ -28,7 +28,7 @@ export class HomeComponent implements  OnInit{
     }
 
   }
-  createCertificate(){
+  createCertificate() {
     this.router.navigateByUrl('createCertificate');
   }
 
@@ -47,5 +47,9 @@ export class HomeComponent implements  OnInit{
 
   povratak() {
     this.router.navigateByUrl('');
+  }
+
+  softwares() {
+    this.router.navigateByUrl('/software');
   }
 }

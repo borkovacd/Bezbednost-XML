@@ -72,7 +72,9 @@ public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
 				.authorizeRequests()
-				.antMatchers("/test/**").permitAll().and()
+				.antMatchers("/admin/**").permitAll()
+				.antMatchers("/test/**").permitAll()
+				.antMatchers("/user/**").permitAll().and()
 				
 				//.anyRequest().authenticated().and()
 				

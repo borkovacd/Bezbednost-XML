@@ -44,7 +44,9 @@ export class AddCategoryComponent implements OnInit {
     category.name = this.name.value;
 
     this.service.addNewCategory(category).subscribe( data =>
-      this.router.navigateByUrl('/home'));
+     // this.router.navigateByUrl('/home'));
+
+    window.location.reload());
 
     /*data => {
         this.categories = data;

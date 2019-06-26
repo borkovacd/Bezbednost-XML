@@ -34,8 +34,9 @@ export class SecurityService {
 
   addCertificate(model: CertificateModel, token: string): Observable<any> {
     const data = JSON.stringify(model);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( 'https://localhost:8092/api/security/createCertificate/' + token, data, httpOptions);
+    token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.post( 'https://localhost:8092/api/security/createCertificate/' + token, data, {headers: headers});
   }
 
   getCert(token: string): Observable<CertificateBackModel[]> {
@@ -47,7 +48,10 @@ export class SecurityService {
   }
 
   revokeCert(serialNumber: any , message: string): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/revokeCertificate/${serialNumber}/${message}`, httpOptions);
+  console.log(localStorage.getItem('loggedUser'));
+    token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/revokeCertificate/${serialNumber}/${message}/${token}`, {headers: headers});
 
   }
 
@@ -56,7 +60,9 @@ export class SecurityService {
   }
 
   getMyCert(token: string): Observable<CertificateBackModel> {
-    return this.http.get<CertificateBackModel>(`${this.BASE_URL}/getMyCertificate/${token}`, httpOptions);
+    token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get<CertificateBackModel>(`${this.BASE_URL}/getMyCertificate/${token}`, {headers: headers});
   }
 
 }

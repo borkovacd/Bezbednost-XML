@@ -43,8 +43,10 @@ export class UserService {
   }
 
   logout(): Observable<any> {
-
-    return this.http.get('https://localhost:8762/authservice/user/logout' , httpOptions);
+    const tok = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': tok});
+    localStorage.clear();
+    return this.http.get('https://localhost:8762/authservice/user/logout' , {headers: headers});
 
   }
 }

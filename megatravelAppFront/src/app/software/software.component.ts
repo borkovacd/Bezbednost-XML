@@ -56,8 +56,9 @@ export class SoftwareComponent implements  OnInit {
       });
   }
 
-  createCertificate() : any {
-    this.router.navigateByUrl('home');
+
+  back() {
+    this.router.navigateByUrl('/home');
   }
 }
 

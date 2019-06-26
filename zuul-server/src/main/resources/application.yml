@@ -33,6 +33,9 @@ zuul:
      resservice:
        serviceId: reservation-service
        sensitiveHeaders:     
+     ratingservice:
+       serviceId: rating-service
+       sensitiveHeaders: 
   sensitiveHeaders:     
   host:
     socket-timeout-millis: 30000

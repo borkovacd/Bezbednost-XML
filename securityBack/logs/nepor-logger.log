@@ -1,12 +1,101 @@
-2019-06-23 13:01:27,492 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
-2019-06-23 13:07:28,987 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
-2019-06-23 13:07:40,124 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT2 CRE_CA id:1 
-2019-06-23 13:07:40,712 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
-2019-06-23 13:08:04,111 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
-2019-06-23 13:10:53,814 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
-2019-06-23 13:10:55,207 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
-2019-06-23 13:26:25,114 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
-2019-06-23 13:26:26,293 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
-2019-06-23 13:32:34,668 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
-2019-06-23 13:32:44,823 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT3 CRE_CA id:1 
-2019-06-23 13:32:45,258 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:30:01,058 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 19:33:47,502 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 19:33:48,566 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:34:51,017 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:35:50,790 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:36:26,168 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:36:38,275 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:36:50,218 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:36:55,297 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:39:21,523 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 19:39:36,919 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:2 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 19:39:50,986 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT , COMM_FAIL , CA not found between 2 
+2019-06-25 19:39:56,437 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 19:40:43,049 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT4 CRE_CA id:2 
+2019-06-25 19:40:43,797 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 19:41:03,319 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT , COMM_SUC between 2 and 4
+2019-06-25 19:41:16,083 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 19:45:12,335 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 19:45:13,867 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:10:40,641 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:11:36,356 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:4 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:11:45,507 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MegaTravelBoston@gmail.com CA 
+2019-06-25 20:11:53,864 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT , COMM_FAIL , CA not found between 4 
+2019-06-25 20:12:08,318 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:12:22,710 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:12:23,538 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:12:43,040 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user id:2 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:12:56,685 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT4 CRE_CA id:2 
+2019-06-25 20:12:57,494 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:13:34,442 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT , COMM_SUC between 2 and 4
+2019-06-25 20:13:41,421 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT , COMM_FAIL , CA not found between 2 
+2019-06-25 20:14:47,833 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:14:48,824 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:15:24,281 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user id:3 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:15:25,718 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:15:44,545 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User MegaTravelHongKong@gmail.com CRE_ERR  
+2019-06-25 20:15:44,586 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:15:48,005 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:16:17,792 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT User MegaTravelHongKong@gmail.com CRE_ERR  
+2019-06-25 20:16:17,863 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:16:21,424 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:17:41,299 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User MegaTravelHongKong@gmail.com CRE_ERR  
+2019-06-25 20:17:41,349 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:18:39,017 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:3 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:18:48,839 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:19:33,341 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User MegaTravelHongKong@gmail.com CRE_ERR  
+2019-06-25 20:19:33,378 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:22:46,275 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:23:00,779 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:23:09,429 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:23:16,073 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:27:17,702 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:28:35,859 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User MegaTravelHongKong@gmail.com CRE_ERR  
+2019-06-25 20:28:35,903 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MegaTravelHongKong@gmail.com CA 
+2019-06-25 20:30:34,999 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:2 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:30:42,604 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:31:39,318 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:31:52,435 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:31:56,907 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:32:29,180 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:33:18,641 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:34:48,408 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:35:53,180 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:35:56,621 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:38:41,211 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:42:35,803 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:43:55,463 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:44:08,295 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:44:22,451 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:44:23,369 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:46:32,245 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:48:20,024 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:48:30,387 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:48:31,386 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:49:22,664 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:49:44,375 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:2 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:49:55,264 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User MegaTravelLondon@gmail.com CRE_ERR  
+2019-06-25 20:49:55,541 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:50:29,129 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:50:43,046 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:50:44,137 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:50:59,335 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT4 CRE_CA id:1 
+2019-06-25 20:51:00,257 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:51:13,048 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:51:25,041 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT user id:2 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:51:26,003 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:51:41,152 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT4 CRE_CA id:2 
+2019-06-25 20:51:42,236 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT user MegaTravelLondon@gmail.com CA 
+2019-06-25 20:56:06,889 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 20:56:23,247 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:56:24,145 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 20:57:18,577 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT2 CRE_CA id:1 
+2019-06-25 20:57:19,531 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 21:05:00,381 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 21:05:12,159 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT1 CRE_CA id:1 
+2019-06-25 21:05:13,074 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 21:05:32,821 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT1 CRE_CA id:1 
+2019-06-25 21:05:33,702 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT user MTRoot@gmail.com CA 
+2019-06-25 21:07:30,209 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-25 21:07:39,486 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT721 CRE_CA id:1 
+2019-06-25 21:07:40,611 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT user MTRoot@gmail.com CA 

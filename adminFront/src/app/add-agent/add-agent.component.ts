@@ -58,7 +58,7 @@ export class AddAgentComponent implements OnInit {
     agent.lastName = this.lastName.value;
 
     this.adminService.addAgent(agent).subscribe( data =>
-        this.router.navigateByUrl('/home'));
+        this.router.navigateByUrl('/listAgents'));
 
 
 

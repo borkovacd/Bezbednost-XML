@@ -70,5 +70,8 @@ export class AllCertificatesComponent implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigateByUrl('/certificates');
+  }
 }
 

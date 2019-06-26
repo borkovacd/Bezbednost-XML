@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import com.ftn.model.SubjectSoftware;
 import com.ftn.model.UserToken;
@@ -547,9 +550,11 @@ public class SecurityAdminControler {
 	}
 
 	@PreAuthorize("hasAuthority('REVOKE_CERT')")
-	@RequestMapping(value = "/revokeCertificate/{serialNumber}/{message}", method = RequestMethod.POST)
-	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message) {
+	@GetMapping(value = "/revokeCertificate/{serialNumber}/{message}/{token}")
+	public boolean revokeCeritificate(@PathVariable Integer serialNumber, @PathVariable String message, @PathVariable String token) {
 		System.out.println("Poruka koja je stigla " + message);
+		
+		System.out.println("token je sledeci: " + token);
 		log.info("REV_CA");
 		boolean pomocni = false;
 		pomocni = statusService.revokeCert(serialNumber, message);
@@ -593,7 +598,9 @@ public class SecurityAdminControler {
 		try {
 			KeyPair keyPairSubject = generateKeyPair();
 
-			String sn = ss.getId().toString();
+			Random rand = new Random();
+			
+			int sn = rand.nextInt(10000);
 			System.out.println(sn);
 
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
@@ -619,7 +626,10 @@ public class SecurityAdminControler {
 			// - serijski broj sertifikata
 			// - od kada do kada vazi sertifikat
 
-			return new SubjectData(keyPairSubject.getPublic(), keyPairSubject.getPrivate(), builder.build(), sn,
+			
+			String serial = String.valueOf(sn);
+			
+			return new SubjectData(keyPairSubject.getPublic(), keyPairSubject.getPrivate(), builder.build(), serial,
 					startDate, endDate);
 		}
 

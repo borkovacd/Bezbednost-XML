@@ -77,4 +77,8 @@ export class CeritifcatesComponent implements OnInit {
   listAll() {
     this.router.navigateByUrl('allCertificates');
   }
+
+  back() {
+    this.router.navigateByUrl('/home');
+  }
 }

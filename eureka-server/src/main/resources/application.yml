@@ -6,7 +6,7 @@ server:
   port: 8761
   ssl:
     enabled: true
-    client-auth: need
+    #client-auth: need
     key-store: eureka.p12
     key-store-password: eureka
     key-alias: eureka
