@@ -334,6 +334,7 @@ public class SecurityAdminControler {
 			
 			boolean revoked = false;
 			boolean expired = false;
+			boolean notAcitve = false;
 
 			Calendar calendar = Calendar.getInstance();
 			calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -360,7 +361,11 @@ public class SecurityAdminControler {
 					Date certificateEndDate = certificate.getEndDate();
 					if (current_date.after(certificateEndDate)) {
 						expired = true;
-					} 
+					}
+					Date certificateStartDate = certificate.getStartDate();
+					if(current_date.before(certificateStartDate)) {
+						notAcitve = true;
+					}
 				}
 				if (userEmail.equals(soft2.getEmail())) {
 					CertificateModel certificate = lanacSertifikata.get(i);
@@ -369,6 +374,10 @@ public class SecurityAdminControler {
 					Date certificateEndDate = certificate.getEndDate();
 					if (current_date.after(certificateEndDate)) {
 						expired = true;
+					}
+					Date certificateStartDate = certificate.getStartDate();
+					if(current_date.before(certificateStartDate)) {
+						notAcitve = true;
 					}
 				}
 			}
@@ -382,7 +391,7 @@ public class SecurityAdminControler {
 			
 			}
 
-			if (expired == false || revoked == false) {
+			if (expired == false && revoked == false && notAcitve == false) {
 				
 				if(alreadyCommunicating == true) {
 					

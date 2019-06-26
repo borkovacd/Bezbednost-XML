@@ -1,4 +1,0 @@
-2019-06-23 12:57:18,575 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT user id:{} LOG_FAIL 
-2019-06-23 12:57:28,729 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT user id:{} LOG_FAIL 
-2019-06-23 12:57:31,896 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-8] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
-2019-06-23 12:57:47,414 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT user id:{} LOG_FAIL 
