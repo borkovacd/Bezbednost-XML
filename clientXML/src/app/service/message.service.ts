@@ -1,6 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {MessageModel} from '../model/message.model';
 
 
 
@@ -28,4 +29,23 @@ export  class MessageService {
   }
 
 
+  checkIfHasReservation(): Observable<any> {
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type' : 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/checkIfHasReservation/${token}`, {headers: headers});
+  }
+
+
+  getAppropriateAgents(): Observable<any> {
+    const token = localStorage.getItem('loggedUser');
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/getAppropriateAgents/${token}`, {headers: headers});
+  }
+
+  sendToAgent(message: MessageModel): Observable<any> {
+    const token = localStorage.getItem('loggedUser');
+    const body = JSON.stringify(message);
+    const headers = new HttpHeaders({'Content-Type' : 'application/json', 'token' : token});
+    return this.http.post(`${this.BASE_URL}/createMessage/${token}`, body, {headers: headers});
+  }
 }

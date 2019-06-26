@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.service.MessageService;
 import com.ftn.service.ResponseService;
 import com.ftn.service.UserService;
+import com.ftn.model.Agent;
+import com.ftn.model.City;
 import com.ftn.model.Message;
 import com.ftn.model.Response;
 import com.ftn.model.User;
@@ -41,7 +44,8 @@ public class MessageController
 	@Autowired
 	TokenUtils tokenUtils;
 	
-
+	//ovu metodu izmeni da vraca samo poruke koje nemaju odgovor
+	//poruke koje imaju odgovor bice ucitane preko getAllResponsesFromAgent
 	@GetMapping("/getAllMessages/{token}")
 	public ResponseEntity<List<Message>> getAllMessages(@PathVariable String token) throws Exception
 	{	
@@ -82,9 +86,17 @@ public class MessageController
 
 	}
 	
+	//MessageDTO ima dva polja koja se salju:
+	//1. string koji predstavlja username agenta kome se poruka salje
+	//2. string koji predstavlja tekst poruke koji se salje
+	//preko tokena preuzimas usera koji salje poruku
+	//i to je to sto ti tre
 	@PostMapping("/createMessage/{token}")
 	public void createAnswer(@RequestBody MessageDTO messageDTO, @PathVariable String token) throws Exception 
 	{
+		
+		token = token.substring(1, token.length()-1);
+		
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
 		User user = userRepository.findOneByUsername(username);
@@ -94,6 +106,36 @@ public class MessageController
 		}
 
 	}
+	
+	
+	
+	@GetMapping("/checkIfHasReservation/{token}")
+	public boolean checkIfHasReservation(@PathVariable String token) throws Exception {
+		
+		token = token.substring(1, token.length()-1);
+		
+		String username = tokenUtils.getUserSecurity(token).getUsername();
+		User user = userRepository.findOneByUsername(username);
+		
+		//metoda treba da vraca true kada korisnik ima neku prethodno kreiranu rezervaciju
+		boolean hasReservation = false;
+				
+		return hasReservation;
+	}
+	
+	@GetMapping("/getAppropriateAgents/{token}") 
+	public ResponseEntity<List<Agent>> getAppropriateAgents(@PathVariable String token) throws Exception {
+		
+		token = token.substring(1, token.length()-1);
+		
+		String username = tokenUtils.getUserSecurity(token).getUsername();
+		User user = userRepository.findOneByUsername(username);
+		
+		//treba da vratis sve agente kojima user moze da prosledi poruke
+		ArrayList<Agent> agents = null;
+		
+		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
+	} 
 	
 	
 	

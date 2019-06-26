@@ -3,13 +3,72 @@
 </div>
 
 <div>
-  <div *ngFor="let r of responses" style="margin-left: 15%;margin-right: 15%; text-align: left;margin-bottom: 20px ;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
-    <p style="margin-top: 10px;margin-left: 15px">Odgovor od agenta: {{r.sender.username}} </p>
-    <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;height: 100px" disabled="true">{{r.text}}</textarea>
+  <button
+    (click)="createMessage()"
+    style="margin-top: 15px;text-align: center;margin-bottom: 15px;border-radius: 12px;background-color: #1a8cff;color: white;height: 60px;width: 120px">
+      Napiši novu poruku
+  </button>
+  <div *ngIf="write==true"
+       style="margin-left: 5%; margin-bottom: 20px;margin-right: 5%; text-align: left;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
 
-    <div *ngIf="r.message != null" >
-      <p style="margin-top: 10px;margin-left: 10%">Poslata poruka:</p>
-      <textarea style=" margin-top: 15px;width: 87%;margin-left: 10%;margin-right: 3%;height: 100px" disabled="true">{{r.message.text}}</textarea>
-    </div>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <p style="margin-top: 10px;margin-left: 15px">Za:
+          <select class="form-control margin" [formControl]="agent">
+            <option></option>
+            <option *ngFor="let agent of agents ">{{agent.username}}</option>
+          </select>
+        </p>
+        <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;margin-top: 20px;height: 100px"
+                  class="form-control margin " [formControl]="text"></textarea>
+        <div style="text-align: right;margin-right: 3%">
+          <button (click)="sendMessage()"
+                  style="margin-top: 15px;margin-bottom: 15px;text-align: center;border-radius: 12px;background-color: #1a8cff;color: white;height: 45px">
+            Posalji poruku
+          </button>
+        </div>
+      </div>
+
+    </form>
   </div>
 </div>
+
+
+<div>
+  <div *ngFor="let m of messages"
+       style="margin-left: 15%;margin-right: 15%; text-align: left;margin-bottom: 20px ;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
+    <h2 style="text-align: center;margin-top: 30px">Neodgovorene poruke</h2>
+
+    <p style="margin-top: 10px;margin-left: 15px">Za: {{m.recipient.username}} </p>
+    <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;height: 100px" disabled="true">{{m.text}}</textarea>
+  </div>
+</div>
+
+
+<br/>
+
+
+<div>
+  <div *ngFor="let r of responses"
+       style="margin-left: 15%;margin-right: 15%; text-align: left;margin-bottom: 20px ;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
+
+    <h2 style="text-align: center;margin-top: 30px">Odgovorene poruke</h2>
+    <br/>
+    <p style="margin-top: 10px;margin-left: 15px">Od agenta: {{r.message.recipient.username}} </p>
+    <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;height: 100px" disabled="true">{{r.message.text}}</textarea>
+
+    <div >
+      <p style="margin-top: 10px;margin-left: 10%">Odgovor:</p>
+      <textarea style=" margin-top: 15px;width: 87%;margin-left: 10%;margin-right: 3%;height: 100px" disabled="true">{{r.text}}</textarea>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
