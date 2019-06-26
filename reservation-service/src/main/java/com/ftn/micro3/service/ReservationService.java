@@ -224,28 +224,33 @@ public class ReservationService
 		return reservationRepository.save(reservation);
 	}
 	
-	public boolean cancelAccepted(Long id) throws ParseException
+	public String cancelAccepted(Long id) throws ParseException
 	{
 		Reservation res = reservationRepository.findOneById(id);
 		
-		LocalDate now = LocalDate.now()  ;
+		LocalDate now = LocalDate.now() ;
 		LocalDate startOfReservation = res.getFromDate();
 		
+		System.out.println("Now: " + now);
+		System.out.println("startOfReservation: " + startOfReservation);
+		
+		
 		LocalDate nowPlusDays = now.plusDays(res.getRoom().getDay());
+		System.out.println("nowPlusDays: " + nowPlusDays);
 		
 		if (now.isAfter(startOfReservation))
 		{
-			return false ;
+			return "NO" ;
 		}
 		
 		else if (startOfReservation.isBefore(nowPlusDays))
 		{
-			return false ;
+			return "NO" ;
 		}
 		
 		else 
 		{
-			return true ;
+			return "OK" ;
 		}
 	}
 	
@@ -255,7 +260,7 @@ public class ReservationService
 		reservationRepository.deleteById(id);
 	}
 	
-	public void cancelReservation(long idReservation) 
+	public void cancelReservation(Long idReservation) 
 	{
 		reservationRepository.deleteById(idReservation);
 	}

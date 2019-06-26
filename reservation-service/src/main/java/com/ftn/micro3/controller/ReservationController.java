@@ -218,13 +218,14 @@ public class ReservationController
 	@PostMapping(value="/cancelRes/{id}", consumes="application/json")
 	public ResponseEntity<?> cancelRes(@PathVariable Long id) throws ParseException
 	{	
+		String a = reservationService.cancelAccepted(id);
 		
-		if (reservationService.cancelAccepted(id) == true)
+		if (a.equals("OK"))
 		{
 			reservationService.cancelReservation(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		else
+		else // a je NO
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
