@@ -40,7 +40,7 @@ export class AccomodationComponent implements OnInit{
       if(data == false){
         this.router.navigateByUrl('edit/accomodation/' + id);
       }else{
-        alert('Smestaj je rezervisan!');
+        alert('Soba u tom smestaju je rezervisana!');
       }
     })
 
@@ -48,17 +48,17 @@ export class AccomodationComponent implements OnInit{
 
   }
   deleteAccomodation(id: any){
-   // this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
-     // if(data === false){
+    this.accomodationService.checkIfReservedAccomodation(id).subscribe(data => {
+     if(data === false){
         this.accomodationService.deleteAccomodation(id).subscribe(dd => {
          this.items = this.items.filter(el => el.id != id);
           //this.router.navigateByUrl('/welcomepage' );
 
         })
-     // }else{
-       // alert('Smestaj je rezervisan!');
-     // }
-    //})
+     }else{
+        alert('Soba u tom smestaju je rezervisana!');
+      }
+    })
 
   }
   showAccomodation(idA: any){

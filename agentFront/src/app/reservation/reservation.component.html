@@ -16,6 +16,7 @@
         <th class="th-style">Od:</th>
         <th class="th-style">Do:</th>
         <th class="th-style">Korisnik:</th>
+        <th class="th-style">Cena:</th>
         <th class="th-style">Potvrdi rezervaciju:</th>
       </tr>
 
@@ -24,6 +25,7 @@
         <td>{{r.fromDate}}</td>
         <td>{{r.toDate}}</td>
         <td>{{r.user.username}}</td>
+        <td>{{r.price}}</td>
         <td style="text-align: center"><button style="border-radius: 12px;background-color: #1a8cff;color: white;" *ngIf="r.confirmed == false" (click)="confirmeReservation(r.id)" id="{{r.id}}">Potvrdi </button></td>
       </tr>
 
