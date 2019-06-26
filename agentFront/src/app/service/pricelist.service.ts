@@ -19,13 +19,13 @@ export class PricelistService{
     const body = JSON.stringify(object);
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.post(`${this.BASE_URL}/create-price-createPricelist/` + id, body, {headers: headers});
+    return this.http.post(`${this.BASE_URL}/create-price-createPricelist/${id}/${token}` , body, {headers: headers});
   }
 
   getPriceForRoom(idRoom: any): Observable<any> {
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/getPriceForRoom/${idRoom}`,  {headers: headers});
+    return this.http.get(`${this.BASE_URL}/getPriceForRoom/${idRoom}/${token}`,  {headers: headers});
   }
 
 

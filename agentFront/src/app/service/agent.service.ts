@@ -33,7 +33,7 @@ export class AgentService {
   logout(): Observable<any> {
     const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/log-out` , {headers: headers});
+    return this.http.get(`${this.BASE_URL}/log-out/${token}` , {headers: headers});
 
   }
 

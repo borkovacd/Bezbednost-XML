@@ -3,20 +3,25 @@ package com.ftn.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.dto.RoomDTO;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
+import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
+import com.ftn.repository.AgentRepository;
 import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
+import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
 import com.ftn.webservice.files.AdditionalServicesSoap;
@@ -43,19 +48,27 @@ import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class RoomService {
-	
+	private static final Logger log = LoggerFactory.getLogger(RoomService.class);
+
 	@Autowired
 	private RoomRepository roomRepository;
 	@Autowired
 	private AccomodationRepository accomodationRepository;
 	@Autowired
 	private PriceRepository priceRepository;
+	@Autowired
+	private TokenUtils tokenUtils;
+	@Autowired
+	private AgentRepository agentRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
 
-	public void createRoom(RoomDTO roomDTO, Long idAccomodation) {
+	public void createRoom(RoomDTO roomDTO, Long idAccomodation,String token) throws Exception {
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
 		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  CREAROOM");
 		RegisterRoomRequest request = new RegisterRoomRequest();
 		String accomodationName = accomodationRepository.getOne(idAccomodation).getName();
 		request.setRequest("Agent request: 'Register new room in accomodation '" + accomodationName + "'.");
@@ -93,10 +106,16 @@ public class RoomService {
 		room.setAccomodation(accomodation);
 		
 		roomRepository.save(room);
+		log.info("User id: "+ag.getId()+"  CREAROOMSUCCESS");
+
 		
 	}
 
-	public ArrayList<Room> getAllRooms(Long idAccomodation) {
+	public ArrayList<Room> getAllRooms(Long idAccomodation,String token) throws Exception {
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  GETAROOM");
 		
 		GetAccomodationRoomsRequest request = new GetAccomodationRoomsRequest();
 		request.setRequest("Agent request: 'Get all rooms in accomodation '" + accomodationRepository.getOne(idAccomodation).getName() + "'");
@@ -130,13 +149,18 @@ public class RoomService {
 			roomRepository.save(r);
 			
 		}
+		log.info("User id: "+ag.getId()+"  GETAROOMSUCCESS");
+
 		
 		return (ArrayList<Room>) rooms;
 	}
 	
 	
-	public boolean deleteRoom(Long idAccomodation, Long idRoom) {
+	public boolean deleteRoom(Long idAccomodation, Long idRoom,String token) throws Exception {
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
 		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  DELROOM");
 		DeleteRoomRequest request = new DeleteRoomRequest();
 		String accommodationName = accomodationRepository.getOne(idAccomodation).getName();
 		request.setRequest("Agent request: 'Delete room in accomodation '" + accommodationName + "'.");
@@ -164,6 +188,8 @@ public class RoomService {
 				
 			}
 		}
+		log.info("User id: "+ag.getId()+"  DELROOMSUCCESS");
+
 		
 		return true;
 	}
@@ -182,7 +208,12 @@ public class RoomService {
 		return taken;
 	}
 
-	public Room editRoom(Long idAccomodation, Long idRoom, RoomDTO roomDTO) {
+	public Room editRoom(Long idAccomodation, Long idRoom, RoomDTO roomDTO,String token) throws Exception {
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  EDITROOM");
+
 		
 		EditRoomRequest request = new EditRoomRequest();
 		request.setRequest("Agent request: 'Edit data of room with id " + idRoom + ".");
@@ -221,12 +252,17 @@ public class RoomService {
 		room.setAccomodation(accomodation);
 		
 		roomRepository.save(room);
+		log.info("User id: "+ag.getId()+"  EDITROOMSUCCESS");
+
 		
 		return room;
 	}
 
-	public Room getRoom(Long idRoom) {
+	public Room getRoom(Long idRoom,String token) throws Exception {
+      String usname = tokenUtils.getUserSecurity(token).getUsername();
 		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  GET1AROOM");
 		GetRoomRequest request = new GetRoomRequest();
 		request.setRequestedRoomId(idRoom);
 		

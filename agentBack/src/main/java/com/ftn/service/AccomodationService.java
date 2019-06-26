@@ -3,9 +3,12 @@ package com.ftn.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.controller.AccomodationController;
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.model.Accomodation;
 import com.ftn.model.AdditionalServices;
@@ -15,6 +18,7 @@ import com.ftn.model.City;
 import com.ftn.model.Price;
 import com.ftn.model.Room;
 import com.ftn.model.TypeAccomodation;
+import com.ftn.model.User;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AdditionalServicesRepository;
 import com.ftn.repository.AgentRepository;
@@ -23,6 +27,7 @@ import com.ftn.repository.CityRepository;
 import com.ftn.repository.PriceRepository;
 import com.ftn.repository.RoomRepository;
 import com.ftn.repository.TypeAccomodationRepository;
+import com.ftn.repository.UserRepository;
 import com.ftn.security.TokenUtils;
 import com.ftn.soapclient.SOAPConnector;
 import com.ftn.webservice.files.AccomodationSoap;
@@ -43,7 +48,8 @@ import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class AccomodationService {
-	
+	private static final Logger log = LoggerFactory.getLogger(AccomodationService.class);
+
 	@Autowired
 	private AccomodationRepository accomodationRepository;
 	@Autowired
@@ -63,11 +69,14 @@ public class AccomodationService {
 	@Autowired
 	private TokenUtils tokenUtils;
 	
+	
 	@Autowired
 	private SOAPConnector soapConnector;
 
 	public Accomodation create(AccomodationDTO accDTO, String token) throws Exception {
 		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+
 		RegisterAccomodationRequest request = new RegisterAccomodationRequest();
 		request.setRequest("Agent request: 'Register new accomodation '" + accDTO.getName() + "'");
 
@@ -75,9 +84,10 @@ public class AccomodationService {
 		
 		//token = token.substring(1,token.length()-1).toString();
 		
-		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
 		
 		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  CREACC");
 
 		a.setName(accDTO.getName());
 		CitySoap c = new CitySoap();
@@ -132,13 +142,19 @@ public class AccomodationService {
 		
 		accomodationRepository.save(accomodation);
 		
+		log.info("User id: "+ag.getId()+"  CREACCSUCCESS");
 		return accomodation;
 
 	}
 
 
-	public boolean delete(Long id) {
+	public boolean delete(Long id,String token) throws Exception {
 		
+		String usname = tokenUtils.getUserSecurity(token).getUsername();
+		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  DELETEACC");
+
 		DeleteAccomodationRequest request = new DeleteAccomodationRequest();
 		String accommodationName = accomodationRepository.getOne(id).getName();
 		request.setRequest("Agent request: 'Delete accomodation '" + accommodationName + "'");
@@ -174,7 +190,8 @@ public class AccomodationService {
 				accomodationRepository.delete(accomodation);
 			}
 		}
-		
+		log.info("User id: "+ag.getId()+"  DELETEACCSUCCESS");
+
 		return true;
 
 	}
@@ -190,8 +207,9 @@ public class AccomodationService {
 	//	token = token.substring(1,token.length()-1).toString();
 		
 		String usname = tokenUtils.getUserSecurity(token).getUsername();
-		
+
 		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  EDITACC");
 
 		a.setName(accDTO.getName());
 		CitySoap c = new CitySoap();
@@ -246,7 +264,8 @@ public class AccomodationService {
 		accomodation.setAdditionalServices(additionalServices);
 		
 		accomodationRepository.save(accomodation);
-		
+		log.info("User id: "+ag.getId()+"  EDITACCSUCCESS");
+
 		return accomodation;
 
 	}
@@ -259,8 +278,9 @@ public class AccomodationService {
 		
 		String usname = tokenUtils.getUserSecurity(token).getUsername();
 		
-		Agent ag = agentRepository.findOneByUsername(usname);
 		
+		Agent ag = agentRepository.findOneByUsername(usname);
+		log.info("User id: "+ag.getId()+"  GETAACC");
 		request.setRequest("Agent request: 'Return all accomodation added by agent '" + usname + "'");
 		request.setAgentId(ag.getId());
 		
@@ -301,13 +321,14 @@ public class AccomodationService {
 			accomodations.add(a);
 			
 		}
-		
+		log.info("User id: "+ag.getId()+"  GETAACCSUCCESS");
+
 
 		return (ArrayList<Accomodation>) accomodations;
 	}
 
 	public Accomodation getAccomodation(Long id) {
-		
+		//fali token
 		GetAccomodationRequest request = new GetAccomodationRequest();
 		request.setRequestedAccomodationId(id);
 		
@@ -322,7 +343,7 @@ public class AccomodationService {
 
 
 	public boolean checkIfAccommodationIsReserved(Long id) {
-		
+		//fali token
 		boolean taken = false;
 		
 		for(Room room : roomRepository.findAll()) {

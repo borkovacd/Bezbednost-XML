@@ -3,9 +3,12 @@ package com.ftn.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.controller.MessageController;
 import com.ftn.dto.AccomodationDTO;
 import com.ftn.dto.AnswerDTO;
 import com.ftn.model.Accomodation;
@@ -38,7 +41,8 @@ import com.ftn.webservice.files.TypeAccomodationSoap;
 
 @Service
 public class MessageService {
-	
+	private static final Logger log = LoggerFactory.getLogger(MessageService.class);
+
 	@Autowired
 	private MessageRepository messageRepository;
 	@Autowired
@@ -64,6 +68,8 @@ public class MessageService {
 		GetAllMessagesRequest request = new GetAllMessagesRequest();
 		
 		Agent agent = agentRepository.findOneByUsername(username);
+		log.info("User id: "+ agent.getId()+" GETAMESS");
+
 		request.setRequest("Agent request: 'Return all reservations by agent '" + username + "'");
 		request.setAgentId(agent.getId());
 		
@@ -93,6 +99,8 @@ public class MessageService {
 
 			messageRepository.save(m);
 			messages.add(m);
+			log.info("User id: "+ agent.getId()+" GETAMESSSUCCESS");
+
 			
 		}
 		
@@ -104,7 +112,8 @@ public class MessageService {
 				
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		Agent agent = agentRepository.findOneByUsername(username);
-		
+		log.info("User id: "+ agent.getId()+" CREAMESS");
+
 		CreateAnswerRequest request = new CreateAnswerRequest();
 		
 		request.setRequest("Agent request: 'Create answer by '" + username + "'");
@@ -139,6 +148,9 @@ public class MessageService {
 		/*Message message = messageRepository.getOne(response.getMessageId());
 		message.setResponse(responseMessage);
 		messageRepository.save(message);*/
+		
+		log.info("User id: "+ agent.getId()+" CREAMESSSUCCESS");
+
 		
 	}
 

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import com.ftn.controller.AgentController;
 import com.ftn.dto.AgentDTO;
 import com.ftn.model.Agent;
 import com.ftn.model.Permission;
@@ -37,6 +40,7 @@ import com.ftn.webservice.files.GetAllCitiesResponse;
 
 @Service
 public class AgentService implements UserDetailsService {
+	private static final Logger log = LoggerFactory.getLogger(AgentService.class);
 
 	@Autowired
 	private AgentRepository agentRepository;
@@ -137,12 +141,15 @@ public class AgentService implements UserDetailsService {
 		
 		
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
-		
+		log.info("User id: "+ agent.getId()+" LOG");
 		System.out.println("username: " + agentDTO.getUsername());
 		System.out.println("lozinka: " + agentDTO.getPassword());
 		
 		if (agent == null) {
+			log.error("User id: "+ agent.getId()+" LOGFAIL");
+		
 			throw new IllegalArgumentException("Agent not found!");
+			
 		}
 
 		if (BCrypt.checkpw(agentDTO.getPassword(), agent.getPassword())) {
@@ -173,11 +180,11 @@ public class AgentService implements UserDetailsService {
 			
 			
 			for(int i=0; i<accomodationRepository.findAll().size(); i++) {
-				roomService.getAllRooms(accomodationRepository.findAll().get(i).getId());
+				roomService.getAllRooms(accomodationRepository.findAll().get(i).getId(),token);
 			}
 			
 			for(int i=0; i<roomRepository.findAll().size(); i++) {
-				priceService.getAllPrices(roomRepository.findAll().get(i).getId());
+				priceService.getAllPrices(roomRepository.findAll().get(i).getId(),token);
 			}	
 			
 			userService.getAllUsers();
@@ -186,10 +193,13 @@ public class AgentService implements UserDetailsService {
 
 			// ovde ide deo za logovanje
 			
-		
+			log.info("User id: "+ agent.getId()+" LOGSUCCESS");
+
 			return new UserToken(token, expiresIn);
 			//return agent.getId();
 		}else{
+			log.error("User id: "+ agent.getId()+" LOGFAIL");
+
 			return null;
 		}
 			

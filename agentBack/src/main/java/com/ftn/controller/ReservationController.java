@@ -2,6 +2,8 @@ package com.ftn.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,8 @@ import com.ftn.service.ReservationService;
 @RestController
 @RequestMapping(value = "/api/reservation")
 public class ReservationController {
-	
+	private static final Logger log = LoggerFactory.getLogger(ReservationController.class);
+
 	@Autowired
 	private ReservationService reservationService;
 	
@@ -38,7 +41,7 @@ public class ReservationController {
 	@PreAuthorize("hasAuthority('ADD_RES')")
 	@GetMapping("/confirmReservation/{idReservation}")
 	public void confirmReservation(@PathVariable Long idReservation) {
-		
+		//fali token
 		//da nadje tu rezervaciju preko idReservation i da setujes polje confirmed =true;
 		reservationService.confirmReservation(idReservation);
 
