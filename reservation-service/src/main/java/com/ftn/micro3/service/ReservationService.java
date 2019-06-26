@@ -228,53 +228,25 @@ public class ReservationService
 	{
 		Reservation res = reservationRepository.findOneById(id);
 		
-		// Danasnji datum
-		Date today = Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
-        String strToday = dateFormat.format(today);  // danasnji datum je oblika: 2019-46-25
-        
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		LocalDate now = LocalDate.now()  ;
+		LocalDate startOfReservation = res.getFromDate();
 		
-        // PARSIRAN
-		Date parsedDateToday = formatter.parse(strToday);
+		LocalDate nowPlusDays = now.plusDays(res.getRoom().getDay());
 		
-		String europeanDatePattern = "yyyy-MM-dd";
-		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+		if (now.isAfter(startOfReservation))
+		{
+			return false ;
+		}
 		
-		LocalDate dateTodayLocal = LocalDate.parse(strToday, europeanDateFormatter);
-       
+		else if (startOfReservation.isBefore(nowPlusDays))
+		{
+			return false ;
+		}
 		
-        // Datum polaska
-        LocalDate startDateLocal = res.getFromDate();
-        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-mm-dd");  
-        String strStart = dateFormat2.format(startDateLocal); 
-        
-        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
-        
-        // PARSIRAN
-        Date parsedDateStart = formatter.parse(strStart);
-        
-        // nastavak
-        
-        Month a = dateTodayLocal.getMonth();
-        System.out.println("Ovo je mesec " + a.getValue());
-        
-        long todayDateTime = parsedDateToday.getTime();
-	    long startDateTime = parsedDateStart.getTime();
-	    long milPerDay = 1000*60*60*24; 
-	    
-	    int numOfDays = (int) ((startDateTime - todayDateTime) / milPerDay); // 
-	    System.out.println("Dana odabranih: " + numOfDays);
-	    
-	    if (res.getRoom().getDay() >= numOfDays)
-	    {
-	    	return true ;
-	    }
-	    else
-	    {
-	    	return false ;
-	    }
-       
+		else 
+		{
+			return true ;
+		}
 	}
 	
 
