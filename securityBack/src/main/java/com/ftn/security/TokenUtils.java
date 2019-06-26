@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.ftn.controller.SecurityAdminControler;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -69,11 +70,20 @@ public class TokenUtils {
 		}		
 	}
 	
-	private Claims getClaimsFromToken(String authToken) throws Exception {
-		return Jwts.parser()
+	private Claims getClaimsFromToken(String authToken) {
+		
+		Claims js = null;
+		
+		try {
+		js = Jwts.parser()
 			.setSigningKey(SIGNING_KEY)
 			.parseClaimsJws(authToken)
 			.getBody();
+		} catch 
+			 (ExpiredJwtException e) {
+				    System.out.println(" Token expired ");
+		}
+		return js;
 	}
 	
 	private String getIdFromClaims(Claims claims) {

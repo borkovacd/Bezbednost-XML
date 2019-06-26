@@ -1,0 +1,4 @@
+2019-06-26 18:43:04,102 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-26 18:43:59,990 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-26 18:53:34,134 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
+2019-06-26 18:54:22,458 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT user id:1 LOG_SUC, ip 0:0:0:0:0:0:0:1
