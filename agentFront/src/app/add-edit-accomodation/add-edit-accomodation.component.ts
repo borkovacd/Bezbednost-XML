@@ -50,12 +50,12 @@ export class AddEditAccomodationComponent implements OnInit{
                public countryService: CountryService,) {
       this.form = this.fb.group({
         'name': ['', Validators.compose([Validators.required])],
-        'city': [''],
+        'city': ['', Validators.compose([Validators.required])],
         'address': ['', Validators.compose([Validators.required])],
-        'type': [''],
-        'category': [''],
-        'description': [''],
-        'pic': [''],
+        'type': ['', Validators.compose([Validators.required])],
+        'category': ['', Validators.compose([Validators.required])],
+        'description': ['', Validators.compose([Validators.required])],
+        'pic': ['', Validators.compose([Validators.required])],
         'aditional': ['']
 
 
@@ -69,8 +69,22 @@ export class AddEditAccomodationComponent implements OnInit{
     this.pic = this.form.controls['pic'];
     this.aditional = this.form.controls['aditional'];
 
+  }
+
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
 
   }
+
+
   ngOnInit() {
     const mode = this.route.snapshot.params.mode;
     this.countryService.getCountry().subscribe(data => {
@@ -125,11 +139,11 @@ export class AddEditAccomodationComponent implements OnInit{
   createAccomodation(){
     const accomodation = new AccomodationModel(
       this.name.value,
-      this.city.value,
-      this.address.value,
-      this.type.value,
-      this.category.value,
-      this.description.value,
+      this.escapeCharacters(this.city.value),
+      this.escapeCharacters(this.address.value),
+      this.escapeCharacters(this.type.value),
+      this.escapeCharacters(this.category.value),
+      this.escapeCharacters(this.description.value),
       this.pic.value,
       this.listAditionalService,
 
@@ -143,11 +157,11 @@ export class AddEditAccomodationComponent implements OnInit{
   editAccomodatin(){
     const accomodation = new AccomodationModel(
       this.name.value,
-      this.city.value,
-      this.address.value,
-      this.type.value,
-      this.category.value,
-      this.description.value,
+      this.escapeCharacters(this.city.value),
+      this.escapeCharacters(this.address.value),
+      this.escapeCharacters(this.type.value),
+      this.escapeCharacters(this.category.value),
+      this.escapeCharacters(this.description.value),
       this.pic.value,
       this.listAditionalService,
 

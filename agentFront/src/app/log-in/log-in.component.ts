@@ -33,17 +33,6 @@ export class LogInComponent implements OnInit {
   }
 
   validateLogData() {
-
-    let error = false;
-    let errorMessage = '';
-
-    /* PROVERA MEJLA */
-    /*const patternMail = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/;
-    if (!patternMail.test(this.email.value)) {
-      error = true;
-      errorMessage = 'Email adresa sadrzi nedozvoljene karaktere!';
-      return errorMessage;
-    }*/
     return 'Ok';
   }
 
@@ -72,7 +61,7 @@ export class LogInComponent implements OnInit {
       );
       this.agentService.logIn(model).subscribe(data => {
         if (data == null) {
-          alert('Pogresna lozinka! Pokusajte ponovo.');
+          alert('Ne postoji agent sa unetim kredencijalima!');
         } else {
           localStorage.setItem('agentId', data.accessToken);
           this.router.navigateByUrl('/welcomepage');

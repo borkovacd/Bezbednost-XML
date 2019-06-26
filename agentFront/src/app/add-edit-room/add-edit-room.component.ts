@@ -23,11 +23,10 @@ export class AddEditRoomComponent implements  OnInit{
               private route: ActivatedRoute,
               private roomService: RoomService,){
     this.form = this.fb.group({
-      'capacity': ['', Validators.compose([Validators.required])],
-      'floor': ['', Validators.compose([Validators.required])],
+      'capacity': ['0', Validators.compose([Validators.pattern(/[1-9]{1,1}$/)])],
+      'floor': ['0', Validators.compose([Validators.pattern(/^-?[0-9]{1,3}$/)])],
       'hasBalcony': [''],
-      'day': ['', Validators.compose([Validators.required])],
-
+      'day': ['0', Validators.compose([Validators.pattern(/^-?[0-9]{1,3}$/)])]
 
     })
     this.capacity = this.form.controls['capacity'];

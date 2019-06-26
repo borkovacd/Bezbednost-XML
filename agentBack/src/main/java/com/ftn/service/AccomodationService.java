@@ -92,8 +92,6 @@ public class AccomodationService {
 		
 		//token = token.substring(1,token.length()-1).toString();
 		
-		
-		
 		Agent ag = agentRepository.findOneByUsername(usname);
 		log.info("User id: "+ag.getId()+"  CREACC");
 

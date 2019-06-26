@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Accomodation {
+	
+	@NotNull
 	@Id
 	private Long id;
 
@@ -20,6 +22,7 @@ public class Accomodation {
 	@Column
 	private String name;
 
+	@NotNull
 	@OneToOne
 	private City city;
 
@@ -27,21 +30,26 @@ public class Accomodation {
 	@Column
 	private String address;
 
+	@NotNull
 	@OneToOne
 	private TypeAccomodation typeAccomodation;
 
+	@NotNull
 	@OneToOne
 	private Category category;
 
+	@NotNull
 	@Column
 	private String description;
 
+	@NotNull
 	@Column
 	private String pic;
 
 	@ManyToMany
 	private List<AdditionalServices> additionalServices;
 
+	@NotNull
 	@OneToOne
 	private Agent agent;
 

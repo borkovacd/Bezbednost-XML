@@ -83,18 +83,18 @@ public class AgentController {
 		return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 	}
 
+	//Ilinka pogledaj zakomentarisane log delove, ne sme id od nepostojeceg agenta
 	@RequestMapping(value = "/log-in", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> logIn(@RequestBody AgentDTO agentDTO) throws Exception {
+		
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
 
 		UserToken ut = agentService.loginAgent(agentDTO);
 		if (ut == null) {
-			log.warn("User id: " + agent.getId() + " LOGNOCONTENT");
-
+			//log.warn("User id: " + agent.getId() + " LOGNOCONTENT");
 			return new ResponseEntity<UserToken>(ut, HttpStatus.NO_CONTENT);
 		}
 		log.warn("User id: " + agent.getId() + " LOGSUCCESS");
-
 		return new ResponseEntity<UserToken>(ut, HttpStatus.OK);
 
 	}

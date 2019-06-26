@@ -139,45 +139,35 @@ public class AgentService implements UserDetailsService {
 	
 	public UserToken loginAgent(AgentDTO agentDTO) throws Exception{
 		
-		
 		Agent agent = agentRepository.findOneByUsername(agentDTO.getUsername());
-		log.info("User id: "+ agent.getId()+" LOG");
-		System.out.println("username: " + agentDTO.getUsername());
-		System.out.println("lozinka: " + agentDTO.getPassword());
+		//log.info("User id: "+ agent.getId()+" LOG"); 
+		
+		//System.out.println("username: " + agentDTO.getUsername());
+		//System.out.println("lozinka: " + agentDTO.getPassword());
 		
 		if (agent == null) {
-			log.error("User id: "+ agent.getId()+" LOGFAIL");
-		
-			throw new IllegalArgumentException("Agent not found!");
-			
+			//log.error("User id: "+ agent.getId()+" LOGFAIL");
+			return null;
 		}
 
 		if (BCrypt.checkpw(agentDTO.getPassword(), agent.getPassword())) {
-			
 			System.out.println("jednake sifre");
-			
 			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(agentDTO.getUsername(),
 					agentDTO.getPassword());
-		
 			Authentication auth = authManager.authenticate(authReq);
-			
 			String username = authReq.getName();
-			
 			String token = tokenUtils.generateToken(auth);
-
 			long expiresIn = tokenUtils.getExpiredIn();
 			
 			Agent a = agentRepository.findOneByUsername(username);
 			
-			
-			//OVDE IDE SINHRONIZACIJA
+			//Sinhronizacija baze
 			countryService.getAllCountries();
 			cityService.getAllCities();
 			typeAccomodationService.getAllTypes();
 			additionalServicesService.getAllAdditionalServices();
 			categoryService.getAllCategories();
 			accomodationService.getAllAccomodation(token);
-			
 			
 			for(int i=0; i<accomodationRepository.findAll().size(); i++) {
 				roomService.getAllRooms(accomodationRepository.findAll().get(i).getId(),token);
@@ -190,14 +180,13 @@ public class AgentService implements UserDetailsService {
 			userService.getAllUsers();
 			reservationService.getAllReservations(token);	
 			reservationAgentService.getAllReservations(token);
-
-			// ovde ide deo za logovanje
 			
 			log.info("User id: "+ agent.getId()+" LOGSUCCESS");
 
 			return new UserToken(token, expiresIn);
-			//return agent.getId();
-		}else{
+			
+		} else {
+			
 			log.error("User id: "+ agent.getId()+" LOGFAIL");
 
 			return null;
