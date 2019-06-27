@@ -138,16 +138,11 @@ public class MessageController
 		
 		token = token.substring(1, token.length()-1);
 		
-		String username = tokenUtils.getUserSecurity(token).getUsername();
+		String email = tokenUtils.getUserSecurity(token).getUsername();
+		User u = userService.findByEmail(email);
+
+		messageService.createMessage(messageDTO, u);
 		
-		User user = userRepository.findOneByUsername(username);
-		
-		Agent agent = agentRepository.findOneByUsername(messageDTO.getIdRecipient());
-			
-		if ((messageService.canSendMessage(user.getId())) == true) // trenutni korisnik se nalazi u tabeli rezervacija
-		{
-			messageService.createMessage(messageDTO, token);
-		}
 
 	}
 	
@@ -158,8 +153,8 @@ public class MessageController
 		
 		token = token.substring(1, token.length()-1);
 		
-		String username = tokenUtils.getUserSecurity(token).getUsername();
-		User user = userRepository.findOneByUsername(username);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
+		User user = userService.findByEmail(email);
 		
 		//metoda treba da vraca true kada korisnik ima neku prethodno kreiranu rezervaciju
 		boolean hasReservation = messageService.canSendMessage(user.getId());
@@ -173,8 +168,8 @@ public class MessageController
 		
 		token = token.substring(1, token.length()-1);
 		
-		String username = tokenUtils.getUserSecurity(token).getUsername();
-		User user = userRepository.findOneByUsername(username);
+		String email = tokenUtils.getUserSecurity(token).getUsername();
+		User user = userService.findByEmail(email);
 		
 		//treba da vratis sve agente kojima user moze da prosledi poruke
 		ArrayList<Agent> agents = new ArrayList<Agent>();
@@ -183,7 +178,7 @@ public class MessageController
 		
 		if (reservations.size() == 0) // taj korisnik nema rezervacija, pa nema ni agenata
 		{
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<List<Agent>>(agents, HttpStatus.OK);
 		}
 		else
 		{

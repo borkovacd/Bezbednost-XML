@@ -229,8 +229,8 @@ insert into reservation (id, confirmed, from_date, to_date, agent_id, room_id, u
 insert into reservation_agent (id, from_date, to_date, agent_id, room_id) values (1, DATE '2019-06-20', DATE '2019-06-27', 1, 4);
 
 
-insert into message (id, text, recipient_id, sender_id) values (1, "Hej agente", 1, 2);
-insert into response (id, text,message_id, recipient_id, sender_id) values (1, "Hej useru",1, 2, 1);
+/*insert into message (id, text, recipient_id, sender_id) values (1, "Hej agente", 1, 2);
+insert into response (id, text,message_id, recipient_id, sender_id) values (1, "Hej useru",1, 2, 1);*/
 /*insert into message (id, text, recipient_id, sender_id) values (2, "Odgovori mi agente ja sam admin", 1, 1);*/
 
 

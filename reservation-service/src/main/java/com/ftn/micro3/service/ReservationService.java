@@ -145,6 +145,11 @@ public class ReservationService
 		LocalDate toDateConverted = LocalDate.parse(toDate, europeanDateFormatter);
 		
 		
+		if (fromDateConverted.isBefore(LocalDate.now()) || toDateConverted.isBefore(LocalDate.now()))
+		{
+			return matchingRooms ;
+		}
+		
 		// lista postojecih rezervacija
 		List<Reservation> reservations = reservationRepository.findAll();
 		List<ReservationAgent> reservationsAgent = reservationAgentRepository.findAll();
