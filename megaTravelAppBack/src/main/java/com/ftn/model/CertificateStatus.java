@@ -15,7 +15,6 @@ public class CertificateStatus
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	@Column(name = "Serijski_broj")
 	private Integer serijskiBroj ;
 	

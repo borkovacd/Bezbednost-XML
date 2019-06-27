@@ -109,9 +109,19 @@ public class ReservationController
 		
 		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
 		
-		if(rooms != null) {
+		boolean checkCity = reservationService.checkCharacters(dto.getCity());
+		
+		// ukoliko je uneo grad koji sadrzi nesto sem slova i brojeva
+		if (checkCity == false)
+		{
+			return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);
+		}
+		
+		if(rooms != null) 
+		{
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
+		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	

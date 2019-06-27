@@ -271,5 +271,72 @@ public class ReservationService
 	}
 
 
+	
+	// Metode za validaciju
+	
+	public boolean checkStringField(String field) 
+	{
+		if(field.isEmpty()) // prazno polje
+		{
+			return false;
+		}
+		if(field.contains(";")) // tacka-zarez
+		{
+			return false;
+		}
+		
+		if(field.contains(",")) // zarez
+		{
+			return false;
+		}
+		
+		for(Character c : field.toCharArray()) // razmaci
+		{
+			if(Character.isWhitespace(c)) 
+			{
+				return false;
+			
+			}
+				
+		}
+		
+		return true;
+	}
+	
+	// sme samo slovo ili broj
+	public boolean checkCharacters(String data) 
+	{
+		if(data.isEmpty()) 
+		{
+			return false;
+		}
+		for(Character c :data.toCharArray()) // ukoliko je razmak ili ukoliko nije slovo ili broj
+		{
+			if(Character.isWhitespace(c)== false && Character.isLetterOrDigit(c) == false) 
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	// provera za brojeve
+	public boolean checkNumberFields(String data) 
+	{
+		if(data.isEmpty()) 
+		{
+			return false;
+		}
+		for(Character c : data.toCharArray()) // ukoliko je razmak ili ukoliko broj
+		{
+			if(Character.isWhitespace(c)== false && Character.isDigit(c) == false) 
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 }
