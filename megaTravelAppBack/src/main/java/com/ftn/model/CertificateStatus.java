@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 // prikaz Sertifikata u tabeli, sa njegovim serijskim brojem i statusom - aktivan / neaktivan
 @Entity
@@ -14,6 +15,7 @@ public class CertificateStatus
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@Column(name = "Serijski_broj")
 	private Integer serijskiBroj ;
 	

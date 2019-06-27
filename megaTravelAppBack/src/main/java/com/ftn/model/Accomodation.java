@@ -22,7 +22,7 @@ public class Accomodation {
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	@OneToOne(fetch = FetchType.EAGER)
@@ -32,21 +32,26 @@ public class Accomodation {
 	@Column
 	private String address;
 
+	@NotNull
 	@OneToOne
 	private TypeAccomodation typeAccomodation;
 
+	@NotNull
 	@OneToOne
 	private Category category;
 
+	@NotNull
 	@Column
 	private String description;
 
+	@NotNull
 	@Column
 	private String pic;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<AdditionalServices> additionalServices;
 
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	private Agent agent;
 

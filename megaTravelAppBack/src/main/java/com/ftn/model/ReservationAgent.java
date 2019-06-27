@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ReservationAgent {
@@ -15,12 +16,15 @@ public class ReservationAgent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private LocalDate fromDate;
 
+	@NotNull
 	private LocalDate toDate;
 
 	@OneToOne
 	private Room room;
+	
 	@OneToOne
 	private Agent agent;
 	

@@ -47,7 +47,6 @@ public class Accomodation
 	@Column
 	private String pic;
 
-	@NotNull
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<AdditionalServices> additionalServices;
 

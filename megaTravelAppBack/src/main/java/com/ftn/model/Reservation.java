@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,23 +20,29 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	@Column
 	private LocalDate fromDate;
 
+	@NotNull
 	@Column
 	private LocalDate toDate;
 
+	@NotNull
 	@OneToOne
 	private Room room;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private User user;
 
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private Agent agent;
 	
+	@NotNull
 	@Column(name="Price")
 	private double price;
 

@@ -15,7 +15,7 @@ public class AdditionalServices {
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	public AdditionalServices() {

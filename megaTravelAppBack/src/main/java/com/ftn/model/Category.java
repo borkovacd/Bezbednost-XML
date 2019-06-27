@@ -14,7 +14,7 @@ public class Category {
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	public Category() {

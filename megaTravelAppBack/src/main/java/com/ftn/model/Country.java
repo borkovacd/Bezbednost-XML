@@ -18,7 +18,7 @@ public class Country {
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	public Country() {

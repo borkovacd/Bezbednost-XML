@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="Certificates")
 public class CertificateModel 
@@ -18,18 +19,23 @@ public class CertificateModel
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	private SubjectSoftware issuerSoft;
 	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	private SubjectSoftware subSoft;
 
+	@NotNull
 	@Column(name="StartDate")
 	private Date startDate;
 	
+	@NotNull
 	@Column(name="SerialNumber")
 	private Integer serialNumber;
 	
+	@NotNull
 	@Column(name="EndDate")
 	private Date endDate;
 	
@@ -39,9 +45,11 @@ public class CertificateModel
 	@Column(name="IsRevoked")
 	private boolean revoked;
 	
+	@NotNull
 	@Column
 	private String reasonForRevokation;
 	
+	@NotNull
 	@Column
 	private Long idCertificateIssuer;
 
