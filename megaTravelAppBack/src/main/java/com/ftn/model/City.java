@@ -19,7 +19,7 @@ public class City {
 	private Long id;
 
 	@NotNull
-	@Column(unique = true)
+	@Column
 	private String name;
 
 	@ManyToOne(fetch = FetchType.EAGER)

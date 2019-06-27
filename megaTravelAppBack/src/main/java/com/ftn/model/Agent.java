@@ -21,7 +21,7 @@ public class Agent {
 	private Long id;
 	
 	@NotNull
-	@Column(name="Username", unique = true)
+	@Column(name="Username")
 	private String username;
 
 	@NotNull

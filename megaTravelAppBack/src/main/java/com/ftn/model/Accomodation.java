@@ -22,7 +22,7 @@ public class Accomodation {
 	private Long id;
 
 	@NotNull
-	@Column(unique = true)
+	@Column
 	private String name;
 
 	@OneToOne(fetch = FetchType.EAGER)

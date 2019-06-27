@@ -36,7 +36,7 @@ public class User
 	private String password;
 
 	@NotNull
-	@Column(name="Email", nullable = false, unique = true)
+	@Column(name="Email", nullable = false)
 	private String email;
 	
 	@Column(name="City", nullable = false)

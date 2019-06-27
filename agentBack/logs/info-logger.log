@@ -1,3 +1,0 @@
-2019-06-28 00:11:49,236 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on DESKTOP-F3G1DCA with PID 12720 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\agentBack)
-2019-06-28 00:11:49,243 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-28 00:12:19,474 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 30.766 seconds (JVM running for 31.817)

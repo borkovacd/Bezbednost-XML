@@ -45,10 +45,36 @@ export class RegistrationComponent {
 
   }
 
-  validateLogData() {
+  validateRegData() {
 
     let error = false;
     let errorMessage = '';
+    let errorMail = false;
+
+    /* PROVERA LOZINKE */
+    if (this.password.value.length < 8) {
+      error = true;
+      errorMessage = 'Lozinka mora biti barem 8 karaktera dugačka!';
+      return errorMessage;
+      /*alert('Password needs to be at least 8 characters long');*/
+    } else if (/\d/.test(this.password.value) == false) {
+      error = true;
+      errorMessage = 'Lozinka mora sadržati barem jedan broj!';
+      return errorMessage;
+      /*alert('Password needs to contain at least one number!');*/
+    } else if (!this.password.value.match('.*[A-Z].*')) {
+      error = true;
+      errorMessage = 'Lozinka mora posedovati barem jedno veliko slovo!';
+      return errorMessage;
+      /*alert('Password needs to contain at lease one uppercase letter!');*/
+    }
+
+    /* PROVERA POKLAPANJA LOZINKI */
+    if (this.password.value !== this.rePassword.value) {
+      error = true;
+      errorMessage = 'Lozinke se ne poklapaju!';
+      return errorMessage;
+    }
 
     /* PROVERA MEJLA */
     const patternMail = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/;
@@ -76,7 +102,7 @@ export class RegistrationComponent {
 
   signUp() {
 
-      let message = this.validateLogData();
+      let message = this.validateRegData();
 
       if (message == "Ok") {
 

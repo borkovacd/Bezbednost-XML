@@ -15,7 +15,7 @@ public class TypeAccomodation {
 	private Long id;
 
 	@NotNull
-	@Column(unique = true)
+	@Column
 	private String name;
 
 	public TypeAccomodation() {

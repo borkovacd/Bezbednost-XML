@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class AdditionalServices 
 {
 	@NotNull
-	@Column(unique = true)	
+	@Column
 	private String name ;
 	
 	@Id
