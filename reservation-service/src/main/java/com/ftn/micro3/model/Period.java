@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,12 +15,15 @@ public class Period
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id ;
 	
+	@NotNull
 	@Size(min = 1, max = 20)
 	private String fromDate ;
 	
+	@NotNull
 	@Size(min = 1, max = 20)
 	private String toDate ;
 	
+	@NotNull
 	@OneToOne
 	private Accomodation accomodation;
 

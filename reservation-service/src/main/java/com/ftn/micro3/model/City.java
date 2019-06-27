@@ -16,9 +16,10 @@ public class City {
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String name;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Country country;
 

@@ -21,17 +21,22 @@ public class Reservation
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private LocalDate fromDate;
 
+	@NotNull
 	private LocalDate toDate;
 
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	private Room room;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private User user;
 
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	// @JsonIgnore
 	private Agent agent;
@@ -40,6 +45,7 @@ public class Reservation
 	@Column(name="Price")
 	private double price;
 
+	@NotNull
 	@Column
 	private boolean confirmed = false;
 

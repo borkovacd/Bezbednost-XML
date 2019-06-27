@@ -20,13 +20,14 @@ public class User
 	@Id
 	private Long id;
 	
-	@Column(name="FirstName", nullable=false)
+	@Column(name="FirstName", nullable = false)
 	private String firstName;
 	
-	@Column(name="LastName", nullable=false)
+	@Column(name="LastName", nullable = false)
 	private String lastName;
 	
-	@Column(name="Username")
+	@NotNull
+	@Column(name="Username", unique = true)
 	private String username;
 	
 	@NotNull
@@ -35,17 +36,16 @@ public class User
 	private String password;
 
 	@NotNull
-	@Column(name="Email", nullable=false)
+	@Column(name="Email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name="City", nullable=false)
+	@Column(name="City", nullable = false)
 	private String city;
 	
 	/*
 	@Enumerated(EnumType.STRING)
 	private ClientStatus status;
 	*/
-	
 	
 	@Column(name = "Enabled")
 	private boolean enabled;

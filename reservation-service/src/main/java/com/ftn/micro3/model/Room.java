@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Room {
@@ -15,19 +16,24 @@ public class Room {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Accomodation accomodation;
 
+	@NotNull
 	@Column
 	private int capacity;
 
+	@NotNull
 	@Column
 	private int floor;
 
 	@Column
 	private boolean hasBalcony;
 
+	
 	// koliko dana pre moze da otkaze
+	@NotNull
 	@Column
 	private int day;
 

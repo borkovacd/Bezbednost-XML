@@ -15,7 +15,7 @@ public class Agent
 	private Long id;
 
 	@NotNull
-	@Column
+	@Column(unique = true)
 	private String username;
 
 	@NotNull
@@ -38,7 +38,8 @@ public class Agent
 	@Column
 	private String mbr;
 
-	public Agent() {
+	public Agent() 
+	{
 
 	}
 
