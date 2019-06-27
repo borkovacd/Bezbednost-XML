@@ -8,24 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Message implements Serializable {
 
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	@OneToOne
 	private User sender;
 
+	@NotNull
 	@OneToOne
 	private Agent recipient;
 
-	/*@OneToOne
-	private Response response;
-	*/
-
+	@NotNull
 	private String text;
 
 	public Message() {
@@ -37,7 +38,6 @@ public class Message implements Serializable {
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
-		//this.response = response;
 		this.text = text;
 	}
 
@@ -64,14 +64,6 @@ public class Message implements Serializable {
 	public void setRecipient(Agent recipient) {
 		this.recipient = recipient;
 	}
-
-	/*public Response getResponse() {
-		return response;
-	}
-
-	public void setResponse(Response response) {
-		this.response = response;
-	}*/
 
 	public String getText() {
 		return text;

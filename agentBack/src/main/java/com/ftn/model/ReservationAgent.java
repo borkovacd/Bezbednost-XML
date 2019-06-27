@@ -2,22 +2,30 @@ package com.ftn.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ReservationAgent {
 	
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	private LocalDate fromDate;
-
+	
+	@NotNull
 	private LocalDate toDate;
 
+	@NotNull
 	@OneToOne
 	private Room room;
+	
+	@NotNull
 	@OneToOne
 	private Agent agent;
 	

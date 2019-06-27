@@ -48,9 +48,18 @@ export class MessageComponent implements OnInit{
       })
     })
 
+  }
 
-
-
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
 
   }
 
@@ -66,17 +75,18 @@ export class MessageComponent implements OnInit{
     this.answer = true;
   }
 
+
+
   sendAnswer() {
     const username = this.route.snapshot.params.username;
     console.log(
-
       this.text.value
 
     )
     const answer = new AnswerModel(
       username,
       this.idTo,
-      this.text.value,
+      this.escapeCharacters(this.text.value),
       this.idMessage,
     );
 

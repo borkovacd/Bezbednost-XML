@@ -25,10 +25,8 @@ export class AddReservationComponent implements OnInit{
               private route: ActivatedRoute,
               private reservationAgentService: ReservationAgentService){
     this.form = this.fb.group({
-      'checkInDate': ['', Validators.compose([Validators.required])],
+      'checkInDate': ['', Validators.compose([Validators.required],)],
       'checkOutDate': ['', Validators.compose([Validators.required])],
-
-
 
     })
     this.checkInDate = this.form.controls['checkInDate'];
@@ -39,11 +37,12 @@ export class AddReservationComponent implements OnInit{
   }
   search(){
     if ( this.checkInDate.value > this.checkOutDate.value ) {
-      alert('Molimo ponovo unesite datum dolaska i odlaska.');
+      alert('Nevalidan unos datuma. Molimo ponovo unesite datum dolaska i odlaska.');
       this.checkInDate.reset();
       this.checkOutDate.reset();
       return;
     }
+
     const object = new SearchRoomModel(
       this.checkInDate.value,
       this.checkOutDate.value

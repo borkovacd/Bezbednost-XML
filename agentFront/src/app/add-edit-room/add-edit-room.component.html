@@ -24,7 +24,7 @@
       </small>
 
       <label style="margin-top:20px">Sprat:</label>
-      <input name="floor" class="form-control margin" [formControl]="floor">
+      <input name="floor" class="form-control margin" [formControl]="floor" >
       <small class="form-text error" *ngIf="floor.errors?.required && floor.touched" style="color: red">
         Spratnost je obavezna!
       </small>
@@ -38,11 +38,6 @@
       <small class="form-text error" *ngIf="day.errors?.required && day.touched" style="color: red">
         Obavezan unos polja!
       </small>
-
-
-
-
-
 
 
       <button class="btn btn-success" style="width: 100%;margin-top: 30px" (click)="confirmClick()"

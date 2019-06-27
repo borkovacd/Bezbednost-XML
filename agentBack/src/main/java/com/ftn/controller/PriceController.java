@@ -40,7 +40,7 @@ public class PriceController {
 	}
 	
 	@PreAuthorize("hasAuthority('ADD_PRICE')")
-	@GetMapping("/getPriceForRoom/{idRoom}")
+	@GetMapping("/getPriceForRoom/{idRoom}/{token}")
 	public ResponseEntity<ArrayList<Price>> getPriceListForRoom(@PathVariable Long idRoom,@PathVariable String token) throws Exception {
 		ArrayList<Price> prices = priceService.getAllPrices(idRoom,token);
 

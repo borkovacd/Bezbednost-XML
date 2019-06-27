@@ -5,19 +5,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 
 public class Price {
 
+	@NotNull
 	@Id
 	private long id;
 
+	@NotNull
 	@ManyToOne
 	private Room room;
 
+	@NotNull
 	private String month;
 
+	@NotNull
 	private Double price;
 
 	public Price() {

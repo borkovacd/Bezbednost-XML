@@ -1,15 +1,21 @@
 package com.ftn.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,9 +176,19 @@ public class ReservationAgentService {
 		
 	}
 
-	public List<Room> searchFreeRooms(LocalDate d1, LocalDate d2) {
+	public List<Room> searchFreeRooms(LocalDate d1, LocalDate d2) throws ParseException {
 		log.debug("SEARROOM");
-
+		
+		String europeanDatePattern = "yyyy-MM-dd";
+		DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+		String formattedString = d1.format(europeanDateFormatter);
+	    
+	    if (new SimpleDateFormat("yyyy-MM-dd").parse(formattedString).before(new Date())) {
+	    	List<Room> emptyRoomsList = new ArrayList<Room>();
+	    	return emptyRoomsList;
+	      }
+	    
+		
 		List<Room> allRooms = roomRepository.findAll();
 
 		List<Reservation> reservations = reservationRepository.findAll();

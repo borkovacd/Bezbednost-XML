@@ -32,18 +32,18 @@ export class AddPricelistComponent implements OnInit{
               private priceService: PricelistService,
               private route: ActivatedRoute,){
     this.form = this.fb.group({
-      'jan': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'feb': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'mar': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'apr': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'may': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'jun': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'jul': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'aug': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'sep': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'oct': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'nov': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      'dec': ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
+      'jan': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'feb': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'mar': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'apr': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'may': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'jun': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'jul': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'aug': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'sep': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'oct': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'nov': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
+      'dec': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}[0-9]*')])],
     })
 
     this.jan = this.form.controls['jan'];

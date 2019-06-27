@@ -1,5 +1,6 @@
 package com.ftn.controller;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ReservationAgentController {
 	}
 
 	@PostMapping("/searchRoom/{token}")
-	public ResponseEntity<List<Room>> searchRoom(@RequestBody SearchRoomDTO searchRoomDTO,@PathVariable String token) {
+	public ResponseEntity<List<Room>> searchRoom(@RequestBody SearchRoomDTO searchRoomDTO,@PathVariable String token) throws ParseException {
 		
 		
 		String europeanDatePattern = "yyyy-MM-dd";

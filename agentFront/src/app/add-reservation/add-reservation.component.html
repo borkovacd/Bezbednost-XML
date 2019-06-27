@@ -36,7 +36,7 @@
       </small>
       <br/>
 
-      <button class="btn btn-success" style="width: 100%;margin-top: 30px" (click)="search()">
+      <button class="btn btn-success" style="width: 100%;margin-top: 30px" (click)="search()" [disabled]="!form.valid">
         TRAZI
       </button>
 

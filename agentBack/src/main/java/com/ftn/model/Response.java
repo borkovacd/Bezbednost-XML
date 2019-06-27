@@ -8,24 +8,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Response implements Serializable {
 
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	@OneToOne
 	private Agent sender;
 
+	@NotNull
 	@OneToOne
 	private User recipient;
 	
+	@NotNull
 	@OneToOne
 	private Message message;
 	
-
+	@NotNull
 	private String text;
 
 	public Response() {
