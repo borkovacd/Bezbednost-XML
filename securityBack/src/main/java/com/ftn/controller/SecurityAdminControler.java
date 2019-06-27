@@ -91,7 +91,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/createCertificate/{token}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
 			throws Exception {
-		log.debug("CRE_CA");
+		
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
 		
 		token = token.substring(1,token.length()-1).toString();
@@ -99,7 +99,7 @@ public class SecurityAdminControler {
 		String email = tokenUtils.getUserSecurity(token).getUsername();
 		
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
-		
+		log.info("User id: {} CREACA",iss.getId());
 		System.out.println(iss.getEmail());
 		
 
@@ -165,9 +165,9 @@ public class SecurityAdminControler {
 				cm.setRevoked(false);
 
 				certRepos.save(cm);
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT User id:{} CREACASUCCESS ", 
 						iss.getId());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User id:{}  CREASUCCESS",
 						iss.getId());
 
 				// *********************************************
@@ -192,7 +192,7 @@ public class SecurityAdminControler {
 				keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
 						ss.getId().toString().toCharArray());
-				log.info("CRE_CA_SUC");
+				log.info("CRECASUCCESS");
 
 			}
 			
@@ -237,9 +237,9 @@ public class SecurityAdminControler {
 				cm.setRevoked(false);
 
 				certRepos.save(cm);
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT {} CRE_CA id: {} ", cm.getSerialNumber(),
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT User id: {}  CREACASUCCESS", 
 						iss.getId());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT{} CRE_CA id:{} ", cm.getSerialNumber(),
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User id:{}  CREACASUCCESS", 
 						iss.getId());
 
 				// *********************************************
@@ -264,14 +264,14 @@ public class SecurityAdminControler {
 				keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
 						ss.getId().toString().toCharArray());
-				log.info("CRE_CA_SUC");
+				log.info("CRECASUCESS");
 
 			}
 		}
 
 		else {
 			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
-			log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User {} CRE_ERR  ", email);
+			log.error(LoggerUtils.getNMarker(), "NEPOR_EVENT User id: {} CREACAERROR  ", iss.getId());
 
 		}
 		
@@ -312,7 +312,7 @@ public class SecurityAdminControler {
 	
 	@RequestMapping(value = "/communicate/{string1}/{string2}", method = RequestMethod.GET)
 	public Integer checkCommunication(@PathVariable String string1, @PathVariable String string2) {
-		log.debug("CK_COMM");
+		log.debug("CKCOMM");
 		
 		string1 = string1.substring(1, string1.length()-1).toString();
 		
@@ -398,9 +398,9 @@ public class SecurityAdminControler {
 					return 0;
 					
 				} else {
-					log.info("CK_SUC");
+					log.info("CKSUCCESS");
 					log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , "
-							+ "COMM_SUC between {} and {}", soft1.getId(),
+							+ "CKSUCCESS between {} and {}", soft1.getId(),
 							soft2.getId());
 				
 					CommunicationRelationship cr = new CommunicationRelationship();
@@ -413,12 +413,12 @@ public class SecurityAdminControler {
 					return 1;
 				}
 			} else {
-				log.info("CK_FAIL");
+				log.error("CKFAIL");
 				return 2;
 			}
 
 		}
-		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMM_FAIL , CA not found between {} ", soft1.getId(),
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT , COMMUNFAIL , CA not found between {} ", soft1.getId(),
 				soft2.getId());
 
 		return 2;
@@ -441,7 +441,7 @@ public class SecurityAdminControler {
 				ssList2.add(ssList.get(i));
 			}
 		}
-		log.info("SS_SUC");
+		log.info("SSSUCCCESS");
 
 		return ssList2;
 	}
@@ -450,7 +450,7 @@ public class SecurityAdminControler {
 	@PreAuthorize("hasAuthority('READ_SUB_SOFT')")
 	@RequestMapping(value = "/getAllSubjectSoftwares/{email}", method = RequestMethod.GET)
 	public ArrayList<SubjectSoftware> getAllSubjectSoftwares(@PathVariable String email) throws Exception {
-		log.info("GET_SS");
+		log.info("GETSS");
 		ArrayList<SubjectSoftware> ssList = new ArrayList<SubjectSoftware>();
 		ssList = ssService.getSoftwares();
 		
@@ -481,7 +481,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getCertificates/{token}", method = RequestMethod.GET)
 	public ArrayList<CertificateModel> getCeritificates(@PathVariable String token, Authentication auth) throws Exception {
 		
-		log.info("GET_CA");
+		log.info("GETCA");
 		System.out.println("Usao da ispise sertifikate");
 		System.out.println("Token je: " + token);
 		
@@ -510,7 +510,7 @@ public class SecurityAdminControler {
 			}
 
 		}
-		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user {} CA ", email);
+		log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT CASUCCESS " );
 
 		return lanacSertifikataNova;
 
@@ -520,7 +520,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getAllCertificates", method = RequestMethod.GET)
 	public ArrayList<CertificateModel> getAllCeritificates() {
 		
-		log.info("GET_ACA");
+		log.info("GETACA");
 
 		ArrayList<CertificateModel> lanacSertifikata = new ArrayList<CertificateModel>();
 
@@ -534,7 +534,7 @@ public class SecurityAdminControler {
 	@RequestMapping(value = "/getMyCertificate/{token}", method = RequestMethod.GET)
 	public CertificateModel getMyCeritificate(@PathVariable String token) throws Exception {
 		
-		log.info("GET_ACA");
+		log.info("GETACA");
 		
 		token = token.substring(1,token.length()-1).toString();
 		
@@ -564,7 +564,7 @@ public class SecurityAdminControler {
 		System.out.println("Poruka koja je stigla " + message);
 		
 		System.out.println("token je sledeci: " + token);
-		log.info("REV_CA");
+		log.info("User id: {}  REVCA",token);
 		boolean pomocni = false;
 		pomocni = statusService.revokeCert(serialNumber, message);
 

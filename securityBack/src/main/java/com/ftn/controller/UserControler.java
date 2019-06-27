@@ -1,9 +1,6 @@
 package com.ftn.controller;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +14,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -38,7 +34,6 @@ import com.ftn.security.LoggerUtils;
 import com.ftn.security.TokenUtils;
 import com.ftn.service.RoleService;
 import com.ftn.service.UserService;
-import com.ftn.service.UserServiceImpl;
 
 @RestController
 @RequestMapping(value = "/api/user")
@@ -75,25 +70,25 @@ public class UserControler {
 		boolean response = userService.exists(userDto.getEmail());
 		if (response == true) {
 			System.out.println("vec postoji dati mejl");
-			log.error("REG_ERR");
+			log.error("REGFAIL");
 
 			return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 		} else {
 			if(userService.checkMail(userDto.getEmail() )== false){
-				log.error("REG_ERR_EMAIL");
+				log.error("REGFAILEMAIL");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getFirstName())==false){
-				log.error("REG_ERR_FN");
+				log.error("REGFAILFN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
 			}
 			if(userService.checkCharacters(userDto.getLastName())==false){
-				log.error("REG_ERR_LN");
+				log.error("REGFAILLN");
 
 				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 
@@ -121,8 +116,8 @@ public class UserControler {
 
 				userRep.save(u);
 				System.out.println("upisao korisnika sa mejlom: "+u.getEmail());
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} REG_SUC,ip: {}", u.getId(), request.getRemoteAddr());
-				log.debug("REG_SUC");
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT REGSUCCESS");
+				log.debug("REGSUCCESS");
 				return new ResponseEntity<UserDTO>(userDto, HttpStatus.OK);
 			}
 		}
@@ -138,7 +133,7 @@ public class UserControler {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> logIn(@RequestBody UserDTO userDTO, HttpServletRequest req) {
-		log.debug("LOG");
+		log.debug("LOGING");
 
 		boolean response = userService.logIn(userDTO);
 
@@ -172,27 +167,27 @@ public class UserControler {
 			//	System.out.println(user1.getEmail());
 				
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", us.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", us.getId(),req.getRemoteAddr());
+				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT User id:{} LOGSUCCESS ", us.getId());
+				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT User id:{} LOGSUCCESS", us.getId());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
+					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT User id:{} LOGFAIL ", userNew.getId());
 					e.printStackTrace();
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
-				log.error("LOG_ERR");
-				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
+				log.error("LOGFAIL");
+				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT  LOGFAIL ");
 
 				
 
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.error("LOG_ERR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL "/*, user.getId()*/);
+			log.error("LOGFAIL");
+			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT  LOGFAIL ");
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
@@ -228,7 +223,7 @@ public class UserControler {
 	
 	@RequestMapping(value = "/communicate/{message}", method = RequestMethod.GET)
 	public String communicateMethod(@PathVariable String message) {
-
+		log.info("COMMUN");
 		System.out.println(message);
 		return "Central module responded! Got message: " + message;
 	}
@@ -240,7 +235,7 @@ public class UserControler {
 		User u = userService.findByEmail(email);
 		
 		System.out.println(email);
-		log.info("user id:{} LOGEDUSER",u.getId());
+		log.info("User id:{} LOGEDUSER",u.getId());
 		
 		
 	}
