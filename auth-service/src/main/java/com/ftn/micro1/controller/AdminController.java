@@ -72,7 +72,7 @@ public class AdminController {
 		
 	}
 	
-	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@PreAuthorize("hasAuthority('SEE_USERS')")
 	@RequestMapping(value="/users",method = RequestMethod.GET)
 	public ArrayList<User> getUsers() {
 		
@@ -82,7 +82,7 @@ public class AdminController {
 	}
 	
 
-	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@PreAuthorize("hasAuthority('ACT_USER')")
 	@RequestMapping(value="/activateUser/{email}", method = RequestMethod.GET)
 	public User activateClient(@PathVariable String email) {
 	
@@ -97,7 +97,7 @@ public class AdminController {
 	}
 	
 
-	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@PreAuthorize("hasAuthority('BLOCK_USER')")
 	@RequestMapping(value="/blockUser/{email}", method = RequestMethod.GET)
 	public User blockClient(@PathVariable String email) {
 	
@@ -112,15 +112,13 @@ public class AdminController {
 	}
 	
 
-	@PreAuthorize("hasAuthority('ADD_AGENT')")
+	@PreAuthorize("hasAuthority('DEL_USER')")
 	@RequestMapping(value="/removeUser/{email}", method = RequestMethod.GET)
 	public User removeUser(@PathVariable String email) {
 	
 		User user = userService.findByEmail(email);
 		
-		user.setStatus(ClientStatus.UKLONJEN);
-		
-		userService.saveUser(user);
+		userService.remove(user);
 		
 		return user;
 

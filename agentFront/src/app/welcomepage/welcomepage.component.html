@@ -12,10 +12,11 @@
 
 <ul>
   <li (click)="accomodationButton()"><a>Smestaj</a></li>
-  <li (click)="messages()"><a>Poruke</a></li>
+  <li [hidden]="vis" (click)="messages()"><a>Poruke</a></li>
   <li (click)="reservation()"><a>Rezervacije</a></li>
   <li (click)="communicateC()"><a>Komunikacija</a></li>
-  <li (click)="logOut()"><a>Odjavi se</a></li>
+  <li [hidden]="vis" (click)="logOut()"><a>Odjavi se</a></li>
+  <li [hidden]="!vis" (click)="logIn()"><a>Prijavi se</a></li>
 </ul>
 
 <div  *ngIf="communicate == true">

@@ -44,7 +44,7 @@ public class AccomodationTypeController
 	}
 	
 	// brise postojeci tip smestaja
-	@PreAuthorize("hasAuthority('REMOVE_TYPE')")
+	@PreAuthorize("hasAuthority('DEL_TYPE')")
 	@PostMapping(value = "/removeAccomodationType", consumes = "application/json")
 	public ResponseEntity<List<AccomodationType>> removeAccType(@RequestBody AccomodationType acc)
 	{

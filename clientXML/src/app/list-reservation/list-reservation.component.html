@@ -1,5 +1,5 @@
 <div class="container">
-
+<div [hidden]="vis">
   <h2>Moje rezervacije</h2> <button class="btn btn-primary" (click)="back()">Nazad</button>
 
   <h4>Vase rezervacije ce biti prikazane tek nakon sto budu odobrene od strane vlasnika smestaja</h4>
@@ -28,6 +28,10 @@
     <button class="btn btn-primary" (click)="cancelRes(res.id)">Otkazi</button>
 
   </div>
+</div>
 
+  <div [hidden]="!vis">
+    <h2>Nemate pristup</h2>
+  </div>
 
 </div>

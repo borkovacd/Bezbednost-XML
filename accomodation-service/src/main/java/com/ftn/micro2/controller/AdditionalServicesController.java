@@ -28,6 +28,7 @@ public class AdditionalServicesController
 	
 	
 	// METODA kojom se DODAJE novi Dodatni servis
+	@PreAuthorize("hasAuthority('ADD_SERVICE')")
 	@RequestMapping(value="/addNewAdditionalService",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNewAdditionalService(@RequestBody AdditionalServices add)
 	{
@@ -48,6 +49,7 @@ public class AdditionalServicesController
 	}
 	
 	// METODA kojom se UKLANJA postojeci Dodatni servis
+	@PreAuthorize("hasAuthority('DEL_SERVICE')")
 	@PostMapping(value = "/removeAdditionalService", consumes = "application/json")
 	public ResponseEntity<List<AdditionalServices>> removeAdditionalService(@RequestBody AdditionalServices add)
 	{

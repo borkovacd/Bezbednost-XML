@@ -19,6 +19,8 @@ export class WelcomepageComponent implements OnInit{
   reservations = false;
   message = false;
 
+  vis: boolean = false;
+
   public form: FormGroup;
   public messageToCentral: AbstractControl;
   public returnMessage: string;
@@ -31,6 +33,12 @@ export class WelcomepageComponent implements OnInit{
 
   }
   ngOnInit() {
+
+    if (localStorage.getItem('agentId') == null) {
+        this.vis = true;
+    } else {
+      this.vis = false;
+    }
 
       this.accomodation = true;
       this.communicate = false;
@@ -81,5 +89,9 @@ export class WelcomepageComponent implements OnInit{
     this.data.sendMessageToCentral(this.messageToCentral.value.toString()).subscribe(data => {
       alert(data);
     });
+  }
+
+  logIn() {
+    this.router.navigateByUrl('');
   }
 }

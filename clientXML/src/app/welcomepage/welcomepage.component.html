@@ -11,11 +11,11 @@
 
 </div>
 <ul>
-  <li (click)="login()"><a>Uloguj se</a></li>
-  <li (click)="registration()"><a>Registruj se</a></li>
-  <li (click)="myRes()"><a>Moje rezervacije</a></li>
-  <li (click)="logOut()"><a>Odjavi se</a></li>
-  <li (click)="messages()"><a>Poruke</a></li>
+  <li [hidden]="!visOut" (click)="login()"><a>Uloguj se</a></li>
+  <li [hidden]="!visOut" (click)="registration()"><a>Registruj se</a></li>
+  <li [hidden]="visOut" (click)="myRes()"><a>Moje rezervacije</a></li>
+  <li [hidden]="visOut" (click)="messages()"><a>Poruke</a></li>
+  <li [hidden]="visOut" (click)="logOut()"><a>Odjavi se</a></li>
 </ul>
 
 <div>

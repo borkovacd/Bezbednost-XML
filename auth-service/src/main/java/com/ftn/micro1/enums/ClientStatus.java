@@ -4,7 +4,6 @@ public enum ClientStatus {
 	
 	AKTIVAN,
 	NEAKTIVAN,
-	BLOKIRAN,
-	UKLONJEN
+	BLOKIRAN
 
 }

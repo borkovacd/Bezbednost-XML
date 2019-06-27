@@ -202,6 +202,7 @@ public class ReservationController
 		return new ResponseEntity<List<Reservation>>(ress, HttpStatus.OK);
 	}
 	
+	/*
 	@PreAuthorize("hasAuthority('DEL_RES')")
 	@DeleteMapping(value="/deleteReservation/{id}")
 	public ResponseEntity<?> deleteReservation(@PathVariable Long id)
@@ -214,20 +215,22 @@ public class ReservationController
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 	}
-	
-	@PostMapping(value="/cancelRes/{id}", consumes="application/json")
-	public ResponseEntity<?> cancelRes(@PathVariable Long id) throws ParseException
+	*/
+
+	@PreAuthorize("hasAuthority('DEL_RES')")
+	@GetMapping(value="/cancelRes/{id}")
+	public boolean cancelRes(@PathVariable Long id) throws ParseException
 	{	
 		String a = reservationService.cancelAccepted(id);
 		
 		if (a.equals("OK"))
 		{
 			reservationService.cancelReservation(id);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return true;
 		}
 		else // a je NO
 		{
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return false;
 		}
 		
 		

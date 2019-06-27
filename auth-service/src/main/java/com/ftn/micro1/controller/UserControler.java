@@ -94,6 +94,7 @@ public class UserControler {
 
 				u.setRoles(Collections.singleton(roleRepository.findByName(NameRole.ROLE_USER)));
 				
+				u.setStatus(ClientStatus.NEAKTIVAN);
 
 				String pass = u.getPassword();
 
@@ -101,6 +102,9 @@ public class UserControler {
 				String passwordHashed = BCrypt.hashpw(pass, salt);
 
 				u.setPassword(passwordHashed);
+				
+				u.setEnabled(true);
+				u.setNonLocked(true);
 
 				userService.saveUser(u);
 				System.out.println("upisao usera sa mejlom: "+u.getEmail());
@@ -128,10 +132,6 @@ public class UserControler {
 				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
 			} 
 			
-			if (userNew.getStatus().equals(ClientStatus.UKLONJEN)) {
-				return new ResponseEntity<String>("Vas nalog ne postoji", HttpStatus.NOT_FOUND);
-				
-			}
 			
 			System.out.println("pass" + userDTO.getPassword());
 

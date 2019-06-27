@@ -185,6 +185,12 @@ public class UserService implements UserDetailsService  {
 		
 		return true;
 	}
+
+	public void remove(User user) {
+		
+		userRepository.delete(user);
+		
+	}
 	
 	
 }

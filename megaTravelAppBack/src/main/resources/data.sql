@@ -5,11 +5,12 @@ insert into roles (id, name) values (3, "ROLE_AGENT");
 /*Permisije za admine*/
 insert into permissions (id, name) values (1, "ADD_AGENT");
 insert into permissions (id, name) values (2, "ADD_SERVICE");
-insert into permissions (id, name) values (3, "REMOVE_SERVICE");
+insert into permissions (id, name) values (3, "DEL_SERVICE");
 insert into permissions (id, name) values (4, "ADD_CAT");
-insert into permissions (id, name) values (5, "REMOVE_CAT");
+insert into permissions (id, name) values (5, "DEL_CAT");
 insert into permissions (id, name) values (6, "ADD_TYPE");
-insert into permissions (id, name) values (7, "REMOVE_TYPE");
+insert into permissions (id, name) values (7, "DEL_TYPE");
+
 
 /*Permisije za agente*/
 insert into permissions (id, name) values (8, "ADD_ACC");
@@ -34,6 +35,17 @@ insert into permissions (id, name) values (20, "EDIT_ROOM");
 insert into permissions (id, name) values (21, "RESERVE");
 insert into permissions (id, name) values (22, "DEL_RES");
 
+
+
+
+insert into permissions (id, name) values (23, "SEE_USERS");
+insert into permissions (id, name) values (24, "ACT_USER");
+insert into permissions (id, name) values (25, "BLOCK_USER");
+insert into permissions (id, name) values (26, "DEL_USER");
+
+
+insert into permissions (id, name) values (27, "SEND_MESS");
+
 /*Podela permisija*/
 insert into role_permissions (permission_id, role_id) values (1, 1);
 insert into role_permissions (permission_id, role_id) values (2, 1);
@@ -42,6 +54,10 @@ insert into role_permissions (permission_id, role_id) values (4, 1);
 insert into role_permissions (permission_id, role_id) values (5, 1);
 insert into role_permissions (permission_id, role_id) values (6, 1);
 insert into role_permissions (permission_id, role_id) values (7, 1);
+insert into role_permissions (permission_id, role_id) values (23, 1);
+insert into role_permissions (permission_id, role_id) values (24, 1);
+insert into role_permissions (permission_id, role_id) values (25, 1);
+insert into role_permissions (permission_id, role_id) values (26, 1);
 
 insert into role_permissions (permission_id, role_id) values (8, 3);
 insert into role_permissions (permission_id, role_id) values (9, 3);
@@ -56,6 +72,8 @@ insert into role_permissions (permission_id, role_id) values (17, 3);
 insert into role_permissions (permission_id, role_id) values (18, 3);
 insert into role_permissions (permission_id, role_id) values (19, 3);
 insert into role_permissions (permission_id, role_id) values (20, 3);
+insert into role_permissions (permission_id, role_id) values (27, 3);
+
 
 insert into role_permissions (permission_id, role_id) values (21, 2);
 insert into role_permissions (permission_id, role_id) values (22, 2);

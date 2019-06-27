@@ -45,7 +45,7 @@ export class ReservationService {
   cancelRes(id: number): Observable<any> {
     const token = localStorage.getItem('loggedUser');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.delete(`${this.BASE_URL}/deleteReservation/${id}`,  {headers: headers});
+    return this.http.get(`${this.BASE_URL}/cancelRes/${id}`,  {headers: headers});
   }
 
 }

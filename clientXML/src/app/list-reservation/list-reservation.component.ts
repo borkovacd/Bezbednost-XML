@@ -12,19 +12,35 @@ export class ListReservationComponent implements OnInit {
 
   public reservations: ReservationBackModel[];
 
+  vis: boolean = false;
+
   constructor(protected router: Router, private data: ReservationService) { }
 
   ngOnInit() {
 
-      this.data.getMyRes().subscribe(data => {
-        this.reservations = data;
-      });
+      if (localStorage.getItem('loggedUser') != null) {
+        this.vis = false;
+        this.data.getMyRes().subscribe(data => {
+          this.reservations = data;
+        });
+      } else {
+        this.vis = true;
+      }
+
   }
 
   cancelRes(id: number) {
     this.data.cancelRes(id).subscribe(data => {
-      window.location.reload();
+
+      if(data==true) {
+        alert('Uspesno otkazana rezervacija');
+        window.location.reload();
+
+      } else {
+        alert('Nije moguce otkazati rezervaciju');
+      }
     });
+
   }
 
   back() {

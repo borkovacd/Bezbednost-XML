@@ -45,7 +45,7 @@ public class CategoryController
 	}
 	
 	// brise postojecu kategoriju
-	@PreAuthorize("hasAuthority('REMOVE_CAT')")
+	@PreAuthorize("hasAuthority('DEL_CAT')")
 	@PostMapping(value = "/removeCategory", consumes = "application/json")
 	public ResponseEntity<List<Category>> removeCategory(@RequestBody Category cat)
 	{

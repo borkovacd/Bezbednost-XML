@@ -15,11 +15,13 @@ import {UserService} from '../service/user.service';
   styleUrls: ['./welcomepage.component.scss']
 })
 
-export  class WelcomepageComponent {
+export  class WelcomepageComponent implements OnInit {
 
   advancedSearch = false;
 
   public vis: boolean = false;
+
+  public visOut: boolean = false;
 
   public fromDate: any;
   public toDate: any;
@@ -116,8 +118,10 @@ export  class WelcomepageComponent {
 
     if (localStorage.getItem('loggedUser') == null) {
       this.vis = true;
+      this.visOut = true;
     } else {
       this.vis = false;
+      this.visOut = false;
     }
   }
 
