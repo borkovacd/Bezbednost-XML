@@ -2,6 +2,9 @@ package com.ftn.micro2.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.micro2.config.TokenUtils;
 import com.ftn.micro2.model.AccomodationType;
+import com.ftn.micro2.model.User;
+import com.ftn.micro2.repository.UserRepository;
 import com.ftn.micro2.service.AccomodationTypeService;
 
 @RestController
@@ -24,13 +30,28 @@ import com.ftn.micro2.service.AccomodationTypeService;
 public class AccomodationTypeController 
 {
 	@Autowired
-	AccomodationTypeService service ;
+	UserRepository userRepository;
+	
+	@Autowired
+	AccomodationTypeService service;
+	
+	@Autowired
+	TokenUtils tokenUtils;
 	
 	// dodaje novi tip smestaja
 	@PreAuthorize("hasAuthority('ADD_TYPE')")
 	@RequestMapping(value="/addNewAccomodationType",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean addNewAccomodationType(@RequestBody AccomodationType acc)
+	public boolean addNewAccomodationType(ServletRequest request, @RequestBody AccomodationType acc) throws Exception
 	{
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+
+		System.out.println("Ovo je user " + u.getUsername());
+		
 		AccomodationType accType = service.findByName(acc);
 		if(accType != null)
 			return false;
@@ -46,8 +67,19 @@ public class AccomodationTypeController
 	// brise postojeci tip smestaja
 	@PreAuthorize("hasAuthority('DEL_TYPE')")
 	@PostMapping(value = "/removeAccomodationType", consumes = "application/json")
-	public ResponseEntity<List<AccomodationType>> removeAccType(@RequestBody AccomodationType acc)
+	public ResponseEntity<List<AccomodationType>> removeAccType(ServletRequest request, @RequestBody AccomodationType acc) throws Exception
 	{
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+		
+		token = token.substring(1, token.length()-1);
+		
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+
+		System.out.println("Ovo je user " + u.getUsername());
+		
 		AccomodationType accType = service.findByName(acc);
 		if(accType == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -60,8 +92,18 @@ public class AccomodationTypeController
 	
 	@PreAuthorize("hasAuthority('ADD_TYPE')")
 	@GetMapping(value = "/getAccomodationTypes")
-	public ResponseEntity<List<AccomodationType>> getServices()
+	public ResponseEntity<List<AccomodationType>> getServices(ServletRequest request) throws Exception
 	{
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+
+		System.out.println("Ovo je user " + u.getUsername());
+		
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 }

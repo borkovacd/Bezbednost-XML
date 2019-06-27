@@ -9,9 +9,9 @@
     <label>Korisnicko ime: {{user.username}}</label><br>
     <label>Email: {{user.email}}</label><br>
     <label>Status: {{user.status}}</label><br>
-    <button class="btn btn-primary" (click)="aktiviraj(user.email)">Aktiviraj</button>
+    <button class="btn btn-primary" [hidden]="user.status=='AKTIVAN'" (click)="aktiviraj(user.email)">Aktiviraj</button>
     <button class="btn btn-primary" (click)="ukloni(user.email)">Ukloni</button>
-    <button class="btn btn-primary" (click)="blokiraj(user.email)">Blokiraj</button>
+    <button class="btn btn-primary" [hidden]="user.status=='BLOKIRAN'"(click)="blokiraj(user.email)">Blokiraj</button>
 
   </div>
 

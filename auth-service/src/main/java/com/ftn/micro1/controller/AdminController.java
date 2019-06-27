@@ -3,6 +3,9 @@ package com.ftn.micro1.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.micro1.model.Agent;
 import com.ftn.micro1.model.User;
 import com.ftn.micro1.repository.RoleRepository;
+import com.ftn.micro1.repository.UserRepository;
+import com.ftn.micro1.security.TokenUtils;
 import com.ftn.micro1.service.AgentService;
 import com.ftn.micro1.service.UserService;
 import com.ftn.micro1.enums.ClientStatus;
@@ -33,11 +38,27 @@ public class AdminController {
 	private UserService userService;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	@PreAuthorize("hasAuthority('ADD_AGENT')")
 	@RequestMapping(value="/addAgent",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addAgent(@RequestBody AgentDTO agentDto) {
+	public void addAgent(ServletRequest request, @RequestBody AgentDTO agentDto) throws Exception {
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		
+		
 		
 		Agent agent = new Agent();
 		
@@ -65,7 +86,16 @@ public class AdminController {
 	
 	@PreAuthorize("hasAuthority('ADD_AGENT')")
 	@RequestMapping(value="/agents",method = RequestMethod.GET)
-	public ArrayList<Agent> getAgents() {
+	public ArrayList<Agent> getAgents(ServletRequest request) throws Exception {
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		
 		
 
 			return agentService.getAgents();
@@ -74,7 +104,16 @@ public class AdminController {
 	
 	@PreAuthorize("hasAuthority('SEE_USERS')")
 	@RequestMapping(value="/users",method = RequestMethod.GET)
-	public ArrayList<User> getUsers() {
+	public ArrayList<User> getUsers(ServletRequest request) throws Exception {
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		
 		
 
 			return userService.getUsers();

@@ -5,10 +5,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginModel} from '../model/login.model';
 import {UserModel} from '../model/user.model';
 
-let token;
-token = localStorage.getItem('loggedUser');
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json', 'token' : token}),
+  headers: new HttpHeaders({'Content-Type': 'application/json'}),
 };
 
 @Injectable()
@@ -20,8 +18,9 @@ export class AdminService {
 
   addAgent(agent: AgentModel): Observable<any> {
     const data = JSON.stringify(agent);
-    const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post( `${this.BASE_URL}/admin/addAgent`, data, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.post( `${this.BASE_URL}/admin/addAgent`, data, {headers: headers});
   }
 
   login(object: LoginModel): Observable<any> {
@@ -54,7 +53,7 @@ export class AdminService {
     return this.http.get(`${this.BASE_URL}/admin/activateUser/${email}`, {headers: headers});
   }
 
-  remove(email: string){
+  remove(email: string) {
     const a = localStorage.getItem('loggedUser');
     const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': a});
     return this.http.get(`${this.BASE_URL}/admin/removeUser/${email}`, {headers: headers});

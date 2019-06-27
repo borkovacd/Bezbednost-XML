@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,8 +64,18 @@ public class ReservationController
 	TokenUtils tokenUtils;
 	
 	@GetMapping(value="/getRoomById/{id}")
-	public ResponseEntity<Room> getRoomById(@PathVariable Long id)
+	public ResponseEntity<Room> getRoomById(ServletRequest request, @PathVariable Long id) throws Exception
 	{
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		
+		
 		Room oneRoom = reservationService.getOneRoom(id);
 		
 		if (oneRoom == null)
@@ -78,8 +91,24 @@ public class ReservationController
 	// findOneByName
 	
 	@PostMapping(value="/searchFreeRooms")
-	public ResponseEntity<List<Room>> searchFreeRooms(@RequestBody BasicSearchDTO dto) {
+	public ResponseEntity<List<Room>> searchFreeRooms(/*ServletRequest request,*/@RequestBody BasicSearchDTO dto) throws Exception {
+		/*
+		 * 
+		 * Za pretragu ne mora biti ulogovan, pa je zakomentarisano
+		 * 
+		 * 
+		 * 
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+		
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		*/
+		
 		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
+		
 		if(rooms != null) {
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
@@ -97,6 +126,10 @@ public class ReservationController
 		String token = res.getToken().substring(1, res.getToken().length()-1);
 		
 		String username = tokenUtils.getUserSecurity(token).getUsername();
+		
+		User us = userRepository.findOneByEmail(username);
+		
+		System.out.println("Ovo je user: " + us.getUsername());
 		
 		Reservation newReservation = new Reservation();
 		
@@ -219,8 +252,18 @@ public class ReservationController
 
 	@PreAuthorize("hasAuthority('DEL_RES')")
 	@GetMapping(value="/cancelRes/{id}")
-	public boolean cancelRes(@PathVariable Long id) throws ParseException
+	public boolean cancelRes(ServletRequest request, @PathVariable Long id) throws Exception
 	{	
+
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
+		String token = httpRequest.getHeader("token");
+		
+		token = token.substring(1, token.length()-1);
+		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		System.out.println("Ovo je user " + u.getUsername());
+		
+		
 		String a = reservationService.cancelAccepted(id);
 		
 		if (a.equals("OK"))
