@@ -70,7 +70,7 @@ export class MessageComponent implements OnInit {
     )
 
     this.messageService.sendToAgent(message).subscribe(data => {
-      this.router.navigateByUrl('/welcomepage');
+     // this.router.navigateByUrl('/welcomepage');
       location.reload();
     })
 

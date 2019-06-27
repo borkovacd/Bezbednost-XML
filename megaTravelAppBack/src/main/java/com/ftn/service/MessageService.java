@@ -31,6 +31,9 @@ public class MessageService
 	private UserRepository userRepository;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private ReservationRepository reservationRepository ;
 	
 	@Autowired
@@ -58,12 +61,15 @@ public class MessageService
 		}
 	}
 	
-	public void createMessage(MessageDTO messageDTO, String token) throws Exception
+	public void createMessage(MessageDTO messageDTO, User user) throws Exception
 	{
-		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
-		User user = userRepository.findOneByUsername(username);
-		Agent agent = agentRepository.findOneByUsername(messageDTO.getIdRecipient());
+		System.out.println("*********************************");
+		System.out.println(user.getEmail());
+		System.out.println(messageDTO.getAgent());
+		System.out.println("*********************************");
+		Agent agent = agentRepository.findOneByUsername(messageDTO.getAgent());
+		System.out.println("Agent: " + agent.getUsername());
 		
 		Message message = new Message();
 
