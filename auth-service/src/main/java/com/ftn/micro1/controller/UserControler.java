@@ -77,6 +77,41 @@ public class UserControler {
 	public ResponseEntity<UserDTO> registrate(@RequestBody UserDTO clientDto, HttpServletRequest request) {
 		
 			System.out.println("ime je" +clientDto.getFirstName());
+			
+			boolean response = userService.exists(clientDto.getEmail());
+			if (response == true) {
+				System.out.println("Vec postoji dati mejl");
+				log.error("REGFAIL");
+
+				return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+
+			} else {
+				if(userService.checkMail(clientDto.getEmail() )== false){
+					log.error("REGFAILEMAIL");
+
+					return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+
+				}
+				if(userService.checkCharacters(clientDto.getFirstName())==false){
+					log.error("REGFAILFN");
+
+					return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+
+				}
+				if(userService.checkCharacters(clientDto.getLastName())==false){
+					log.error("REGFAILLN");
+
+					return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+
+				}
+				if(userService.checkCharacters(clientDto.getUsername())==false){
+					log.error("REGFAILLN");
+
+					return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+
+				}
+				
+			}
 		
 			if (clientDto.getPassword().equals(clientDto.getRePassword())) {
 				System.out.println("usao saaaaaasm");
@@ -111,7 +146,8 @@ public class UserControler {
 			
 				return new ResponseEntity<UserDTO>(clientDto, HttpStatus.OK);
 			}
-		
+			
+			
 		return new ResponseEntity<UserDTO>( HttpStatus.NO_CONTENT);
 
 	}

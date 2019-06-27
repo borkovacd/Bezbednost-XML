@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name="Agents")
 public class Agent {
@@ -25,6 +26,7 @@ public class Agent {
 	private String username;
 
 	@NotNull
+	@Size(min=8, max = 80)
 	@Column(name="Password")
 	private String password;
 
