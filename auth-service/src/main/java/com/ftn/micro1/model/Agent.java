@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 @Entity(name="Agents")
 public class Agent {
 	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

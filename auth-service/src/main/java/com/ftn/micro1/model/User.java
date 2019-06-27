@@ -30,6 +30,7 @@ attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "permissions"),
 subgraphs = @NamedSubgraph(name = "permissions", attributeNodes = @NamedAttributeNode("permissions")))
 public class User {
 	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
