@@ -58,10 +58,10 @@ export  class WelcomepageComponent implements OnInit {
               private route: ActivatedRoute,
               private reservationService: ReservationService, private userService: UserService) {
     this.form = this.fb.group({
-      'city': ['', Validators.compose([Validators.required])],
+      'city': ['', Validators.compose([Validators.required, Validators.pattern('[A-Z a-z]+')])],
       'checkInDate': ['', Validators.compose([Validators.required])],
       'checkOutDate': ['', Validators.compose([Validators.required])],
-      'numberOfPersons': ['', Validators.compose([Validators.required])],
+      'numberOfPersons': ['', Validators.compose([Validators.required, Validators.pattern('[1-9]{1,1}')])],
     }),
       this.advancedSearchform = this.fb.group({
         'tipHotel': [''],
@@ -144,6 +144,20 @@ export  class WelcomepageComponent implements OnInit {
   messages(){
     this.router.navigateByUrl('messages');
   }
+
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
+
+  }
+
   serachRooms(){
 
     if ( this.checkInDate.value > this.checkOutDate.value ) {
@@ -157,7 +171,7 @@ export  class WelcomepageComponent implements OnInit {
     this.toDate = this.checkOutDate.value;
 
     const object = new SearchModel(
-      this.city.value,
+      this.escapeCharacters(this.city.value),
       this.checkInDate.value,
       this.checkOutDate.value,
       this.numberOfPersons.value

@@ -22,7 +22,7 @@
         <textarea style="width: 94%;margin-left: 3%;margin-right: 3%;margin-top: 20px;height: 100px"
                   class="form-control margin " [formControl]="text"></textarea>
         <div style="text-align: right;margin-right: 3%">
-          <button (click)="sendMessage()"
+          <button (click)="sendMessage()" [disabled]="!form.valid"
                   style="margin-top: 15px;margin-bottom: 15px;text-align: center;border-radius: 12px;background-color: #1a8cff;color: white;height: 45px">
             Posalji poruku
           </button>

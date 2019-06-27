@@ -28,7 +28,7 @@ export class MessageComponent implements OnInit {
               private messageService: MessageService) {
     this.form = this.fb.group({
       'text': ['', Validators.compose([Validators.required])],
-      'agent': [''],
+      'agent': ['', Validators.compose([Validators.required])],
 
     })
     this.text = this.form.controls['text'];
