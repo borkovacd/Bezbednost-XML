@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "type_accomodation")
 public class AccomodationType 
 {
+	@NotNull
 	@Column(unique = true)
 	private String name;
 	
