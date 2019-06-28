@@ -27,7 +27,7 @@ export class AddAgentComponent implements OnInit {
       'lastName': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z]+$')])],
       'username': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9]+$')])],
       'address': ['', Validators.compose([Validators.required])],
-      'mbr': ['', Validators.compose([Validators.required])],
+      'mbr': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9]+$')])],
       'password': ['', Validators.compose([Validators.required])],
       'rePassword': ['', Validators.compose([Validators.required])],
 
