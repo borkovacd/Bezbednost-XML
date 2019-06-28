@@ -1,0 +1,10 @@
+2019-06-27 09:41:44,566 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on Probook450G2 with PID 7772 (D:\ILINKA\projekatBez4\Bezbednost-XML\securityBack\target\classes started by Milan in D:\ILINKA\projekatBez4\Bezbednost-XML\securityBack)
+2019-06-27 09:41:44,615 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-27 09:42:28,940 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 46.825 seconds (JVM running for 49.22)
+2019-06-27 09:45:06,946 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-27 09:45:06,948 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-27 09:46:06,303 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on Probook450G2 with PID 13968 (D:\ILINKA\projekatBez4\Bezbednost-XML\securityBack\target\classes started by Milan in D:\ILINKA\projekatBez4\Bezbednost-XML\securityBack)
+2019-06-27 09:46:06,314 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-27 09:46:23,352 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 18.301 seconds (JVM running for 20.103)
+2019-06-27 09:46:47,362 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-27 09:46:47,363 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:1 LOGSUCCESS

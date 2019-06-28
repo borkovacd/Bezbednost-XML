@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,6 +31,8 @@ import com.ftn.micro2.service.AccomodationTypeService;
 @RequestMapping("/api/accomodation/accType")
 public class AccomodationTypeController 
 {
+	private static final Logger log = LoggerFactory.getLogger(AccomodationTypeController.class);
+
 	@Autowired
 	UserRepository userRepository;
 	
@@ -49,17 +53,20 @@ public class AccomodationTypeController
 
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
-
+		log.info("User id: {} CREAACCTYPE",u.getId());
 		System.out.println("Ovo je user " + u.getUsername());
 		
 		AccomodationType accType = service.findByName(acc);
-		if(accType != null)
+		if(accType != null){
+			log.error("User id: {} CREAACCTYPEERROR",u.getId());
 			return false;
+		}
 		else 
 		{
 			accType = new AccomodationType();
 			accType.setName(acc.getName());
 			service.save(acc);
+			log.info("User id: {} CREAACCTYPSUCCESS",u.getId());
 			return true;
 		}
 	}
@@ -77,14 +84,17 @@ public class AccomodationTypeController
 		token = token.substring(1, token.length()-1);
 		
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
-
+		log.info("User id: {} DELACCTYPE",u.getId());
 		System.out.println("Ovo je user " + u.getUsername());
 		
 		AccomodationType accType = service.findByName(acc);
-		if(accType == null)
+		if(accType == null){
+			log.error("User id: {} DELACCTYPEERROR",u.getId());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		else 
+		}else 
 		{
+			log.info("User id: {} DELACCTYPESUCCESS",u.getId());
+
 			service.deleteByName(acc.getName());
 			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 		}
@@ -101,9 +111,11 @@ public class AccomodationTypeController
 
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
+		log.info("User id: {} GETACCTYPE",u.getId());
 
 		System.out.println("Ovo je user " + u.getUsername());
-		
+		log.info("User id: {} GETACCTYPESUCCESS",u.getId());
+
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 }

@@ -6,13 +6,14 @@ import java.util.List;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ import com.ftn.micro2.service.AdditionalServicesService;
 @RequestMapping("/api/accomodation/addServ")
 public class AdditionalServicesController 
 {
+	private static final Logger log = LoggerFactory.getLogger(AdditionalServicesController.class);
+
 	@Autowired
 	AdditionalServicesService addServ ;
 	
@@ -52,12 +55,16 @@ public class AdditionalServicesController
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} CREAADDSERV",u.getId());
+
 		
 		AdditionalServices addService = addServ.findByName(add.getName());
 		
 		// ukoliko servis sa tim imenom vec postoji, ne mozes ga sacuvati
 		if (addService != null)
 		{
+			log.error("User id: {} CREAADDSERVERROR",u.getId());
+
 			return false;
 		}
 		else
@@ -65,6 +72,8 @@ public class AdditionalServicesController
 			addService = new AdditionalServices();
 			addService.setName(add.getName());
 			addServ.save(add);
+			log.info("User id: {} CREAADDSERVSUCCESS",u.getId());
+
 			return true;
 		}
 	}
@@ -82,6 +91,8 @@ public class AdditionalServicesController
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} DELADDSERV",u.getId());
+
 		
 		
 		AdditionalServices addService = addServ.findByName(add.getName());
@@ -89,11 +100,15 @@ public class AdditionalServicesController
 		// ukoliko servis sa tim imenom ne postoji, ne mozes ga obrisati
 		if (addService == null)
 		{
+			log.error("User id: {} DELADDSERVERROR",u.getId());
+
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		else
 		{
 			addServ.deleteByName(add.getName());
+			log.info("User id: {} DELADDSERVSUCCESS",u.getId());
+
 			return new ResponseEntity<>(addServ.getAll(), HttpStatus.OK);
 		}
 	}
@@ -111,6 +126,8 @@ public class AdditionalServicesController
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} GETADDSER",u.getId());
+
 		
 		
 		return new ResponseEntity<>(addServ.getAll(), HttpStatus.OK);
