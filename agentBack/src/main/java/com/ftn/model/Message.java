@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Table
 public class Message implements Serializable {
 
-	@NotNull
 	@Id
 	private Long id;
 

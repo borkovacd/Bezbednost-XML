@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class ReservationAgent {
 	
-	@NotNull
+
 	@Id
 	private Long id;
 

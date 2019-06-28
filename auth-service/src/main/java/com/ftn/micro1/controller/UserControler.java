@@ -213,8 +213,6 @@ public class UserControler {
 				log.error("LOG_ERR");
 				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
 
-				
-
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {

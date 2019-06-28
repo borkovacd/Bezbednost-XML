@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Accomodation {
 	
-	@NotNull
 	@Id
 	private Long id;
 

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Room {
 
-	@NotNull
+
 	@Id
 	private Long id;
 	

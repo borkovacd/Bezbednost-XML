@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 public class Price {
 
-	@NotNull
+
 	@Id
 	private long id;
 
