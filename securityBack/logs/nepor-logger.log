@@ -1,0 +1,58 @@
+2019-06-28 16:31:33,423 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:31:52,846 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:31:53,222 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:32:52,467 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:08,107 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:33:08,391 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:17,127 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:29,223 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:33:30,756 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:39,465 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT , CKSUCCESS between 4 and 2
+2019-06-28 16:33:47,041 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:33:58,808 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:4  CREACASUCCESS
+2019-06-28 16:33:59,129 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:34:46,972 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:34:48,359 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:35:01,304 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:35:10,529 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:35:14,444 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:39:56,322 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:42:19,754 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:43:33,002 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:43:46,601 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:44:41,347 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:46:41,143 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:46:41,636 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:11,405 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:47:12,895 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:16,656 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:30,373 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:48:02,822 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:48:02,913 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:48:35,644 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:48:35,778 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:48:47,640 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT , COMMUNFAIL , CA not found between 2 
+2019-06-28 16:48:58,164 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:48:59,802 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:13,592 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-28 16:49:13,697 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:21,220 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:28,689 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:38,607 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:49:48,712 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-28 16:49:48,825 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:58,440 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:50:07,446 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:50:07,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:50:27,521 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:50:39,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:50:40,055 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:51:09,836 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:51:10,320 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:51:30,350 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:51:30,749 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:51:52,891 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:51:56,492 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT , CKSUCCESS between 4 and 2
+2019-06-28 16:52:11,524 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:52:22,638 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:52:26,235 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 

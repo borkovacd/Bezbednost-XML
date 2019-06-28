@@ -28,6 +28,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("AccomondationPort");
 		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setCreateSoap12Binding(true);
 		wsdl11Definition.setTargetNamespace("http://ftn.com/webservice-accomondation");
 		wsdl11Definition.setSchema(accomondationSchema());
 		return wsdl11Definition;

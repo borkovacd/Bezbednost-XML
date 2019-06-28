@@ -1,0 +1,261 @@
+2019-06-28 16:30:56,280 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-F3G1DCA with PID 12584 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\securityBack)
+2019-06-28 16:30:56,283 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 16:30:56,285 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 16:30:58,346 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:30:58,347 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:30:58,347 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 16:31:05,207 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 16:31:08,558 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 12.754 seconds (JVM running for 13.47)
+2019-06-28 16:31:33,067 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOGING
+2019-06-28 16:31:33,421 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 16:31:33,423 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:31:38,062 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SS
+2019-06-28 16:31:38,069 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] SSSUCCCESS
+2019-06-28 16:31:51,995 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] User id: 1 CREACA
+2019-06-28 16:31:52,844 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:31:52,846 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:31:53,062 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CRECASUCCESS
+2019-06-28 16:31:53,207 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETACA
+2019-06-28 16:31:53,208 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GETCA
+2019-06-28 16:31:53,222 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:32:52,429 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETACA
+2019-06-28 16:32:52,430 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GETCA
+2019-06-28 16:32:52,467 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:00,080 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] SS
+2019-06-28 16:33:00,087 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] SSSUCCCESS
+2019-06-28 16:33:07,416 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 1 CREACA
+2019-06-28 16:33:08,107 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:33:08,107 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:33:08,298 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CRECASUCCESS
+2019-06-28 16:33:08,376 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:33:08,378 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GETACA
+2019-06-28 16:33:08,391 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:17,109 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETACA
+2019-06-28 16:33:17,111 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GETCA
+2019-06-28 16:33:17,127 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:25,235 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] LOGOUT
+2019-06-28 16:33:29,027 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 16:33:29,223 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:33:29,223 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:33:30,741 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GETCA
+2019-06-28 16:33:30,742 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GETACA
+2019-06-28 16:33:30,756 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:33:37,318 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETSS
+2019-06-28 16:33:39,443 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CKCOMM
+2019-06-28 16:33:39,464 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CKSUCCESS
+2019-06-28 16:33:39,465 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT , CKSUCCESS between 4 and 2
+2019-06-28 16:33:43,767 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CKCOMM
+2019-06-28 16:33:47,035 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] CKCOMM
+2019-06-28 16:33:47,041 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:33:51,384 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SS
+2019-06-28 16:33:51,390 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SSSUCCCESS
+2019-06-28 16:33:58,211 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 4 CREACA
+2019-06-28 16:33:58,808 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT User id: 4  CREACASUCCESS
+2019-06-28 16:33:58,808 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:4  CREACASUCCESS
+2019-06-28 16:33:59,003 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CRECASUCESS
+2019-06-28 16:33:59,111 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:33:59,114 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETACA
+2019-06-28 16:33:59,129 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:34:01,796 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GETSS
+2019-06-28 16:34:03,693 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CKCOMM
+2019-06-28 16:34:06,520 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CKCOMM
+2019-06-28 16:34:06,539 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CKFAIL
+2019-06-28 16:34:10,409 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGOUT
+2019-06-28 16:34:21,271 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGING
+2019-06-28 16:34:21,280 ERROR com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGFAIL
+2019-06-28 16:34:21,281 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT  LOGFAIL 
+2019-06-28 16:34:29,196 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOGING
+2019-06-28 16:34:29,299 ERROR com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOGFAIL
+2019-06-28 16:34:29,300 WARN com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] SECURITY_EVENT  LOGFAIL 
+2019-06-28 16:34:46,791 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] LOGING
+2019-06-28 16:34:46,972 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 16:34:46,972 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:34:48,345 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GETACA
+2019-06-28 16:34:48,345 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:34:48,359 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:34:58,312 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] User id: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTYxNzUwNDg2LCJhdXRob3JpdGllcyI6WyJERUxFVEUiLCJDUkVBVEVfQ0VSVCIsIlJFQURfU1VCX1NPRlQiLCJSRUFEX0NFUlQiLCJSRUFEX0FMTENFUlQiLCJSRVZPS0VfQ0VSVCJdLCJ1c2VybmFtZSI6Ik1UUm9vdEBnbWFpbC5jb20ifQ.Ie4_L26_fS6dV4c85wQnTzmqep2qKC6r-7S0ehm7h8g7LR3edqiAcBaWgymu7227Zwpe6jtcMI5avBBZPhpYLA"  REVCA
+2019-06-28 16:35:01,290 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETCA
+2019-06-28 16:35:01,290 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETACA
+2019-06-28 16:35:01,304 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:35:06,538 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOGOUT
+2019-06-28 16:35:10,340 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] LOGING
+2019-06-28 16:35:10,529 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:35:10,529 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:35:12,241 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] GETSS
+2019-06-28 16:35:14,439 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] CKCOMM
+2019-06-28 16:35:14,444 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:35:21,585 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CKCOMM
+2019-06-28 16:35:21,605 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] CKFAIL
+2019-06-28 16:37:30,233 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] LOGOUT
+2019-06-28 16:39:11,630 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-F3G1DCA with PID 10444 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\securityBack)
+2019-06-28 16:39:11,633 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 16:39:11,634 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 16:39:12,901 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:39:12,901 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:39:12,902 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 16:39:22,344 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 16:39:25,274 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 13.958 seconds (JVM running for 14.814)
+2019-06-28 16:39:55,953 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 16:39:56,321 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:39:56,322 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:41:05,553 INFO org.springframework.boot.StartupInfoLogger [main] Starting SecurityBack on DESKTOP-F3G1DCA with PID 10744 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\securityBack)
+2019-06-28 16:41:05,556 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 16:41:05,557 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 16:41:07,054 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:41:07,055 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 16:41:07,056 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 16:41:15,609 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 16:41:19,854 INFO org.springframework.boot.StartupInfoLogger [main] Started SecurityBack in 14.636 seconds (JVM running for 15.537)
+2019-06-28 16:42:09,149 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-8] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 16:42:19,404 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 16:42:19,753 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:42:19,754 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:43:32,777 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] LOGING
+2019-06-28 16:43:33,001 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 16:43:33,002 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:43:46,384 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 16:43:46,601 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 16:43:46,601 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:44:41,131 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] LOGING
+2019-06-28 16:44:41,346 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 16:44:41,347 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:44:42,943 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SS
+2019-06-28 16:44:42,949 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SSSUCCCESS
+2019-06-28 16:44:46,865 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SS
+2019-06-28 16:44:46,871 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SSSUCCCESS
+2019-06-28 16:46:39,517 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] User id: 1 CREACA
+2019-06-28 16:46:41,142 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:46:41,143 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:46:41,474 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CRECASUCCESS
+2019-06-28 16:46:41,616 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GETACA
+2019-06-28 16:46:41,618 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETCA
+2019-06-28 16:46:41,636 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:46:59,417 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SS
+2019-06-28 16:46:59,423 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SSSUCCCESS
+2019-06-28 16:47:07,036 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] LOGOUT
+2019-06-28 16:47:11,188 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGING
+2019-06-28 16:47:11,404 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 16:47:11,405 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:47:12,883 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:47:12,883 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETACA
+2019-06-28 16:47:12,895 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:16,645 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETACA
+2019-06-28 16:47:16,646 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GETCA
+2019-06-28 16:47:16,656 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:23,283 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] User id: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTYxNzUxMjMxLCJhdXRob3JpdGllcyI6WyJDUkVBVEVfQ0VSVCIsIlJFQURfU1VCX1NPRlQiLCJSRUFEX0NFUlQiLCJSRVZPS0VfQ0VSVCJdLCJ1c2VybmFtZSI6Ik1lZ2FUcmF2ZWxMb25kb25AZ21haWwuY29tIn0.LF14VYcRuOTu5DA4s0BF9O4cM-cxycl4HvPIWGtpcPI1ytat5SE6cHXzdZF7EczsSatS8U-kfL_rV9zKHxWcWg"  REVCA
+2019-06-28 16:47:30,361 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETACA
+2019-06-28 16:47:30,361 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GETCA
+2019-06-28 16:47:30,373 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:47:49,470 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SS
+2019-06-28 16:47:49,474 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SSSUCCCESS
+2019-06-28 16:48:02,816 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] User id: 2 CREACA
+2019-06-28 16:48:02,822 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:48:02,904 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:48:02,905 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETACA
+2019-06-28 16:48:02,913 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:48:25,289 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SS
+2019-06-28 16:48:25,293 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SSSUCCCESS
+2019-06-28 16:48:35,634 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] User id: 2 CREACA
+2019-06-28 16:48:35,644 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:48:35,767 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETCA
+2019-06-28 16:48:35,768 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETACA
+2019-06-28 16:48:35,778 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:48:42,625 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] GETSS
+2019-06-28 16:48:47,634 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] CKCOMM
+2019-06-28 16:48:47,640 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT , COMMUNFAIL , CA not found between 2 
+2019-06-28 16:48:51,427 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] LOGOUT
+2019-06-28 16:48:57,950 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOGING
+2019-06-28 16:48:58,163 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:48:58,164 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:48:59,791 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETCA
+2019-06-28 16:48:59,792 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETACA
+2019-06-28 16:48:59,802 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:03,893 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SS
+2019-06-28 16:49:03,897 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SSSUCCCESS
+2019-06-28 16:49:13,584 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 4 CREACA
+2019-06-28 16:49:13,592 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-28 16:49:13,688 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETACA
+2019-06-28 16:49:13,688 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETCA
+2019-06-28 16:49:13,697 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:21,210 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GETACA
+2019-06-28 16:49:21,210 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:49:21,220 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:28,680 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GETCA
+2019-06-28 16:49:28,680 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETACA
+2019-06-28 16:49:28,689 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:34,632 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGOUT
+2019-06-28 16:49:38,388 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] LOGING
+2019-06-28 16:49:38,606 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:49:38,607 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:49:40,089 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SS
+2019-06-28 16:49:40,094 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SSSUCCCESS
+2019-06-28 16:49:48,704 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] User id: 4 CREACA
+2019-06-28 16:49:48,712 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-28 16:49:48,814 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETCA
+2019-06-28 16:49:48,818 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETACA
+2019-06-28 16:49:48,825 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:49:53,650 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] LOGOUT
+2019-06-28 16:49:58,227 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGING
+2019-06-28 16:49:58,440 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 16:49:58,440 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:2 LOGSUCCESS
+2019-06-28 16:50:00,251 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SS
+2019-06-28 16:50:00,255 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SSSUCCCESS
+2019-06-28 16:50:07,439 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 2 CREACA
+2019-06-28 16:50:07,446 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id: 2 CREACAERROR  
+2019-06-28 16:50:07,585 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETCA
+2019-06-28 16:50:07,586 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETACA
+2019-06-28 16:50:07,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:50:14,839 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-28 16:50:14,845 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SSSUCCCESS
+2019-06-28 16:50:22,419 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-4] LOGOUT
+2019-06-28 16:50:27,305 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] LOGING
+2019-06-28 16:50:27,521 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 16:50:27,521 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT User id:1 LOGSUCCESS
+2019-06-28 16:50:29,888 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SS
+2019-06-28 16:50:29,892 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] SSSUCCCESS
+2019-06-28 16:50:38,290 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 1 CREACA
+2019-06-28 16:50:39,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:50:39,592 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:50:39,939 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CRECASUCCESS
+2019-06-28 16:50:40,046 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] GETCA
+2019-06-28 16:50:40,048 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETACA
+2019-06-28 16:50:40,055 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:50:54,489 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-28 16:50:54,493 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SSSUCCCESS
+2019-06-28 16:51:09,039 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] User id: 1 CREACA
+2019-06-28 16:51:09,835 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:51:09,836 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:51:10,213 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] CRECASUCCESS
+2019-06-28 16:51:10,309 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETCA
+2019-06-28 16:51:10,310 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] GETACA
+2019-06-28 16:51:10,320 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:51:18,039 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SS
+2019-06-28 16:51:18,043 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SSSUCCCESS
+2019-06-28 16:51:28,594 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] User id: 1 CREACA
+2019-06-28 16:51:30,350 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 16:51:30,350 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT User id:1  CREASUCCESS
+2019-06-28 16:51:30,650 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CRECASUCCESS
+2019-06-28 16:51:30,738 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] GETACA
+2019-06-28 16:51:30,738 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] GETCA
+2019-06-28 16:51:30,749 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:51:47,564 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGOUT
+2019-06-28 16:51:52,674 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] LOGING
+2019-06-28 16:51:52,891 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 16:51:52,891 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id:4 LOGSUCCESS
+2019-06-28 16:51:54,776 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] GETSS
+2019-06-28 16:51:56,476 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] CKCOMM
+2019-06-28 16:51:56,491 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] CKSUCCESS
+2019-06-28 16:51:56,492 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] NEPOR_EVENT , CKSUCCESS between 4 and 2
+2019-06-28 16:52:00,243 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CKCOMM
+2019-06-28 16:52:00,258 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CKFAIL
+2019-06-28 16:52:05,169 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] CKCOMM
+2019-06-28 16:52:11,514 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] GETCA
+2019-06-28 16:52:11,514 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] GETACA
+2019-06-28 16:52:11,524 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT CASUCCESS 
+2019-06-28 16:52:16,333 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-2] User id: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiZXhwIjoxNTYxNzUxNTEyLCJhdXRob3JpdGllcyI6WyJSRUFEX1NVQl9TT0ZUIiwiQ1JFQVRFX0NFUlQiLCJSRUFEX0NFUlQiLCJSRVZPS0VfQ0VSVCJdLCJ1c2VybmFtZSI6Ik1lZ2FUcmF2ZWxCb3N0b25AZ21haWwuY29tIn0.iqPcZATBUCuBawit7hO-xfHqoj3eaqV4NCe3iwCPaE0VPu7EpTFVC1cSCwrfi9qVMB0MFxjJfukg9CF317er9Q"  REVCA
+2019-06-28 16:52:21,090 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] GETSS
+2019-06-28 16:52:22,634 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CKCOMM
+2019-06-28 16:52:22,638 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:52:26,231 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CKCOMM
+2019-06-28 16:52:26,235 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] NEPOR_EVENT , COMMUNFAIL , CA not found between 4 
+2019-06-28 16:52:29,206 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOGOUT
