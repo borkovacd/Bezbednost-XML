@@ -12,6 +12,8 @@ import java.util.List;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,8 @@ import com.ftn.micro3.service.ReservationService;
 @RequestMapping(value="api/reservations")
 public class ReservationController 
 {
+	private static final Logger log = LoggerFactory.getLogger(ReservationController.class);
+
 	@Autowired
 	ReservationService reservationService ;
 	
@@ -74,16 +78,22 @@ public class ReservationController
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} GETROOM",u.getId());
+
 		
 		
 		Room oneRoom = reservationService.getOneRoom(id);
 		
 		if (oneRoom == null)
 		{
+			log.error("User id: {} GETROOMERROR",u.getId());
+
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		else
 		{
+			log.info("User id: {} GETROOMSUCCESS",u.getId());
+
 			return new ResponseEntity<Room>(oneRoom, HttpStatus.OK);
 		}
 	}
@@ -108,17 +118,24 @@ public class ReservationController
 		*/
 		
 		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
-		
+		log.info("SEARCHR");
+		log.debug("SEARCHR");
+
+
 		boolean checkCity = reservationService.checkCharacters(dto.getCity());
 		
 		// ukoliko je uneo grad koji sadrzi nesto sem slova i brojeva
 		if (checkCity == false)
-		{
+		{	log.error("SEARCHRERROR");
 			return new ResponseEntity<List<Room>>(HttpStatus.NO_CONTENT);
+		
+
 		}
 		
 		if(rooms != null) 
 		{
+				log.info("SEARCHRSUCCESS");
+
 			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
 		}
 		
@@ -138,6 +155,8 @@ public class ReservationController
 		String username = tokenUtils.getUserSecurity(token).getUsername();
 		
 		User us = userRepository.findOneByEmail(username);
+		log.info("User id: {} CREARES",us.getId());
+
 		
 		System.out.println("Ovo je user: " + us.getUsername());
 		
@@ -195,12 +214,14 @@ public class ReservationController
 		 
 			
 			Reservation newRes = reservationService.createReservation(newReservation);
-			
+			log.info("User id: {} CREARESSUCCESS",us.getId());
+
 			return new ResponseEntity<Reservation>(newRes, HttpStatus.OK);
 			
 			
 		}
-		
+			log.error("User id: {} CREARESERROR",us.getId());
+
 		
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
@@ -218,7 +239,8 @@ public class ReservationController
 		System.out.println("Username je: " + username);
 		
 		User us = userRepository.findOneByEmail(username);
-		
+		log.info("User id: {} GETRES",us.getId());
+
 		List <Reservation> reservations = reservationRepository.findAll();
 		
 		List <Reservation> ress = new ArrayList<Reservation>();
@@ -229,6 +251,8 @@ public class ReservationController
 			
 			if(r.getUser() == null) {
 				System.out.println("User je null");
+				log.debug("User id: {} GETRESNULL",us.getId());
+
 			}
 
 			System.out.println(r.getUser().getId());
@@ -241,7 +265,8 @@ public class ReservationController
 				}
 			}
 		}
-		
+		log.info("User id: {} GETRESSUCCESS",us.getId());
+
 		return new ResponseEntity<List<Reservation>>(ress, HttpStatus.OK);
 	}
 	
@@ -272,6 +297,8 @@ public class ReservationController
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} CANCRES",u.getId());
+
 		
 		
 		String a = reservationService.cancelAccepted(id);
@@ -279,10 +306,14 @@ public class ReservationController
 		if (a.equals("OK"))
 		{
 			reservationService.cancelReservation(id);
+			log.info("User id: {} CANCRESSUCCESS",u.getId());
+
 			return true;
 		}
 		else // a je NO
 		{
+			log.error("User id: {} CANCRESERROR",u.getId());
+
 			return false;
 		}
 		
