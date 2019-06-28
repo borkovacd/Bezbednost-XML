@@ -33,6 +33,19 @@ export class AddAccommodationTypeComponent implements OnInit {
     this.name = this.form.controls['name'];
   }
 
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
+
+  }
+
   ngOnInit() {
   }
 

@@ -23,9 +23,9 @@ export class AddAgentComponent implements OnInit {
   constructor(protected router: Router, private fb: FormBuilder, private adminService: AdminService) {
 
     this.form = this.fb.group({
-      'firstName': ['', Validators.compose([Validators.required])],
-      'lastName': ['', Validators.compose([Validators.required])],
-      'username': ['', Validators.compose([Validators.required])],
+      'firstName': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z]+$')])],
+      'lastName': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z]+$')])],
+      'username': ['', Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9]+$')])],
       'address': ['', Validators.compose([Validators.required])],
       'mbr': ['', Validators.compose([Validators.required])],
       'password': ['', Validators.compose([Validators.required])],
@@ -46,21 +46,76 @@ export class AddAgentComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNewAgent() {
+  validateRegData() {
 
+    let error = false;
+    let errorMessage = '';
+    const errorMail = false;
+
+    /* PROVERA LOZINKE */
+    if (this.password.value.length < 8) {
+      error = true;
+      errorMessage = 'Lozinka mora biti barem 8 karaktera dugačka!';
+      return errorMessage;
+      /*alert('Password needs to be at least 8 characters long');*/
+    } else if (/\d/.test(this.password.value) == false) {
+      error = true;
+      errorMessage = 'Lozinka mora sadržati barem jedan broj!';
+      return errorMessage;
+      /*alert('Password needs to contain at least one number!');*/
+    } else if (!this.password.value.match('.*[A-Z].*')) {
+      error = true;
+      errorMessage = 'Lozinka mora posedovati barem jedno veliko slovo!';
+      return errorMessage;
+      /*alert('Password needs to contain at lease one uppercase letter!');*/
+    }
+
+    /* PROVERA POKLAPANJA LOZINKI */
+    if (this.password.value !== this.rePassword.value) {
+      error = true;
+      errorMessage = 'Lozinke se ne poklapaju!';
+      return errorMessage;
+    }
+    return 'Ok';
+
+  }
+
+  escapeCharacters(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos');
+
+  }
+
+  addNewAgent()
+  {
+    const message = this.validateRegData();
     const agent = new AgentModel();
 
-    agent.address = this.address.value;
-    agent.username = this.username.value;
-    agent.password = this.password.value;
-    agent.mbr = this.mbr.value;
-    agent.firstName = this.firstName.value;
-    agent.lastName = this.lastName.value;
+    if (message == 'Ok')
+    {
+      agent.address = this.address.value;
+      agent.mbr = this.mbr.value;
+      agent.firstName = this.escapeCharacters(this.firstName.value);
+      agent.username = this.escapeCharacters(this.username.value);
+      agent.lastName = this.escapeCharacters(this.lastName.value);
+      agent.password = this.password.value;
 
-    this.adminService.addAgent(agent).subscribe( data =>
-        this.router.navigateByUrl('/listAgents'));
+      this.adminService.addAgent(agent).subscribe(data => {
+        this.router.navigateByUrl('/listAgents');
+      });
+    } else {
+      alert(message);
+    }
 
+  }
 
-
+  exit() {
+  this.router.navigateByUrl('');
   }
 }

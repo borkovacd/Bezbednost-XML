@@ -17,9 +17,10 @@
 
           <label>Naziv</label>
           <input class="form-control margin" placeholder="Unesite naziv..." [formControl]="name">
+          <small class="form-text error" *ngIf="name.errors?.required && name.touched" style="color: #ff0705">
+            Naziv je obavezan!
+          </small>
           <br>
-
-
 
           <button class="btn btn-primary" style="width: 100%; margin-bottom: 20px;" (click)="addNewCategory()" [disabled]="!form.valid">Unesi</button><br>
 

@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   public password: AbstractControl;
   public lm: LoginModel;
 
+  vis: boolean = false;
+
   constructor(protected router: Router,
               private fb: FormBuilder, private data: AdminService
   ) {
@@ -33,19 +35,62 @@ export class LoginComponent implements OnInit {
 
   }
 
+  validateLogData() {
+
+    let error = false;
+    let errorMessage = '';
+
+    /* PROVERA MEJLA */
+    const patternMail = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/;
+    if (!patternMail.test(this.username.value)) {
+      error = true;
+      errorMessage = 'Email adresa sadrzi nedozvoljene karaktere!';
+      return errorMessage;
+    }
+
+    return 'Ok';
+
+  }
+
+  escapeCharacters(value: string): string{
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      /*.replace(/\'/g, '&#39;')*/
+      .replace(/\//g, '&#x2F;')
+      .replace('src', 'drc')
+      .replace(/\'/g, '&apos')
+
+  }
+
   logIn() {
+    let message = this.validateLogData();
 
-      this.lm = new LoginModel(this.username.value, this.password.value);
+    if (message == "Ok") {
+      const object = new LoginModel(this.escapeCharacters(this.username.value), this.password.value,);
+      this.data.login(object).subscribe(user => {
+          if (user.accessToken == null) {
+            alert('Ne postoji korisnik sa unetim kredencijalima!');
+            return;
+          }
 
-     // alert(this.lm.email);
-     // alert(this.lm.password);
 
-      this.data.login(this.lm).subscribe(user => {
+          localStorage.setItem('loggedUser', JSON.stringify(user.accessToken));
+          console.log(localStorage);
 
-      localStorage.setItem('loggedUser', JSON.stringify(user.accessToken));
-      console.log(localStorage);
-      this.router.navigateByUrl('/home');
-  });
+          this.router.navigateByUrl('/home');
+
+        },
+        error => alert(error.error)
+      );
+
+
+    } else {
+      alert(message);
+    }
+
   }
 
   exit() {
