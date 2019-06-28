@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import com.ftn.model.SubjectSoftware;
@@ -52,6 +53,7 @@ import com.ftn.model.CertificateModel;
 import com.ftn.model.CommunicationRelationship;
 import com.ftn.model.IssuerData;
 import com.ftn.model.SubjectData;
+import com.ftn.service.CertificateService ;
 
 @RestController
 @RequestMapping(value = "/api/security")
@@ -74,22 +76,18 @@ public class SecurityAdminControler {
 
 	@Autowired
 	private TokenUtils tokenUtils;
+	
+	@Autowired
+	private CertificateService certificateService ;
 
 	private KeyStoreWriter keyStoreWriter = new KeyStoreWriter();
 	private KeyStoreReader keyStoreReader = new KeyStoreReader();
 	private KeyPair keyPairIssuer;
 
-	/*
-	 * @PostConstruct public void init() { keyStoreWriter = new
-	 * KeyStoreWriter(); String globalPass = "someString";
-	 * keyStoreWriter.loadKeyStore(null, globalPass.toCharArray());
-	 * keyStoreWriter.saveKeyStore("./files/keystore.jks",
-	 * globalPass.toCharArray()); keyPairIssuer = generateKeyPair(); }
-	 */
 
 	@PreAuthorize("hasAuthority('CREATE_CERT')")
 	@RequestMapping(value = "/createCertificate/{token}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
+	public boolean createSertficate(@RequestBody CertificateDTO cdto, @PathVariable String token)
 			throws Exception {
 		
 		SubjectSoftware ss = repos.findByCity(cdto.getCity()); // SUBJECT
@@ -101,6 +99,17 @@ public class SecurityAdminControler {
 		SubjectSoftware iss = repos.findByEmail(email); // ISSUER
 		log.info("User id: {} CREACA",iss.getId());
 		System.out.println(iss.getEmail());
+		
+		List<CertificateModel> allCertificates = certRepos.findAll();
+		
+		for(CertificateModel c : allCertificates)
+		{
+			if(c.getIdCertificateIssuer()==iss.getId() && c.getSubSoft().getId()==ss.getId() && c.isRevoked())
+			{
+				Random r = new Random();
+				c.setSerialNumber(c.getSerialNumber() + r.nextInt((100 - 24) + 1));
+			}
+		}
 		
 
 		// Izdavalac sertifikata mora imati sertifikat!
@@ -192,7 +201,9 @@ public class SecurityAdminControler {
 				keyStoreWriterNovi.write(localAllias, subjectData.getPrivateKey(), localAllias.toCharArray(), cert);
 				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
 						ss.getId().toString().toCharArray());
+				
 				log.info("CRECASUCCESS");
+				return true ;
 
 			}
 			
@@ -265,6 +276,8 @@ public class SecurityAdminControler {
 				keyStoreWriterNovi.saveKeyStore(".files/localKeyStore" + ss.getId().toString() + ".p12",
 						ss.getId().toString().toCharArray());
 				log.info("CRECASUCESS");
+				
+				return true ;
 
 			}
 		}
@@ -272,6 +285,8 @@ public class SecurityAdminControler {
 		else {
 			System.out.println("Izabrani izdavalac nema sertifikat, pa ne moze ni da ga izda!");
 			log.error(LoggerUtils.getNMarker(), "NEPOR_EVENT User id: {} CREACAERROR  ", iss.getId());
+			
+			return false ;
 
 		}
 		
