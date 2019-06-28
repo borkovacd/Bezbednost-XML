@@ -1,8 +1,19 @@
 package com.ftn.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
+
 public class PriceDTO {
 
-	private String month;
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String month;
 	
 	private Double sum;
 	

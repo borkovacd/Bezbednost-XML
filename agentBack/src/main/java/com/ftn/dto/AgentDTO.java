@@ -1,9 +1,25 @@
 package com.ftn.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
+
 public class AgentDTO {
 
-	private String username;
-	private String password;
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String username;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String password;
 
 	public AgentDTO() {
 		super();

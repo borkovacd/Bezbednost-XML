@@ -1,11 +1,37 @@
 package com.ftn.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
+
 public class AnswerDTO {
 
-	private String token;
-	private String receipient;
-	private String text;
-	private String idMessage;
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String token;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String receipient;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String text;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String idMessage;
 
 	public AnswerDTO() {
 		super();

@@ -1,12 +1,27 @@
 package com.ftn.modelDTO;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
 
 public class MessageDTO 
 {
 	
-	private String agent;
-	private String text;
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String agent;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String text;
 
 	public MessageDTO() {
 		super();

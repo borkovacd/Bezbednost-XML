@@ -1,8 +1,25 @@
 package com.ftn.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
+
 public class SearchRoomDTO {
-	private String checkInDate;
-	private String checkOutDate;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String checkInDate;
+	
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String checkOutDate;
 	
 	public SearchRoomDTO(){
 		

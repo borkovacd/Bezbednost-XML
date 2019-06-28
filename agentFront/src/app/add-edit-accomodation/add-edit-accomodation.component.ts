@@ -139,10 +139,10 @@ export class AddEditAccomodationComponent implements OnInit{
   createAccomodation(){
     const accomodation = new AccomodationModel(
       this.name.value,
-      this.escapeCharacters(this.city.value),
+      this.city.value,
       this.escapeCharacters(this.address.value),
-      this.escapeCharacters(this.type.value),
-      this.escapeCharacters(this.category.value),
+      this.type.value,
+      this.category.value,
       this.escapeCharacters(this.description.value),
       this.pic.value,
       this.listAditionalService,
@@ -157,10 +157,10 @@ export class AddEditAccomodationComponent implements OnInit{
   editAccomodatin(){
     const accomodation = new AccomodationModel(
       this.name.value,
-      this.escapeCharacters(this.city.value),
+      this.city.value,
       this.escapeCharacters(this.address.value),
-      this.escapeCharacters(this.type.value),
-      this.escapeCharacters(this.category.value),
+      this.type.value,
+      this.category.value,
       this.escapeCharacters(this.description.value),
       this.pic.value,
       this.listAditionalService,

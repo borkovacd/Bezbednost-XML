@@ -1,8 +1,20 @@
 package com.ftn.modelDTO;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.SafeHtml;
+
+import com.ftn.security.SQLInjectionSafe;
+
 public class AdditionalServiceDTO 
 {
-	private String name; 
+	@NotNull
+	@SafeHtml
+	@NotBlank
+	private @SQLInjectionSafe
+	String name; 
+	
 	private double price ;
 	
 	
