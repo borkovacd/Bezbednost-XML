@@ -49,6 +49,7 @@ public class CertificateStatusService {
 		certRepository.save(certificat);
 		
 		List<CertificateModel> allCertificate = certRepository.findAll();
+		List<CertificateModel> certificate = certRepository.findAll();
 		
 		for(CertificateModel cert : allCertificate){
 			if(cert.getIssuerSoft().getId() == ss.getId()){
@@ -68,6 +69,26 @@ public class CertificateStatusService {
 				s.setHasCert(false);
 				
 				subSoftRep.save(s);
+				for(CertificateModel c : allCertificate){
+					if(c.getIssuerSoft().getId() == s.getId()){
+						System.out.println(""+ss.getId() + ", "+cert.getIssuerSoft().getId());
+						c.setRevoked(true);
+						
+						CertificateStatus n = new CertificateStatus();
+						n.setMessage("Issuer's certificate has been revoked.");
+						n.setSerijskiBroj(serialNumber);
+						n.setStatus(true);
+						certStatRepository.save(n);
+						
+						String e = cert.getSubSoft().getEmail();
+						
+						SubjectSoftware sa = subSoftRep.findByEmail(e);
+						
+						sa.setHasCert(false);
+						
+						subSoftRep.save(sa);
+					}
+				}
 				
 			}
 		}
