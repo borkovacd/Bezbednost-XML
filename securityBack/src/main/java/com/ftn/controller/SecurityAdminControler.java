@@ -108,6 +108,9 @@ public class SecurityAdminControler {
 			{
 				Random r = new Random();
 				c.setSerialNumber(c.getSerialNumber() + r.nextInt((100 - 24) + 1));
+				
+				certRepos.save(c);
+				
 			}
 		}
 		
