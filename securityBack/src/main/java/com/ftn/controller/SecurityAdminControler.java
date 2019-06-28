@@ -565,7 +565,7 @@ public class SecurityAdminControler {
 		
 		for(int i=0; i<lanacSertifikata.size(); i++){
 			
-			if (lanacSertifikata.get(i).getSubSoft().getEmail().equals(email)) {
+			if (lanacSertifikata.get(i).getSubSoft().getEmail().equals(email) && lanacSertifikata.get(i).isRevoked()==false) {
 				System.out.println("nasao sam moj");
 				return lanacSertifikata.get(i);
 			}

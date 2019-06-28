@@ -54,8 +54,18 @@ export class CreateCertificateComponent implements OnInit {
       this.city.value);
 
 
-    this.data.addCertificate(model, localStorage.getItem('loggedUser')).subscribe(dataF =>
-      this.router.navigateByUrl('/certificates'));
+    this.data.addCertificate(model, localStorage.getItem('loggedUser')).subscribe(data =>
+    {
 
+      if (data == true) {
+        this.router.navigateByUrl('/certificates');
+      } else {
+        alert('Ne moze se kreirati sertifikat');
+      }
+    });
+  }
+
+  back() {
+    this.router.navigateByUrl('/home');
   }
 }

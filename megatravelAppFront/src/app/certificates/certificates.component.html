@@ -15,6 +15,7 @@
       <label>Vazi od: {{myCert.startDate | date : 'mediumDate'}}</label><br>
       <label>Vazi do: {{myCert.endDate | date : 'mediumDate'}} </label><br>
       <label>Status: <b> {{getStatus(myCert.revoked)}} </b> </label><br>
+
       <button *ngIf="!myCert.revoked" class="btn btn-dark" (click)="revoke(myCert.serialNumber)">Povuci</button>
       <br>
       <form  *ngIf = "visibleMessage== true && myCert.serialNumber == serialN " [formGroup]="form">
