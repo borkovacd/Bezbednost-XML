@@ -1,3 +1,25 @@
 2019-06-27 09:44:43,001 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-3] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
 2019-06-27 09:45:06,946 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-1] SECURITY_EVENT User id:1 LOGSUCCESS 
 2019-06-27 09:46:47,362 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 13:57:31,359 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-7] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 13:57:45,192 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 13:59:16,212 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 13:59:42,203 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 14:00:04,529 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SECURITY_EVENT User id: 2  CREACASUCCESS
+2019-06-28 14:00:36,476 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 14:01:15,820 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id: 2  CREACASUCCESS
+2019-06-28 14:02:38,774 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-2] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 14:03:13,446 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 14:03:28,673 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 14:03:47,427 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 14:04:04,804 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id: 2  CREACASUCCESS
+2019-06-28 14:04:52,706 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-10] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 14:05:26,266 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] SECURITY_EVENT User id:4 LOGSUCCESS 
+2019-06-28 14:21:35,396 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-10] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 14:21:52,845 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 14:22:38,064 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 14:24:30,753 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:2 LOGSUCCESS 
+2019-06-28 14:24:45,153 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id: 2  CREACASUCCESS
+2019-06-28 14:25:45,763 INFO com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:1 LOGSUCCESS 
+2019-06-28 14:26:43,722 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-7] SECURITY_EVENT User id:1 CREACASUCCESS 
+2019-06-28 14:27:10,347 INFO com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] SECURITY_EVENT User id:1 CREACASUCCESS 

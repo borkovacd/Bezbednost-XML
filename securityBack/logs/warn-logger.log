@@ -1,1 +1,3 @@
 2019-06-27 09:44:43,001 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-3] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 13:57:31,359 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-7] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 14:21:35,396 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8092-exec-10] SECURITY_EVENT Unauthorised access attempt to https://localhost:8092/favicon.ico from  adress0:0:0:0:0:0:0:1
