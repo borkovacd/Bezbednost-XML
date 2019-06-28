@@ -4,7 +4,7 @@
 
   <div class="md" style="display: inline-block">
 
-    <button style="display: block" class="btn btn-dark"  (click)="listAll()">Lista svih sertifikata u sistemu</button>
+    <button style="display: block" class="btn btn-dark" [hidden]="!vis"  (click)="listAll()">Lista svih sertifikata u sistemu</button>
 
     <div style="margin:30px 30px 30px 30px">
       <label><b>Moj sertifikat:</b></label><br>
@@ -16,7 +16,7 @@
       <label>Vazi do: {{myCert.endDate | date : 'mediumDate'}} </label><br>
       <label>Status: <b> {{getStatus(myCert.revoked)}} </b> </label><br>
 
-      <button *ngIf="!myCert.revoked" class="btn btn-dark" (click)="revoke(myCert.serialNumber)">Povuci</button>
+      <button [hidden]="!vis" class="btn btn-dark" (click)="revoke(myCert.serialNumber)">Povuci</button>
       <br>
       <form  *ngIf = "visibleMessage== true && myCert.serialNumber == serialN " [formGroup]="form">
         <label style="margin-top: 15px;font-weight: bold" >Selektujte razlog povlacenja:</label>

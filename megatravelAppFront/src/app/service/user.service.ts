@@ -4,10 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {LoginModel} from '../model/login.model';
 import {UserModel} from '../model/user.model';
 
-let token;
-token = localStorage.getItem('loggedUser');
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json', 'token' : token}),
+  headers: new HttpHeaders({'Content-Type': 'application/json'}),
 };
 
 @Injectable()
@@ -30,11 +28,11 @@ export class UserService {
     return this.http.post(`${this.BASE_URL}/login`, body, {headers: headers});
   }
 
-  getLoggedUser() {
+  getLoggedUser(): Observable<any> {
     // return JSON.parse(localStorage.getItem('loggedUser'));
-    const body = JSON.stringify(localStorage.getItem('loggedUser'));
-    const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.BASE_URL}/loggedUser`, body, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get(`${this.BASE_URL}/loggedUser/${token}`, {headers: headers});
 
   }
 

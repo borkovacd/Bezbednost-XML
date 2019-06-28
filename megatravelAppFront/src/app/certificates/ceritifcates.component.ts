@@ -20,11 +20,12 @@ export class CeritifcatesComponent implements OnInit {
   myCert: CertificateBackModel;
   selfCert: CertificateBackModel;
   user: any;
-  email: string;
+  email: any;
   visibleMessage: boolean;
   public form: FormGroup;
   public message: AbstractControl;
   serialN: any;
+  vis: boolean = false;
 
   constructor(protected router: Router,
               private fb: FormBuilder, private data: SecurityService, private  userService: UserService,) {
@@ -37,7 +38,17 @@ export class CeritifcatesComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.user = this.userService.getLoggedUser();
+    this.userService.getLoggedUser().subscribe(data => {
+
+      if (data == true) {
+        this.vis = true;
+      } else {
+        this.vis = false;
+      }
+
+
+    });
+
 
     // alert(this.user.email);
 

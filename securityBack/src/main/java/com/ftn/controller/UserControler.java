@@ -2,6 +2,7 @@ package com.ftn.controller;
 
 import java.util.Collections;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -18,7 +19,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -161,6 +164,8 @@ public class UserControler {
 				
 				String token = tokenUtils.generateToken(auth);
 				
+				System.out.println("Token koji sam napravio je " + token);
+				
 				User us = userService.findByEmail(email);
 				
 				//User user1 = (User) auth.getPrincipal();
@@ -204,7 +209,7 @@ public class UserControler {
 	}
 	
 	
-	@PreAuthorize("hasAuthority('CREATE_CERT')")
+	//@PreAuthorize("hasAuthority('CREATE_CERT')")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@CrossOrigin(origins = "http://localhost:4200")
 	public void logOutUser() {
@@ -228,15 +233,27 @@ public class UserControler {
 		return "Central module responded! Got message: " + message;
 	}
 	
-	@RequestMapping(value = "/loggedUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getLoggedUserEmail(@RequestBody String token) throws Exception {
+	@RequestMapping(value = "/loggedUser/{token}",  method = RequestMethod.GET)
+	public boolean getLoggedUserEmail(@PathVariable String token) throws Exception {
 
+		
+		System.out.println("Token kad ga dobijem: " + token);
+		
+		token = token.substring(1, token.length()-1);
+		
+		System.out.println("Token nakon seckanja: " + token);
+		
 		String email = tokenUtils.getUserSecurity(token).getUsername();
 		User u = userService.findByEmail(email);
 		
-		System.out.println(email);
+		System.out.println("A imejl je: " + email);
 		log.info("User id:{} LOGEDUSER",u.getId());
 		
+		if(email.equals("MTRoot@gmail.com")) {
+			return true;
+		} else {
+			return false;
+		}
 		
 	}
 
