@@ -2,7 +2,6 @@ package com.ftn.micro1.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,12 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -35,7 +32,6 @@ import com.ftn.micro1.dto.UserDTO;
 import com.ftn.micro1.dto.UserLogin;
 import com.ftn.micro1.enums.ClientStatus;
 import com.ftn.micro1.enums.NameRole;
-import com.ftn.micro1.model.Permission;
 import com.ftn.micro1.model.User;
 import com.ftn.micro1.model.UserToken;
 import com.ftn.micro1.repository.PermissionRepository;
@@ -143,7 +139,8 @@ public class UserControler {
 
 				userService.saveUser(u);
 				System.out.println("upisao usera sa mejlom: "+u.getEmail());
-			
+				log.info("REGSUCCESS");
+
 				return new ResponseEntity<UserDTO>(clientDto, HttpStatus.OK);
 			}
 			
@@ -165,6 +162,8 @@ public class UserControler {
 			User userNew = userService.findByEmail(userDTO.getEmail());
 			
 			if (userNew.getStatus().equals(ClientStatus.NEAKTIVAN)) {
+				log.error("User id: {} LOGFAIL",userNew.getId());
+
 				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
 			} 
 			
@@ -199,25 +198,22 @@ public class UserControler {
 			//	System.out.println(user1.getEmail());
 				
 				long expiresIn = tokenUtils.getExpiredIn();
-				log.info(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_SUC ,ip {}", us.getId(),req.getRemoteAddr());
-				log.info(LoggerUtils.getNMarker(), "NEPOR_EVENT user id:{} LOG_SUC, ip {}", us.getId(),req.getRemoteAddr());
+				log.info("User id:{} LOGSUCCESS ", us.getId());
 
 				return new ResponseEntity<>(new UserToken(token,expiresIn), HttpStatus.OK);
 				}catch (Exception e) {
-					log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
+					log.warn("User id:{} LOGFAIL ", userNew.getId());
 					e.printStackTrace();
 					return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 				}
 				
 			} else {
-				log.error("LOG_ERR");
-				log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ", userNew.getId());
+				log.error("User id:{} LOGFAIL ", userNew.getId());
 
 				return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);
 			}
 		} else {
-			log.error("LOG_ERR");
-			log.warn(LoggerUtils.getSMarker(), "SECURITY_EVENT user id:{} LOG_FAIL ");
+			log.error("LOGFAIL ");
 
 
 			return new ResponseEntity<>(new UserToken(), HttpStatus.NOT_FOUND);

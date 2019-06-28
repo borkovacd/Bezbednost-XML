@@ -6,6 +6,8 @@ import java.util.Collections;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +32,8 @@ import com.ftn.micro1.enums.NameRole;
 @RestController
 @RequestMapping(value="/admin")
 public class AdminController {
-	
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
+
 	@Autowired
 	private AgentService agentService;
 	
@@ -57,6 +60,8 @@ public class AdminController {
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
+		log.info("User id: {} ADDAG",u.getId());
+
 		
 		
 		
@@ -81,6 +86,8 @@ public class AdminController {
 		agent.setRoles(Collections.singleton(roleRepository.findByName(NameRole.ROLE_AGENT)));
 
 		agentService.saveAgent(agent);
+		log.info("User id: {} ADDAGSUCCESS",u.getId());
+
 		
 	}
 	
@@ -95,7 +102,8 @@ public class AdminController {
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
-		
+		log.info("User id: {} GETAG",u.getId());
+
 		
 
 			return agentService.getAgents();
@@ -113,7 +121,8 @@ public class AdminController {
 		token = token.substring(1, token.length()-1);
 		User u = userRepository.findByEmail(tokenUtils.getUserSecurity(token).getUsername());
 		System.out.println("Ovo je user " + u.getUsername());
-		
+		log.info("User id: {} GETUS",u.getId());
+
 		
 
 			return userService.getUsers();
@@ -126,7 +135,9 @@ public class AdminController {
 	public User activateClient(@PathVariable String email) {
 	
 		User user = userService.findByEmail(email);
-		
+		log.info("User id: {} ACTIUS",user.getId());
+
+
 		user.setStatus(ClientStatus.AKTIVAN);
 		
 		userService.saveUser(user);
@@ -143,7 +154,8 @@ public class AdminController {
 		User user = userService.findByEmail(email);
 		
 		user.setStatus(ClientStatus.BLOKIRAN);
-		
+		log.info("User id: {} BLOUS",user.getId());
+
 		userService.saveUser(user);
 		
 		return user;
@@ -156,7 +168,8 @@ public class AdminController {
 	public User removeUser(@PathVariable String email) {
 	
 		User user = userService.findByEmail(email);
-		
+		log.info("User id: {} DELUS",user.getId());
+
 		userService.remove(user);
 		
 		return user;
