@@ -75,4 +75,8 @@ export class MessageComponent implements OnInit {
     })
 
   }
+
+  back() {
+    this.router.navigateByUrl('');
+  }
 }

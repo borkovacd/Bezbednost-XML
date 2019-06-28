@@ -74,7 +74,7 @@ export class WelcomepageComponent implements OnInit{
     this.data.logout().subscribe(data => {
 
       localStorage.clear();
-      this.router.navigateByUrl('');
+      window.location.reload();
     });
 
   }

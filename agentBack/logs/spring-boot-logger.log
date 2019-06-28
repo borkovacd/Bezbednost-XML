@@ -1,0 +1,115 @@
+2019-06-28 13:45:24,388 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on DESKTOP-9D5EIMP with PID 16548 (D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack\target\classes started by Marin in D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack)
+2019-06-28 13:45:24,393 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 13:45:24,395 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 13:45:27,335 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 13:45:27,336 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 13:45:27,336 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 13:45:33,420 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 13:45:36,290 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 12.496 seconds (JVM running for 14.253)
+2019-06-28 13:49:37,752 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACC
+2019-06-28 13:49:38,952 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACCSUCCESS
+2019-06-28 13:49:38,978 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOM
+2019-06-28 13:49:39,933 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOMSUCCESS
+2019-06-28 13:49:39,948 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOM
+2019-06-28 13:49:41,590 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOMSUCCESS
+2019-06-28 13:49:41,605 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOM
+2019-06-28 13:49:42,173 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOMSUCCESS
+2019-06-28 13:49:42,195 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:45,883 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:45,895 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:48,580 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:48,593 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:50,866 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:50,879 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:53,781 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:53,800 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:56,250 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:56,264 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:49:58,529 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:49:58,543 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICL
+2019-06-28 13:50:01,604 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-2] User id: 1  GETAPRICLSUCCESS
+2019-06-28 13:50:01,825 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-2] User id: 1 GETALLRES
+2019-06-28 13:50:02,136 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-2] User id: 1 GETALLRESSUCCESS
+2019-06-28 13:50:02,142 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-2] User id: 1 GETARES
+2019-06-28 13:50:02,299 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-2] User id: 1 GETARESSUCCESS
+2019-06-28 13:50:02,300 INFO com.ftn.service.AgentService [https-jsse-nio-8099-exec-2] User id: 1 LOGSUCCESS
+2019-06-28 13:50:02,301 WARN com.ftn.controller.AgentController [https-jsse-nio-8099-exec-2] User id: 1 LOGSUCCESS
+2019-06-28 13:50:02,518 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACC
+2019-06-28 13:50:03,256 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACCSUCCESS
+2019-06-28 13:53:19,787 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-3] User id: 1 GETAMESS
+2019-06-28 13:53:20,100 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-3] User id: 1 GETAMESSSUCCESS
+2019-06-28 13:53:20,108 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPON
+2019-06-28 13:53:20,236 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 13:53:20,349 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRESPON
+2019-06-28 13:53:20,377 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 13:53:31,717 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-1] User id: 1 CREAMESS
+2019-06-28 13:53:31,967 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-1] User id: 1 CREAMESSSUCCESS
+2019-06-28 13:53:34,264 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACC
+2019-06-28 13:53:35,005 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACCSUCCESS
+2019-06-28 13:53:37,553 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-3] User id: 1 GETAMESS
+2019-06-28 13:53:37,617 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-3] User id: 1 GETAMESSSUCCESS
+2019-06-28 13:53:37,623 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPON
+2019-06-28 13:53:37,700 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 13:53:37,757 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESPON
+2019-06-28 13:53:37,916 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 13:58:12,000 INFO com.ftn.controller.AgentController [https-jsse-nio-8099-exec-3] User id: 1  LOGOUT
+2019-06-28 14:19:34,587 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACC
+2019-06-28 14:19:36,346 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACCSUCCESS
+2019-06-28 14:19:36,366 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOM
+2019-06-28 14:19:36,841 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOMSUCCESS
+2019-06-28 14:19:36,850 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOM
+2019-06-28 14:19:37,134 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOMSUCCESS
+2019-06-28 14:19:37,144 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOM
+2019-06-28 14:19:37,628 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GETAROOMSUCCESS
+2019-06-28 14:19:37,643 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:39,526 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:39,538 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:41,950 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:41,963 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:43,783 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:43,795 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:46,072 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:46,082 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:48,534 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:48,547 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:50,683 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:50,695 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICL
+2019-06-28 14:19:53,137 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-1] User id: 1  GETAPRICLSUCCESS
+2019-06-28 14:19:53,336 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRES
+2019-06-28 14:19:53,603 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESSUCCESS
+2019-06-28 14:19:53,608 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-1] User id: 1 GETARES
+2019-06-28 14:19:53,771 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-1] User id: 1 GETARESSUCCESS
+2019-06-28 14:19:53,772 INFO com.ftn.service.AgentService [https-jsse-nio-8099-exec-1] User id: 1 LOGSUCCESS
+2019-06-28 14:19:53,772 WARN com.ftn.controller.AgentController [https-jsse-nio-8099-exec-1] User id: 1 LOGSUCCESS
+2019-06-28 14:19:53,921 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACC
+2019-06-28 14:19:54,690 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACCSUCCESS
+2019-06-28 14:21:07,466 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-5] User id: 1 GETAMESS
+2019-06-28 14:21:07,618 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-5] User id: 1 GETAMESSSUCCESS
+2019-06-28 14:21:07,621 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRESPON
+2019-06-28 14:21:07,715 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 14:21:07,775 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-7] User id: 1 GETALLRESPON
+2019-06-28 14:21:07,797 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-7] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 14:21:21,416 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-5] User id: 1  GETAACC
+2019-06-28 14:21:22,281 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-5] User id: 1  GETAACCSUCCESS
+2019-06-28 14:21:23,722 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-4] User id: 1 GETAMESS
+2019-06-28 14:21:23,793 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-4] User id: 1 GETAMESSSUCCESS
+2019-06-28 14:21:23,798 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-4] User id: 1 GETALLRESPON
+2019-06-28 14:21:23,821 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-4] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 14:21:23,856 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-7] User id: 1 GETALLRESPON
+2019-06-28 14:21:23,875 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-7] User id: 1 GETALLRESPONSUCCESS
+2019-06-28 14:23:32,245 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on DESKTOP-9D5EIMP with PID 7608 (D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack\target\classes started by Marin in D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack)
+2019-06-28 14:23:32,250 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 14:23:32,252 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 14:23:34,190 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 14:23:34,191 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 14:23:34,191 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 14:23:38,997 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 14:23:41,787 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 10.051 seconds (JVM running for 11.452)
+2019-06-28 15:58:49,186 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on DESKTOP-9D5EIMP with PID 17432 (D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack\target\classes started by Marin in D:\Marin\SamoBezbedndost\Bezbednost-XML\agentBack)
+2019-06-28 15:58:49,191 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 15:58:49,193 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 15:58:51,350 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 15:58:51,351 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Marin\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 15:58:51,351 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 15:58:57,371 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 15:59:00,279 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 11.672 seconds (JVM running for 13.429)

@@ -77,6 +77,7 @@ insert into role_permissions (permission_id, role_id) values (27, 3);
 
 insert into role_permissions (permission_id, role_id) values (21, 2);
 insert into role_permissions (permission_id, role_id) values (22, 2);
+insert into role_permissions (permission_id, role_id) values (27, 2);
 
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (1, "/", "MTRoot@gmail.com", 1, "/", "/");
 insert into subject_softwares (id, city, email, has_certificate, software_id, state) values (2, "London", "MegaTravelLondon@gmail.com", 0, "S1", "Engleska");

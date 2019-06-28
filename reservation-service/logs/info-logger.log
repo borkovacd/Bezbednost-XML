@@ -1,0 +1,8 @@
+2019-06-28 13:42:01,209 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 13:42:23,795 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 26.069 seconds (JVM running for 28.189)
+2019-06-28 13:57:59,195 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 13:58:20,874 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 24.678 seconds (JVM running for 26.285)
+2019-06-28 14:28:35,758 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 14:28:50,844 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 17.956 seconds (JVM running for 20.213)
+2019-06-28 15:59:26,233 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 15:59:40,200 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 16.81 seconds (JVM running for 18.261)

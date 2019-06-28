@@ -1,0 +1,10 @@
+2019-06-28 13:35:02,837 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 13:35:19,203 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro1AuthApp in 18.972 seconds (JVM running for 20.963)
+2019-06-28 13:50:19,627 INFO com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-1] User id:2 LOGSUCCESS 
+2019-06-28 13:51:14,555 INFO com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-3] User id:2 LOGSUCCESS 
+2019-06-28 14:12:20,123 INFO com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-8] User id:2 LOGSUCCESS 
+2019-06-28 14:19:07,504 INFO com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-1] User id:2 LOGSUCCESS 
+2019-06-28 14:25:35,326 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 14:25:50,947 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro1AuthApp in 18.175 seconds (JVM running for 19.538)
+2019-06-28 15:51:23,405 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 15:51:37,556 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro1AuthApp in 16.718 seconds (JVM running for 18.429)

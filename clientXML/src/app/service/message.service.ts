@@ -10,7 +10,7 @@ const httpOptions = {
 };
 @Injectable()
 export  class MessageService {
-  private BASE_URL = 'https://localhost:8443/api/message';
+  private BASE_URL = 'https://localhost:8762/resservice/api/message';
 
   constructor(private http: HttpClient) {
 
