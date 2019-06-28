@@ -5,9 +5,9 @@
 
   <form [formGroup]="form">
     <div class="form-group">
-      <label style="font-weight: bold">Korisničko ime:</label>
+      <label style="font-weight: bold">Email:</label>
       <input name="email" class="form-control margin" id="input-email"
-             placeholder="Unesite korisničko ime..." [formControl]="username">
+             placeholder="Unesite email..." [formControl]="username">
 
       <small class="form-text error" *ngIf="username.errors?.required && username.touched" style="color: red">
         Email je obavezan!
