@@ -1,6 +1,7 @@
 package com.ftn.micro4.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,25 +43,35 @@ public class RatingService
 	private RoomRepository roomRepository ;
 	
 	// Korisnik moze da salje poruku agentu jedino ukoliko vec ima kreiranu rezervaciju
-	public boolean canComment(Long idReservation)
+	public boolean canComment(Long idRoom, Long idUser)
 	{
-		Reservation reservation = reservationRepository.findOneById(idReservation);
+		List<Reservation> reservations = reservationRepository.findByRoomId(idRoom);
+		List<Reservation> myReservations = new ArrayList<Reservation>();
 		
-		if (reservation == null) // ukoliko nije pronasao nijednu rezervaciju za prosledjen idRezervacije
+		for (Reservation res : reservations)
+		{
+			if (res.getUser().getId().equals(idUser))
+			{
+				myReservations.add(res);
+			}
+		}
+		
+		if (myReservations == null) // ukoliko nije pronasao nijednu rezervaciju za prosledjen idRoom, kod datog korisnika
 		{
 			return false ;
 		}
-		else // postoji makar jedna rezervacija u listi rezervacija sa tim id-jem
+		else // postoji makar jedna soba u listi rezervacija sa tim id-jem, za tog User-a
 		{
 
-			if (reservation.getToDate().isBefore(LocalDate.now())) // ukoliko je krajnji datum rezervacije pre danasnjeg datuma
+			for (Reservation r: myReservations)
 			{
-				return true ;
+				if (r.getToDate().isBefore(LocalDate.now())) // krajnji datum rezervacije je pre danasnjeg datuma
+				{
+					return true ;
+				}
 			}
-			else
-			{
-				return false ;
-			}
+			
+			return false ;
 			
 		}
 	}
@@ -83,5 +94,39 @@ public class RatingService
 		ratingRepository.save(rating);
 		
 	}
+	
+	public double getAverageRating(Long idRoom)
+	{
+		double average = 0;
+		int ukupno = 0;
+		int brojac = 0;
+		
+		List<Rating> ratings = ratingRepository.findByRoomId(idRoom); // vrati sve rejtinge te sobe
+		
+		if (ratings == null)
+		{
+			return 0;
+		}
+		else
+		{
+			for (Rating r : ratings)
+			{
+				brojac += 1 ;
+				ukupno += r.getRatingMark();
+			}
+			
+			average = ukupno / brojac ;
+			
+			return average ;
+		}
+		
+	}
+	
+	public List<Rating> getListOfRating(Long idRoom)
+	{
+		List<Rating> ratings = ratingRepository.findByRoomId(idRoom);
+		return ratings ;
+	}
+	
 	
 }

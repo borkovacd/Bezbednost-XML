@@ -10,6 +10,6 @@ import com.ftn.micro4.model.Rating;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> 
 {
-	List<Rating> findByRoomId(Long id) ;
-	List<Rating> findByUserId(Long id) ;
+	List<Rating> findByRoomId(Long id) ; // vrati listu ratinga za tu sobu
+	List<Rating> findByUserId(Long id) ; // vrati listu ratinga tog user-a
 }
