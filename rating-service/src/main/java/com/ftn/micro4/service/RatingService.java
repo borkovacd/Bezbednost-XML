@@ -132,11 +132,39 @@ public class RatingService
 		
 	}
 	
+	// DODATI PROVERU DA LI JE ODOBRENO
 	public List<Rating> getListOfRating(Long idRoom)
 	{
 		List<Rating> ratings = ratingRepository.findByRoomId(idRoom);
 		return ratings ;
 	}
 	
+	// ****************** ADMIN ************************ 
 	
+	// vraca listu svih ratinga
+	public List<Rating> getAllRatings()
+	{
+			
+		List<Rating> allRatings = ratingRepository.findAll();
+		List<Rating> goodRatings = new ArrayList<Rating>() ;
+			
+		for (Rating r : allRatings)
+		{
+			if (r.isApproved() == false)
+			{
+				goodRatings.add(r);
+			}
+		}
+			
+		return goodRatings ;
+	}
+	
+	// potvrdjuje rating
+	public void confirmRating(Long idRating)
+	{
+		Rating rating = ratingRepository.findOneById(idRating) ;
+		rating.setApproved(true);
+		
+		ratingRepository.save(rating) ;
+	}
 }

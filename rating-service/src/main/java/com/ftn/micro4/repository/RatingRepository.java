@@ -12,4 +12,5 @@ public interface RatingRepository extends JpaRepository<Rating, Long>
 {
 	List<Rating> findByRoomId(Long id) ; // vrati listu ratinga za tu sobu
 	List<Rating> findByUserId(Long id) ; // vrati listu ratinga tog user-a
+	Rating findOneById(Long id);
 }

@@ -100,5 +100,31 @@ public class RatingController
 		}
 		
 	}
+	// ********* ADMIN ************
+	
+	@GetMapping("/getAllRatings")
+	public ResponseEntity<List<Rating>> getAllRatings()
+	{
+		List<Rating> ratings = new ArrayList<Rating>();
+		ratings = ratingService.getAllRatings();
+			
+		if (ratings.size() == 0)
+		{
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<List<Rating>>(ratings, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/confirmRating/{idRating}")
+	public void confirmRating(@PathVariable Long idRating) 
+	{
+		ratingService.confirmRating(idRating);
+
+	}
+	
+	
 
 }
