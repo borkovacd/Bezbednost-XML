@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.micro3.dto.ReservationDTO;
 import com.ftn.micro3.model.Accomodation;
+import com.ftn.micro3.model.AdditionalServices;
 import com.ftn.micro3.model.Reservation;
 import com.ftn.micro3.model.ReservationAgent;
 import com.ftn.micro3.model.Room;
@@ -125,7 +126,69 @@ public class ReservationService
 			}
 		}
 		
+		
 		List<Room> additionalCatTypeMatching = new ArrayList<Room>();
+		
+		for (Room r : categoryTypeMatchingRooms)
+		{
+			for (AdditionalServices ser : r.getAccomodation().getAdditionalServices())
+			{
+				if (ser.getName() == "Parking" && parking == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Wifi" && wifi == true && parking == false)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Dorucak" && dorucak == true && wifi == false && parking == false)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Polupansion" && poluPansion == true && wifi == false && parking == false && dorucak == false)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Pansion" && pansion == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "All inclusive" && allInclusive == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Kucni ljubimci" &&  petFriendly == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Tv" && tv == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Minikuhinja/kuhinja" && miniKuhinja == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Privatno kupatilo" && kupatilo == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+				
+				if (ser.getName() == "Otkazivanje" && bespaltnoOtkazivanje == true)
+				{
+					additionalCatTypeMatching.add(r);
+				}
+			}
+		}
 	
 		return additionalCatTypeMatching ;
 	

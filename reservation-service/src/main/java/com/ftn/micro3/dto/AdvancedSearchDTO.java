@@ -10,12 +10,14 @@ public class AdvancedSearchDTO
 	public boolean tipHotel; 
 	public boolean tipApartman ;
 	public boolean tipBadAndBreakfast ;
+	
 	public boolean kategorija1 ;
 	public boolean kategorija2 ;
 	public boolean kategorija3 ;
 	public boolean kategorija4 ;
 	public boolean kategorija5 ;
 	public boolean nekategorisan ;
+	
 	public boolean parking ;
 	public boolean wifi ;
 	public boolean dorucak ;

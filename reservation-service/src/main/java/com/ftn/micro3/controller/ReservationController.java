@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.micro3.config.TokenUtils;
+import com.ftn.micro3.dto.AdvancedSearchDTO;
 import com.ftn.micro3.dto.BasicSearchDTO;
 import com.ftn.micro3.dto.ReservationDTO;
 import com.ftn.micro3.model.Price;
@@ -102,20 +103,6 @@ public class ReservationController
 	
 	@PostMapping(value="/searchFreeRooms")
 	public ResponseEntity<List<Room>> searchFreeRooms(/*ServletRequest request,*/@RequestBody BasicSearchDTO dto) throws Exception {
-		/*
-		 * 
-		 * Za pretragu ne mora biti ulogovan, pa je zakomentarisano
-		 * 
-		 * 
-		 * 
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		
-		String token = httpRequest.getHeader("token");
-		
-		token = token.substring(1, token.length()-1);
-		User u = userRepository.findOneByEmail(tokenUtils.getUserSecurity(token).getUsername());
-		System.out.println("Ovo je user " + u.getUsername());
-		*/
 		
 		List<Room> rooms = reservationService.searchFreeRooms(dto.getCity(), dto.getFromDate(), dto.getToDate(), dto.getNumberOfPersons());
 		log.info("SEARCHR");
@@ -141,6 +128,25 @@ public class ReservationController
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
+	@PostMapping(value="/advancedSearchFreeRooms")
+	public ResponseEntity<List<Room>> advancedSearchFreeRooms(@RequestBody AdvancedSearchDTO dto) throws Exception 
+	{
+		
+		List<Room> rooms = reservationService.advancedSearchFreeRooms(dto.tipHotel, dto.tipApartman, dto.tipBadAndBreakfast, 
+																	dto.kategorija1, dto.kategorija2, dto.kategorija3, dto.kategorija4, dto.kategorija5, dto.nekategorisan, 
+																	dto.parking, dto.wifi, dto.dorucak, dto.poluPansion, dto.pansion, dto.allInclusive, 
+																	dto.petFriendly, dto.tv, dto.miniKuhinja, dto.kupatilo, dto.bespaltnoOtkazivanje, dto.rooms) ;
+
+		if(rooms != null) 
+		{
+			return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	
 	
 	@PreAuthorize("hasAuthority('RESERVE')")
 	@PostMapping(value="/createReservation")
