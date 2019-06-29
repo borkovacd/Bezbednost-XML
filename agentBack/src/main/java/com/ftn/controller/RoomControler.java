@@ -1,6 +1,7 @@
 package com.ftn.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ftn.dto.RoomDTO;
 import com.ftn.model.Agent;
+import com.ftn.model.Rating;
 import com.ftn.model.Room;
 import com.ftn.repository.AgentRepository;
 import com.ftn.security.TokenUtils;
@@ -106,12 +108,27 @@ public class RoomControler {
 		return response;
 	}
 	
-	@GetMapping("/getRoomRating/{idRoom}")
-	public String getRoomRating(@PathVariable Long idRoom) {
-		
-		String rating = roomService.getRoomRating(idRoom);
-
-		return rating;
+	@GetMapping("/getAverageRating/{idRoom}")
+	public double getAverageRating(@PathVariable Long idRoom)
+	{
+		double rezultat = roomService.getAverageRating(idRoom);
+		return rezultat ;
 	}
-
+	
+	@GetMapping("/getListOfRating/{idRoom}")
+	public ResponseEntity<List<Rating>> getListOfRating (@PathVariable Long idRoom)
+	{
+		List<Rating> ratings = new ArrayList<Rating>();
+		ratings = roomService.getListOfRating(idRoom);
+		
+		if (ratings == null)
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else
+		{
+			return new ResponseEntity<List<Rating>>(ratings, HttpStatus.OK);
+		}
+		
+	}
 }

@@ -166,7 +166,7 @@ public class ReservationAgentService {
 		ReservationAgent reservationAgent = new ReservationAgent();
 		reservationAgent.setId(response.getReservationAgentId());
 		reservationAgent.setFromDate(d1);
-		reservationAgent.setFromDate(d2);
+		reservationAgent.setToDate(d2);
 		reservationAgent.setRoom(roomRepository.getOne(idRoom));
 		reservationAgent.setAgent(agentRepository.getOne(agent.getId()));
 		

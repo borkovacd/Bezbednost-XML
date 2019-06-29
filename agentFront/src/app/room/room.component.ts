@@ -74,7 +74,7 @@ export  class RoomComponent implements OnInit{
   }
 
   roomRating(idRoom: any){
-    this.router.navigateByUrl('/welcomepage/room/' + idRoom);
+    this.router.navigateByUrl('/ratings/room/' + idRoom);
 
   }
 }

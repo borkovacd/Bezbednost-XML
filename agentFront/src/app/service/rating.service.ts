@@ -15,13 +15,13 @@ export  class RatingService {
   }
 
   getAverageRating(idRoom: any): Observable<any> {
-    const token = localStorage.getItem('loggedUser');
+    const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.get(`${this.BASE_URL}/getAverageRating/${idRoom}`, {headers: headers});
   }
 
   getListOfRating(idRoom: any): Observable<any> {
-    const token = localStorage.getItem('loggedUser');
+    const token = localStorage.getItem('agentId');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.get(`${this.BASE_URL}/getListOfRating/${idRoom}`, {headers: headers});
   }

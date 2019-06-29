@@ -9,6 +9,7 @@ import {RatingService} from '../service/rating.service';
 export class RoomRatingComponent implements OnInit{
   items = [];
   rating: any;
+
   constructor(protected  router: Router,
               private ratingService: RatingService,
               public route: ActivatedRoute){}

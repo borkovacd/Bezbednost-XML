@@ -15,6 +15,7 @@ import com.ftn.model.Agent;
 import com.ftn.model.Category;
 import com.ftn.model.City;
 import com.ftn.model.Price;
+import com.ftn.model.Rating;
 import com.ftn.model.Reservation;
 import com.ftn.model.ReservationAgent;
 import com.ftn.model.Room;
@@ -293,18 +294,38 @@ public class RoomService {
 		
 		return room;
 	}
-
-	public String getRoomRating(Long idRoom) {
+	
+	public double getAverageRating(Long idRoom)
+	{
+		double average = 0;
+		double ukupno = 0;
+		int brojac = 0;
 		
-		String comment = null;
+		List<Rating> ratings = new ArrayList<Rating>();
+		ratings = ratingRepository.findByRoomId(idRoom); // vrati sve rejtinge te sobe
 		
-		for(int i=0; i<ratingRepository.findAll().size(); i++) {
-			if(ratingRepository.findAll().get(i).getRoom().getId() == idRoom) {
-				comment = ratingRepository.findAll().get(i).getComment();
-				return comment;
+		if (ratings.size() == 0)
+		{
+			return average;
+		}
+		else
+		{
+			for (Rating r : ratings)
+			{
+				brojac += 1 ;
+				ukupno += r.getRatingMark();
 			}
+			
+			average = ukupno / brojac ;
+			
+			return average ;
 		}
 		
-		return comment;
+	}
+	
+	public List<Rating> getListOfRating(Long idRoom)
+	{
+		List<Rating> ratings = ratingRepository.findByRoomId(idRoom);
+		return ratings ;
 	}
 }

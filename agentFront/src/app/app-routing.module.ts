@@ -10,6 +10,7 @@ import {AddEditRoomComponent} from './add-edit-room/add-edit-room.component';
 import {PricelistComponent} from './pricelist/pricelist.component';
 import {AddPricelistComponent} from './add-pricelist/add-pricelist.component';
 import {AddReservationComponent} from './add-reservation/add-reservation.component';
+import {RoomRatingComponent} from './roomRating/roomRating.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'welcomepage/room/:idA/pricelist/:mode/:idR', component: AddPricelistComponent},
   {path: 'welcomepage/room/:idA/:mode/:idR', component: AddEditRoomComponent},
   {path: ':mode/accomodation/:idA', component: AddEditAccomodationComponent},
+  {path: 'ratings/room/:idRoom', component: RoomRatingComponent},
 
 
 
