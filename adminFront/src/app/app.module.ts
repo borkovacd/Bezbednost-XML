@@ -19,6 +19,8 @@ import { ListUserComponent } from './list-user/list-user.component';
 import {AdminService} from './service/admin.service';
 import {ListCategoryComponent} from './list-category/list-category.component';
 import {AccomodationService} from './service/accomodationService.service';
+import {RatingComponent} from './rating/rating.component';
+import {RatingService} from './service/rating.service';
 
 
 
@@ -35,7 +37,8 @@ import {AccomodationService} from './service/accomodationService.service';
     ProfileComponent,
     ListAgentComponent,
     ListUserComponent,
-    ListCategoryComponent
+    ListCategoryComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import {AccomodationService} from './service/accomodationService.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AdminService, AccomodationService],
+  providers: [AdminService, AccomodationService, RatingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

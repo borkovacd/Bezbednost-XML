@@ -42,4 +42,9 @@ export class HomeComponent implements OnInit {
   users() {
     this.router.navigateByUrl('listUsers');
   }
+
+  commentList(){
+    this.router.navigateByUrl('listRating');
+
+  }
 }
