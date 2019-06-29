@@ -1,5 +1,12 @@
+<div *ngIf="!subscription?.closed" style="margin-bottom:50px;margin-right: 35%;margin-left: 35%;margin-top: 15%">
+  <div style="text-align: center;">
+    <div style=" display: inline-block;">
+      <h2 style="ng sngfont-size: 50px;margin-bottom: 20px;color: #24478f ">Učitavanje je u toku, molimo sačekajte.</h2>
+    </div>
+  </div>
+</div>
 
-<div style="margin-bottom:50px;margin-right: 35%;margin-left: 35%;margin-top: 15%">
+<div *ngIf="subscription?.closed" style="margin-bottom:50px;margin-right: 35%;margin-left: 35%;margin-top: 15%">
   <div style="text-align: center;">
     <div style=" display: inline-block;">
       <h1 style="ng sngfont-size: 50px;margin-bottom: 20px;color: #24478f ">MegaTravel.com</h1>
@@ -13,9 +20,11 @@
   </div>
   <form [formGroup]="form">
 
+
+
     <div class="form-group">
 
-      <label style="margin-top: 20px">Korisnicko ime:</label>
+    <label style="margin-top: 20px">Korisnicko ime:</label>
       <input name="username" class="form-control margin" id="input-username"
              [formControl]="username">
       <small class="form-text error" *ngIf="username.errors?.required && username.touched" style="color: red">

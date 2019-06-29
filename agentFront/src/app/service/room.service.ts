@@ -50,4 +50,9 @@ export  class RoomService{
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
     return this.http.put(`${this.BASE_URL}/editRoom/${idAccomodation}/${id}/${token}`, body, {headers: headers});
   }
+
+  /*getRoomRating(idRoom: any) {
+    const headers = new HttpHeaders({'Content-Type': 'plaintext'});
+    return this.http.get(`${this.BASE_URL}/getRoomRating/${idRoom}`, {headers: headers});
+  }*/
 }

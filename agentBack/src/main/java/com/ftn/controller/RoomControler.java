@@ -105,5 +105,13 @@ public class RoomControler {
 		boolean response = roomService.deleteRoom(idAccomodation, idRoom,token);
 		return response;
 	}
+	
+	@GetMapping("/getRoomRating/{idRoom}")
+	public String getRoomRating(@PathVariable Long idRoom) {
+		
+		String rating = roomService.getRoomRating(idRoom);
+
+		return rating;
+	}
 
 }

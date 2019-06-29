@@ -22,6 +22,7 @@ import com.ftn.model.TypeAccomodation;
 import com.ftn.repository.AccomodationRepository;
 import com.ftn.repository.AgentRepository;
 import com.ftn.repository.PriceRepository;
+import com.ftn.repository.RatingRepository;
 import com.ftn.repository.ReservationAgentRepository;
 import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.RoomRepository;
@@ -68,6 +69,8 @@ public class RoomService {
 	private TokenUtils tokenUtils;
 	@Autowired
 	private AgentRepository agentRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
 	
 	@Autowired
 	private SOAPConnector soapConnector;
@@ -289,5 +292,19 @@ public class RoomService {
 		Room room = roomRepository.findOneById(response.getReturnedRoom().getId());
 		
 		return room;
+	}
+
+	public String getRoomRating(Long idRoom) {
+		
+		String comment = null;
+		
+		for(int i=0; i<ratingRepository.findAll().size(); i++) {
+			if(ratingRepository.findAll().get(i).getRoom().getId() == idRoom) {
+				comment = ratingRepository.findAll().get(i).getComment();
+				return comment;
+			}
+		}
+		
+		return comment;
 	}
 }

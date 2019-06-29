@@ -60,6 +60,8 @@ public class AgentService implements UserDetailsService {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
+	private RatingService ratingService;
+	@Autowired
 	private CityService cityService;
 	@Autowired
 	private TypeAccomodationService typeAccomodationService;
@@ -180,6 +182,9 @@ public class AgentService implements UserDetailsService {
 			userService.getAllUsers();
 			reservationService.getAllReservations(token);	
 			reservationAgentService.getAllReservations(token);
+			
+			//PRIVREMENO
+			ratingService.getAllRatings();
 			
 			log.info("User id: "+ agent.getId()+" LOGSUCCESS");
 

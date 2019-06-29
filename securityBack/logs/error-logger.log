@@ -1,0 +1,12 @@
+2019-06-29 06:39:58,236 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-29 06:40:01,569 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-29 06:41:57,996 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CKFAIL
+2019-06-29 06:42:01,537 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] CKFAIL
+2019-06-29 06:42:20,370 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-6] CKFAIL
+2019-06-29 06:43:52,387 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CKFAIL
+2019-06-29 06:43:57,100 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CKFAIL
+2019-06-29 06:44:00,138 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] CKFAIL
+2019-06-29 06:44:48,839 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-3] CKFAIL
+2019-06-29 06:45:13,805 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-8] CKFAIL
+2019-06-29 07:00:19,838 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-1] NEPOR_EVENT User id: 4 CREACAERROR  
+2019-06-29 07:08:18,911 ERROR com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-10] CKFAIL

@@ -10,6 +10,12 @@ import {RoomService} from '../service/room.service';
 
 export  class RoomComponent implements OnInit{
   items=[]
+  comment: any;
+  idRoom: any;
+  message = '';
+
+
+
 
   constructor(protected  router: Router,
               private route: ActivatedRoute,
@@ -21,7 +27,16 @@ export  class RoomComponent implements OnInit{
       this.items = data;
     })
 
+
+
   }
+
+  /*getComment(idRoom: any) {
+      this.roomService.getRoomRating(idRoom).subscribe(data =>{
+        alert(data);
+      })
+
+  }*/
 
   addRoom(){
     const idA = this.route.snapshot.params.idA;

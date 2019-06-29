@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {LogInModel} from '../model/logIn.model';
 import {AgentService} from '../service/agent.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component ({
   templateUrl: './log-in.component.html',
@@ -14,6 +15,7 @@ export class LogInComponent implements OnInit {
   public form: FormGroup;
   public username: AbstractControl;
   public password: AbstractControl;
+  subscription: Subscription
   constructor(protected  router: Router,
               private fb: FormBuilder,
               private agentService: AgentService){
@@ -27,7 +29,7 @@ export class LogInComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.agentService.getAllAgents().subscribe(data => {
+    this.subscription = this.agentService.getAllAgents().subscribe(data => {
 
     })
   }

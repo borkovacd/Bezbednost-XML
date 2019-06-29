@@ -45,6 +45,7 @@ import com.ftn.repository.CountryRepository;
 import com.ftn.repository.MessageRepository;
 import com.ftn.repository.PermissionRepository;
 import com.ftn.repository.PriceRepository;
+import com.ftn.repository.RatingRepository;
 import com.ftn.repository.ReservationAgentRepository;
 import com.ftn.repository.ReservationRepository;
 import com.ftn.repository.ResponseRepository;
@@ -96,6 +97,8 @@ import com.ftn.webservice.GetAllMessagesRequest;
 import com.ftn.webservice.GetAllMessagesResponse;
 import com.ftn.webservice.GetAllPermissionsRequest;
 import com.ftn.webservice.GetAllPermissionsResponse;
+import com.ftn.webservice.GetAllRatingsRequest;
+import com.ftn.webservice.GetAllRatingsResponse;
 import com.ftn.webservice.GetAllReservationsAgentRequest;
 import com.ftn.webservice.GetAllReservationsAgentResponse;
 import com.ftn.webservice.GetAllReservationsRequest;
@@ -113,6 +116,7 @@ import com.ftn.webservice.GetRoomResponse;
 import com.ftn.webservice.MessageSoap;
 import com.ftn.webservice.PermissionSoap;
 import com.ftn.webservice.PriceSoap;
+import com.ftn.webservice.RatingSoap;
 import com.ftn.webservice.RegisterAccomodationRequest;
 import com.ftn.webservice.RegisterAccomodationResponse;
 import com.ftn.webservice.RegisterRoomRequest;
@@ -148,6 +152,7 @@ public class AccomondationEndpoint {
 	private ReservationAgentRepository reservationAgentRepository;
 	private MessageRepository messageRepository;
 	private ResponseRepository responseRepository;
+	private RatingRepository ratingRepository;
 	
 	
 	@Autowired
@@ -156,7 +161,7 @@ public class AccomondationEndpoint {
 			AgentRepository agentRepository, TypeAccomodationRepository typeAccomodationRepository, PriceRepository priceRepository, 
 			ReservationRepository reservationRepository, UserRepository userRepository, PermissionRepository permissionRepository, 
 			RoleRepository roleRepository, ReservationAgentRepository reservationAgentRepository, MessageRepository messageRepository,
-			ResponseRepository responseRepository) {
+			ResponseRepository responseRepository, RatingRepository ratingRepository) {
 			
 		this.accomondationRepository = accomondationRepository;
 		this.additionalServicesRepository = additionalServicesRepository;
@@ -174,6 +179,7 @@ public class AccomondationEndpoint {
 		this.reservationAgentRepository = reservationAgentRepository;
 		this.messageRepository = messageRepository;
 		this.responseRepository = responseRepository;
+		this.ratingRepository = ratingRepository;
 	}
 	
 	
@@ -1172,6 +1178,38 @@ public class AccomondationEndpoint {
 		response.setResponseMessage(rs);
 		response.setMessageId(message.getId());
 
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllRatingsRequest")
+	@ResponsePayload
+	public GetAllRatingsResponse getAllRatings(@RequestPayload GetAllRatingsRequest request) {
+		
+		//Request poruka sa agentskog back-a
+		System.out.println("*****");
+		System.out.println(request.getRequest());
+		System.out.println("*****");
+		
+		GetAllRatingsResponse response = new GetAllRatingsResponse();
+	
+		for(int i = 0; i < ratingRepository.findAll().size(); i++) {
+			
+			RatingSoap r = new RatingSoap();
+			r.setId(ratingRepository.findAll().get(i).getId());
+			r.setComment(ratingRepository.findAll().get(i).getComment());
+			r.setApproved(ratingRepository.findAll().get(i).isApproved());
+			r.setRatingMark(ratingRepository.findAll().get(i).getRatingMark());
+			UserSoap userSoap = new UserSoap();
+			userSoap.setId(ratingRepository.findAll().get(i).getUser().getId());
+			r.setUser(userSoap);
+			RoomSoap roomSoap = new RoomSoap();
+			roomSoap.setId(ratingRepository.findAll().get(i).getRoom().getId());
+			r.setRoom(roomSoap);
+			
+			response.getRatingsList().add(r);
+			
+		}
+		
 		return response;
 	}
 	

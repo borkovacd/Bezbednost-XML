@@ -1,0 +1,3 @@
+2019-06-29 06:59:33,361 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-29 06:59:38,099 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-29 06:59:46,178 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro2AccApp in 14.646 seconds (JVM running for 15.722)
