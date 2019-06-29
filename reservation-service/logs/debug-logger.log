@@ -1,3 +1,0 @@
-2019-06-29 19:35:54,002 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
-2019-06-29 19:47:01,907 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
-2019-06-29 19:47:05,467 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHR

@@ -45,28 +45,36 @@ public class RatingService
 	// Korisnik moze da salje poruku agentu jedino ukoliko vec ima kreiranu rezervaciju
 	public boolean canComment(Long idRoom, Long idUser)
 	{
+		System.out.println("Room Id : " + idRoom);
 		List<Reservation> reservations = reservationRepository.findByRoomId(idRoom);
 		List<Reservation> myReservations = new ArrayList<Reservation>();
 		
+		if (reservations.size() == 0)
+		{
+			return false ;
+		}
+		
 		for (Reservation res : reservations)
 		{
-			if (res.getUser().getId().equals(idUser))
+			if ((res.getUser().getId()) == idUser)
 			{
 				myReservations.add(res);
 			}
 		}
 		
-		if (myReservations == null) // ukoliko nije pronasao nijednu rezervaciju za prosledjen idRoom, kod datog korisnika
+		if (myReservations.size() == 0) // ukoliko nije pronasao nijednu rezervaciju za prosledjen idRoom, kod datog korisnika
 		{
+			System.out.println("NEMA REZERVACIJA ");
 			return false ;
 		}
 		else // postoji makar jedna soba u listi rezervacija sa tim id-jem, za tog User-a
 		{
-
-			for (Reservation r: myReservations)
+			
+			for (Reservation r : myReservations)
 			{
+				System.out.println("DATUM DATUM");
 				if (r.getToDate().isBefore(LocalDate.now())) // krajnji datum rezervacije je pre danasnjeg datuma
-				{
+				{	
 					return true ;
 				}
 			}
@@ -98,14 +106,16 @@ public class RatingService
 	public double getAverageRating(Long idRoom)
 	{
 		double average = 0;
-		int ukupno = 0;
+		double ukupno = 0;
 		int brojac = 0;
 		
-		List<Rating> ratings = ratingRepository.findByRoomId(idRoom); // vrati sve rejtinge te sobe
+		List<Rating> ratings = new ArrayList<Rating>();
+		ratings = ratingRepository.findByRoomId(idRoom); // vrati sve rejtinge te sobe
 		
-		if (ratings == null)
+		if (ratings.size() == 0)
 		{
-			return 0;
+			System.out.println("RATINGS JE NULL");
+			return average;
 		}
 		else
 		{

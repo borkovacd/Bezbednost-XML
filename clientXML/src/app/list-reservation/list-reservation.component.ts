@@ -47,7 +47,7 @@ export class ListReservationComponent implements OnInit {
     this.router.navigateByUrl('');
   }
   oceniAcc(id: any, idRoom: any){
-    this.data.checkIfComment(id).subscribe(data => {
+    this.data.checkIfComment(idRoom).subscribe(data => {
       if(data == true){
         this.router.navigateByUrl('myReservations/' + idRoom + '/rating');
 

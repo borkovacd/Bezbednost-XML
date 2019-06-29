@@ -13,6 +13,7 @@ const httpOptions = {
 @Injectable()
 export class ReservationService {
   private BASE_URL = 'https://localhost:8762/resservice/api/reservations';
+  private BASE_URL2 = 'https://localhost:8094/api/rating';
 
   constructor(private http: HttpClient) {
 
@@ -51,7 +52,7 @@ export class ReservationService {
   checkIfComment(idRoom: any): Observable<any> {
     const token = localStorage.getItem('loggedUser');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/checkIfComment/${token}/${idRoom}`,  {headers: headers});
+    return this.http.get(`${this.BASE_URL2}/checkIfComment/${token}/${idRoom}`,  {headers: headers});
   }
 
 }
