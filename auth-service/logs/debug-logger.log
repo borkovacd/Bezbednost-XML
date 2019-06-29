@@ -1,2 +1,0 @@
-2019-06-29 06:59:34,816 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
-2019-06-29 07:20:23,336 DEBUG com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-6] LOG

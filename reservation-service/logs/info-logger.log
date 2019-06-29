@@ -1,2 +1,0 @@
-2019-06-29 07:00:04,093 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-29 07:00:17,077 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 14.684 seconds (JVM running for 15.84)

@@ -13,4 +13,5 @@ import com.ftn.micro4.model.Reservation;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 {
 	List<Reservation> findByUserId(Long id);
+	Reservation findOneById(Long id);
 }

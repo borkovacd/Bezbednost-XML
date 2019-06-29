@@ -3,7 +3,7 @@ package com.ftn.micro4.dto;
 public class RatingDTO 
 {
 	private String comment ;
-	private int ratingMark ;
+	private String ratingMark ;
 	// provera
 	// saljem idSobe, vracam listu rejtinga
 	// prosecna ocena sobe
@@ -14,7 +14,7 @@ public class RatingDTO
 		// TODO Auto-generated constructor stub
 	}
 
-	public RatingDTO(String comment, int ratingMark) 
+	public RatingDTO(String comment, String ratingMark) 
 	{
 		super();
 		this.comment = comment;
@@ -29,11 +29,11 @@ public class RatingDTO
 		this.comment = comment;
 	}
 
-	public int getRatingMark() {
+	public String getRatingMark() {
 		return ratingMark;
 	}
 
-	public void setRatingMark(int ratingMark) {
+	public void setRatingMark(String ratingMark) {
 		this.ratingMark = ratingMark;
 	}
 

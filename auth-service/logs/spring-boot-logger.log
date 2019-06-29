@@ -1,5 +1,0 @@
-2019-06-29 06:59:28,356 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-06-29 06:59:34,816 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
-2019-06-29 06:59:43,506 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro1AuthApp in 17.258 seconds (JVM running for 18.256)
-2019-06-29 07:20:23,336 DEBUG com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-6] LOG
-2019-06-29 07:20:24,332 INFO com.ftn.micro1.controller.UserControler [https-jsse-nio-8086-exec-6] User id:1 LOGSUCCESS 
