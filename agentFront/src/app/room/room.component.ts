@@ -27,16 +27,7 @@ export  class RoomComponent implements OnInit{
       this.items = data;
     })
 
-
-
   }
-
-  /*getComment(idRoom: any) {
-      this.roomService.getRoomRating(idRoom).subscribe(data =>{
-        alert(data);
-      })
-
-  }*/
 
   addRoom(){
     const idA = this.route.snapshot.params.idA;
@@ -71,7 +62,7 @@ export  class RoomComponent implements OnInit{
 
     })
   }
-  priceList(id: any){
+  priceList(id: any) {
     const idA = this.route.snapshot.params.idA;
 
     this.router.navigateByUrl('welcomepage/room/' + idA + '/pricelist/' + id );
@@ -79,6 +70,11 @@ export  class RoomComponent implements OnInit{
 }
   goBack(){
     this.router.navigateByUrl('welcomepage' );
+
+  }
+
+  roomRating(idRoom: any){
+    this.router.navigateByUrl('/welcomepage/room/' + idRoom);
 
   }
 }

@@ -51,7 +51,7 @@ export class ReservationService {
   checkIfComment(idRoom: any): Observable<any> {
     const token = localStorage.getItem('loggedUser');
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
-    return this.http.get(`${this.BASE_URL}/checkIfComment/${idRoom}`,  {headers: headers});
+    return this.http.get(`${this.BASE_URL}/checkIfComment/${token}/${idRoom}`,  {headers: headers});
   }
 
 }

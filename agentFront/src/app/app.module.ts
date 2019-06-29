@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AccomodationComponent} from './accomodation/accomodation.component';
 import {AddEditAccomodationComponent} from './add-edit-accomodation/add-edit-accomodation.component';
+import {RoomRatingComponent} from './roomRating/roomRating.component';
 import {AccomodationService} from './service/accomodation.service';
 import {AdditionalServicesService} from './service/additionalServices.service';
 import {CityService} from './service/city.service';
@@ -29,6 +30,7 @@ import {ReservationAgentService} from './service/reservationAgent.service';
 import {MessageComponent} from './message/message.component';
 import {MessageService} from './service/message.service';
 import {ResponseService} from './service/response.service';
+import {RatingService} from './service/rating.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {ResponseService} from './service/response.service';
     ReservationComponent,
     AddReservationComponent,
     MessageComponent,
+    RoomRatingComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import {ResponseService} from './service/response.service';
     ReservationAgentService,
     MessageService,
     ResponseService,
+    RatingService,
   ],
   bootstrap: [AppComponent]
 })

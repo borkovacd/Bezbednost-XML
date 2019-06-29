@@ -47,3 +47,116 @@
 2019-06-28 20:38:46,055 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOMSUCCESS
 2019-06-28 20:38:49,905 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GET1AROOM
 2019-06-28 20:38:49,990 INFO com.ftn.controller.RoomControler [https-jsse-nio-8099-exec-1] User id: 1  GET1ROOMSUCCESS
+2019-06-29 19:44:10,150 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on DESKTOP-F3G1DCA with PID 10208 (started by Borx in F:\FTN\IV godina\Drugi Semestar\PROJEKTI\XML-Bezbednost PROJECT\agentBack)
+2019-06-29 19:44:10,153 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-29 19:44:10,154 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-29 19:44:11,714 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-29 19:44:11,715 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Borx\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-29 19:44:11,715 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-29 19:45:01,159 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-29 19:45:03,056 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 53.272 seconds (JVM running for 54.243)
+2019-06-29 19:45:34,975 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACC
+2019-06-29 19:45:36,200 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACCSUCCESS
+2019-06-29 19:45:36,214 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOM
+2019-06-29 19:45:36,505 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:45:36,513 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOM
+2019-06-29 19:45:36,769 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:45:36,777 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOM
+2019-06-29 19:45:37,069 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-9] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:45:37,084 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:38,216 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:38,224 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:40,096 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:40,110 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:41,116 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:41,125 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:42,935 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:42,952 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:44,602 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:44,616 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:46,409 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:46,429 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICL
+2019-06-29 19:45:48,039 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-9] User id: 1  GETAPRICLSUCCESS
+2019-06-29 19:45:48,210 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-9] User id: 1 GETALLRES
+2019-06-29 19:45:48,442 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-9] User id: 1 GETALLRESSUCCESS
+2019-06-29 19:45:48,445 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-9] User id: 1 GETARES
+2019-06-29 19:45:48,561 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-9] User id: 1 GETARESSUCCESS
+2019-06-29 19:45:48,707 INFO com.ftn.service.AgentService [https-jsse-nio-8099-exec-9] User id: 1 LOGSUCCESS
+2019-06-29 19:45:48,708 WARN com.ftn.controller.AgentController [https-jsse-nio-8099-exec-9] User id: 1 LOGSUCCESS
+2019-06-29 19:45:48,864 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACC
+2019-06-29 19:45:49,916 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACCSUCCESS
+2019-06-29 19:45:51,892 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] User id: 1 GETARES
+2019-06-29 19:45:51,908 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRES
+2019-06-29 19:45:51,972 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] User id: 1 GETARESSUCCESS
+2019-06-29 19:45:52,044 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESSUCCESS
+2019-06-29 19:45:55,169 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-4] User id: 1 GETAMESS
+2019-06-29 19:45:55,296 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-4] User id: 1 GETAMESSSUCCESS
+2019-06-29 19:45:55,299 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-4] User id: 1 GETALLRESPON
+2019-06-29 19:45:55,364 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-4] User id: 1 GETALLRESPONSUCCESS
+2019-06-29 19:45:55,410 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-6] User id: 1 GETALLRESPON
+2019-06-29 19:45:55,427 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-6] User id: 1 GETALLRESPONSUCCESS
+2019-06-29 19:45:56,668 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-8] User id: 1 GETALLRES
+2019-06-29 19:45:56,668 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-7] User id: 1 GETARES
+2019-06-29 19:45:56,742 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-7] User id: 1 GETARESSUCCESS
+2019-06-29 19:45:56,761 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-8] User id: 1 GETALLRESSUCCESS
+2019-06-29 19:46:13,448 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-10] User id: 1  GETAACC
+2019-06-29 19:46:14,500 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-10] User id: 1  GETAACCSUCCESS
+2019-06-29 19:48:31,726 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOM
+2019-06-29 19:48:31,902 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:48:41,084 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACC
+2019-06-29 19:48:42,177 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACCSUCCESS
+2019-06-29 19:48:43,930 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-3] User id: 1  GETAROOM
+2019-06-29 19:48:44,096 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-3] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:48:53,421 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACC
+2019-06-29 19:48:54,769 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACCSUCCESS
+2019-06-29 19:48:57,208 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-5] User id: 1 GETARES
+2019-06-29 19:48:57,217 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRES
+2019-06-29 19:48:57,274 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-5] User id: 1 GETARESSUCCESS
+2019-06-29 19:48:57,312 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESSUCCESS
+2019-06-29 19:49:08,850 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-4] SEARROOM
+2019-06-29 19:49:22,828 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-6] SEARROOM
+2019-06-29 19:49:35,359 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-8] SEARROOM
+2019-06-29 19:50:21,110 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-2] SEARROOM
+2019-06-29 19:50:27,971 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-9] SEARROOM
+2019-06-29 19:50:36,749 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] SEARROOM
+2019-06-29 19:51:59,641 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-2] SEARROOM
+2019-06-29 19:52:05,377 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-9] SEARROOM
+2019-06-29 19:52:10,272 DEBUG com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] SEARROOM
+2019-06-29 19:52:13,349 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-5] User id: 1  GETAACC
+2019-06-29 19:52:14,279 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-5] User id: 1  GETAACCSUCCESS
+2019-06-29 19:52:18,465 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-1] User id: 1 GETAMESS
+2019-06-29 19:52:18,505 INFO com.ftn.service.MessageService [https-jsse-nio-8099-exec-1] User id: 1 GETAMESSSUCCESS
+2019-06-29 19:52:18,508 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESPON
+2019-06-29 19:52:18,520 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-1] User id: 1 GETALLRESPONSUCCESS
+2019-06-29 19:52:18,543 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPON
+2019-06-29 19:52:18,558 INFO com.ftn.service.ResponseService [https-jsse-nio-8099-exec-3] User id: 1 GETALLRESPONSUCCESS
+2019-06-29 19:52:19,275 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-4] User id: 1 GETARES
+2019-06-29 19:52:19,278 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRES
+2019-06-29 19:52:19,334 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-4] User id: 1 GETARESSUCCESS
+2019-06-29 19:52:19,361 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-5] User id: 1 GETALLRESSUCCESS
+2019-06-29 19:52:20,077 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACC
+2019-06-29 19:52:21,090 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-1] User id: 1  GETAACCSUCCESS
+2019-06-29 19:52:24,365 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-3] User id: 1  GETAROOM
+2019-06-29 19:52:24,512 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-3] User id: 1  GETAROOMSUCCESS
+2019-06-29 19:53:00,579 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-6] User id: 1  GETAACC
+2019-06-29 19:53:01,552 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-6] User id: 1  GETAACCSUCCESS
+2019-06-29 19:53:37,247 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACC
+2019-06-29 19:53:38,251 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACCSUCCESS
+2019-06-29 19:53:56,821 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACC
+2019-06-29 19:53:57,800 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACCSUCCESS
+2019-06-29 19:57:51,720 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACC
+2019-06-29 19:57:52,744 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACCSUCCESS
+2019-06-29 19:58:16,033 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACC
+2019-06-29 19:58:16,964 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACCSUCCESS
+2019-06-29 20:01:50,849 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-8] User id: 1  GETAACC
+2019-06-29 20:01:51,723 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-8] User id: 1  GETAACCSUCCESS
+2019-06-29 20:02:19,151 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACC
+2019-06-29 20:02:20,028 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACCSUCCESS
+2019-06-29 20:03:00,127 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACC
+2019-06-29 20:03:01,022 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-2] User id: 1  GETAACCSUCCESS
+2019-06-29 20:03:55,349 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACC
+2019-06-29 20:03:56,360 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACCSUCCESS
+2019-06-29 20:07:39,389 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACC
+2019-06-29 20:07:40,253 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-7] User id: 1  GETAACCSUCCESS
+2019-06-29 20:08:16,801 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACC
+2019-06-29 20:08:18,052 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-9] User id: 1  GETAACCSUCCESS
