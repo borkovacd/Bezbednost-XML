@@ -38,7 +38,7 @@ public class RatingController
 	// KLIK OCENI SMESTAJ - dobija idRezervacije koju je kliknuo, idSobe
 	// `${this.BASE_URL}/checkIfComment/${idRoom}`
 	@GetMapping("/checkIfComment/{token}")
-	public boolean checkIfComment(@PathVariable String token, Long idReservation) throws Exception 
+	public boolean checkIfComment(@PathVariable String token, @RequestBody Long idReservation) throws Exception 
 	{	
 		token = token.substring(1, token.length()-1);
 		
@@ -54,10 +54,9 @@ public class RatingController
 	// CONFIRM CLICK - DTO i idRoom
 	// oceniAcc(id: any, idRoom: any)
 	// `${this.BASE_URL}/createRating/${token}/${idRoom}`
-	@PostMapping("/createRating/{token}")
-	public void createRating(@RequestBody RatingDTO ratingDTO, @PathVariable String token, @RequestBody Long idRoom) throws Exception 
+	@PostMapping("/createRating/{token}/{idRoom}")
+	public void createRating(@RequestBody RatingDTO ratingDTO, @PathVariable String token, @PathVariable Long idRoom) throws Exception 
 	{
-		
 		token = token.substring(1, token.length()-1);
 		
 		String email = tokenUtils.getUserSecurity(token).getUsername();
