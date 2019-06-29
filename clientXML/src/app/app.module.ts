@@ -14,6 +14,9 @@ import {UserService} from './service/user.service';
 import {ReservationService} from './service/reservation.service';
 import { ListReservationComponent } from './list-reservation/list-reservation.component';
 import {MessageService} from './service/message.service';
+import {RatingService} from './service/rating.service';
+import {CommentComponent} from './comment/comment.component';
+import {RoomRatingComponent} from './roomRating/roomRating.component';
 
 
 @NgModule({
@@ -24,6 +27,8 @@ import {MessageService} from './service/message.service';
     LoginComponent,
     RegistrationComponent,
     ListReservationComponent,
+    CommentComponent,
+    RoomRatingComponent,
 
 
   ],
@@ -39,7 +44,8 @@ import {MessageService} from './service/message.service';
   providers: [
     UserService,
     ReservationService,
-    MessageService
+    MessageService,
+    RatingService,
   ],
   bootstrap: [AppComponent]
 })

@@ -235,4 +235,8 @@ export  class WelcomepageComponent implements OnInit {
   myRes() {
     this.router.navigateByUrl('/myReservations');
   }
+  roomRating(idRoom: any){
+    this.router.navigateByUrl('/myReservations/room/' + idRoom);
+
+  }
 }

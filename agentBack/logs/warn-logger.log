@@ -1,0 +1,2 @@
+2019-06-28 20:37:43,872 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8099-exec-1] SECURITY_EVENT Unauthorised access attempt to https://localhost:8099/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 20:38:19,839 WARN com.ftn.controller.AgentController [https-jsse-nio-8099-exec-10] User id: 1 LOGSUCCESS

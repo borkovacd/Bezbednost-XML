@@ -1,0 +1,49 @@
+2019-06-28 20:34:07,296 INFO org.springframework.boot.StartupInfoLogger [main] Starting AgentBack on Probook450G2 with PID 11464 (D:\ILINKA\projekatBez4\Bezbednost-XML\agentBack\target\classes started by Milan in D:\ILINKA\projekatBez4\Bezbednost-XML\agentBack)
+2019-06-28 20:34:07,303 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 20:34:07,306 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-28 20:34:17,753 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:34:17,755 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:34:17,756 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 20:34:40,979 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 20:34:52,016 INFO org.springframework.boot.StartupInfoLogger [main] Started AgentBack in 45.91 seconds (JVM running for 47.962)
+2019-06-28 20:37:43,872 WARN com.ftn.security.RestAuthenticationEntryPoint [https-jsse-nio-8099-exec-1] SECURITY_EVENT Unauthorised access attempt to https://localhost:8099/favicon.ico from  adress0:0:0:0:0:0:0:1
+2019-06-28 20:38:01,393 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-10] User id: 1  GETAACC
+2019-06-28 20:38:02,710 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-10] User id: 1  GETAACCSUCCESS
+2019-06-28 20:38:02,734 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOM
+2019-06-28 20:38:03,185 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOMSUCCESS
+2019-06-28 20:38:03,199 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOM
+2019-06-28 20:38:03,678 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOMSUCCESS
+2019-06-28 20:38:03,698 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOM
+2019-06-28 20:38:04,142 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-10] User id: 1  GETAROOMSUCCESS
+2019-06-28 20:38:04,163 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:06,953 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:06,966 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:09,276 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:09,300 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:10,884 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:10,905 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:13,003 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:13,022 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:15,068 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:15,097 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:16,902 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:16,920 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICL
+2019-06-28 20:38:18,963 INFO com.ftn.service.PriceService [https-jsse-nio-8099-exec-10] User id: 1  GETAPRICLSUCCESS
+2019-06-28 20:38:19,234 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-10] User id: 1 GETALLRES
+2019-06-28 20:38:19,633 INFO com.ftn.service.ReservationService [https-jsse-nio-8099-exec-10] User id: 1 GETALLRESSUCCESS
+2019-06-28 20:38:19,638 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] User id: 1 GETARES
+2019-06-28 20:38:19,836 INFO com.ftn.service.ReservationAgentService [https-jsse-nio-8099-exec-10] User id: 1 GETARESSUCCESS
+2019-06-28 20:38:19,838 INFO com.ftn.service.AgentService [https-jsse-nio-8099-exec-10] User id: 1 LOGSUCCESS
+2019-06-28 20:38:19,839 WARN com.ftn.controller.AgentController [https-jsse-nio-8099-exec-10] User id: 1 LOGSUCCESS
+2019-06-28 20:38:20,260 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-3] User id: 1  GETAACC
+2019-06-28 20:38:20,887 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-3] User id: 1  GETAACCSUCCESS
+2019-06-28 20:38:29,457 INFO com.ftn.controller.CountryController [https-jsse-nio-8099-exec-10] GETCOUNT
+2019-06-28 20:38:29,486 INFO com.ftn.controller.CityController [https-jsse-nio-8099-exec-3] GETCITY
+2019-06-28 20:38:29,631 INFO com.ftn.controller.AdditionalServicesController [https-jsse-nio-8099-exec-9] GETASER
+2019-06-28 20:38:29,635 INFO com.ftn.controller.CategoryContorller [https-jsse-nio-8099-exec-5] GETCAT
+2019-06-28 20:38:43,331 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACC
+2019-06-28 20:38:43,964 INFO com.ftn.service.AccomodationService [https-jsse-nio-8099-exec-4] User id: 1  GETAACCSUCCESS
+2019-06-28 20:38:45,759 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOM
+2019-06-28 20:38:46,055 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-2] User id: 1  GETAROOMSUCCESS
+2019-06-28 20:38:49,905 INFO com.ftn.service.RoomService [https-jsse-nio-8099-exec-1] User id: 1  GET1AROOM
+2019-06-28 20:38:49,990 INFO com.ftn.controller.RoomControler [https-jsse-nio-8099-exec-1] User id: 1  GET1ROOMSUCCESS

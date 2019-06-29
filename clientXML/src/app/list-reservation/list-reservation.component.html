@@ -24,7 +24,7 @@
     <label>Kapacitet: {{res.room.capacity}}</label><br><br>
     <label>Otkazivanje do {{res.room.day}} dana pre isteka rezervacije</label>
     <br><br>
-
+    <button class="btn btn-primary" (click)="oceniAcc(res.id,res.room.id)">Oceni smestaj</button>
     <button class="btn btn-primary" (click)="cancelRes(res.id)">Otkazi</button>
 
   </div>
