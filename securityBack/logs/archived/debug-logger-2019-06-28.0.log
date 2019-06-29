@@ -1,0 +1,19 @@
+2019-06-28 20:22:11,063 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 20:22:16,856 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:22:16,859 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:22:16,860 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 20:22:27,952 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 20:25:48,510 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-3] LOGING
+2019-06-28 20:27:01,847 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2019-06-28 20:27:07,037 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:27:07,038 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] Code archive: C:\Users\Milan\.m2\repository\org\springframework\boot\spring-boot\2.1.0.RELEASE\spring-boot-2.1.0.RELEASE.jar
+2019-06-28 20:27:07,039 DEBUG org.springframework.boot.web.servlet.server.DocumentRoot [main] None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2019-06-28 20:27:14,613 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-28 20:27:46,154 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 20:27:53,750 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-5] SS
+2019-06-28 20:28:56,074 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-5] LOGOUT
+2019-06-28 20:29:23,270 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGING
+2019-06-28 20:29:25,164 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-9] SS
+2019-06-28 20:29:36,217 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-6] LOGOUT
+2019-06-28 20:29:50,852 DEBUG com.ftn.controller.UserControler [https-jsse-nio-8092-exec-9] LOGING
+2019-06-28 20:31:06,646 DEBUG com.ftn.controller.SecurityAdminControler [https-jsse-nio-8092-exec-4] SS
