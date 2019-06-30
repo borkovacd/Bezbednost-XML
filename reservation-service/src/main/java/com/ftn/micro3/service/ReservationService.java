@@ -66,22 +66,23 @@ public class ReservationService
 	
 	public List<Room> advancedSearchFreeRooms(boolean tipHotel, boolean tipApartman, boolean tipBadAndBreakfast, boolean kategorija1, boolean kategorija2, boolean kategorija3, boolean kategorija4, boolean kategorija5, boolean nekategorisan, boolean parking, boolean wifi, boolean dorucak, boolean poluPansion, boolean pansion, boolean allInclusive, boolean petFriendly, boolean tv, boolean miniKuhinja, boolean kupatilo, boolean bespaltnoOtkazivanje, List<Room> rooms)
 	{
-		List<Room> allRooms = new ArrayList<Room>(rooms);
+		List<Room> allRooms = rooms;
+		
 		List<Room> typeMatchingRooms =  new ArrayList<Room>();
 		
 		// TypeAccomodation
 		for (Room r : allRooms)
 		{
 			
-			if (r.getAccomodation().getTypeAccomodation().getName() == "hotel" && tipHotel == true)
+			if (r.getAccomodation().getTypeAccomodation().getName().equals("hotel") && tipHotel == true)
 			{
 				typeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getTypeAccomodation().getName() == "apartman" && tipApartman == true)
+			if (r.getAccomodation().getTypeAccomodation().getName().equals("apartman") && tipApartman == true)
 			{
 				typeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getTypeAccomodation().getName() == "bad&breakfast" && tipBadAndBreakfast == true)
+			if (r.getAccomodation().getTypeAccomodation().getName().equals("bed&breakfast") && tipBadAndBreakfast == true)
 			{
 				typeMatchingRooms.add(r);
 			}
@@ -91,32 +92,32 @@ public class ReservationService
 			}
 		}
 		
-		List<Room> categoryTypeMatchingRooms = new ArrayList<Room>();
+		/*List<Room> categoryTypeMatchingRooms = new ArrayList<Room>();
 		
 		// Category	
 		for (Room r : typeMatchingRooms)
 		{
-			if (r.getAccomodation().getCategory().getName() == "jedna" && kategorija1 == true)
+			if (r.getAccomodation().getCategory().getName().equals("jedna") && kategorija1 == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getCategory().getName() == "dve" && kategorija2 == true)
+			if (r.getAccomodation().getCategory().getName().equals("dve") && kategorija2 == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getCategory().getName() == "tri" && kategorija3 == true)
+			if (r.getAccomodation().getCategory().getName().equals("tri") && kategorija3 == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getCategory().getName() == "cetri" && kategorija4 == true)
+			if (r.getAccomodation().getCategory().getName().equals("cetri") && kategorija4 == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getCategory().getName() == "pet" && kategorija5 == true)
+			if (r.getAccomodation().getCategory().getName().equals("pet") && kategorija5 == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
-			if (r.getAccomodation().getCategory().getName() == "nekategorisan" && nekategorisan == true)
+			if (r.getAccomodation().getCategory().getName().equals("nekategorisan") && nekategorisan == true)
 			{
 				categoryTypeMatchingRooms.add(r);
 			}
@@ -133,57 +134,57 @@ public class ReservationService
 		{
 			for (AdditionalServices ser : r.getAccomodation().getAdditionalServices())
 			{
-				if (ser.getName() == "Parking" && parking == true)
+				if (ser.getName().equals("Parking") && parking == true)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Wifi" && wifi == true && parking == false)
+				if (ser.getName().equals("Wifi") && wifi == true && parking == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Dorucak" && dorucak == true && wifi == false && parking == false)
+				if (ser.getName().equals("Dorucak") && dorucak == true && wifi == false && parking == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Polupansion" && poluPansion == true && wifi == false && parking == false && dorucak == false)
+				if (ser.getName().equals("Polupansion") && poluPansion == true && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Pansion" && pansion == true)
+				if (ser.getName().equals("Pansion") && pansion == true && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "All inclusive" && allInclusive == true)
+				if (ser.getName().equals("All inclusive") && allInclusive == true && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Kucni ljubimci" &&  petFriendly == true)
+				if (ser.getName().equals("Kucni ljubimci") &&  petFriendly == true && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Tv" && tv == true)
+				if (ser.getName().equals("Tv") && tv == true &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Minikuhinja/kuhinja" && miniKuhinja == true)
+				if (ser.getName().equals("Minikuhinja/kuhinja") && miniKuhinja == true && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Privatno kupatilo" && kupatilo == true)
+				if (ser.getName().equals("Privatno kupatilo") && kupatilo == true && miniKuhinja == false && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
 				
-				if (ser.getName() == "Otkazivanje" && bespaltnoOtkazivanje == true)
+				if (ser.getName().equals("Otkazivanje") && bespaltnoOtkazivanje == true  && kupatilo == false && miniKuhinja == false && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
 					additionalCatTypeMatching.add(r);
 				}
@@ -195,7 +196,8 @@ public class ReservationService
 			}
 		}
 	
-		return additionalCatTypeMatching ;
+		return additionalCatTypeMatching ;*/
+		return typeMatchingRooms;
 	
 	}
 	

@@ -23,14 +23,12 @@ export  class RatingService {
     return this.http.post(`${this.BASE_URL}/createRating/${token}/${idRoom}`, body, {headers: headers});
   }
   getAverageRating(idRoom: any): Observable<any> {
-    const token = localStorage.getItem('loggedUser');
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get(`${this.BASE_URL}/getAverageRating/${idRoom}`, {headers: headers});
   }
 
   getListOfRating(idRoom: any): Observable<any> {
-    const token = localStorage.getItem('loggedUser');
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get(`${this.BASE_URL}/getListOfRating/${idRoom}`, {headers: headers});
   }
 }

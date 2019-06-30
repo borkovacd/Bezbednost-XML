@@ -1,0 +1,129 @@
+2019-06-30 07:38:26,407 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 07:38:33,322 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 07:38:44,837 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 20.201 seconds (JVM running for 21.323)
+2019-06-30 07:40:28,169 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 07:40:36,295 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 07:40:47,893 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 21.716 seconds (JVM running for 23.004)
+2019-06-30 07:42:24,381 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHR
+2019-06-30 07:42:24,382 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHR
+2019-06-30 07:42:24,382 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHRSUCCESS
+2019-06-30 07:43:22,423 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHR
+2019-06-30 07:43:22,423 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHR
+2019-06-30 07:43:22,423 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHRSUCCESS
+2019-06-30 07:43:25,558 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 07:43:25,559 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 07:43:25,560 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHRSUCCESS
+2019-06-30 07:43:58,193 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHR
+2019-06-30 07:43:58,193 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHR
+2019-06-30 07:43:58,221 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHRSUCCESS
+2019-06-30 07:45:19,135 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 07:45:19,136 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 07:45:19,136 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHRSUCCESS
+2019-06-30 07:47:54,271 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 07:47:58,639 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 07:48:05,517 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.774 seconds (JVM running for 13.823)
+2019-06-30 07:49:33,995 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 07:49:33,996 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 07:49:33,996 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHRSUCCESS
+2019-06-30 07:49:58,508 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 07:49:58,508 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 07:49:58,509 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
+2019-06-30 07:51:26,026 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-2] SEARCHR
+2019-06-30 07:51:26,026 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-2] SEARCHR
+2019-06-30 07:51:26,027 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-2] SEARCHRSUCCESS
+2019-06-30 07:53:32,101 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 07:53:36,169 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 07:53:42,746 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.286 seconds (JVM running for 13.222)
+2019-06-30 07:54:31,878 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 07:54:31,878 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 07:54:31,880 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
+2019-06-30 07:55:45,018 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 07:55:49,662 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 07:55:56,562 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 13.159 seconds (JVM running for 14.154)
+2019-06-30 07:57:44,299 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 07:57:44,299 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 07:57:44,300 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHRSUCCESS
+2019-06-30 08:00:29,872 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 08:00:34,243 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 08:00:40,476 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.132 seconds (JVM running for 13.11)
+2019-06-30 08:02:06,700 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:02:06,701 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:02:06,701 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHRSUCCESS
+2019-06-30 08:04:49,242 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 08:04:53,841 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 08:05:00,189 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.7 seconds (JVM running for 13.816)
+2019-06-30 08:06:22,069 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 08:06:27,617 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 08:06:35,312 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 14.831 seconds (JVM running for 15.813)
+2019-06-30 08:07:42,526 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:07:42,527 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:07:42,527 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
+2019-06-30 08:09:06,389 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 08:09:10,454 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 08:09:16,557 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 11.652 seconds (JVM running for 12.617)
+2019-06-30 08:09:32,033 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:09:32,033 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:09:32,034 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHRSUCCESS
+2019-06-30 08:21:55,639 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 08:22:00,084 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 08:22:06,229 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.195 seconds (JVM running for 13.347)
+2019-06-30 08:22:43,419 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:22:43,419 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:22:43,419 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 08:25:14,206 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHR
+2019-06-30 08:25:14,207 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHR
+2019-06-30 08:25:14,207 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-4] SEARCHRSUCCESS
+2019-06-30 08:25:48,897 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:25:48,898 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:25:48,898 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHRSUCCESS
+2019-06-30 08:26:21,250 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHR
+2019-06-30 08:26:21,251 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHR
+2019-06-30 08:26:21,252 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-10] SEARCHRSUCCESS
+2019-06-30 08:27:43,684 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:27:43,684 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:27:43,684 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 08:36:42,522 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:36:42,523 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHR
+2019-06-30 08:36:42,523 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-5] SEARCHRSUCCESS
+2019-06-30 08:37:36,926 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:37:36,927 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:37:36,927 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHRSUCCESS
+2019-06-30 08:47:19,562 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:47:19,562 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:47:19,563 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 08:51:43,722 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:51:43,723 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:51:43,723 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 08:54:47,758 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:54:47,758 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:54:47,758 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
+2019-06-30 08:55:27,914 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 08:55:27,915 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 08:55:27,915 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHRSUCCESS
+2019-06-30 08:58:37,660 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:58:37,661 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 08:58:37,661 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 08:58:46,475 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:58:46,476 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 08:58:46,476 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
+2019-06-30 08:59:01,769 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:59:01,770 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 08:59:01,770 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHRSUCCESS
+2019-06-30 08:59:22,433 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 08:59:22,434 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHR
+2019-06-30 08:59:22,434 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-9] SEARCHRSUCCESS
+2019-06-30 09:05:35,012 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 09:05:35,013 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHR
+2019-06-30 09:05:35,013 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-7] SEARCHRSUCCESS
+2019-06-30 09:06:23,540 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 09:06:23,541 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHR
+2019-06-30 09:06:23,541 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-8] SEARCHRSUCCESS
+2019-06-30 09:06:42,262 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHR
+2019-06-30 09:06:42,263 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHR
+2019-06-30 09:06:42,264 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-1] SEARCHRSUCCESS
+2019-06-30 09:08:16,636 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-06-30 09:08:21,267 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2019-06-30 09:08:27,027 INFO org.springframework.boot.StartupInfoLogger [main] Started Micro3ResApp in 12.134 seconds (JVM running for 13.213)
+2019-06-30 09:09:17,817 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 09:09:17,818 DEBUG com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHR
+2019-06-30 09:09:17,818 INFO com.ftn.micro3.controller.ReservationController [https-jsse-nio-8089-exec-6] SEARCHRSUCCESS
