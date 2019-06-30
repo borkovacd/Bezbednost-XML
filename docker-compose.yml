@@ -1,0 +1,83 @@
+version: '3'
+services:
+
+  discovery:
+    image: discovery
+    container_name: discovery
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+
+  gateway:
+    image: service-gateway
+    container_name: service-gateway
+    build:
+      context: ./zuul-server
+      dockerfile: Dockerfile
+    ports:
+      - "8762:8762"
+    depends_on:
+      - discovery
+    links:
+      - discovery:discovery
+  
+  service1:
+    image: service1
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "8086"
+    depends_on:
+      - discovery
+    links:
+      - discovery:discovery
+      - db_mysql: db_mysql
+
+  service2:
+    image: service2
+    build:
+      context: ./accomodation-service
+      dockerfile: Dockerfile
+    ports:
+      - "8087"
+    depends_on:
+      - discovery
+    links:
+      - discovery:discovery      
+      - db_mysql: db_mysql
+
+  service3:
+    image: service3
+    build:
+      context: ./resservation-service
+      dockerfile: Dockerfile
+    ports:
+      - "8089"
+    depends_on:
+      - discovery
+    links:
+      - discovery:discovery
+      - db_mysql: db_mysql
+
+  service4:
+    image: service4
+    build:
+      context: ./rating-service
+      dockerfile: Dockerfile
+    ports:
+      - "8094"
+    depends_on:
+      - discovery
+    links:ry
+      - discovery:discovery
+      - db_mysql: db_mysql
+
+  db:
+    image: db_mysql
+    container_name: db_mysql
+    environment:
+      - MYSQL_USER: root
+      - MYSQL_PASSWORD: root

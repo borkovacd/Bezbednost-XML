@@ -75,7 +75,7 @@ public class UserControler {
 			System.out.println("ime je" +clientDto.getFirstName());
 			
 			boolean response = userService.exists(clientDto.getEmail());
-			if (response == true) {
+			if (response == false) {
 				System.out.println("Vec postoji dati mejl");
 				log.error("REGFAIL");
 
