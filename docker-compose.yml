@@ -75,7 +75,7 @@ services:
       - discovery:discovery
       - db_mysql: db_mysql
 
-  db:
+  db_mysql:
     image: db_mysql
     container_name: db_mysql
     environment:
