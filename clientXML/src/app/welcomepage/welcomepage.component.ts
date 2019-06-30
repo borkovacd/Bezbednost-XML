@@ -21,6 +21,10 @@ export  class WelcomepageComponent implements OnInit {
 
   public vis: boolean = false;
 
+itemsCopy: Room[];
+  orderBy: string;
+  asc = true;
+
   public visOut: boolean = false;
 
   public fromDate: any;
@@ -52,6 +56,9 @@ export  class WelcomepageComponent implements OnInit {
   public checkInDate: AbstractControl;
   public checkOutDate: AbstractControl;
   public numberOfPersons: AbstractControl;
+
+  filter = { hotel: false, bed_breakfast: false, apartman: false};
+
 
   constructor(protected router: Router,
               public fb: FormBuilder,
@@ -123,6 +130,17 @@ export  class WelcomepageComponent implements OnInit {
       this.vis = false;
       this.visOut = false;
     }
+  }
+
+  sortRoomsDesc(s: string) {
+    this.orderBy = s;
+    this.asc = false;
+    return false;
+  }
+  sortRoomsAsc(s: string) {
+    this.orderBy = s;
+    this.asc = true;
+    return false;
   }
 
 
@@ -237,6 +255,25 @@ export  class WelcomepageComponent implements OnInit {
   }
   roomRating(idRoom: any){
     this.router.navigateByUrl('/myReservations/room/' + idRoom);
+
+  }
+
+  filterChange() {
+
+    this.itemsCopy = this.items;
+
+    this.items = this.itemsCopy.filter(x =>
+
+      (x.accomodation.name == 'hotel' && this.filter.hotel)
+      || (x.accomodation.name === 'bed&breakfast' && this.filter.bed_breakfast)
+      || (x.accomodation.name === 'apartman' && this.filter.apartman)
+
+
+    );
+
+  }
+
+  onlyHotel() {
 
   }
 }

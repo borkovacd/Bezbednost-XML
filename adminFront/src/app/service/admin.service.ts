@@ -30,7 +30,9 @@ export class AdminService {
   }
 
   getAgents(): Observable<AgentModel[]> {
-    return this.http.get<AgentModel[]>(`${this.BASE_URL}/admin/agents`, httpOptions);
+    const token = localStorage.getItem('loggedUser');
+    const  headers = new HttpHeaders({'Content-Type': 'application/json', 'token': token});
+    return this.http.get<AgentModel[]>(`${this.BASE_URL}/admin/agents`, {headers: headers});
   }
 
   logout(): Observable<any> {

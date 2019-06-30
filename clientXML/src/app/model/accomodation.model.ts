@@ -1,5 +1,6 @@
 import {CityModel} from './city.model';
 import {AgentModel} from './agent.model';
+import {TypeAccomodationModel} from './typeAccomodation.model';
 
 export class AccomodationModel {
 
@@ -8,5 +9,7 @@ export class AccomodationModel {
   public address: string;
   public city: CityModel;
   public agent: AgentModel;
+  public typeAccomodation: TypeAccomodationModel;
+  public pic: string;
 
 }

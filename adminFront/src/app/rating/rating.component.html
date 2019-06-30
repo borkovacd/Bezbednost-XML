@@ -21,7 +21,7 @@
        style="text-align: center;border-style: solid;border-width: 2px;border-color: darkgray;margin-top: 20px;">
     <p style="font-size: 20px">Ocena:  {{item.ratingMark}}</p>
     <p style="font-size: 20px">Komentar:  {{item.comment}}</p>
-    <p style="font-size: 20px">Korisnik:  {{item.user.firstName;}}</p>
+    <p style="font-size: 20px">Korisnik:  {{item.user.firstName}}</p>
     <button *ngIf="item.approved == false" class="btn btn-primary" (click)="confirmRating(item.id)">Odobri komentar</button>
 
   </div>

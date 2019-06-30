@@ -167,6 +167,12 @@ public class UserControler {
 				return new ResponseEntity<String>("Vas nalog jos nije aktiviran", HttpStatus.FORBIDDEN);
 			} 
 			
+			if (userNew.getStatus().equals(ClientStatus.BLOKIRAN)) {
+				log.error("User id: {} LOGFAIL",userNew.getId());
+
+				return new ResponseEntity<String>("Ne mozete pristupiti", HttpStatus.FORBIDDEN);
+			}
+			
 			
 			System.out.println("pass" + userDTO.getPassword());
 

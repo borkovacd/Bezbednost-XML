@@ -130,9 +130,9 @@ insert into additional_services (id, name) values (9, "Minikuhinja/kuhinja");
 insert into additional_services (id, name) values (10, "Privatno kupatilo");
 insert into additional_services (id, name) values (11, "Otkazivanje");
 
-insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'no-photo', 1, 6, 1, 1);
-insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Hotel Park', 'no-photo', 1, 5, 1, 1);
-insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (3, 'Milano street 53', 'Best hotel', 'Hotel Milano', 'no-photo', 1, 6, 2, 3);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (1, 'Bulevar Jase Tomica', 'Najstariji hotel u gradu.', 'Hotel Novi Sad', 'https://www.welcomenepal.com/uploads/pages/gokarna-gfr-accommodation.jpeg', 1, 6, 1, 1);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (2, 'Novosadskog sajma 35', 'Na odlicnoj lokaciji', 'Apartman Park', 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_412,c_fill,g_auto,h_232,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F190108172203-11-hotel-de-paris-monaco.jpg', 1, 5, 1, 3);
+insert into accomodation (id, address, description, name, pic, agent_id, category_id, city_id, type_accomodation_id) values (3, 'Milano street 53', 'Best hotel', 'Hotel Milano', 'https://s-ec.bstatic.com/images/hotel/max1024x768/115/115434438.jpg', 1, 6, 2, 3);
 
 
 insert into accomodation_additional_services(accomodation_id, additional_services_id) values (1, 11);

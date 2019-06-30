@@ -17,6 +17,8 @@ import {MessageService} from './service/message.service';
 import {RatingService} from './service/rating.service';
 import {CommentComponent} from './comment/comment.component';
 import {RoomRatingComponent} from './roomRating/roomRating.component';
+import {SortingPipe} from './welcomepage/sorting.pipe';
+import {SerachPipe} from './welcomepage/serach.pipe';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import {RoomRatingComponent} from './roomRating/roomRating.component';
     ListReservationComponent,
     CommentComponent,
     RoomRatingComponent,
-
+    SortingPipe,
+SerachPipe,
 
   ],
   imports: [
