@@ -5,6 +5,7 @@ import {SearchModel} from '../model/search.model';
 import {AdvancedSearchModel} from '../model/advancedSearch.model';
 import {ReservationModel} from '../model/reservation.model';
 import {ReservationBackModel} from '../model/reservationBack.model';
+import {Room} from '../model/room.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -55,4 +56,7 @@ export class ReservationService {
     return this.http.get(`${this.BASE_URL2}/checkIfComment/${token}/${idRoom}`,  {headers: headers});
   }
 
+  sort(items: Room[]): Observable<Room[]> {
+    return this.http.post<Room[]>(`${this.BASE_URL}/getSortedRooms`, items,  httpOptions);
+  }
 }

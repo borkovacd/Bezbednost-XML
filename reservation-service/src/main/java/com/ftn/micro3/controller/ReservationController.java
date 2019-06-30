@@ -290,6 +290,23 @@ public class ReservationController
 		
 	}
 	*/
+	
+	@PostMapping(value = "/getSortedRooms")
+	public ResponseEntity<List<Room>> getSortedRooms(@RequestBody List<Room> rooms)
+	{
+		List<Room> sortedRooms = reservationService.sortAllRooms(rooms);
+		
+		if (sortedRooms.size() == 0)
+		{
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		else
+		{
+			return new ResponseEntity<List<Room>>(sortedRooms, HttpStatus.OK);
+		}
+
+	}
 
 	@PreAuthorize("hasAuthority('DEL_RES')")
 	@GetMapping(value="/cancelRes/{id}")

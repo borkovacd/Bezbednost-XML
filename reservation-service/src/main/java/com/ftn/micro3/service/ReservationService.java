@@ -420,5 +420,36 @@ public class ReservationService
 		
 		return true;
 	}
+	
+	public List<Room> sortAllRooms(List<Room> rooms)
+	{
+		//List<Room> rooms = roomRepository.findAll();
+		ArrayList<String> roomNames = new ArrayList<>();
+		
+		for (Room r : rooms)
+		{
+			roomNames.add(r.getAccomodation().getCategory().getName());
+		}
+		
+		Room temp = new Room();
+			for (int x = 0 ; x < rooms.size(); x++)
+			{
+				for (int i = 0; i < rooms.size() - x - 1; i++)
+				{
+					if (rooms.get(i).getAccomodation().getCategory().getName().compareTo(rooms.get(i+1).getAccomodation().getCategory().getName()) > 0)
+					{
+						temp = rooms.get(i);
+						rooms.set(i, rooms.get(i + 1));
+						rooms.set(i+1, temp);
+						
+					}
+				}
+			}
+		/*
+		Collections.sort(rooms, roomNames);
+		*/
+		
+		return rooms ;
+	}
 
 }

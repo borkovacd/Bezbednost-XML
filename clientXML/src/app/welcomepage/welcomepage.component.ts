@@ -276,4 +276,10 @@ itemsCopy: Room[];
   onlyHotel() {
 
   }
+
+  sort() {
+    this.reservationService.sort(this.items).subscribe(data => {
+      this.items = data;
+    });
+  }
 }
