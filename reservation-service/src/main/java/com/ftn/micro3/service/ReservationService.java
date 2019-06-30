@@ -92,7 +92,7 @@ public class ReservationService
 			}
 		}
 		
-		/*List<Room> categoryTypeMatchingRooms = new ArrayList<Room>();
+		List<Room> categoryTypeMatchingRooms = new ArrayList<Room>();
 		
 		// Category	
 		for (Room r : typeMatchingRooms)
@@ -136,68 +136,80 @@ public class ReservationService
 			{
 				if (ser.getName().equals("Parking") && parking == true)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Wifi") && wifi == true && parking == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Dorucak") && dorucak == true && wifi == false && parking == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Polupansion") && poluPansion == true && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Pansion") && pansion == true && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("All inclusive") && allInclusive == true && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Kucni ljubimci") &&  petFriendly == true && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Tv") && tv == true &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Minikuhinja/kuhinja") && miniKuhinja == true && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Privatno kupatilo") && kupatilo == true && miniKuhinja == false && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (ser.getName().equals("Otkazivanje") && bespaltnoOtkazivanje == true  && kupatilo == false && miniKuhinja == false && tv == false &&  petFriendly == false && allInclusive == false && pansion == false && poluPansion == false && wifi == false && parking == false && dorucak == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 				
 				if (parking == false && wifi == false && dorucak == false && poluPansion == false && pansion == false && allInclusive == false && petFriendly == false && tv == false && miniKuhinja == false && kupatilo == false && bespaltnoOtkazivanje == false)
 				{
-					additionalCatTypeMatching.add(r);
+					if(!additionalCatTypeMatching.contains(r))
+						additionalCatTypeMatching.add(r);
 				}
 			}
 		}
 	
-		return additionalCatTypeMatching ;*/
-		return typeMatchingRooms;
+		return additionalCatTypeMatching ;
+		
 	
 	}
 	
