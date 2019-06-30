@@ -118,7 +118,7 @@ public class RatingController
 		}
 	}
 	
-	@GetMapping("/confirmRating/{idRating}")
+	@PostMapping("/confirmRating/{idRating}")
 	public void confirmRating(@PathVariable Long idRating) 
 	{
 		ratingService.confirmRating(idRating);

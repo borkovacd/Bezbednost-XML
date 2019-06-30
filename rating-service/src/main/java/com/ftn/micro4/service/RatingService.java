@@ -132,11 +132,19 @@ public class RatingService
 		
 	}
 	
-	// DODATI PROVERU DA LI JE ODOBRENO
 	public List<Rating> getListOfRating(Long idRoom)
 	{
 		List<Rating> ratings = ratingRepository.findByRoomId(idRoom);
-		return ratings ;
+		List<Rating> goodRatings = new ArrayList<Rating>();
+		
+		for (Rating r : ratings)
+		{
+			if (r.isApproved() == true)
+			{
+				goodRatings.add(r);
+			}
+		}
+		return goodRatings ;
 	}
 	
 	// ****************** ADMIN ************************ 
