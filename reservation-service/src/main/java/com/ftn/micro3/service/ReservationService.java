@@ -187,6 +187,11 @@ public class ReservationService
 				{
 					additionalCatTypeMatching.add(r);
 				}
+				
+				if (parking == false && wifi == false && dorucak == false && poluPansion == false && pansion == false && allInclusive == false && petFriendly == false && tv == false && miniKuhinja == false && kupatilo == false && bespaltnoOtkazivanje == false)
+				{
+					additionalCatTypeMatching.add(r);
+				}
 			}
 		}
 	
