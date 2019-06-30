@@ -23,6 +23,7 @@ import com.ftn.model.Rating;
 import com.ftn.model.Room;
 import com.ftn.repository.AgentRepository;
 import com.ftn.security.TokenUtils;
+import com.ftn.service.RatingService;
 import com.ftn.service.RoomService;
 
 @RestController
@@ -33,6 +34,8 @@ public class RoomControler {
 	
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private RatingService ratingService;
 	@Autowired
 	private TokenUtils tokenUtils;
 	@Autowired
@@ -111,6 +114,8 @@ public class RoomControler {
 	@GetMapping("/getAverageRating/{idRoom}")
 	public double getAverageRating(@PathVariable Long idRoom)
 	{
+		ratingService.getAllRatings();
+		
 		double rezultat = roomService.getAverageRating(idRoom);
 		return rezultat ;
 	}
@@ -118,6 +123,9 @@ public class RoomControler {
 	@GetMapping("/getListOfRating/{idRoom}")
 	public ResponseEntity<List<Rating>> getListOfRating (@PathVariable Long idRoom)
 	{
+		
+		ratingService.getAllRatings();
+		
 		List<Rating> ratings = new ArrayList<Rating>();
 		ratings = roomService.getListOfRating(idRoom);
 		
