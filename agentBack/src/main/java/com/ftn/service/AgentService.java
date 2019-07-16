@@ -184,7 +184,7 @@ public class AgentService implements UserDetailsService {
 			reservationAgentService.getAllReservations(token);
 			
 			//PRIVREMENO
-			ratingService.getAllRatings();
+			//ratingService.getAllRatings();
 			
 			log.info("User id: "+ agent.getId()+" LOGSUCCESS");
 

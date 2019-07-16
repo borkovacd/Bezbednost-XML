@@ -98,8 +98,11 @@ insert into subject_softwares (id, city, email, has_certificate, software_id, st
 
 /*sifra agent1*/
 insert into agents(id, address, enabled, first_name, last_name, mbr, nonlocked, password, username) values (1, "/", 1, "Agent", "Agent", "2653225CD", 1,  "$2a$10$PWUtTOKyHFhDSRPyFzD3tu9n2xxgLz4khi9zyFElJVp9I2ANsKuyi", "agent1");
+insert into agents (id, address, enabled, first_name, last_name, mbr, nonlocked, password, username) values (2, "/", 1, "Agent2", "Agent2", 43223423, 1, "$2a$10$sE2.8j4eJzb45QchpC2l2ub724kUeAal1YJ5mB3/l9dVIri0dTlom", "agent2");
+
 
 insert into agents_roles (agents_id, roles_id) values (1,3);
+insert into agents_roles (agents_id, roles_id) values (2,3);
 
 insert into country (id, name) values (1, "Srbija");
 insert into country (id, name) values (2, "Italija");

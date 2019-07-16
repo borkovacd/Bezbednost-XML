@@ -67,7 +67,9 @@ public class AdminController {
 		
 		Agent agent = new Agent();
 		
-		System.out.println("dodaje agenta");
+		agent.setEnabled(true);
+		agent.setNonLocked(true);
+		
 		
 		agent.setAddress(agentDto.getAddress());
 		agent.setFirstName(agentDto.getFirstName());

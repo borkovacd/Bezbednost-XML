@@ -114,7 +114,7 @@ public class RoomControler {
 	@GetMapping("/getAverageRating/{idRoom}")
 	public double getAverageRating(@PathVariable Long idRoom)
 	{
-		ratingService.getAllRatings();
+		//ratingService.getAllRatings();
 		
 		double rezultat = roomService.getAverageRating(idRoom);
 		return rezultat ;
